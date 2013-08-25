@@ -37,7 +37,7 @@ set termencoding=utf-8
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
-set wildmode=list:full
+set wildmode=list:longest
 
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
@@ -72,13 +72,21 @@ set winheight=999
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 
+augroup Default
+  autocmd!
+
+  autocmd FocusLost,InsertLeave * call functions#AutoSave()
+
+augroup END
+
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
   augroup GUI
     autocmd!
-    autocmd! FocusLost * call functions#AutoSave()
-    autocmd! GUIEnter * set vb t_vb=
+
+    autocmd GUIEnter * set vb t_vb=
+
   augroup END
 
   colorscheme sorcerer
@@ -132,7 +140,7 @@ endif
 " CUSTOM MAPPINGS "
 """""""""""""""""""
 
-let mapleader=','
+let mapleader = ","
 
 inoremap <leader>, <C-x><C-o>
 inoremap <leader>: <C-x><C-f>
@@ -143,14 +151,16 @@ xnoremap <leader>d "_d
 
 xnoremap <leader>p "_dP
 
-nnoremap / /\v
-
 nnoremap Y y$
+
+nnoremap / /\v
 
 xnoremap > >gv
 xnoremap < <gv
-nnoremap > >>
-nnoremap < <<
+
+nnoremap <leader>a :Tabularize<Space>/
+
+nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 nnoremap j      gj
 nnoremap k      gk
@@ -176,10 +186,6 @@ nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-nnoremap <leader>a :Tabularize<Space>/
-
-nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
-
 " EXPERIMENTAL!
 
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
@@ -198,12 +204,18 @@ nmap <leader>X #NcgN
 xmap <leader>x <leader>scgn
 xmap <leader>X <leader>scgN
 
+inoremap <expr> <CR> functions#Expander()
+
 nnoremap <leader>n :cnext<CR>zv
 nnoremap <leader>p :cprevious<CR>zv
 
 nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
+
+"""""""""""""""""""""""
+" CUSTOM TEXT-OBJECTS "
+"""""""""""""""""""""""
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
@@ -212,17 +224,10 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
-inoremap <expr> <CR> functions#Expander()
-
-augroup Default
-  autocmd!
-
-  autocmd FileType vim                nnoremap <leader>g I" <Esc>A "<Esc>yyp0lv$hhr"yykPjj
-  autocmd FileType python,ruby,sh,zsh nnoremap <leader>g I# <Esc>A #<Esc>yyp0lv$hhr-yykPjj
-
-  autocmd InsertLeave * call functions#AutoSave()
-
-augroup END
+xnoremap im :<C-u>silent!normal![{jv]}kV<CR>
+onoremap im :normal vim<CR>
+xnoremap am :<C-u>silent!normal![{v]}V<CR>
+onoremap am :normal vim<CR>
 
 """""""""""""""""""
 " CUSTOM COMMANDS "
@@ -253,6 +258,7 @@ nnoremap <leader>m :CtrlPMixed<CR>
 nnoremap <leader>M :CtrlPMRUFiles<CR>
 nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
+nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
 let g:ctrlp_extensions          = ['tag']
 let g:ctrlp_mruf_max            = 25

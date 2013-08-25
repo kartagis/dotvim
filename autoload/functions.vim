@@ -60,6 +60,36 @@ endfunction
 
 " ===========================================================================
 
+" experimental
+" I am not fond of that thing at all. Closing automatically is kind of OK when
+" we exit insert mode right away but not that useful when we are inserting
+" a lot of text at once.
+" An elegant solution must exist.
+" I'll keep it here for a while.
+" this is not going to last
+" for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ], [ "`", "`" ] ]
+"   execute "inoremap <expr> " . pair[1] . " functions#Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
+" endfor
+" inoremap <expr> " functions#Closer("\"", "\"")
+
+" upon closing a pair, the cursor is moved
+" automatically between the two characters
+" function! functions#Closer(left, right)
+"   if getline(".")[col(".")-2] ==# a:left && getline(".")[col(".")-1] !=# a:right
+"     return a:right . "\<Left>"
+
+"   elseif getline(".")[col(".")-1] ==# a:right
+"     return "\<Right>"
+
+"   else
+"     return a:right
+
+"   endif
+
+" endfunction
+
+" ===========================================================================
+
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
   let this_window = winnr()
