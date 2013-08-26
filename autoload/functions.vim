@@ -8,6 +8,12 @@ function functions#Expander()
   let previous = getline(".")[col(".")-2]
   let next     = getline(".")[col(".")-1]
 
+  " beware of the cmdline window
+  if &filetype == "vim" && &buftype = "nofile"
+    return "\<CR>"
+
+  endif
+
   if previous ==# "{"
     return functions#PairExpander(previous, "}", next)
 
