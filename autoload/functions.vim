@@ -9,7 +9,7 @@ function functions#Expander()
   let next     = getline(".")[col(".")-1]
 
   " beware of the cmdline window
-  if &filetype == "vim" && &buftype = "nofile"
+  if &filetype == "vim" && &buftype == "nofile"
     return "\<CR>"
 
   endif

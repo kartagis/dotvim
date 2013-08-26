@@ -96,7 +96,7 @@ if has('gui_running')
   set lines=40
   set columns=140
 
-  if os == 'Darwin' || os == 'Mac'
+  if os == 'Darwin'
     set guifont=Inconsolata-g:h13
     set fuoptions=maxvert,maxhorz
     set clipboard^=unnamed
@@ -117,7 +117,7 @@ else
 
   endif
 
-  if os == 'Darwin' || os == 'Mac'
+  if os == 'Darwin'
     set clipboard^=unnamed
 
   elseif os == 'Linux'
