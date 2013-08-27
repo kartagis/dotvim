@@ -37,13 +37,14 @@ set termencoding=utf-8
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
-set wildmode=list:longest
+set wildmode=list:full
 
 set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
+set foldlevelstart=999
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
@@ -212,6 +213,11 @@ nnoremap <leader>p :cprevious<CR>zv
 nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
+
+set wildcharm=<C-z>
+nnoremap !e :edit **/*<C-z>
+nnoremap !b :buffer <C-z>
+nnoremap !t :Tagit<CR>:tag /
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
