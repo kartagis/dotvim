@@ -26,7 +26,6 @@ set expandtab
 set shiftround
 set shiftwidth=2
 set smarttab
-set tabstop=2
 
 set gdefault
 set ignorecase
@@ -215,25 +214,33 @@ xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
 set wildcharm=<C-z>
-nnoremap !e :edit **/*<C-z>
-nnoremap !b :buffer <C-z>
-nnoremap !t :Tagit<CR>:tag /
+nnoremap !e  :edit <C-z>
+nnoremap !se :split <C-z>
+nnoremap !ve :vsplit <C-z>
+nnoremap !te :tabedit <C-z>
+nnoremap !b  :buffer <C-z>
+nnoremap !sb :sbuffer <C-z>
+nnoremap !vb :vertical sbuffer <C-z>
+nnoremap !tb :tab sbuffer <C-z>
+nnoremap !t  :tag /
+nnoremap !pt :ptag /
+nnoremap !l  :call functions#NaiveSearch()<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
 
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
-  execute 'xnoremap i' . char . ' :<C-u>silent!normal!T' . char . 'vt' . char . '<CR>'
+  execute 'xnoremap i' . char . ' :<C-u>silent! normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>silent!normal!F' . char . 'vf' . char . '<CR>'
+  execute 'xnoremap a' . char . ' :<C-u>silent! normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
-xnoremap im :<C-u>silent!normal![{jv]}kV<CR>
+xnoremap im :<C-u>silent! normal! [{jv]}kV<CR>
 onoremap im :normal vim<CR>
-xnoremap am :<C-u>silent!normal![{v]}V<CR>
-onoremap am :normal vim<CR>
+xnoremap am :<C-u>silent! normal! [{v]}V<CR>
+onoremap am :normal vam<CR>
 
 """""""""""""""""""
 " CUSTOM COMMANDS "

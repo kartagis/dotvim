@@ -2,6 +2,17 @@
 " HELPERS "
 """""""""""
 
+function functions#NaiveSearch()
+  let what = input("Search: ")
+
+  execute "vimgrep " . what . " %"
+
+  cwindow
+
+endfunction
+
+" ===========================================================================
+
 " tries to expand (), {} and [] "correctly"
 " also <tag></tag>
 function functions#Expander()
@@ -98,11 +109,15 @@ endfunction
 
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
-  let this_window = winnr()
+  " beware of the cmdline window
+  if &filetype != "vim" && &buftype != "nofile"
+    let this_window = winnr()
 
-  windo if expand('%') != '' | update | endif
+    windo if expand('%') != '' | update | endif
 
-  execute this_window . 'wincmd w'
+    execute this_window . 'wincmd w'
+
+  endif
 
 endfunction
 
