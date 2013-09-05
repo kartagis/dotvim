@@ -5,6 +5,7 @@
 
 set background=dark
 
+
 hi clear
 
 if exists("syntax_on")
@@ -16,7 +17,7 @@ let colors_name = "sorcerer"
 hi Normal             term=NONE cterm=NONE ctermbg=234 ctermfg=145 gui=NONE guibg=#202020 guifg=#c2c2b0
 hi Boolean            term=NONE cterm=NONE ctermbg=bg ctermfg=208 gui=NONE guibg=bg guifg=#ff9800
 hi ColorColumn        term=reverse cterm=NONE ctermbg=234 ctermfg=fg gui=NONE guibg=#1c1c1c guifg=fg
-hi Comment            term=bold cterm=NONE ctermbg=bg ctermfg=65 gui=italic guibg=bg guifg=#707670
+hi Comment            term=bold cterm=NONE ctermbg=bg ctermfg=240 gui=italic guibg=bg guifg=#707670
 hi Conceal            term=NONE cterm=NONE ctermbg=248 ctermfg=252 gui=NONE guibg=#a9a9a9 guifg=#d3d3d3
 hi Constant           term=underline cterm=NONE ctermbg=bg ctermfg=208 gui=NONE guibg=bg guifg=#ff9800
 hi Directory          term=bold cterm=NONE ctermbg=234 ctermfg=33 gui=NONE guibg=#202020 guifg=#1e90ff
@@ -37,7 +38,7 @@ hi SignColumn         term=NONE cterm=NONE ctermbg=187 ctermfg=231 gui=NONE guib
 hi Special            term=bold cterm=NONE ctermbg=bg ctermfg=64 gui=NONE guibg=bg guifg=#719611
 hi SpecialKey         term=bold cterm=NONE ctermbg=bg ctermfg=238 gui=NONE guibg=bg guifg=#444444
 hi Statement          term=bold cterm=NONE ctermbg=bg ctermfg=110 gui=NONE guibg=bg guifg=#90b0d1
-hi String             term=NONE cterm=NONE ctermbg=bg ctermfg=101 gui=NONE guibg=bg guifg=#779b70
+hi String             term=NONE cterm=NONE ctermbg=bg ctermfg=65 gui=NONE guibg=bg guifg=#779b70
 hi Title              term=bold cterm=bold ctermbg=bg ctermfg=66 gui=bold guibg=bg guifg=#528b8b
 hi Todo               term=NONE cterm=bold,underline ctermbg=234 ctermfg=96 gui=bold,italic,underline guibg=#202020 guifg=#8f6f8f
 hi Type               term=underline cterm=NONE ctermbg=bg ctermfg=103 gui=NONE guibg=bg guifg=#7e8aa2

@@ -20,7 +20,7 @@ function functions#Expander()
   let next     = getline(".")[col(".")-1]
 
   " beware of the cmdline window
-  if &filetype == "vim" && &buftype == "nofile"
+  if &buftype == "nofile"
     return "\<CR>"
 
   endif
@@ -110,7 +110,7 @@ endfunction
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
   " beware of the cmdline window
-  if &filetype != "vim" && &buftype != "nofile"
+  if &buftype != "nofile"
     let this_window = winnr()
 
     windo if expand('%') != '' | update | endif
@@ -137,56 +137,56 @@ function functions#Tagit()
     if expand('%') != ''
       update
 
-    endif
+      if len(tagfiles()) > 0
+        let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-    if len(tagfiles()) > 0
-      let tags_location = fnamemodify(tagfiles()[0], ":p:h")
+        call functions#GenerateTags(tags_location)
 
-      call functions#GenerateTags(tags_location)
+      else
+        let this_dir    = expand('%:p:h')
+        let current_dir = getcwd()
 
-    else
-      let this_dir    = expand('%:p:h')
-      let current_dir = getcwd()
-
-      if this_dir == current_dir
-        let user_choice = inputlist([
-          \ 'Where do you want to generate a tags file?',
-          \ '1. In the working directory: ' . current_dir . '/tags',
-          \ '2. Somewhere else…'])
-
-        if user_choice == 0
-          let b:tagit_notags = 1
-
-        elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
-
-        elseif user_choice == 2
-          let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
-
-          call functions#GenerateTags(tags_location)
-
-        endif
-
-      elseif this_dir != current_dir
-        let user_choice = inputlist([
+        if this_dir == current_dir
+          let user_choice = inputlist([
             \ 'Where do you want to generate a tags file?',
-            \ '1. In the working directory:             ' . current_dir . '/tags',
-            \ '2. In the directory of the current file: ' . this_dir . '/tags',
-            \ '3. Somewhere else…'])
+            \ '1. In the working directory: ' . current_dir . '/tags',
+            \ '2. Somewhere else…'])
 
-        if user_choice == 0
-          let b:tagit_notags = 1
+          if user_choice == 0
+            let b:tagit_notags = 1
 
-        elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
+          elseif user_choice == 1
+            call functions#GenerateTags(current_dir)
 
-        elseif user_choice == 2
-          call functions#GenerateTags(this_dir)
+          elseif user_choice == 2
+            let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
 
-        elseif user_choice == 3
-          let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
+            call functions#GenerateTags(tags_location)
 
-          call functions#GenerateTags(tags_location)
+          endif
+
+        elseif this_dir != current_dir
+          let user_choice = inputlist([
+              \ 'Where do you want to generate a tags file?',
+              \ '1. In the working directory:             ' . current_dir . '/tags',
+              \ '2. In the directory of the current file: ' . this_dir . '/tags',
+              \ '3. Somewhere else…'])
+
+          if user_choice == 0
+            let b:tagit_notags = 1
+
+          elseif user_choice == 1
+            call functions#GenerateTags(current_dir)
+
+          elseif user_choice == 2
+            call functions#GenerateTags(this_dir)
+
+          elseif user_choice == 3
+            let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
+
+            call functions#GenerateTags(tags_location)
+
+          endif
 
         endif
 

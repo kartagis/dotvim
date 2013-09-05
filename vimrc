@@ -246,12 +246,14 @@ onoremap am :normal vam<CR>
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit    :call functions#Tagit()
-command! Bombit   :call functions#Bombit()
+command! Tagit    call functions#Tagit()
+command! Bombit   call functions#Bombit()
 
-command! ToUnix   :call functions#ToUnix()
+command! ToUnix   call functions#ToUnix()
 
-command! SynStack :call functions#SynStack()
+command! SynStack call functions#SynStack()
+
+command! CD       lcd %:p:h
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
