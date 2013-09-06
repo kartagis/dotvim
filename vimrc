@@ -224,7 +224,6 @@ nnoremap !vb :vertical sbuffer <C-z>
 nnoremap !tb :tab sbuffer <C-z>
 nnoremap !t  :tag /
 nnoremap !pt :ptag /
-nnoremap !l  :call functions#NaiveSearch()<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

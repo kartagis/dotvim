@@ -2,17 +2,6 @@
 " HELPERS "
 """""""""""
 
-function functions#NaiveSearch()
-  let what = input("Search: ")
-
-  execute "vimgrep " . what . " %"
-
-  cwindow
-
-endfunction
-
-" ===========================================================================
-
 " tries to expand (), {} and [] "correctly"
 " also <tag></tag>
 function functions#Expander()
