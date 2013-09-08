@@ -34,6 +34,7 @@ set smartcase
 set encoding=utf-8
 set termencoding=utf-8
 
+set wildcharm=<C-z>
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
 set wildmode=list:full
@@ -213,7 +214,6 @@ nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
-set wildcharm=<C-z>
 nnoremap !e  :edit <C-z>
 nnoremap !se :split <C-z>
 nnoremap !ve :vsplit <C-z>
@@ -252,7 +252,8 @@ command! ToUnix   call functions#ToUnix()
 
 command! SynStack call functions#SynStack()
 
-command! CD       lcd %:p:h
+command! LCD      lcd %:p:h
+command! CD       cd %:p:h
 
 """""""""""""""""""
 " PLUGIN SETTINGS "

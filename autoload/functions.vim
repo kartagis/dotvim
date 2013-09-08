@@ -1,7 +1,3 @@
-"""""""""""
-" HELPERS "
-"""""""""""
-
 " tries to expand (), {} and [] "correctly"
 " also <tag></tag>
 function functions#Expander()
@@ -66,36 +62,6 @@ endfunction
 
 " ===========================================================================
 
-" experimental
-" I am not fond of that thing at all. Closing automatically is kind of OK when
-" we exit insert mode right away but not that useful when we are inserting
-" a lot of text at once.
-" An elegant solution must exist.
-" I'll keep it here for a while.
-" this is not going to last
-" for pair in [ [ "{", "}" ], [ "(", ")" ], [ "[", "]" ], [ "'", "'" ], [ "<", ">" ], [ "`", "`" ] ]
-"   execute "inoremap <expr> " . pair[1] . " functions#Closer(\"" . pair[0] . "\", \"" . pair[1] . "\")"
-" endfor
-" inoremap <expr> " functions#Closer("\"", "\"")
-
-" upon closing a pair, the cursor is moved
-" automatically between the two characters
-" function! functions#Closer(left, right)
-"   if getline(".")[col(".")-2] ==# a:left && getline(".")[col(".")-1] !=# a:right
-"     return a:right . "\<Left>"
-
-"   elseif getline(".")[col(".")-1] ==# a:right
-"     return "\<Right>"
-
-"   else
-"     return a:right
-
-"   endif
-
-" endfunction
-
-" ===========================================================================
-
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
   " beware of the cmdline window
@@ -122,60 +88,57 @@ endfunction
 " if no answer is given, nothing is done and we try to not 
 " bother the user again
 function functions#Tagit()
-  if !exists("b:tagit_notags")
-    if expand('%') != ''
-      update
+  if !exists("b:tagit_notags") && expand('%') != ''
+    update
 
-      if len(tagfiles()) > 0
-        let tags_location = fnamemodify(tagfiles()[0], ":p:h")
+    if len(tagfiles()) > 0
+      let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-        call functions#GenerateTags(tags_location)
+      call functions#GenerateTags(tags_location)
 
-      else
-        let this_dir    = expand('%:p:h')
-        let current_dir = getcwd()
+    else
+      let this_dir    = expand('%:p:h')
+      let current_dir = getcwd()
 
-        if this_dir == current_dir
-          let user_choice = inputlist([
+      if this_dir == current_dir
+        let user_choice = inputlist([
+          \ 'Where do you want to generate a tags file?',
+          \ '1. In the working directory: ' . current_dir . '/tags',
+          \ '2. Somewhere else…'])
+
+        if user_choice == 0
+          let b:tagit_notags = 1
+
+        elseif user_choice == 1
+          call functions#GenerateTags(current_dir)
+
+        elseif user_choice == 2
+          let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
+
+          call functions#GenerateTags(tags_location)
+
+        endif
+
+      elseif this_dir != current_dir
+        let user_choice = inputlist([
             \ 'Where do you want to generate a tags file?',
-            \ '1. In the working directory: ' . current_dir . '/tags',
-            \ '2. Somewhere else…'])
+            \ '1. In the working directory:             ' . current_dir . '/tags',
+            \ '2. In the directory of the current file: ' . this_dir . '/tags',
+            \ '3. Somewhere else…'])
 
-          if user_choice == 0
-            let b:tagit_notags = 1
+        if user_choice == 0
+          let b:tagit_notags = 1
 
-          elseif user_choice == 1
-            call functions#GenerateTags(current_dir)
+        elseif user_choice == 1
+          call functions#GenerateTags(current_dir)
 
-          elseif user_choice == 2
-            let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
+        elseif user_choice == 2
+          call functions#GenerateTags(this_dir)
 
-            call functions#GenerateTags(tags_location)
+        elseif user_choice == 3
+          let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
 
-          endif
-
-        elseif this_dir != current_dir
-          let user_choice = inputlist([
-              \ 'Where do you want to generate a tags file?',
-              \ '1. In the working directory:             ' . current_dir . '/tags',
-              \ '2. In the directory of the current file: ' . this_dir . '/tags',
-              \ '3. Somewhere else…'])
-
-          if user_choice == 0
-            let b:tagit_notags = 1
-
-          elseif user_choice == 1
-            call functions#GenerateTags(current_dir)
-
-          elseif user_choice == 2
-            call functions#GenerateTags(this_dir)
-
-          elseif user_choice == 3
-            let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
-
-            call functions#GenerateTags(tags_location)
-
-          endif
+          call functions#GenerateTags(tags_location)
 
         endif
 

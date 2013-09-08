@@ -1,16 +1,19 @@
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>& :call functions#Entities()<CR>
-nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
-xnoremap <buffer> <leader>& :call functions#Entities()<CR>
-xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*/<C-z>
+inoremap <buffer> <leader>i <Esc>:IMG im[ag]*/<C-z>
 
-command! -buffer EE :call functions#Entities()
-command! -buffer RE :call functions#ReverseEntities()
+nnoremap <buffer> <leader>& :EE<CR>
+nnoremap <buffer> <leader>é :RE<CR>
+xnoremap <buffer> <leader>& :UU<CR>
+xnoremap <buffer> <leader>é :RU<CR>
 
-command! -buffer UU :call functions#URLencoding()
-command! -buffer RU :call functions#ReverseURLencoding()
+command! -buffer -range -count EE :call functions#Entities()
+command! -buffer -range -count RE :call functions#ReverseEntities()
+
+command! -buffer -range -count UU :call functions#URLencoding()
+command! -buffer -range -count RU :call functions#ReverseURLencoding()
 
 command! -buffer AA :call functions#UpdateAnchor()
 
