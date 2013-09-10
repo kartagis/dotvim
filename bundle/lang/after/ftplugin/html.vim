@@ -4,10 +4,10 @@ xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*/<C-z>
 inoremap <buffer> <leader>i <Esc>:IMG im[ag]*/<C-z>
 
-nnoremap <buffer> <leader>& :EE<CR>
-nnoremap <buffer> <leader>é :RE<CR>
-xnoremap <buffer> <leader>& :UU<CR>
-xnoremap <buffer> <leader>é :RU<CR>
+nnoremap <buffer> <leader>& :call functions#Entities()<CR>
+nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+xnoremap <buffer> <leader>& :call functions#Entities()<CR>
+xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 
 command! -buffer -range -count EE :call functions#Entities()
 command! -buffer -range -count RE :call functions#ReverseEntities()
