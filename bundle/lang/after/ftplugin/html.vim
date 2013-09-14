@@ -1,23 +1,17 @@
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*/<C-z>
-inoremap <buffer> <leader>i <Esc>:IMG im[ag]*/<C-z>
+nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*/
+inoremap <buffer> <leader>i <Esc>:IMG im[ag]*/
 
 nnoremap <buffer> <leader>& :call functions#Entities()<CR>
-nnoremap <buffer> <leader>Ã© :call functions#ReverseEntities()<CR>
+nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>
-xnoremap <buffer> <leader>Ã© :call functions#ReverseEntities()<CR>
+xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 
-command! -buffer -range -count EE :call functions#Entities()
-command! -buffer -range -count RE :call functions#ReverseEntities()
+command! -buffer UA :call functions#UpdateAnchor()
 
-command! -buffer -range -count UU :call functions#URLencoding()
-command! -buffer -range -count RU :call functions#ReverseURLencoding()
-
-command! -buffer AA :call functions#UpdateAnchor()
-
-command! -buffer WW :call functions#UpdateWidth()
+command! -buffer UW :call functions#UpdateWidth()
 
 nnoremap <buffer> <leader>< /<\w*\(\s\\|>\)<CR>
 nnoremap <buffer> <leader>> ?<\w*\(\s\\|>\)<CR>
@@ -26,6 +20,14 @@ nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
 nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
 nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
+
+" à revoir
+" nnoremap <buffer> caa /\v"[ >/]/e<CR>vF=bc
+" nnoremap <buffer> daa /\v"[ >/]/e<CR>vF=bd
+" nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by
+" nnoremap <buffer> vaa /\v"[ >/]/e<CR>vF=b
+
+let @a = '$T"i border="0" style="display:block;"'
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
@@ -37,9 +39,12 @@ if has('gui_running')
     nnoremap <buffer> <F12>c :exe ':silent !open -a "google chrome" %'<CR>
     nnoremap <buffer> <F12>o :exe ':silent !open -a opera %'<CR>
     nnoremap <buffer> <F12>s :exe ':silent !open -a safari %'<CR>
+
   elseif os == 'Linux'
     nnoremap <buffer> <F12>f :exe ':silent !firefox % &'<CR>
     nnoremap <buffer> <F12>c :exe ':silent !chromium-browser % &'<CR>
     nnoremap <buffer> <F12>o :exe ':silent !opera % &'<CR>
+
   endif
+
 endif
