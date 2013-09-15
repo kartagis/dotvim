@@ -214,17 +214,6 @@ nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
 nnoremap <leader>v: :let @+ = @:<CR>
 
-nnoremap !e  :edit <C-z>
-nnoremap !se :split <C-z>
-nnoremap !ve :vsplit <C-z>
-nnoremap !te :tabedit <C-z>
-nnoremap !b  :buffer <C-z>
-nnoremap !sb :sbuffer <C-z>
-nnoremap !vb :vertical sbuffer <C-z>
-nnoremap !tb :tab sbuffer <C-z>
-nnoremap !t  :tag /
-nnoremap !pt :ptag /
-
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
