@@ -48,7 +48,7 @@ set foldlevelstart=999
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
-set noerrorbells
+" set noerrorbells
 set t_vb=
 set visualbell
 
@@ -67,7 +67,6 @@ set previewheight=4
 set relativenumber
 set scrolloff=4
 set virtualedit=block
-set winheight=999
 
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
@@ -207,8 +206,11 @@ xmap <leader>X <leader>scgN
 
 inoremap <expr> <CR> functions#Expander()
 
-nnoremap <leader>n :cnext<CR>zv
-nnoremap <leader>p :cprevious<CR>zv
+nnoremap <End>  :cnext<CR>zv
+nnoremap <Home> :cprevious<CR>zv
+
+nnoremap <PageUp>   [m
+nnoremap <PageDown> ]m
 
 nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
 xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
@@ -229,6 +231,13 @@ xnoremap im :<C-u>silent! normal! [{jv]}kV<CR>
 onoremap im :normal vim<CR>
 xnoremap am :<C-u>silent! normal! [{v]}V<CR>
 onoremap am :normal vam<CR>
+
+nnoremap !e :edit <C-z>
+nnoremap !E :edit %:p:h/<C-z>
+nnoremap !b :buffer <C-z>
+nnoremap !t :tag /
+nnoremap !p :ptag /
+nnoremap !j :ijump /
 
 """""""""""""""""""
 " CUSTOM COMMANDS "
@@ -288,3 +297,9 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes'  : ['javascript'],
   \ 'passive_filetypes' : ['css', 'python', 'html', 'php']
   \ }
+
+nnoremap <Space>b 2:<c-u>call SkyBison("b ")<cr>
+nnoremap <Space>t 2:<c-u>call SkyBison("tag ")<cr>
+nnoremap <Space>h 2:<c-u>call SkyBison("h ")<cr>
+nnoremap <Space>e :<c-u>call SkyBison("e ")<cr>
+let g:skybison_fuzz = 1
