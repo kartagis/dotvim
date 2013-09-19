@@ -27,6 +27,9 @@ nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 " nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by
 " nnoremap <buffer> vaa /\v"[ >/]/e<CR>vF=b
 
+nnoremap <silent> <buffer> ]] :call functions#Custom_jump('/<\(address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
+nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?<\(address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
+
 let @a = '$T"i border="0" style="display:block;"'
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
