@@ -233,6 +233,22 @@ onoremap am :normal vam<CR>
 nnoremap } }j
 nnoremap { {{j
 
+" SUPER MEGA GIGA WIP
+nmap <silent> <F4> :set opfunc=PasteOver<CR>g@
+
+function! PasteOver(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
+
+  if a:0  " Invoked from Visual mode, use '< and '> marks.
+    silent exe "normal! `<" . a:type . "`>p"
+  function
+    silent exe "normal! `[v`]p"
+  endif
+
+  let &selection = sel_save
+endfunction
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
