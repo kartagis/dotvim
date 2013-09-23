@@ -187,7 +187,9 @@ nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-" EXPERIMENTAL!
+"""""""""""""""""
+" EXPERIMENTAL! "
+"""""""""""""""""
 
 nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
 nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
@@ -212,10 +214,6 @@ nnoremap <Home> :cprevious<CR>zv
 
 nnoremap <PageUp>   [m
 nnoremap <PageDown> ]m
-
-nnoremap <leader>vp :execute "w !vpaste ft=" . &ft<CR>
-xnoremap <leader>vp <Esc>:execute "'<,'>w !vpaste ft=" . &ft<CR>
-nnoremap <leader>v: :let @+ = @:<CR>
 
 nnoremap !e  :edit <C-z>
 nnoremap !es :split <C-z>
@@ -248,15 +246,19 @@ endfor
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit    call functions#Tagit()
-command! Bombit   call functions#Bombit()
+command! Tagit      call functions#Tagit()
+command! Bombit     call functions#Bombit()
 
-command! ToUnix   call functions#ToUnix()
+command! ToUnix     call functions#ToUnix()
 
-command! SynStack call functions#SynStack()
+command! SynStack   call functions#SynStack()
 
-command! LCD      lcd %:p:h
-command! CD       cd %:p:h
+command! LCD        lcd %:p:h
+command! CD         cd %:p:h
+
+command! VPF        execute "w !vpaste ft=" . &ft
+command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
+command! CMD        let @+ = @:
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
