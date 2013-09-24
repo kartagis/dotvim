@@ -231,22 +231,6 @@ onoremap am :normal vam<CR>
 nnoremap } }j
 nnoremap { {{j
 
-" SUPER MEGA GIGA WIP
-nmap <silent> <F4> :set opfunc=PasteOver<CR>g@
-
-function! PasteOver(type, ...)
-  let sel_save = &selection
-  let &selection = "inclusive"
-
-  if a:0  " Invoked from Visual mode, use '< and '> marks.
-    silent exe "normal! `<" . a:type . "`>p"
-  function
-    silent exe "normal! `[v`]p"
-  endif
-
-  let &selection = sel_save
-endfunction
-
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
@@ -274,7 +258,7 @@ command! CD         cd %:p:h
 
 command! VPF        execute "w !vpaste ft=" . &ft
 command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
-command! CMD        let @+ = @:
+command! CMD        let @+ = ":" . @:
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -296,6 +280,7 @@ nnoremap <leader>t :CtrlPTag<CR>
 nnoremap <leader>T :CtrlPBufTag<CR>
 nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
+let g:ctrlp_map                 = ''
 let g:ctrlp_extensions          = ['tag']
 let g:ctrlp_mruf_max            = 25
 let g:ctrlp_clear_cache_on_exit = 0
