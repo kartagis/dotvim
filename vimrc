@@ -48,7 +48,6 @@ set foldlevelstart=999
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
-" set noerrorbells
 set t_vb=
 set visualbell
 
@@ -168,7 +167,8 @@ nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
-nnoremap gb :buffers<CR>:sbuffer<Space>
+nnoremap gb  :buffers<CR>:b<Space>
+nnoremap gsb :buffers<CR>:sb<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -215,13 +215,15 @@ nnoremap <Home> :cprevious<CR>zv
 nnoremap <PageUp>   [m
 nnoremap <PageDown> ]m
 
-nnoremap !e  :edit <C-z>
-nnoremap !es :split <C-z>
-nnoremap !ev :vsplit <C-z>
-nnoremap !E  :edit %:p:h/<C-z>
-nnoremap !b  :buffer <C-z>
-nnoremap !t  :tag /
-nnoremap !p  :ptag /
+nnoremap !e :edit **/*
+nnoremap !s :split **/*
+nnoremap !v :vsplit **/*
+nnoremap !E :edit %:p:h/**/*
+nnoremap !S :split %:p:h/**/*
+nnoremap !V :vsplit %:p:h/**/*
+nnoremap !b :buffer <C-z>
+nnoremap !t :tag /
+nnoremap !p :ptag /
 
 xnoremap im :<C-u>silent! normal! [{jv]}kV<CR>
 onoremap im :normal vim<CR>
@@ -230,6 +232,8 @@ onoremap am :normal vam<CR>
 
 nnoremap } }j
 nnoremap { {{j
+
+match Error /\s\+$/
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -259,6 +263,8 @@ command! CD         cd %:p:h
 command! VPF        execute "w !vpaste ft=" . &ft
 command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
 command! CMD        let @+ = ":" . @:
+
+command! Trailer    %s/\s\+$//
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
