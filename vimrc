@@ -197,13 +197,13 @@ nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
 xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
-nnoremap <leader>s *N
+nnoremap <leader>s *``
 xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xmap <leader>q :s/<C-r>=@/<CR>/
 
-nmap <leader>x *Ncgn
-nmap <leader>X #NcgN
+nmap <leader>x *``cgn
+nmap <leader>X #``cgN
 xmap <leader>x <leader>scgn
 xmap <leader>X <leader>scgN
 
