@@ -225,11 +225,6 @@ nnoremap !b :buffer <C-z>
 nnoremap !t :tag /
 nnoremap !p :ptag /
 
-xnoremap im :<C-u>silent! normal! [{jv]}kV<CR>
-onoremap im :normal vim<CR>
-xnoremap am :<C-u>silent! normal! [{v]}V<CR>
-onoremap am :normal vam<CR>
-
 nnoremap } }j
 nnoremap { {{j
 
