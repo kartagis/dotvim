@@ -34,7 +34,6 @@ set smartcase
 set encoding=utf-8
 set termencoding=utf-8
 
-set wildcharm=<C-z>
 set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
 set wildmode=list:full
@@ -215,6 +214,7 @@ nnoremap <Home> :cprevious<CR>zv
 nnoremap <PageUp>   [m
 nnoremap <PageDown> ]m
 
+set wildcharm=<C-z>
 nnoremap !e :edit **/*
 nnoremap !s :split **/*
 nnoremap !v :vsplit **/*

@@ -180,7 +180,7 @@ function functions#Bombit()
   if exists("b:tagit_notags")
     unlet b:tagit_notags
 
-    Tagit
+    call functions#Tagit()
 
   endif
 
