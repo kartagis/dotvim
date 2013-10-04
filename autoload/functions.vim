@@ -200,8 +200,14 @@ endfunction
 " return a representation of the selected text
 " suitable for use as a search pattern
 function functions#GetVisualSelection()
-  normal! gv"*y
-  return substitute(escape(@*, '\/.*$^~[]'), "\n", '\\n', "g")
+  let old_reg = @a
+
+  normal! gv"ay
+
+  let raw_search = @a
+  let @a = old_reg
+
+  return substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', "g")
 
 endfunction
 
