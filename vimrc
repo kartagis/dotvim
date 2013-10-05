@@ -186,6 +186,9 @@ nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
+nnoremap <leader>$ :tjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <leader>* :ptag /<c-r>=expand('<cword>')<CR><CR>
+
 """""""""""""""""
 " EXPERIMENTAL! "
 """""""""""""""""
