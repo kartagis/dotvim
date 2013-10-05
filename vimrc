@@ -141,9 +141,10 @@ endif
 
 let mapleader = ","
 
-inoremap <leader>, <C-x><C-o>
-inoremap <leader>: <C-x><C-f>
-inoremap <leader>= <C-x><C-l>
+inoremap <leader>o <C-x><C-o>
+inoremap <leader>f <C-x><C-f>
+inoremap <leader>l <C-x><C-l>
+inoremap <leader>x <C-x><C-n>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -151,8 +152,6 @@ xnoremap <leader>d "_d
 xnoremap <leader>p "_dP
 
 nnoremap Y y$
-
-nnoremap / /\v
 
 xnoremap > >gv
 xnoremap < <gv
