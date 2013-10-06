@@ -213,8 +213,8 @@ inoremap <expr> <CR> functions#Expander()
 nnoremap <End>  :cnext<CR>zv
 nnoremap <Home> :cprevious<CR>zv
 
-nnoremap <PageUp>   [m
-nnoremap <PageDown> ]m
+nnoremap <PageUp>   :bp<CR>
+nnoremap <PageDown> :bn<CR>
 
 set wildcharm=<C-z>
 nnoremap !e :edit **/*
@@ -257,6 +257,7 @@ command! SynStack   call functions#SynStack()
 command! LCD        lcd %:p:h
 command! CD         cd %:p:h
 
+" sharing is caring
 command! VPF        execute "w !vpaste ft=" . &ft
 command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
 command! CMD        let @+ = ":" . @:
