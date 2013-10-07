@@ -224,7 +224,7 @@ nnoremap !E :edit %:p:h/**/*
 nnoremap !S :split %:p:h/**/*
 nnoremap !V :vsplit %:p:h/**/*
 nnoremap !b :buffer <C-z>
-nnoremap !t :tag /
+nnoremap !t :tjump /
 nnoremap !p :ptag /
 
 nnoremap } }j
