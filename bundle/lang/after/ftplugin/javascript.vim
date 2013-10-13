@@ -1,8 +1,6 @@
 nnoremap <buffer> <leader>g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
 
-if exists(':Tagit') == 2
-  inoremap <buffer> <Esc> <Esc>:Tagit<CR>
-endif
+inoremap <buffer> <Esc> <Esc>:call functions#Tagit()<CR>
 
 nnoremap <silent> <buffer> ]] :call functions#Custom_jump('/^function')<cr>
 nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?^function')<cr>

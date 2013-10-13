@@ -69,6 +69,7 @@ function functions#PairExpander(left, right, next)
 
 endfunction
 
+"TODO: make it work correctly between </tag>|</tag>
 function functions#TagExpander(next)
   if a:next ==# "<" && getline(".")[col(".")] ==# "/"
     return "\<CR>\<C-o>==\<C-o>O"
@@ -95,7 +96,6 @@ function functions#AutoSave()
   endif
 
 endfunction
-
 " ===========================================================================
 
 " Trying to write a function for managing tags
@@ -105,7 +105,7 @@ endfunction
 " * generate a tags file in the current directory
 " * generate a tags file in the directory of the current file
 " * generate a tags file somewhere else
-" if no answer is given, nothing is done and we try to not 
+" if no answer is given, nothing is done and we try to not
 " bother the user again
 function functions#Tagit()
   if !exists("b:tagit_notags") && expand('%') != ''
@@ -122,12 +122,14 @@ function functions#Tagit()
 
       if this_dir == current_dir
         let user_choice = inputlist([
-          \ 'Where do you want to generate a tags file?',
-          \ '1. In the working directory: ' . current_dir . '/tags',
-          \ '2. Somewhere else…'])
+              \ 'Where do you want to generate a tags file?',
+              \ '1. In the working directory: ' . current_dir . '/tags',
+              \ '2. Somewhere else…'])
 
         if user_choice == 0
           let b:tagit_notags = 1
+
+          return
 
         elseif user_choice == 1
           call functions#GenerateTags(current_dir)
@@ -141,13 +143,15 @@ function functions#Tagit()
 
       elseif this_dir != current_dir
         let user_choice = inputlist([
-            \ 'Where do you want to generate a tags file?',
-            \ '1. In the working directory:             ' . current_dir . '/tags',
-            \ '2. In the directory of the current file: ' . this_dir . '/tags',
-            \ '3. Somewhere else…'])
+              \ 'Where do you want to generate a tags file?',
+              \ '1. In the working directory:             ' . current_dir . '/tags',
+              \ '2. In the directory of the current file: ' . this_dir . '/tags',
+              \ '3. Somewhere else…'])
 
         if user_choice == 0
           let b:tagit_notags = 1
+
+          return
 
         elseif user_choice == 1
           call functions#GenerateTags(current_dir)
@@ -235,13 +239,19 @@ endfunction
 " ===========================================================================
 
 " shows syntaxic group of the word under the cursor
-function functions#SynStack()
+function functions#SynStack(...)
   if !exists("*synstack")
     return
 
   endif
 
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+  if exists(a:0)
+    return map(synstack(a:0), 'synIDattr(v:val, "name")')
+
+  else
+    return map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+
+  endif
 
 endfunc
 

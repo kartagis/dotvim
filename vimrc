@@ -38,7 +38,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignorecase
 set wildmode=list:full
 
-set statusline=%<\ %t\ %m%r%y%w%=Lin:\ \%l\/\%L\ Col:\ \%c\ 
+set statusline=%<\ %t\ %m%r%y%w%=\ Lin:\ \%l\/\%L\ Col:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -67,27 +67,22 @@ set scrolloff=4
 set virtualedit=block
 set winheight=999
 
-"""""""""""""""""""""""""""""""""
-" ENVIRONMENT-SPECIFIC SETTINGS "
-"""""""""""""""""""""""""""""""""
-
 augroup Default
   autocmd!
 
   autocmd FocusLost,InsertLeave * call functions#AutoSave()
 
+  autocmd GUIEnter * set vb t_vb=
+
 augroup END
+
+"""""""""""""""""""""""""""""""""
+" ENVIRONMENT-SPECIFIC SETTINGS "
+"""""""""""""""""""""""""""""""""
 
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  augroup GUI
-    autocmd!
-
-    autocmd GUIEnter * set vb t_vb=
-
-  augroup END
-
   colorscheme sorcerer
 
   set guioptions-=T
@@ -140,6 +135,9 @@ endif
 """""""""""""""""""
 
 let mapleader = ","
+
+nnoremap <silent> <leader>ev :tabnew $HOME/.vim/vimrc<CR>
+nnoremap <silent> <leader>sv :source $HOME/.vim/vimrc<CR>
 
 inoremap <leader>o <C-x><C-o>
 inoremap <leader>f <C-x><C-f>
@@ -309,3 +307,7 @@ let g:syntastic_mode_map            = {
   \ 'active_filetypes'  : ['javascript'],
   \ 'passive_filetypes' : ['css', 'python', 'html', 'xhtml', 'php']
   \ }
+
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1  = "inc"
+let g:html_indent_inctags = "html,body,head,tbody,p"

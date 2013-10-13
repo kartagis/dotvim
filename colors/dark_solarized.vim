@@ -199,10 +199,10 @@ hi! Todo            gui=NONE,bold cterm=NONE,bold    guifg=#d33682 ctermfg=125 g
 
 hi! SpecialKey  gui=NONE,reverse cterm=NONE,reverse    guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE
 hi! NonText     gui=NONE,bold cterm=NONE,bold    guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE
-hi! SpecialKey  gui=NONE,bold cterm=NONE,bold    guifg=#657b83 ctermfg=240  guibg=#073642 ctermbg=235
-hi! NonText     gui=NONE,bold cterm=NONE,bold    guifg=#657b83 ctermfg=240  guibg=NONE ctermbg=NONE
+
 hi! StatusLine      gui=NONE cterm=NONE    guifg=#93a1a1 ctermfg=245   guibg=#073642 ctermbg=235  gui=NONE,reverse cterm=NONE,reverse
 hi! StatusLineNC    gui=NONE cterm=NONE    guifg=#657b83 ctermfg=240  guibg=#073642 ctermbg=235  gui=NONE,reverse cterm=NONE,reverse
+
 hi! Visual          gui=NONE cterm=NONE    guifg=#586e75 ctermfg=239  guibg=#002b36 ctermbg=234  gui=NONE,reverse cterm=NONE,reverse
 hi! Directory       gui=NONE cterm=NONE    guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE
 hi! ErrorMsg        gui=NONE,reverse cterm=NONE,reverse    guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE
@@ -217,8 +217,10 @@ hi! Title           gui=NONE,bold cterm=NONE,bold    guifg=#cb4b16 ctermfg=166  
 hi! VisualNOS       gui=NONE,standout cterm=NONE,standout    guifg=NONE ctermfg=NONE    guibg=#073642 ctermbg=235  gui=NONE,reverse cterm=NONE,reverse
 hi! WarningMsg      gui=NONE,bold cterm=NONE,bold    guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE
 hi! WildMenu        gui=NONE cterm=NONE    guifg=#eee8d5 ctermfg=187   guibg=#073642 ctermbg=235  gui=NONE,reverse cterm=NONE,reverse
+
 hi! Folded          gui=NONE,underline,bold cterm=NONE,underline,bold    guifg=#839496 ctermfg=244   guibg=#073642 ctermbg=235   guisp=#002b36
 hi! FoldColumn      gui=NONE cterm=NONE    guifg=#839496 ctermfg=244   guibg=#073642 ctermbg=235
+
 hi! DiffAdd         gui=NONE,reverse cterm=NONE,reverse    guifg=#859900 ctermfg=64   guibg=NONE ctermbg=NONE
 hi! DiffChange      gui=NONE,reverse cterm=NONE,reverse    guifg=#b58900 ctermfg=136  guibg=NONE ctermbg=NONE
 hi! DiffDelete      gui=NONE,reverse cterm=NONE,reverse    guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE
@@ -227,24 +229,31 @@ hi! DiffAdd         gui=NONE,bold cterm=NONE,bold    guifg=#859900 ctermfg=64   
 hi! DiffChange      gui=NONE,bold cterm=NONE,bold    guifg=#b58900 ctermfg=136  guibg=#073642 ctermbg=235  guisp=#b58900
 hi! DiffDelete      gui=NONE,bold cterm=NONE,bold    guifg=#dc322f ctermfg=124     guibg=#073642 ctermbg=235
 hi! DiffText        gui=NONE,bold cterm=NONE,bold    guifg=#268bd2 ctermfg=33    guibg=#073642 ctermbg=235  guisp=#268bd2
+
 hi! SignColumn      gui=NONE cterm=NONE    guifg=#839496 ctermfg=244
+
 hi! Conceal         gui=NONE cterm=NONE    guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE
+
 hi! SpellBad        gui=NONE,undercurl cterm=NONE,undercurl    guifg=NONE ctermfg=NONE    guibg=NONE ctermbg=NONE     guisp=#dc322f
 hi! SpellCap        gui=NONE,undercurl cterm=NONE,undercurl    guifg=NONE ctermfg=NONE    guibg=NONE ctermbg=NONE     guisp=#6c71c4
 hi! SpellRare       gui=NONE,undercurl cterm=NONE,undercurl    guifg=NONE ctermfg=NONE    guibg=NONE ctermbg=NONE     guisp=#2aa198
 hi! SpellLocal      gui=NONE,undercurl cterm=NONE,undercurl    guifg=NONE ctermfg=NONE    guibg=NONE ctermbg=NONE     guisp=#b58900
+
 hi! Pmenu           gui=NONE cterm=NONE    guifg=#839496 ctermfg=244   guibg=#073642 ctermbg=235   gui=NONE,reverse cterm=NONE,reverse
 hi! PmenuSel        gui=NONE cterm=NONE    guifg=#586e75 ctermfg=239  guibg=#eee8d5 ctermbg=187    gui=NONE,reverse cterm=NONE,reverse
 hi! PmenuSbar       gui=NONE cterm=NONE    guifg=#eee8d5 ctermfg=187   guibg=#839496 ctermbg=244    gui=NONE,reverse cterm=NONE,reverse
 hi! PmenuThumb      gui=NONE cterm=NONE    guifg=#839496 ctermfg=244   guibg=#002b36 ctermbg=234   gui=NONE,reverse cterm=NONE,reverse
+
 hi! TabLine         gui=NONE,underline cterm=NONE,underline    guifg=#839496 ctermfg=244   guibg=#073642 ctermbg=235   guisp=#839496
 hi! TabLineFill     gui=NONE,underline cterm=NONE,underline    guifg=#839496 ctermfg=244   guibg=#073642 ctermbg=235   guisp=#839496
 hi! TabLineSel      gui=NONE,underline cterm=NONE,underline    guifg=#586e75 ctermfg=239  guibg=#eee8d5 ctermbg=187    guisp=#839496   gui=NONE,reverse,underline cterm=NONE,reverse,underline
+
 hi! CursorColumn    gui=NONE cterm=NONE    guifg=NONE ctermfg=NONE    guibg=#073642 ctermbg=235
 hi! CursorLine      gui=NONE cterm=NONE    guifg=NONE ctermfg=NONE    guibg=#073642 ctermbg=235   guisp=#93a1a1
 hi! ColorColumn     gui=NONE cterm=NONE    guifg=NONE ctermfg=NONE    guibg=#073642 ctermbg=235
 hi! Cursor          gui=NONE cterm=NONE    guifg=#002b36 ctermfg=234  guibg=#839496 ctermbg=244
 hi! link lCursor Cursor
+
 hi! MatchParen      gui=NONE,bold cterm=NONE,bold    guifg=#dc322f ctermfg=124     guibg=#586e75 ctermbg=239
 
 hi! link vimVar Identifier
@@ -356,87 +365,87 @@ hi! pandocBlockQuoteLeader6         guifg=#586e75 ctermfg=239  guibg=NONE ctermb
 hi! pandocListMarker                guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
 hi! pandocListReference             guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
 
-hi! pandocDefinitionBlock               guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocDefinitionTerm                guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,standout cterm=NONE,standout
-hi! pandocDefinitionIndctr              guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocEmphasisDefinition            guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,italic cterm=NONE,italic
-hi! pandocEmphasisNestedDefinition      guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisDefinition      guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisNestedDefinition    guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisEmphasisDefinition  guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrikeoutDefinition           guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE,reverse cterm=NONE,reverse
-hi! pandocVerbatimInlineDefinition      guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSuperscriptDefinition         guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSubscriptDefinition           guifg=#6c71c4 ctermfg=61   guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
+hi! pandocDefinitionBlock                  guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE          cterm=NONE
+hi! pandocDefinitionTerm                   guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,standout cterm=NONE,standout
+hi! pandocDefinitionIndctr                 guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold     cterm=NONE,bold
+hi! pandocEmphasisDefinition               guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,italic   cterm=NONE,italic
+hi! pandocEmphasisNestedDefinition         guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold     cterm=NONE,bold
+hi! pandocStrongEmphasisDefinition         guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold     cterm=NONE,bold
+hi! pandocStrongEmphasisNestedDefinition   guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold     cterm=NONE,bold
+hi! pandocStrongEmphasisEmphasisDefinition guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,bold     cterm=NONE,bold
+hi! pandocStrikeoutDefinition              guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE,reverse  cterm=NONE,reverse
+hi! pandocVerbatimInlineDefinition         guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE          cterm=NONE
+hi! pandocSuperscriptDefinition            guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE          cterm=NONE
+hi! pandocSubscriptDefinition              guifg=#6c71c4 ctermfg=61 guibg=NONE ctermbg=NONE gui=NONE          cterm=NONE
 
-hi! pandocTable                         guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocTableStructure                guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! link pandocTableStructureTop             pandocTableStructre
-hi! link pandocTableStructureEnd             pandocTableStructre
-hi! pandocTableZebraLight               guifg=#268bd2 ctermfg=33 guibg=#002b36 ctermbg=234 gui=NONE cterm=NONE
-hi! pandocTableZebraDark                guifg=#268bd2 ctermfg=33 guibg=#073642 ctermbg=235 gui=NONE cterm=NONE
-hi! pandocEmphasisTable                 guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,italic cterm=NONE,italic
-hi! pandocEmphasisNestedTable           guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisTable           guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisNestedTable     guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisEmphasisTable   guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrikeoutTable                guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE,reverse cterm=NONE,reverse
-hi! pandocVerbatimInlineTable           guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSuperscriptTable              guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSubscriptTable                guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
+hi! pandocTable                         guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi! pandocTableStructure                guifg=#268bd2 ctermfg=33 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi! link pandocTableStructureTop        pandocTableStructre
+hi! link pandocTableStructureEnd        pandocTableStructre
+hi! pandocTableZebraLight               guifg=#268bd2 ctermfg=33 guibg=#002b36 ctermbg=234    gui=NONE         cterm=NONE
+hi! pandocTableZebraDark                guifg=#268bd2 ctermfg=33 guibg=#073642 ctermbg=235    gui=NONE         cterm=NONE
+hi! pandocEmphasisTable                 guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,italic  cterm=NONE,italic
+hi! pandocEmphasisNestedTable           guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisTable           guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisNestedTable     guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisEmphasisTable   guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrikeoutTable                guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE,reverse cterm=NONE,reverse
+hi! pandocVerbatimInlineTable           guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE         cterm=NONE
+hi! pandocSuperscriptTable              guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE         cterm=NONE
+hi! pandocSubscriptTable                guifg=#268bd2 ctermfg=33 guibg=NONE    ctermbg=NONE   gui=NONE         cterm=NONE
 
-hi! pandocHeading                       guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocHeadingMarker                 guifg=#b58900 ctermfg=136 guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocEmphasisHeading               guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocEmphasisNestedHeading         guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisHeading         guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisNestedHeading   guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisEmphasisHeading guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocStrikeoutHeading              guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,reverse cterm=NONE,reverse
-hi! pandocVerbatimInlineHeading         guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocSuperscriptHeading            guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
-hi! pandocSubscriptHeading              guifg=#cb4b16 ctermfg=166  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
+hi! pandocHeading                       guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocHeadingMarker                 guifg=#b58900 ctermfg=136 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocEmphasisHeading               guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocEmphasisNestedHeading         guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisHeading         guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisNestedHeading   guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisEmphasisHeading guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrikeoutHeading              guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,reverse cterm=NONE,reverse
+hi! pandocVerbatimInlineHeading         guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocSuperscriptHeading            guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocSubscriptHeading              guifg=#cb4b16 ctermfg=166 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
 
-hi! pandocLinkDelim                 guifg=#586e75 ctermfg=239  guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocLinkLabel                 guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
-hi! pandocLinkText                  guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE,underline,bold cterm=NONE,underline,bold
-hi! pandocLinkURL                   guifg=#657b83 ctermfg=240  guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
-hi! pandocLinkTitle                 guifg=#657b83 ctermfg=240  guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
-hi! pandocLinkTitleDelim            guifg=#586e75 ctermfg=239  guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline    guisp=#657b83
-hi! pandocLinkDefinition            guifg=#2aa198 ctermfg=37    guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline    guisp=#657b83
-hi! pandocLinkDefinitionID          guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE,bold cterm=NONE,bold
-hi! pandocImageCaption              guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE    gui=NONE,underline,bold cterm=NONE,underline,bold
-hi! pandocFootnoteLink              guifg=#859900 ctermfg=64   guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
-hi! pandocFootnoteDefLink           guifg=#859900 ctermfg=64   guibg=NONE ctermbg=NONE    gui=NONE,bold cterm=NONE,bold
-hi! pandocFootnoteInline            guifg=#859900 ctermfg=64   guibg=NONE ctermbg=NONE    gui=NONE,underline,bold cterm=NONE,underline,bold
-hi! pandocFootnote                  guifg=#859900 ctermfg=64   guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocCitationDelim             guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocCitation                  guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocCitationID                guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE,underline cterm=NONE,underline
-hi! pandocCitationRef               guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
+hi! pandocLinkDelim                     guifg=#586e75 ctermfg=239 guibg=NONE ctermbg=NONE gui=NONE                cterm=NONE
+hi! pandocLinkLabel                     guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline
+hi! pandocLinkText                      guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,underline,bold cterm=NONE,underline,bold
+hi! pandocLinkURL                       guifg=#657b83 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline
+hi! pandocLinkTitle                     guifg=#657b83 ctermfg=240 guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline
+hi! pandocLinkTitleDelim                guifg=#586e75 ctermfg=239 guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline    guisp=#657b83
+hi! pandocLinkDefinition                guifg=#2aa198 ctermfg=37  guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline    guisp=#657b83
+hi! pandocLinkDefinitionID              guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,bold           cterm=NONE,bold
+hi! pandocImageCaption                  guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE gui=NONE,underline,bold cterm=NONE,underline,bold
+hi! pandocFootnoteLink                  guifg=#859900 ctermfg=64  guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline
+hi! pandocFootnoteDefLink               guifg=#859900 ctermfg=64  guibg=NONE ctermbg=NONE gui=NONE,bold           cterm=NONE,bold
+hi! pandocFootnoteInline                guifg=#859900 ctermfg=64  guibg=NONE ctermbg=NONE gui=NONE,underline,bold cterm=NONE,underline,bold
+hi! pandocFootnote                      guifg=#859900 ctermfg=64  guibg=NONE ctermbg=NONE gui=NONE                cterm=NONE
+hi! pandocCitationDelim                 guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE gui=NONE                cterm=NONE
+hi! pandocCitation                      guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE gui=NONE                cterm=NONE
+hi! pandocCitationID                    guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE gui=NONE,underline      cterm=NONE,underline
+hi! pandocCitationRef                   guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE gui=NONE                cterm=NONE
 
-hi! pandocStyleDelim                guifg=#586e75 ctermfg=239  guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocEmphasis                  guifg=#839496 ctermfg=244   guibg=NONE ctermbg=NONE   gui=NONE,italic cterm=NONE,italic
-hi! pandocEmphasisNested            guifg=#839496 ctermfg=244   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasis            guifg=#839496 ctermfg=244   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisNested      guifg=#839496 ctermfg=244   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrongEmphasisEmphasis    guifg=#839496 ctermfg=244   guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocStrikeout                 guifg=#586e75 ctermfg=239  guibg=NONE ctermbg=NONE   gui=NONE,reverse cterm=NONE,reverse
-hi! pandocVerbatimInline            guifg=#b58900 ctermfg=136  guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSuperscript               guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
-hi! pandocSubscript                 guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE   gui=NONE cterm=NONE
+hi! pandocStyleDelim                    guifg=#586e75 ctermfg=239 guibg=NONE ctermbg=NONE gui=NONE         cterm=NONE
+hi! pandocEmphasis                      guifg=#839496 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE,italic  cterm=NONE,italic
+hi! pandocEmphasisNested                guifg=#839496 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasis                guifg=#839496 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisNested          guifg=#839496 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrongEmphasisEmphasis        guifg=#839496 ctermfg=244 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocStrikeout                     guifg=#586e75 ctermfg=239 guibg=NONE ctermbg=NONE gui=NONE,reverse cterm=NONE,reverse
+hi! pandocVerbatimInline                guifg=#b58900 ctermfg=136 guibg=NONE ctermbg=NONE gui=NONE         cterm=NONE
+hi! pandocSuperscript                   guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE gui=NONE         cterm=NONE
+hi! pandocSubscript                     guifg=#6c71c4 ctermfg=61  guibg=NONE ctermbg=NONE gui=NONE         cterm=NONE
 
-hi! pandocRule                      guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocRuleLine                  guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocEscapePair                guifg=#dc322f ctermfg=124     guibg=NONE ctermbg=NONE   gui=NONE,bold cterm=NONE,bold
-hi! pandocCitationRef               guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocNonBreakingSpace           guifg=#dc322f ctermfg=124    guibg=NONE ctermbg=NONE   gui=NONE,reverse cterm=NONE,reverse
-hi! link pandocEscapedCharacter          pandocEscapePair
-hi! link pandocLineBreak                 pandocEscapePair
+hi! pandocRule                          guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocRuleLine                      guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocEscapePair                    guifg=#dc322f ctermfg=124 guibg=NONE ctermbg=NONE gui=NONE,bold    cterm=NONE,bold
+hi! pandocCitationRef                   guifg=#d33682 ctermfg=125 guibg=NONE ctermbg=NONE gui=NONE         cterm=NONE
+hi! pandocNonBreakingSpace              guifg=#dc322f ctermfg=124 guibg=NONE ctermbg=NONE gui=NONE,reverse cterm=NONE,reverse
+hi! link pandocEscapedCharacter         pandocEscapePair
+hi! link pandocLineBreak                pandocEscapePair
 
-hi! pandocMetadataDelim             guifg=#586e75 ctermfg=239  guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocMetadata                  guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocMetadataKey               guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE cterm=NONE
-hi! pandocMetadata                  guifg=#268bd2 ctermfg=33    guibg=NONE ctermbg=NONE    gui=NONE,bold cterm=NONE,bold
-hi! link pandocMetadataTitle             pandocMetadata
+hi! pandocMetadataDelim                 guifg=#586e75 ctermfg=239 guibg=NONE ctermbg=NONE gui=NONE      cterm=NONE
+hi! pandocMetadata                      guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE      cterm=NONE
+hi! pandocMetadataKey                   guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE      cterm=NONE
+hi! pandocMetadata                      guifg=#268bd2 ctermfg=33  guibg=NONE ctermbg=NONE gui=NONE,bold cterm=NONE,bold
+hi! link pandocMetadataTitle            pandocMetadata
 
