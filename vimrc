@@ -190,8 +190,8 @@ nnoremap <leader>* :ptag /<c-r>=expand('<cword>')<CR><CR>
 " EXPERIMENTAL! "
 """""""""""""""""
 
-nnoremap <leader>r :'{,'}s/<C-r>=expand('<cword>')<CR>/
-nnoremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
+nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
@@ -199,7 +199,9 @@ xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 nnoremap <leader>s *``
 xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
-xmap <leader>q :s/<C-r>=@/<CR>/
+xnoremap <leader>q :s/<C-r>=@/<CR>/
+
+nnoremap <leader>q :let needle = expand('<cword>')<CR>?function <CR>/{<CR>v%V:s/\<<C-r>=needle<CR>\>/
 
 nmap <leader>x *``cgn
 nmap <leader>X #``cgN
