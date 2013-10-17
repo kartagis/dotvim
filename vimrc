@@ -1,8 +1,10 @@
+filetype plugin indent off
+syntax off
+
 call pathogen#infect()
 call pathogen#helptags()
 
 filetype plugin indent on
-
 syntax on
 
 runtime macros/matchit.vim
@@ -139,10 +141,10 @@ let mapleader = ","
 nnoremap <silent> <leader>ev :tabnew $HOME/.vim/vimrc<CR>
 nnoremap <silent> <leader>sv :source $HOME/.vim/vimrc<CR>
 
-inoremap <leader>o <C-x><C-o>
-inoremap <leader>f <C-x><C-f>
-inoremap <leader>l <C-x><C-l>
-inoremap <leader>x <C-x><C-n>
+inoremap xo <C-x><C-o>
+inoremap xf <C-x><C-f>
+inoremap xl <C-x><C-l>
+inoremap xx <C-x><C-n>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -184,7 +186,7 @@ nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
 nnoremap <leader>$ :tjump /<c-r>=expand('<cword>')<CR><CR>
-nnoremap <leader>* :ptag /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <leader>* :ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 """""""""""""""""
 " EXPERIMENTAL! "
@@ -215,20 +217,6 @@ nnoremap <Home> :cprevious<CR>zv
 
 nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
-
-set wildcharm=<C-z>
-nnoremap !e :edit **/*
-nnoremap !s :split **/*
-nnoremap !v :vsplit **/*
-nnoremap !E :edit %:p:h/**/*
-nnoremap !S :split %:p:h/**/*
-nnoremap !V :vsplit %:p:h/**/*
-nnoremap !b :buffer <C-z>
-nnoremap !t :tjump /
-nnoremap !p :ptag /
-
-nnoremap } }j
-nnoremap { {{j
 
 match Error /\s\+$/
 
