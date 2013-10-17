@@ -144,7 +144,7 @@ nnoremap <silent> <leader>sv :source $HOME/.vim/vimrc<CR>
 inoremap xo <C-x><C-o>
 inoremap xf <C-x><C-f>
 inoremap xl <C-x><C-l>
-inoremap xx <C-x><C-n>
+inoremap xn <C-x><C-n>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
