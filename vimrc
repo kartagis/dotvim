@@ -141,10 +141,9 @@ let mapleader = ","
 nnoremap <silent> <leader>ev :tabnew $HOME/.vim/vimrc<CR>
 nnoremap <silent> <leader>sv :source $HOME/.vim/vimrc<CR>
 
-inoremap xo <C-x><C-o>
-inoremap xf <C-x><C-f>
-inoremap xl <C-x><C-l>
-inoremap xn <C-x><C-n>
+inoremap <leader>, <C-x><C-o>
+inoremap <leader>: <C-x><C-f>
+inoremap <leader>- <C-x><C-l>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -155,6 +154,10 @@ nnoremap Y y$
 
 xnoremap > >gv
 xnoremap < <gv
+
+" merci twal
+onoremap w :<C-u>norm w<CR>
+onoremap W :<C-u>norm W<CR>
 
 nnoremap <leader>a :Tabularize<Space>/
 
