@@ -1,3 +1,12 @@
+" create handler method
+function functions#Handler()
+  normal yiw
+  normal {
+  normal Ovar " = function(e) {};
+  normal O// do something
+
+endfunction
+
 " from $VIMRUNTIME/ftplugin/python.vim
 function functions#Custom_jump(motion) range
   let cnt = v:count1

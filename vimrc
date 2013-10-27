@@ -1,4 +1,4 @@
-filetype plugin indent off
+filetype off
 syntax off
 
 call pathogen#infect()
@@ -64,6 +64,7 @@ set mouse=a
 set noswapfile
 set nrformats-=octal
 set previewheight=4
+set number
 set relativenumber
 set scrolloff=4
 set virtualedit=block
@@ -206,8 +207,6 @@ xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
 
-nnoremap <leader>q :let needle = expand('<cword>')<CR>?function <CR>/{<CR>v%V:s/\<<C-r>=needle<CR>\>/
-
 nmap <leader>x *``cgn
 nmap <leader>X #``cgN
 xmap <leader>x <leader>scgn
@@ -215,8 +214,10 @@ xmap <leader>X <leader>scgN
 
 inoremap <expr> <CR> functions#Expander()
 
-nnoremap <End>  :cnext<CR>zv
-nnoremap <Home> :cprevious<CR>zv
+nnoremap <End>    :cnext<CR>zv
+nnoremap <Home>   :cprevious<CR>zv
+nnoremap <C-End>  :lnext<CR>zv
+nnoremap <C-Home> :lprevious<CR>zv
 
 nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
@@ -266,28 +267,43 @@ let g:netrw_banner    = 0
 let g:netrw_keepdir   = 0
 let g:netrw_liststyle = 3
 
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader>F :CtrlPCurFile<CR>
-nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>m :CtrlPMixed<CR>
-nnoremap <leader>M :CtrlPMRUFiles<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>T :CtrlPBufTag<CR>
-nnoremap <leader>l :CtrlPLine<CR>
-nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
-let g:ctrlp_map                 = ''
-let g:ctrlp_extensions          = ['tag']
-let g:ctrlp_mruf_max            = 25
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_by_filename         = 1
-let g:ctrlp_open_new_file       = 'r'
-let g:ctrlp_open_multiple_files = '3hjr'
-let g:ctrlp_root_markers        = ['tags']
-let g:ctrlp_buftag_types        = {
-  \ 'css'        : '--language-force=css --css-types=citm',
-  \ 'javascript' : '--language-force=javascript --javascript-types=fv',
-  \ 'haxe'       : '--language-force=haxe --haxe-types=fvpcit'
-  \ }
+" nnoremap <leader>f :CtrlP<CR>
+" nnoremap <leader>F :CtrlPCurFile<CR>
+" nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>m :CtrlPMixed<CR>
+" nnoremap <leader>M :CtrlPMRUFiles<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>T :CtrlPBufTag<CR>
+" nnoremap <leader>l :CtrlPLine<CR>
+" nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
+" let g:ctrlp_map                 = ''
+" let g:ctrlp_extensions          = ['tag']
+" let g:ctrlp_mruf_max            = 25
+" let g:ctrlp_clear_cache_on_exit = 0
+" let g:ctrlp_by_filename         = 1
+" let g:ctrlp_open_new_file       = 'r'
+" let g:ctrlp_open_multiple_files = '3hjr'
+" let g:ctrlp_root_markers        = ['tags']
+" let g:ctrlp_buftag_types        = {
+"   \ 'css'        : '--language-force=css --css-types=citm',
+"   \ 'javascript' : '--language-force=javascript --javascript-types=fv',
+"   \ 'haxe'       : '--language-force=haxe --haxe-types=fvpcit'
+"   \ }
+" one week without CtrlP
+let g:loaded_ctrlp = 1
+" debut du bloc experimental
+set wildcharm=<C-z>
+set path=.,**
+
+nnoremap ,f :find<Space>
+nnoremap ,s :sfind<Space>
+nnoremap ,v :vert sfind<Space>
+
+nnoremap ,b :buffer <C-z>
+
+nnoremap ,t :tjump /
+nnoremap ,p :ptjump /
+" fin du bloc experimental
 
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
