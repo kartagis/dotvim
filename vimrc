@@ -301,6 +301,7 @@ nnoremap ,v :vert sfind<Space>
 
 nnoremap ,b :buffer <C-z>
 
+nnoremap ,T :ilist /
 nnoremap ,t :tjump /
 nnoremap ,p :ptjump /
 " fin du bloc experimental
