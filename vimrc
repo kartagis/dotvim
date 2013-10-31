@@ -313,8 +313,8 @@ let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
   \ 'mode'              : 'passive',
-  \ 'active_filetypes'  : ['javascript'],
-  \ 'passive_filetypes' : ['css', 'python', 'html', 'xhtml', 'php']
+  \ 'active_filetypes'  : [],
+  \ 'passive_filetypes' : ['javascript','css', 'python', 'html', 'xhtml', 'php']
   \ }
 
 let g:html_indent_script1 = "inc"
