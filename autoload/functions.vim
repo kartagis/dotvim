@@ -1,21 +1,25 @@
 " create handler method
 function functions#Handler()
-  normal yiw
-  normal {
-  normal Ovar " = function(e) {};
-  normal O// do something
+  silent normal! $2B
+  silent normal! yiw
+  mark '
+  silent normal! {
+  silent normal! Ovar " = function(e) {};
+  silent normal! O// do something
 
 endfunction
+
+" ===========================================================================
 
 " from $VIMRUNTIME/ftplugin/python.vim
 function functions#Custom_jump(motion) range
   let cnt = v:count1
-  let save = @/    " save last search pattern
+  let save = @/
 
   mark '
 
   while cnt > 0
-    silent! exe a:motion
+    silent! execute a:motion
 
     let cnt = cnt - 1
 
@@ -23,21 +27,31 @@ function functions#Custom_jump(motion) range
 
   call histdel('/', -1)
 
-  let @/ = save    " restore last search pattern
+  let @/ = save
 
-endfun
+endfunction
 
-" tries to expand (), {} and [] "correctly"
-" also <tag></tag>
-function functions#Expander()
-  let previous = getline(".")[col(".")-2]
-  let next     = getline(".")[col(".")-1]
+" ===========================================================================
 
+" tries to make <CR> a little smarter in insert mode:
+" - expands {}, [], (), <tag></tag> 'correctly'
+" - removes empty comment marker
+" - more?
+function functions#SmartEnter()
   " beware of the cmdline window
   if &buftype == "nofile"
     return "\<CR>"
 
   endif
+
+  " timesaving
+  if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
+    return "\<C-u>"
+
+  endif
+
+  let previous = getline(".")[col(".")-2]
+  let next     = getline(".")[col(".")-1]
 
   if previous ==# "{"
     return functions#PairExpander(previous, "}", next)
@@ -94,17 +108,31 @@ endfunction
 
 " saves all the visible windows if needed/possible
 function functions#AutoSave()
-  " beware of the cmdline window
+  let this_window = winnr()
+
+  windo call functions#SmartUpdate()
+
+  execute this_window . 'wincmd w'
+
+endfunction
+
+function functions#SmartUpdate()
   if &buftype != "nofile"
-    let this_window = winnr()
+    if expand('%') != ''
 
-    windo if expand('%') != '' | update | endif
+      update
 
-    execute this_window . 'wincmd w'
+      if &filetype == "javascript" || &filetype == "php"
+        call functions#Tagit()
+
+      endif
+
+    endif
 
   endif
 
 endfunction
+
 " ===========================================================================
 
 " Trying to write a function for managing tags
@@ -113,13 +141,10 @@ endfunction
 " when there's no tags file, the user is asked what to do:
 " * generate a tags file in the current directory
 " * generate a tags file in the directory of the current file
-" * generate a tags file somewhere else
 " if no answer is given, nothing is done and we try to not
 " bother the user again
 function functions#Tagit()
   if !exists("b:tagit_notags") && expand('%') != ''
-    update
-
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
@@ -131,9 +156,8 @@ function functions#Tagit()
 
       if this_dir == current_dir
         let user_choice = inputlist([
-              \ 'Where do you want to generate a tags file?',
-              \ '1. In the working directory: ' . current_dir . '/tags',
-              \ '2. Somewhere else…'])
+              \ 'Do you want to generate a tags file?',
+              \ '1. In the working directory: ' . current_dir . '/tags'])
 
         if user_choice == 0
           let b:tagit_notags = 1
@@ -143,19 +167,13 @@ function functions#Tagit()
         elseif user_choice == 1
           call functions#GenerateTags(current_dir)
 
-        elseif user_choice == 2
-          let tags_location = input("\nPlease choose a directory:\n", current_dir, "dir")
-
-          call functions#GenerateTags(tags_location)
-
         endif
 
       elseif this_dir != current_dir
         let user_choice = inputlist([
               \ 'Where do you want to generate a tags file?',
               \ '1. In the working directory:             ' . current_dir . '/tags',
-              \ '2. In the directory of the current file: ' . this_dir . '/tags',
-              \ '3. Somewhere else…'])
+              \ '2. In the directory of the current file: ' . this_dir . '/tags'])
 
         if user_choice == 0
           let b:tagit_notags = 1
@@ -167,11 +185,6 @@ function functions#Tagit()
 
         elseif user_choice == 2
           call functions#GenerateTags(this_dir)
-
-        elseif user_choice == 3
-          let tags_location = input("\nPlease choose a directory:\n", this_dir, "dir")
-
-          call functions#GenerateTags(tags_location)
 
         endif
 
@@ -204,7 +217,11 @@ endfunction
 " use the width attribute of the current IMG
 " to update the width attribute of the parent TD
 function functions#UpdateWidth()
-  silent normal! 0/\vwidth\="/eyi"?\vwidth\=""?eP
+  silent normal! 0
+  silent normal! /\vwidth\="/e
+  silent normal! yi"
+  silent normal! ?\vwidth\=""?e
+  silent normal! P
 
 endfunction
 
@@ -213,12 +230,12 @@ endfunction
 " return a representation of the selected text
 " suitable for use as a search pattern
 function functions#GetVisualSelection()
-  let old_reg = @a
+  let old_reg = @v
 
-  normal! gv"ay
+  normal! gv"vy
 
-  let raw_search = @a
-  let @a = old_reg
+  let raw_search = @v
+  let @v = old_reg
 
   return substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', "g")
 
@@ -230,7 +247,15 @@ endfunction
 " this macro puts the URL in the href attribute
 " of the next anchor
 function functions#UpdateAnchor()
-  normal! ^v$hy"_dd/hreff"vi""_dP
+  mark '
+  silent normal! ^
+  silent normal! v$h
+  silent normal! y
+  silent normal! "_dd
+  silent normal! /href
+  silent normal! f"
+  silent normal! vi"
+  silent normal! "_dP
 
 endfunction
 

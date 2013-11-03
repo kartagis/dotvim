@@ -139,8 +139,8 @@ endif
 
 let mapleader = ","
 
-nnoremap <silent> <leader>ev :tabnew $HOME/.vim/vimrc<CR>
-nnoremap <silent> <leader>sv :source $HOME/.vim/vimrc<CR>
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 
 inoremap <leader>, <C-x><C-o>
 inoremap <leader>: <C-x><C-f>
@@ -212,12 +212,10 @@ nmap <leader>X #``cgN
 xmap <leader>x <leader>scgn
 xmap <leader>X <leader>scgN
 
-inoremap <expr> <CR> functions#Expander()
+inoremap <expr> <CR> functions#SmartEnter()
 
-nnoremap <End>    :cnext<CR>zv
-nnoremap <Home>   :cprevious<CR>zv
-nnoremap <C-End>  :lnext<CR>zv
-nnoremap <C-Home> :lprevious<CR>zv
+nnoremap <End>  :cnext<CR>zv
+nnoremap <Home> :cprevious<CR>zv
 
 nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
@@ -301,7 +299,7 @@ nnoremap ,v :vert sfind<Space>
 
 nnoremap ,b :buffer <C-z>
 
-nnoremap ,T :ilist /
+nnoremap ,T :ijump /
 nnoremap ,t :tjump /
 nnoremap ,p :ptjump /
 " fin du bloc experimental
