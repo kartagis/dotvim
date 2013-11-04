@@ -1,8 +1,23 @@
+" insert console.log()
+function functions#InsertLog()
+  silent normal! yiw
+
+  mark `
+
+  silent normal! oconsole.log("":", ");
+  silent normal! ``
+
+endfunction
+
+" ===========================================================================
+
 " create handler method
 function functions#Handler()
   silent normal! $2B
   silent normal! yiw
-  mark '
+
+  mark `
+
   silent normal! {
   silent normal! Ovar " = function(e) {};
   silent normal! O// do something
@@ -122,8 +137,9 @@ function functions#SmartUpdate()
 
       update
 
+      " TODO: try to improve this part, disabled for now
       if &filetype == "javascript" || &filetype == "php"
-        call functions#Tagit()
+        " call functions#Tagit()
 
       endif
 
@@ -214,19 +230,6 @@ endfunction
 
 " ===========================================================================
 
-" use the width attribute of the current IMG
-" to update the width attribute of the parent TD
-function functions#UpdateWidth()
-  silent normal! 0
-  silent normal! /\vwidth\="/e
-  silent normal! yi"
-  silent normal! ?\vwidth\=""?e
-  silent normal! P
-
-endfunction
-
-" ===========================================================================
-
 " return a representation of the selected text
 " suitable for use as a search pattern
 function functions#GetVisualSelection()
@@ -243,11 +246,25 @@ endfunction
 
 " ===========================================================================
 
+" use the width attribute of the current IMG
+" to update the width attribute of the parent TD
+function functions#UpdateWidth()
+  silent normal! 0
+  silent normal! /\vwidth\="/e
+  silent normal! yi"
+  silent normal! ?\vwidth\=""?e
+  silent normal! P
+
+endfunction
+
+" ===========================================================================
+
 " URLs pasted from Word or Powerpoint often end with a pesky newline
 " this macro puts the URL in the href attribute
 " of the next anchor
 function functions#UpdateAnchor()
   mark '
+
   silent normal! ^
   silent normal! v$h
   silent normal! y

@@ -252,7 +252,7 @@ command! VPF        execute "w !vpaste ft=" . &ft
 command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
 command! CMD        let @+ = ":" . @:
 
-command! Trailer    %s/\s\+$//
+command! Trailer    mark `|%s/\s\+$//|norm! ``
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -299,7 +299,6 @@ nnoremap ,v :vert sfind<Space>
 
 nnoremap ,b :buffer <C-z>
 
-nnoremap ,T :ijump /
 nnoremap ,t :tjump /
 nnoremap ,p :ptjump /
 " fin du bloc experimental
@@ -319,3 +318,27 @@ let g:syntastic_mode_map            = {
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
 let g:html_indent_inctags = "html,body,head,tbody,p"
+
+
+
+
+" MEGA EXPERIMENTAL
+" I DON'T REALLY KNOW WHAT I'M DOING
+" AND I PROBABLY DIDN'T REALLY UNDERSTAND
+" :tag anyway
+nnoremap ,T :BufTag<space>
+command! -nargs=1 -bang -complete=customlist,ListBufTags BufTag call Show(<f-args>)
+function! ListBufTags(ArgLead, CmdLine, CursorPos)
+  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
+  let return_list = []
+  for item in temp_list
+    call add(return_list, item.name)
+  endfor
+  return return_list
+endfunction
+
+function! Show(args)
+  execute "silent tag " . a:args
+endfunction
+
+
