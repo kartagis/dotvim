@@ -1,3 +1,25 @@
+" playing with fire:
+" trying to come up with something like :tjump but for the current buffer
+function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
+  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
+  let return_list = []
+
+  for item in temp_list
+    call add(return_list, item.name)
+
+  endfor
+
+  return return_list
+
+endfunction
+
+function functions#Btag(args)
+  execute "silent tag " . a:args
+
+endfunction
+
+" ===========================================================================
+
 " insert console.log()
 function functions#InsertLog()
   silent normal! yiw
