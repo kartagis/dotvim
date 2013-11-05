@@ -1,26 +1,42 @@
-" playing with fire:
-" trying to come up with something like :tjump but for the current buffer
+" :tag /foo but limited to the current buffer
 function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
   let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
-  let return_list = []
 
-  for item in temp_list
-    call add(return_list, item.name)
+  if len(temp_list) > 0
+    let return_list = []
 
-  endfor
+    for item in temp_list
+      call add(return_list, item.name)
 
-  return return_list
+    endfor
+
+    return return_list
+
+  endif
 
 endfunction
 
-function functions#Btag(args)
-  execute "silent tag " . a:args
+function functions#Tag(arg)
+  try
+    execute "silent tag " . a:arg
+
+  catch
+    try
+      execute "silent tag /" . a:arg
+
+    catch
+      echo "No tag " . a:arg . " found."
+
+    endtry
+
+  endtry
 
 endfunction
 
 " ===========================================================================
 
-" insert console.log()
+" insert console.log("<cword>:", <cword>)
+" under the current line
 function functions#InsertLog()
   silent normal! yiw
 
@@ -33,7 +49,8 @@ endfunction
 
 " ===========================================================================
 
-" create handler method
+" create JavaScript handler method
+" above the current block;
 function functions#Handler()
   silent normal! $2B
   silent normal! yiw

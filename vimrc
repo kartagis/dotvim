@@ -248,11 +248,11 @@ command! LCD        lcd %:p:h
 command! CD         cd %:p:h
 
 " sharing is caring
-command! VPF        execute "w !vpaste ft=" . &ft
-command! -range VPV execute "'<,'>w !vpaste ft=" . &ft
+command! VPF        execute "w !vpaste ft=" . &filetype
+command! -range VPV execute "'<,'>w !vpaste ft=" . &filetype
 command! CMD        let @+ = ":" . @:
 
-command! Trailer    mark `|%s/\s\+$//|norm! ``
+command! Trailer    mark `|%s/\s\+$//|normal! ``
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -302,7 +302,7 @@ nnoremap ,b :buffer <C-z>
 nnoremap ,t :tjump /
 nnoremap ,p :ptjump /
 
-command! -nargs=1 -bang -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
+command! -nargs=1 -bang -complete=customlist,functions#ListBufTags Btag call functions#Tag(<f-args>)
 nnoremap ,T :Btag<space>
 " fin du bloc experimental
 
