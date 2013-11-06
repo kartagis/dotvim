@@ -36,7 +36,11 @@ set smartcase
 set encoding=utf-8
 set termencoding=utf-8
 
-set wildignore=*.swp,*.bak,*.pyc,*.class,*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore=*.swp,*.bak
+set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore+=tags
+set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=list:full
 
@@ -207,6 +211,8 @@ xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
 
+xnoremap <leader>Q :call functions#ReplaceThis()<CR>
+
 nmap <leader>x *``cgn
 nmap <leader>X #``cgN
 xmap <leader>x <leader>scgn
@@ -253,6 +259,16 @@ command! -range VPV execute "'<,'>w !vpaste ft=" . &filetype
 command! CMD        let @+ = ":" . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
+
+command! -nargs=1 Qfdo try | silent cfirst |
+\ while 1 | execute <q-args> | silent cnext | endwhile |
+\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
+\ endtry
+
+command! -nargs=1 Qfdofile try | silent cfirst |
+\ while 1 | execute <q-args> | silent cnfile | endwhile |
+\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
+\ endtry
 
 """""""""""""""""""
 " PLUGIN SETTINGS "

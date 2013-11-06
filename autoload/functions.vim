@@ -1,3 +1,31 @@
+" search/replace across the project
+function functions#ReplaceThis()
+  let search_pattern      = functions#GetVisualSelection()
+  let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
+  let file_pattern        = ""
+  let user_choice         = inputlist([
+    \ 'What file pattern?',
+    \ '1. Only ' . expand("%:e") . ' files?',
+    \ '2. Other files?'])
+
+  if user_choice == 0
+    let file_pattern = "**/*"
+
+  elseif user_choice == 1
+    let file_pattern = "**/*." . expand("%:e")
+
+  elseif user_choice == 2
+    let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
+
+  endif
+
+  silent execute "vimgrep " . search_pattern . " " . file_pattern . " | cw"
+  execute "Qfdo s/" . search_pattern . "/" . replacement_pattern . "/ec"
+
+endfunction
+
+" ===========================================================================
+
 " :tag /foo but limited to the current buffer
 function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
   let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
