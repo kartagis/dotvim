@@ -1,20 +1,29 @@
-" search/replace across the project
+" search/replace across project
 function functions#ReplaceThis()
   let search_pattern      = functions#GetVisualSelection()
   let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
+  echo "\n"
   let file_pattern        = ""
   let user_choice         = inputlist([
-    \ 'What file pattern?',
-    \ '1. Only ' . expand("%:e") . ' files?',
-    \ '2. Other files?'])
+    \ 'In...',
+    \ '1. the current file only',
+    \ '2. every ' . &filetype . ' file',
+    \ '3. every file (except ' . &wildignore . ')',
+    \ '4. custom file pattern...'])
 
   if user_choice == 0
-    let file_pattern = "**/*"
+    return
 
   elseif user_choice == 1
-    let file_pattern = "**/*." . expand("%:e")
+    let file_pattern = "%"
 
   elseif user_choice == 2
+    let file_pattern = "**/*." . expand("%:e")
+
+  elseif user_choice == 3
+    let file_pattern = "**/*"
+
+  elseif user_choice == 4
     let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
 
   endif
