@@ -65,10 +65,11 @@ set fileformats=unix,dos,mac
 set formatoptions+=1
 set lazyredraw
 set mouse=a
+set nostartofline
 set noswapfile
 set nrformats-=octal
-set previewheight=4
 set number
+set previewheight=4
 set relativenumber
 set scrolloff=4
 set virtualedit=block
@@ -206,7 +207,7 @@ nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
 xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
-nnoremap <leader>s *``
+nnoremap <leader>S *``
 xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
