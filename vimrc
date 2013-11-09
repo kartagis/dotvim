@@ -207,8 +207,8 @@ nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
 xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
 xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
-nnoremap <leader>S *``
-xnoremap <leader>s <Esc>:let @/ = functions#GetVisualSelection()<CR>
+nnoremap <leader>o *``
+xnoremap <leader>o <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
 
@@ -216,8 +216,8 @@ xnoremap <leader>Q :call functions#ReplaceThis()<CR>
 
 nmap <leader>x *``cgn
 nmap <leader>X #``cgN
-xmap <leader>x <leader>scgn
-xmap <leader>X <leader>scgN
+xmap <leader>x <leader>ocgn
+xmap <leader>X <leader>ocgN
 
 inoremap <expr> <CR> functions#SmartEnter()
 
@@ -228,6 +228,26 @@ nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
 
 match Error /\s\+$/
+
+" so... my 'one week without CtrlP' became
+" 'two weeks without CtrlP' and now it has
+" become 'goodbye CtrlP'.
+set wildcharm=<C-z>
+set path=.,**
+
+nnoremap <leader>f :find *
+nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>s :sfind *
+nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>v :vert sfind *
+nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
+
+nnoremap <leader>b :buffer <C-z>
+
+nnoremap <leader>t :tjump /
+nnoremap <leader>T :Btag<space>
+
+nnoremap <leader>p :ptjump /
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -261,6 +281,8 @@ command! CMD        let @+ = ":" . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
 
+command! -nargs=1 -bang -complete=customlist,functions#ListBufTags Btag call functions#Tag(<f-args>)
+
 command! -nargs=1 Qfdo try | silent cfirst |
 \ while 1 | execute <q-args> | silent cnext | endwhile |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
@@ -281,47 +303,6 @@ let g:netrw_winsize   = '999'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 0
 let g:netrw_liststyle = 3
-
-" nnoremap <leader>f :CtrlP<CR>
-" nnoremap <leader>F :CtrlPCurFile<CR>
-" nnoremap <leader>b :CtrlPBuffer<CR>
-" nnoremap <leader>m :CtrlPMixed<CR>
-" nnoremap <leader>M :CtrlPMRUFiles<CR>
-" nnoremap <leader>t :CtrlPTag<CR>
-" nnoremap <leader>T :CtrlPBufTag<CR>
-" nnoremap <leader>l :CtrlPLine<CR>
-" nnoremap <leader>N :CtrlP ~/Dropbox/nv/<CR>
-" let g:ctrlp_map                 = ''
-" let g:ctrlp_extensions          = ['tag']
-" let g:ctrlp_mruf_max            = 25
-" let g:ctrlp_clear_cache_on_exit = 0
-" let g:ctrlp_by_filename         = 1
-" let g:ctrlp_open_new_file       = 'r'
-" let g:ctrlp_open_multiple_files = '3hjr'
-" let g:ctrlp_root_markers        = ['tags']
-" let g:ctrlp_buftag_types        = {
-"   \ 'css'        : '--language-force=css --css-types=citm',
-"   \ 'javascript' : '--language-force=javascript --javascript-types=fv',
-"   \ 'haxe'       : '--language-force=haxe --haxe-types=fvpcit'
-"   \ }
-" one week without CtrlP
-let g:loaded_ctrlp = 1
-" debut du bloc experimental
-set wildcharm=<C-z>
-set path=.,**
-
-nnoremap ,f :find<Space>
-nnoremap ,s :sfind<Space>
-nnoremap ,v :vert sfind<Space>
-
-nnoremap ,b :buffer <C-z>
-
-nnoremap ,t :tjump /
-nnoremap ,p :ptjump /
-
-command! -nargs=1 -bang -complete=customlist,functions#ListBufTags Btag call functions#Tag(<f-args>)
-nnoremap ,T :Btag<space>
-" fin du bloc experimental
 
 let g:syntastic_check_on_open       = 0
 let g:syntastic_enable_balloons     = 0
