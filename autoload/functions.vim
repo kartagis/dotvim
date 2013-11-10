@@ -1,4 +1,4 @@
-" search/replace across project
+" experimental search/replace across project
 function functions#ReplaceThis()
   let search_pattern      = functions#GetVisualSelection()
   let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
@@ -8,7 +8,7 @@ function functions#ReplaceThis()
     \ 'In...',
     \ '1. the current file only',
     \ '2. every ' . &filetype . ' file',
-    \ '3. every file (except ' . &wildignore . ')',
+    \ '3. every file (except &wildignore)',
     \ '4. custom file pattern...'])
 
   if user_choice == 0
@@ -28,7 +28,9 @@ function functions#ReplaceThis()
 
   endif
 
-  silent execute "vimgrep " . search_pattern . " " . file_pattern . " | cw"
+  silent execute "vimgrep " . search_pattern . " " . file_pattern
+  tabnew
+  cwindow
   execute "Qfdo s/" . search_pattern . "/" . replacement_pattern . "/ec"
 
 endfunction
@@ -135,7 +137,7 @@ function functions#SmartEnter()
 
   endif
 
-  " timesaving
+  " I still have to decide if it's useful to me
   if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
     return "\<C-u>"
 
@@ -165,13 +167,12 @@ endfunction
 
 function functions#PairExpander(left, right, next)
   let pair_position = searchpairpos(a:left, "", a:right, "Wn")
-  let return_string = "\<CR>" . a:right . "\<C-o>==\<C-o>O"
 
   if a:next !=# a:right && pair_position[0] == 0
-    return return_string
+    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
 
   elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
-    return return_string
+    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
 
   elseif a:next ==# a:right
     return "\<CR>\<C-o>==\<C-o>O"
@@ -183,10 +184,15 @@ function functions#PairExpander(left, right, next)
 
 endfunction
 
-"TODO: make it work correctly between </tag>|</tag>
 function functions#TagExpander(next)
   if a:next ==# "<" && getline(".")[col(".")] ==# "/"
-    return "\<CR>\<C-o>==\<C-o>O"
+    if getline(".")[searchpos("<", "bnW")[1]] ==# "/"
+      return "\<CR>"
+
+    else
+      return "\<CR>\<C-o>==\<C-o>O"
+
+    endif
 
   else
     return "\<CR>"

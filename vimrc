@@ -18,7 +18,7 @@ set backspace=indent,eol,start
 set hidden
 set incsearch
 set laststatus=2
-set switchbuf=useopen,usetab
+" set switchbuf=useopen,usetab
 set tags=./tags;,tags;
 set wildmenu
 
@@ -229,9 +229,6 @@ nnoremap <PageDown> :bn<CR>
 
 match Error /\s\+$/
 
-" so... my 'one week without CtrlP' became
-" 'two weeks without CtrlP' and now it has
-" become 'goodbye CtrlP'.
 set wildcharm=<C-z>
 set path=.,**
 
@@ -301,7 +298,7 @@ let g:snippets_dir = '~/.vim/snippets/'
 
 let g:netrw_winsize   = '999'
 let g:netrw_banner    = 0
-let g:netrw_keepdir   = 0
+let g:netrw_keepdir   = 1
 let g:netrw_liststyle = 3
 
 let g:syntastic_check_on_open       = 0
