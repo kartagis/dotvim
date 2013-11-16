@@ -6,6 +6,11 @@ snippet fun
 # Anonymous Function
 snippet f
 	function(${1}){${2}}${3}
+# Function as var
+snippet vfun
+	var ${1:function_name} = function(${2}) {
+		${3}
+	};
 # if
 snippet if
 	if (${1}) {
@@ -136,10 +141,10 @@ snippet :f
 	}
 # JSON.parse
 snippet jsonp
-        JSON.parse(${0:jstr});
-				# JSON.stringify
-				snippet jsons
-				        JSON.stringify(${0:object});
+	JSON.parse(${0:jstr});
+# JSON.stringify
+snippet jsons
+	JSON.stringify(${0:object});
 #########
 # CLASS #
 #########
@@ -216,4 +221,11 @@ snippet ready
 	$(document).ready(function() {
 		${1}
 	});
+# jquery collection
+snippet $#
+	$("${1}")${2}
+# jquery id
+snippet $#
+	$("#${1}")${2}
+# jquery class
 #

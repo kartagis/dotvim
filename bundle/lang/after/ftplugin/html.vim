@@ -1,9 +1,6 @@
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*/
-inoremap <buffer> <leader>i <Esc>:IMG im[ag]*/
-
 nnoremap <buffer> <leader>& :call functions#Entities()<CR>
 nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>

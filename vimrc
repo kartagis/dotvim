@@ -239,10 +239,11 @@ nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
 nnoremap <leader>v :vert sfind *
 nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
 
-nnoremap <leader>b :buffer <C-z>
+nnoremap <leader>b :buffer <C-z><S-Tab>
+nnoremap <leader>B :sbuffer <C-z><S-Tab>
 
 nnoremap <leader>t :tjump /
-nnoremap <leader>T :Btag<space>
+nnoremap <leader>T :Btag <C-z><S-Tab>
 
 nnoremap <leader>p :ptjump /
 

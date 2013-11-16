@@ -1,6 +1,6 @@
 " ATTENTION
 
-" I'm currently in the process of turning this ting in a cleaner general purpose
+" I'm currently in the process of turning this thing in a cleaner general purpose
 " plugin. Until it's ready, expect some mess.
 "
 " DONE
