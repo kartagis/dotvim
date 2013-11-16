@@ -207,12 +207,12 @@ snippet mod
 		return $1;
 	}());
 # Getter
-snippet get
+snippet getter
 	get${1:Property_name}: function() {
 		return ${2:property_name}
 	}
 # Setter
-snippet set
+snippet setter
 	set${1:Property_name}: function(${2:value}) {
 		return (${3:property_name} = $2);
 	}
@@ -700,10 +700,6 @@ snippet queue
 	${1:obj}.queue(${2:name}${3:, newQueue})
 snippet queuee
 	$.queue(${1:element}${2:, name}${3:, newQueue})
-snippet ready
-	$(function () {
-		${0}
-	});
 snippet rem
 	${1:obj}.remove()
 snippet rema

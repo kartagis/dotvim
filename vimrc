@@ -37,7 +37,7 @@ set encoding=utf-8
 set termencoding=utf-8
 
 set wildignore=*.swp,*.bak
-set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb
+set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
 set wildignore+=tags
 set wildignore+=*.tar.*
@@ -267,7 +267,7 @@ command! Bombit     call functions#Bombit()
 
 command! ToUnix     call functions#ToUnix()
 
-command! SynStack   call functions#SynStack()
+command! SynStack   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
 command! LCD        lcd %:p:h
 command! CD         cd %:p:h
@@ -279,7 +279,7 @@ command! CMD        let @+ = ":" . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
 
-command! -nargs=1 -bang -complete=customlist,functions#ListBufTags Btag call functions#Tag(<f-args>)
+command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
 
 command! -nargs=1 Qfdo try | silent cfirst |
 \ while 1 | execute <q-args> | silent cnext | endwhile |

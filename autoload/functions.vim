@@ -39,7 +39,8 @@ endfunction
 
 " :tag /foo but limited to the current buffer
 function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
-  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
+  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
+  " let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
 
   if len(temp_list) > 0
     let return_list = []
@@ -55,7 +56,7 @@ function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
 
 endfunction
 
-function functions#Tag(arg)
+function functions#Btag(arg)
   try
     execute "silent tag " . a:arg
 
@@ -209,23 +210,15 @@ function functions#AutoSave()
 
   windo call functions#SmartUpdate()
 
+  call functions#Tagit()
+
   execute this_window . 'wincmd w'
 
 endfunction
 
 function functions#SmartUpdate()
-  if &buftype != "nofile"
-    if expand('%') != ''
-
-      update
-
-      " TODO: try to improve this part, disabled for now
-      if &filetype == "javascript" || &filetype == "php"
-        " call functions#Tagit()
-
-      endif
-
-    endif
+  if &buftype != "nofile" && expand('%') != ''
+    update
 
   endif
 
@@ -242,7 +235,7 @@ endfunction
 " if no answer is given, nothing is done and we try to not
 " bother the user again
 function functions#Tagit()
-  if !exists("b:tagit_notags") && expand('%') != ''
+  if !exists("g:tagit_notags") && expand('%') != ''
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
@@ -258,7 +251,7 @@ function functions#Tagit()
               \ '1. In the working directory: ' . current_dir . '/tags'])
 
         if user_choice == 0
-          let b:tagit_notags = 1
+          let g:tagit_notags = 1
 
           return
 
@@ -274,7 +267,7 @@ function functions#Tagit()
               \ '2. In the directory of the current file: ' . this_dir . '/tags'])
 
         if user_choice == 0
-          let b:tagit_notags = 1
+          let g:tagit_notags = 1
 
           return
 
@@ -295,14 +288,14 @@ function functions#Tagit()
 endfunction
 
 function functions#GenerateTags(location)
-  execute ":silent !ctags -R -f " . shellescape(a:location . "/tags") . " " . shellescape(a:location) | execute ":redraw!"
+  execute ":silent !ctags -R --tag-relative=yes --exclude=*.min.* -f " . shellescape(a:location . "/tags") . " " . shellescape(a:location) . " > /dev/null 2>&1" | execute ":redraw!"
 
 endfunction
 
 " Ignore user's choice to not write a tags file.
 function functions#Bombit()
-  if exists("b:tagit_notags")
-    unlet b:tagit_notags
+  if exists("g:tagit_notags")
+    unlet g:tagit_notags
 
     call functions#Tagit()
 
@@ -368,25 +361,6 @@ function functions#ToUnix()
   silent w
 
 endfunction
-
-" ===========================================================================
-
-" shows syntaxic group of the word under the cursor
-function functions#SynStack(...)
-  if !exists("*synstack")
-    return
-
-  endif
-
-  if exists(a:0)
-    return map(synstack(a:0), 'synIDattr(v:val, "name")')
-
-  else
-    return map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-
-  endif
-
-endfunc
 
 " ===========================================================================
 
