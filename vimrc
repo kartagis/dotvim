@@ -291,6 +291,9 @@ command! -nargs=1 Qfdofile try | silent cfirst |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
 \ endtry
 
+command! TD tselect TODO
+command! FM tselect FIXME
+
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""

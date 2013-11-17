@@ -39,8 +39,10 @@ endfunction
 
 " :tag /foo but limited to the current buffer
 function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
+  " absolute paths are machine/user-dependent
+  " Tagit() now uses relative paths so we can
+  " do the same here: much simpler
   let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
-  " let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == fnamemodify(bufname("%"), ":p")')
 
   if len(temp_list) > 0
     let return_list = []
@@ -288,7 +290,8 @@ function functions#Tagit()
 endfunction
 
 function functions#GenerateTags(location)
-  execute ":silent !ctags -R --tag-relative=yes --exclude=*.min.* -f " . shellescape(a:location . "/tags") . " " . shellescape(a:location) . " > /dev/null 2>&1" | execute ":redraw!"
+  " tag-relative didn't work when using absolute paths, fixed
+  execute ":silent !cd " . shellescape(a:location) . " && ctags -R --tag-relative=yes --exclude=\*.min.\* -f tags . > /dev/null 2>&1" | execute ":redraw!"
 
 endfunction
 
