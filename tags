@@ -492,7 +492,7 @@ b:did_indent	bundle/lang/after/indent/css.vim	/^let b:did_indent = 1$/;"	v
 b:did_indent	bundle/lang/after/indent/json.vim	/^let b:did_indent = 1$/;"	v
 b:match_words	bundle/lang/after/ftplugin/html.vim	/^let b:match_words='<:>,<\\@<=\\([^\/][^ \\t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=\/\\1>'$/;"	v
 b:match_words	bundle/lang/after/ftplugin/javascript.vim	/^let b:match_words = '\\<function\\>:\\<return\\>,\\<do\\>:\\<while\\>,\\<switch\\>:\\<case\\>:\\<default\\>,\\<if\\>:\\<else\\>,\\<try\\>:\\<catch\\>:\\<finally\\>'$/;"	v
-b:undo_ftplugin	bundle/lang/after/ftplugin/markdown.vim	/^let b:undo_ftplugin .= "|setl cms< com< fo<"$/;"	v
+b:undo_ftplugin	bundle/lang/ftplugin/markdown.vim	/^let b:undo_ftplugin .= "|setl cms< com< fo<"$/;"	v
 bash_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^bash_eval(){$/;"	f
 beep	bundle/surround/plugin/surround.vim	/^function! s:beep()$/;"	f
 caret	bundle/sparkup/ftplugin/html/sparkup.py	/^    caret = None$/;"	v	class:Parser
@@ -774,6 +774,7 @@ grey_number	colors/jellybeans.vim	/^fun! s:grey_number(x)$/;"	f
 has	bundle/sparkup/ftplugin/html/sparkup.py	/^    def has(self, attr):$/;"	m	class:Options
 help	bundle/sparkup/ftplugin/html/sparkup.py	/^    def help(self):$/;"	m	class:Router
 help_content	bundle/sparkup/ftplugin/html/sparkup.py	/^    help_content = [$/;"	v	class:Router
+hsgdjhsgd	lshdg.js	/^var hsgdjhsgd,sdglshd,dshgdhsgd;$/;"	v
 html_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^html_eval(){$/;"	f
 iI	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 iI	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
@@ -964,6 +965,8 @@ s:verbose_info	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_info  = 1$/;"	v
 s:verbose_quiet	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_quiet = 0$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = g:yaifa_verbosity$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = s:default_verbosity$/;"	v
+sdfsjdfsjdfsdjhdfsjld	lshdg.js	/^var sdfsjdfsjdfsdjhdfsjld = 1;$/;"	v
+sdhdgshdg	lshdg.js	/^var sdhdgshdg = "shdgshdgshdg";$/;"	v
 setCompletefunc	bundle/autocomplpop/autoload/acp.vim	/^function s:setCompletefunc()$/;"	f
 setTempOption	bundle/autocomplpop/autoload/acp.vim	/^function s:setTempOption(group, name, value)$/;"	f
 short_tags	bundle/sparkup/ftplugin/html/sparkup.py	/^    short_tags = ($/;"	v	class:HtmlDialect

@@ -212,8 +212,6 @@ function functions#AutoSave()
 
   windo call functions#SmartUpdate()
 
-  call functions#Tagit()
-
   execute this_window . 'wincmd w'
 
 endfunction
