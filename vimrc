@@ -221,8 +221,10 @@ xmap <leader>X <leader>ocgN
 
 inoremap <expr> <CR> functions#SmartEnter()
 
-nnoremap <End>  :cnext<CR>zv
-nnoremap <Home> :cprevious<CR>zv
+" nnoremap <End>  :cnext<CR>zv
+" nnoremap <Home> :cprevious<CR>zv
+nnoremap <Home> :call functions#WrapCommand("up")<CR>
+nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
 nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>

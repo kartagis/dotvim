@@ -1,3 +1,29 @@
+" wrapping :cnext/:cprevious
+" quick and dirty
+function functions#WrapCommand(direction)
+  if a:direction == "up"
+    try
+      cprevious
+
+    catch /^Vim\%((\a\+)\)\=:E553/
+      clast
+
+    endtry
+
+  elseif a:direction == "down"
+    try
+      cnext
+
+    catch /^Vim\%((\a\+)\)\=:E553/
+      cfirst
+
+    endtry
+
+  endif
+endfunction
+
+" ===========================================================================
+
 " experimental search/replace across project
 function functions#ReplaceThis()
   let search_pattern      = functions#GetVisualSelection()
