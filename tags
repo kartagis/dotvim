@@ -41,6 +41,7 @@
 <leader>i	bundle/insertion/after/ftplugin/css.vim	/^nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*\/$/;"	m
 <leader>i	bundle/insertion/after/ftplugin/html.vim	/^inoremap <buffer> <leader>i <Esc>:IMG im[ag]*\/$/;"	m
 <leader>i	bundle/insertion/after/ftplugin/html.vim	/^nnoremap <buffer> <leader>i o<Esc>:IMG im[ag]*\/$/;"	m
+<leader>l	bundle/lang/after/ftplugin/javascript.vim	/^nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>$/;"	m
 <leader>é	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>$/;"	m
 <s-tab>	bundle/snipmate/after/plugin/snipMate.vim	/^ino <silent> <s-tab> <c-r>=BackwardsSnippet()<cr>$/;"	m
 <tab>	bundle/snipmate/after/plugin/snipMate.vim	/^ino <silent> <tab> <c-r>=TriggerSnippet()<cr>$/;"	m
@@ -774,7 +775,6 @@ grey_number	colors/jellybeans.vim	/^fun! s:grey_number(x)$/;"	f
 has	bundle/sparkup/ftplugin/html/sparkup.py	/^    def has(self, attr):$/;"	m	class:Options
 help	bundle/sparkup/ftplugin/html/sparkup.py	/^    def help(self):$/;"	m	class:Router
 help_content	bundle/sparkup/ftplugin/html/sparkup.py	/^    help_content = [$/;"	v	class:Router
-hsgdjhsgd	lshdg.js	/^var hsgdjhsgd,sdglshd,dshgdhsgd;$/;"	v
 html_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^html_eval(){$/;"	f
 iI	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 iI	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
@@ -965,8 +965,6 @@ s:verbose_info	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_info  = 1$/;"	v
 s:verbose_quiet	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_quiet = 0$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = g:yaifa_verbosity$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = s:default_verbosity$/;"	v
-sdfsjdfsjdfsdjhdfsjld	lshdg.js	/^var sdfsjdfsjdfsdjhdfsjld = 1;$/;"	v
-sdhdgshdg	lshdg.js	/^var sdhdgshdg = "shdgshdgshdg";$/;"	v
 setCompletefunc	bundle/autocomplpop/autoload/acp.vim	/^function s:setCompletefunc()$/;"	f
 setTempOption	bundle/autocomplpop/autoload/acp.vim	/^function s:setTempOption(group, name, value)$/;"	f
 short_tags	bundle/sparkup/ftplugin/html/sparkup.py	/^    short_tags = ($/;"	v	class:HtmlDialect

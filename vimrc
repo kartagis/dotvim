@@ -104,7 +104,7 @@ if has('gui_running')
     set clipboard^=unnamed
 
   elseif os == 'Linux'
-    set guifont=Inconsolata-g\ Medium\ 11
+    set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
     set clipboard^=unnamedplus
 

@@ -11,3 +11,4 @@ xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 let b:match_words = '\<function\>:\<return\>,\<do\>:\<while\>,\<switch\>:\<case\>:\<default\>,\<if\>:\<else\>,\<try\>:\<catch\>:\<finally\>'
 
 nnoremap <buffer> <leader>h :call functions#Handler()<CR>
+nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>
