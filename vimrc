@@ -144,9 +144,6 @@ endif
 
 let mapleader = ","
 
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
-
 inoremap <leader>, <C-x><C-o>
 inoremap <leader>: <C-x><C-f>
 inoremap <leader>- <C-x><C-l>
@@ -232,7 +229,7 @@ nnoremap <PageDown> :bn<CR>
 match Error /\s\+$/
 
 set wildcharm=<C-z>
-set path=.,**
+set path=**
 
 nnoremap <leader>f :find *
 nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
@@ -269,7 +266,7 @@ command! Bombit     call functions#Bombit()
 
 command! ToUnix     call functions#ToUnix()
 
-command! SynStack   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+command! SS         echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
 command! LCD        lcd %:p:h
 command! CD         cd %:p:h
@@ -280,6 +277,12 @@ command! -range VPV execute "'<,'>w !vpaste ft=" . &filetype
 command! CMD        let @+ = ":" . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
+
+command! Todo       tselect TODO
+command! Fixme      tselect FIXME
+
+command! Evimrc     tabnew $MYVIMRC
+command! Svimrc     source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
 
@@ -292,9 +295,6 @@ command! -nargs=1 Qfdofile try | silent cfirst |
 \ while 1 | execute <q-args> | silent cnfile | endwhile |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
 \ endtry
-
-command! TD tselect TODO
-command! FM tselect FIXME
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
@@ -314,9 +314,9 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode'              : 'passive',
-  \ 'active_filetypes'  : [],
-  \ 'passive_filetypes' : ['javascript','css', 'python', 'html', 'xhtml', 'php']
+  \ 'mode'              : 'active',
+  \ 'active_filetypes'  : ['javascript'],
+  \ 'passive_filetypes' : ['css', 'python', 'html', 'xhtml', 'php']
   \ }
 
 let g:html_indent_script1 = "inc"

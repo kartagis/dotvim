@@ -3,23 +3,42 @@
 function functions#WrapCommand(direction)
   if a:direction == "up"
     try
-      cprevious
+      lprevious
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      clast
+      llast
+
+    catch /^Vim\%((\a\+)\)\=:E776/
+      try
+        cprevious
+
+      catch /^Vim\%((\a\+)\)\=:E553/
+        clast
+
+      endtry
 
     endtry
 
   elseif a:direction == "down"
     try
-      cnext
+      lnext
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      cfirst
+      lfirst
+
+    catch /^Vim\%((\a\+)\)\=:E776/
+      try
+        cnext
+
+      catch /^Vim\%((\a\+)\)\=:E553/
+        cfirst
+
+      endtry
 
     endtry
 
   endif
+
 endfunction
 
 " ===========================================================================
