@@ -1,3 +1,6 @@
+# var
+snippet var
+	var ${1:name} = ${2:value};
 # Function
 snippet fun
 	function ${1:function_name}(${2}) {
@@ -5,16 +8,16 @@ snippet fun
 	}
 # Anonymous Function
 snippet f
-	function(${1}) { ${2} }${3}
+	function(${1}){${2}}${3}
 # Function as var
 snippet vfun
-	var ${1:function_name} = function(${2}) {
+	var ${1:function_name} = function $1(${2}) {
 		${3}
 	};
 # if
 snippet if
 	if (${1}) {
-	  ${2}
+		${2}
 	}
 # if ... else
 snippet ife
@@ -43,17 +46,17 @@ snippet case
 		break;
 	${0}
 # for (...) {...} (Cached length)
-snippet for Cached length
+snippet for
 	for (var index = 0, len = ${1:things}.length; index < len; index++) {
 		${2}
 	}
 # for (...) {...}
-snippet for Classic
+snippet forr Classic
 	for (var ${2:i} = 0; $2 < ${1:things}.length; $2${3:++}) {
 		${4}
 	}
 # for (...) {...} (Improved Native For-Loop)
-snippet for Improved Native For-Loop
+snippet forr Improved Native For-Loop
 	for (var ${2:i} = ${1:things}.length - 1; $2 >= 0; $2${3:--}) {
 		${4}
 	}
@@ -84,6 +87,9 @@ snippet gett
 # Get Element
 snippet geti
 	getElementById('${1}')${2}
+##########
+# EVENTS #
+##########
 # Add Events
 snippet events
 	if (typeof(document.addEventListener) !== 'undefined') {
@@ -149,21 +155,27 @@ snippet :
 	${1:property_name} : ${2:value}
 # Object > Method
 snippet :f
-	${1:method_name} : function(${2}) {
+	${1:method_name} : function $1(${2}) {
 		${3}
 	}
+########
+# JSON #
+########
 # JSON.parse
 snippet jsonp
 	JSON.parse(${0:jstr});
 # JSON.stringify
 snippet jsons
 	JSON.stringify(${0:object});
+# require()
+snippet require
+	var ${1:instance_name} = require("${2:package_name}");
 ###############
 # Constructor #
 ###############
 # Constructor > Constructor
 snippet cons
-	var ${1:Constructor_name} = function(${2}) {
+	var ${1:Constructor_name} = function $1(${2}) {
 		var self = this;
 		${3}
 	};
@@ -172,12 +184,12 @@ snippet =
 	${1:this}.${2:public_property_name} = ${3};${4}
 # Constructor > Privileged Method
 snippet =f
-	${1:this}.${2:privileged_method_name} = function(${3}) {
+	${1:this}.${2:privileged_method_name} = function $1(${3}) {
 		${4}
 	};
 # Constructor > Public Method
 snippet prot
-	prototype.${1:method_name} = function(${2}) {
+	prototype.${1:method_name} = function $1(${2}) {
 		${3}
 	};
 # Constructor > Inheritance
@@ -207,9 +219,44 @@ snippet d
 # Window
 snippet w
 	window.
+##############
+# require.js #
+##############
+# require
+snippet req
+	require(["${1:package_name}"], function(${2:argument}) {
+		$3
+	});
+# define
+snippet def function
+	define(function ${1:function_name}() {
+		$2
+		return {};
+	});
+# define function with dependencies
+snippet def function with dependencies
+	define([${1:dependencies}], function ${2:function_name}($3) {
+		$4
+		return {};
+	});
+# define object literal
+snippet def object literal
+	define({
+		$1
+	});
+# define commonJS wrapper
+snippet def commonjs wrapper
+	define(function(require, exports, module) {
+		$1
+	});
+# selfie
+snippet selfie
+	(function ${1:function_name}() {
+		$3
+	})(${2:scope});
 # Module pattern
 snippet mod
-	var ${1:module_name} = (function(${2}) {
+	var ${1:module_name} = (function $1(${2}) {
 		// private properties
 		// var property_name = value;
 
@@ -226,14 +273,17 @@ snippet mod
 	}());
 # Getter
 snippet getter
-	get${1:Property_name}: function() {
+	get${1:Property_name}: function get$1() {
 		return ${2:property_name}
 	}
 # Setter
 snippet setter
-	set${1:Property_name}: function(${2:value}) {
+	set${1:Property_name}: function set$1(${2:value}) {
 		return (${3:property_name} = $2);
 	}
+##########
+# JQUERY #
+##########
 # jquery stub
 snippet ready
 	$(document).ready(function() {
@@ -833,15 +883,17 @@ snippet width
 	${1:obj}.width(${2:integer})
 snippet wrap
 	${1:obj}.wrap('${2:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')
-# Tweenlite
+#############
+# TWEENLITE #
+#############
 snippet twl
 	TweenLite.${1:to|from}(${2:element}, ${3:2}, {${4}});
 snippet twm
 	TweenMax.${1:to|from}(${2:element}, ${3:2}, {${4}});
 snippet tl
 	var ${1:tl} = new TimelineLite();${2}
-snippet oncomplete
-	, onComplete: function(){ ${1} }
-snippet onstart
-	, onStart: function(){ ${1} }
+snippet onc
+	onComplete: function(){${1}}
+snippet ons
+	onStart: function(){ ${1} }
 #

@@ -163,6 +163,7 @@ onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
 nnoremap <leader>a :Tabularize<Space>/
+xnoremap <leader>a :Tabularize<Space>/
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
@@ -246,6 +247,14 @@ nnoremap <leader>T :Btag <C-z><S-Tab>
 
 nnoremap <leader>p :ptjump /
 
+inoremap (; ();<Left><Left>
+inoremap {; {};<Left><Left>
+inoremap [; [];<Left><Left>
+inoremap (<Space> (<Space><Space>)<Left><Left>
+inoremap {<Space> {<Space><Space>}<Left><Left>
+inoremap [<Space> [<Space><Space>]<Left><Left>
+inoremap <Space><Space> <Space><Space><Left>
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
@@ -281,8 +290,8 @@ command! Trailer    mark `|%s/\s\+$//|normal! ``
 command! Todo       tselect TODO
 command! Fixme      tselect FIXME
 
-command! Evimrc     tabnew $MYVIMRC
-command! Svimrc     source $MYVIMRC
+command! EV         tabnew $MYVIMRC
+command! SV         source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
 

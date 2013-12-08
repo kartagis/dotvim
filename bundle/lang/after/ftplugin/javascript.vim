@@ -12,3 +12,5 @@ let b:match_words = '\<function\>:\<return\>,\<do\>:\<while\>,\<switch\>:\<case\
 
 nnoremap <buffer> <leader>h :call functions#Handler()<CR>
 nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>
+
+command -buffer Format call g:Jsbeautify()
