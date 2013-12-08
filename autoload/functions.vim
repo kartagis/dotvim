@@ -1,4 +1,27 @@
-" wrapping :cnext/:cprevious
+" naive MRU
+function functions#ListRecentFiles(ArgLead, CmdLine, CursorPos)
+  let the_oldfiles = deepcopy(v:oldfiles)
+
+  let my_oldfiles = filter(the_oldfiles, 'v:val =~ a:ArgLead')
+
+  if len(my_oldfiles) > 16
+    call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
+
+  endif
+
+  return my_oldfiles
+
+endfunction
+
+function functions#MRU(command, arg)
+
+  execute "" . a:command . " " . a:arg
+
+endfunction
+
+" ===========================================================================
+
+" wrapping :cnext/:cprevious and :lnext/:lprevious
 " quick and dirty
 function functions#WrapCommand(direction)
   if a:direction == "up"
@@ -44,16 +67,25 @@ endfunction
 " ===========================================================================
 
 " experimental search/replace across project
+function functions#ReplaceThat()
+  call functions#Replace(expand(input("Replace: ")))
+
+endfunction
+
 function functions#ReplaceThis()
-  let search_pattern      = functions#GetVisualSelection()
-  let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
+  call functions#Replace(functions#GetVisualSelection())
+
+endfunction
+
+function functions#Replace(search_pattern)
+  let replacement_pattern = expand(input("Replace: " . a:search_pattern . " with: "))
   echo "\n"
   let file_pattern        = ""
   let user_choice         = inputlist([
     \ 'In...',
     \ '1. the current file only',
-    \ '2. every ' . &filetype . ' file',
-    \ '3. every file (except &wildignore)',
+    \ '2. every ' . &filetype . ' file in ' . getcwd(),
+    \ '3. every file (except &wildignore) in ' . getcwd(),
     \ '4. custom file pattern...'])
 
   if user_choice == 0
@@ -73,12 +105,47 @@ function functions#ReplaceThis()
 
   endif
 
-  silent execute "vimgrep " . search_pattern . " " . file_pattern
-  tabnew
+  tabedit %
+  silent execute "vimgrep " . a:search_pattern . " " . file_pattern
   cwindow
-  execute "Qfdo s/" . search_pattern . "/" . replacement_pattern . "/ec"
+  execute "Qfdo s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
 
 endfunction
+" function functions#ReplaceThis()
+"   let search_pattern      = functions#GetVisualSelection()
+"   let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
+"   echo "\n"
+"   let file_pattern        = ""
+"   let user_choice         = inputlist([
+"     \ 'In...',
+"     \ '1. the current file only',
+"     \ '2. every ' . &filetype . ' file in ' . getcwd(),
+"     \ '3. every file (except &wildignore) in ' . getcwd(),
+"     \ '4. custom file pattern...'])
+
+"   if user_choice == 0
+"     return
+
+"   elseif user_choice == 1
+"     let file_pattern = "%"
+
+"   elseif user_choice == 2
+"     let file_pattern = "**/*." . expand("%:e")
+
+"   elseif user_choice == 3
+"     let file_pattern = "**/*"
+
+"   elseif user_choice == 4
+"     let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
+
+"   endif
+
+"   silent execute "vimgrep " . search_pattern . " " . file_pattern
+"   tabnew
+"   cwindow
+"   execute "Qfdo s/" . search_pattern . "/" . replacement_pattern . "/ec"
+
+" endfunction
 
 " ===========================================================================
 

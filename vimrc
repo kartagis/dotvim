@@ -144,9 +144,9 @@ endif
 
 let mapleader = ","
 
-inoremap <leader>, <C-x><C-o>
-inoremap <leader>: <C-x><C-f>
-inoremap <leader>- <C-x><C-l>
+" inoremap <leader>, <C-x><C-o>
+" inoremap <leader>: <C-x><C-f>
+" inoremap <leader>- <C-x><C-l>
 
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -210,12 +210,13 @@ xnoremap <leader>o <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
 
+nnoremap <leader>Q :call functions#ReplaceThat()<CR>
 xnoremap <leader>Q :call functions#ReplaceThis()<CR>
 
-nmap <leader>x *``cgn
-nmap <leader>X #``cgN
-xmap <leader>x <leader>ocgn
-xmap <leader>X <leader>ocgN
+nnoremap <leader>x *``cgn
+nnoremap <leader>X #``cgN
+xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 inoremap <expr> <CR> functions#SmartEnter()
 
@@ -247,13 +248,18 @@ nnoremap <leader>T :Btag <C-z><S-Tab>
 
 nnoremap <leader>p :ptjump /
 
+nnoremap <leader>me :MRU <C-z><S-Tab>
+nnoremap <leader>ms :SMRU <C-z><S-Tab>
+nnoremap <leader>mv :VMRU <C-z><S-Tab>
+
+inoremap {, {},<Left><Left>
+inoremap [, [],<Left><Left>
 inoremap (; ();<Left><Left>
 inoremap {; {};<Left><Left>
 inoremap [; [];<Left><Left>
 inoremap (<Space> (<Space><Space>)<Left><Left>
 inoremap {<Space> {<Space><Space>}<Left><Left>
 inoremap [<Space> [<Space><Space>]<Left><Left>
-inoremap <Space><Space> <Space><Space><Left>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -294,6 +300,10 @@ command! EV         tabnew $MYVIMRC
 command! SV         source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
+
+command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRU  call functions#MRU("edit", <f-args>)
+command! -nargs=1 -complete=customlist,functions#ListRecentFiles SMRU call functions#MRU("split", <f-args>)
+command! -nargs=1 -complete=customlist,functions#ListRecentFiles VMRU call functions#MRU("vsplit", <f-args>)
 
 command! -nargs=1 Qfdo try | silent cfirst |
 \ while 1 | execute <q-args> | silent cnext | endwhile |

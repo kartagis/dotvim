@@ -22,7 +22,16 @@
 <Plug>Dsurround	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>$/;"	m
 <Plug>ISurround	bundle/surround/plugin/surround.vim	/^inoremap <silent> <Plug>ISurround  <C-R>=<SID>insert(1)<CR>$/;"	m
 <Plug>Isurround	bundle/surround/plugin/surround.vim	/^inoremap <silent> <Plug>Isurround  <C-R>=<SID>insert()<CR>$/;"	m
+<Plug>LionColon	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionColon <SID>command("<SID>alignColon")$/;"	m
+<Plug>LionEqual	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionEqual <SID>command("<SID>alignEqual")$/;"	m
+<Plug>LionLeft	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionLeft <SID>command("<SID>alignLeft")$/;"	m
+<Plug>LionRepeat	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <Plug>LionRepeat .$/;"	m
+<Plug>LionRight	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionRight <SID>command("<SID>alignRight")$/;"	m
 <Plug>SurroundRepeat	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>SurroundRepeat .$/;"	m
+<Plug>VLionColon	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionColon <SID>command("<SID>alignColon", 1)$/;"	m
+<Plug>VLionEqual	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionEqual <SID>command("<SID>alignEqual", 1)$/;"	m
+<Plug>VLionLeft	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionLeft <SID>command("<SID>alignLeft", 1)$/;"	m
+<Plug>VLionRight	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionRight <SID>command("<SID>alignRight", 1)$/;"	m
 <Plug>VSurround	bundle/surround/plugin/surround.vim	/^vnoremap <silent> <Plug>VSurround  :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>$/;"	m
 <Plug>VgSurround	bundle/surround/plugin/surround.vim	/^vnoremap <silent> <Plug>VgSurround :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>$/;"	m
 <Plug>YSsurround	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>YSsurround :<C-U>call <SID>opfunc2(v:count1)<CR>$/;"	m
@@ -86,16 +95,20 @@ EditClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:Edit
 Element	bundle/sparkup/ftplugin/html/sparkup.py	/^class Element:$/;"	c
 Errors	bundle/syntastic/plugin/syntastic.vim	/^command! Errors call s:ShowLocList()$/;"	c
 Examples	bundle/syntastic/syntax_checkers/perl/efm_perl.pl	/^Examples:$/;"	l
+ExitingOneLineScope	bundle/lang/indent/javascript.vim	/^function s:ExitingOneLineScope(lnum)$/;"	f
 ExtraMakeprgArgs	bundle/syntastic/syntax_checkers/perl/perl.vim	/^function! s:ExtraMakeprgArgs()$/;"	f
 ExtractSnips	bundle/snipmate/plugin/snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
 ExtractSnipsFile	bundle/snipmate/plugin/snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
 Filename	bundle/snipmate/autoload/snipMate.vim	/^fun! Filename(...)$/;"	f
 FilterString	bundle/tabular/autoload/tabular.vim	/^function! s:FilterString(lines, commandstring)$/;"	f
 FindInParent	bundle/syntastic/syntax_checkers/haxe/haxe.vim	/^function! s:FindInParent(fln,flsrt,flstp)$/;"	f
+Format	bundle/lang/after/ftplugin/javascript.vim	/^command -buffer Format call g:Jsbeautify()$/;"	c
 Format	bundle/lang/after/ftplugin/json.vim	/^command -buffer Format %!python -m json.tool$/;"	c
 ForwardToZshChecker	bundle/syntastic/syntax_checkers/sh/sh.vim	/^function! s:ForwardToZshChecker()$/;"	f
 GetCSSIndent	bundle/lang/after/indent/css.vim	/^function GetCSSIndent()$/;"	f
 GetJSONIndent	bundle/lang/after/indent/json.vim	/^function GetJSONIndent()$/;"	f
+GetJavascriptIndent	bundle/lang/indent/javascript.vim	/^function GetJavascriptIndent()$/;"	f
+GetMSL	bundle/lang/indent/javascript.vim	/^function s:GetMSL(lnum, in_one_line_scope)$/;"	f
 GetMakeprg	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^function s:GetMakeprg()$/;"	f
 GetMavenClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:GetMavenClasspath()$/;"	f
 GetOcamlBuildMakeprg	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^function s:GetOcamlBuildMakeprg()$/;"	f
@@ -105,6 +118,7 @@ GetShell	bundle/syntastic/syntax_checkers/sh/sh.vim	/^function! s:GetShell()$/;"
 GetSnippet	bundle/snipmate/plugin/snipMate.vim	/^fun s:GetSnippet(word, scope)$/;"	f
 GetSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! GetSnippets(dir, filetypes)$/;"	f
 GetValaModules	bundle/syntastic/syntax_checkers/vala/valac.vim	/^function! s:GetValaModules()$/;"	f
+GetVarIndent	bundle/lang/indent/javascript.vim	/^function s:GetVarIndent(lnum)$/;"	f
 HL	bundle/lang/after/syntax/css.vim	/^command -nargs=+ HL hi def link <args>$/;"	c
 HandleTextObjectMapping	bundle/indent-object/plugin/indent-object.vim	/^function! <Sid>HandleTextObjectMapping(inner, incbelow, vis, range)$/;"	f
 Helptags	autoload/pathogen.vim	/^command! -bar Helptags :call pathogen#helptags()$/;"	c
@@ -112,22 +126,36 @@ HiLink	bundle/lang/after/syntax/actionscript.vim	/^    command -nargs=+ HiLink h
 HiLink	bundle/lang/after/syntax/actionscript.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 HiLink	bundle/lang/after/syntax/json.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
 HiLink	bundle/lang/after/syntax/json.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
+HiLink	bundle/lang/syntax/javascript.vim	/^    command -nargs=+ HiLink hi def link <args>$/;"	c
+HiLink	bundle/lang/syntax/javascript.vim	/^    command -nargs=+ HiLink hi link <args>$/;"	c
 HideLocList	bundle/syntastic/plugin/syntastic.vim	/^function! s:HideLocList()$/;"	f
 HighlightErrors	bundle/syntastic/plugin/syntastic.vim	/^function! s:HighlightErrors()$/;"	f
 HtmlDialect	bundle/sparkup/ftplugin/html/sparkup.py	/^class HtmlDialect(Dialect):$/;"	c
+HtmlHiLink	bundle/tmp_moustache_handlebars/syntax/mustache.vim	/^  command! -nargs=+ HtmlHiLink hi def link <args>$/;"	c
+HtmlHiLink	bundle/tmp_moustache_handlebars/syntax/mustache.vim	/^  command! -nargs=+ HtmlHiLink hi link <args>$/;"	c
 IMG	bundle/insertion/after/ftplugin/css.vim	/^command! -buffer -nargs=* -complete=file IMG call insertion#InsertIMG(<f-args>)$/;"	c
 IMG	bundle/insertion/after/ftplugin/html.vim	/^command! -buffer -nargs=* -complete=file IMG call insertion#InsertIMG(<f-args>)$/;"	c
+InMultiVarStatement	bundle/lang/indent/javascript.vim	/^function s:InMultiVarStatement(lnum)$/;"	f
+InOneLineScope	bundle/lang/indent/javascript.vim	/^function s:InOneLineScope(lnum)$/;"	f
+IndentWithContinuation	bundle/lang/indent/javascript.vim	/^function s:IndentWithContinuation(lnum, ind, width)$/;"	f
 Init	bundle/syntastic/autoload/syntastic/c.vim	/^function! s:Init()$/;"	f
+IsInMultilineComment	bundle/lang/indent/javascript.vim	/^function s:IsInMultilineComment(lnum, col)$/;"	f
 IsInString	bundle/lang/after/indent/json.vim	/^function s:IsInString(lnum, col)$/;"	f
+IsInString	bundle/lang/indent/javascript.vim	/^function s:IsInString(lnum, col)$/;"	f
+IsInStringOrComment	bundle/lang/indent/javascript.vim	/^function s:IsInStringOrComment(lnum, col)$/;"	f
+IsLineComment	bundle/lang/indent/javascript.vim	/^function s:IsLineComment(lnum, col)$/;"	f
 IsRedrawRequiredAfterMake	bundle/syntastic/plugin/syntastic.vim	/^function! s:IsRedrawRequiredAfterMake()$/;"	f
 IsShellValid	bundle/syntastic/syntax_checkers/sh/sh.vim	/^function! s:IsShellValid()$/;"	f
+Jsbeautify	bundle/lang/plugin/jsbeautify.vim	/^function! g:Jsbeautify()$/;"	f
 JshintNew	bundle/syntastic/syntax_checkers/javascript/jshint.vim	/^function s:JshintNew()$/;"	f
 Left	bundle/tabular/autoload/tabular.vim	/^function! s:Left(string, fieldwidth)$/;"	f
 LineHasOpeningBrackets	bundle/lang/after/indent/json.vim	/^function s:LineHasOpeningBrackets(lnum)$/;"	f
+LineHasOpeningBrackets	bundle/lang/indent/javascript.vim	/^function s:LineHasOpeningBrackets(lnum)$/;"	f
 LoadClasspathFromConfigFile	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:LoadClasspathFromConfigFile()$/;"	f
 LocList	bundle/syntastic/plugin/syntastic.vim	/^function! s:LocList()$/;"	f
 MakeSnip	bundle/snipmate/plugin/snipMate.vim	/^fun! MakeSnip(scope, trigger, content, ...)$/;"	f
 Match	bundle/lang/after/indent/json.vim	/^function s:Match(lnum, regex)$/;"	f
+Match	bundle/lang/indent/javascript.vim	/^function s:Match(lnum, regex)$/;"	f
 OSSupportsShellpipeHack	bundle/syntastic/plugin/syntastic.vim	/^function! s:OSSupportsShellpipeHack()$/;"	f
 Options	bundle/sparkup/ftplugin/html/sparkup.py	/^class Options:$/;"	c
 PARENT	bundle/sparkup/ftplugin/html/sparkup.py	/^    PARENT = 8$/;"	v	class:Token
@@ -136,6 +164,7 @@ Parser	bundle/sparkup/ftplugin/html/sparkup.py	/^class Parser:$/;"	c
 Pipe2	bundle/pipe2eval/plugin/pipe2eval.vim	/^com! -nargs=+ Pipe2 call Pipe2eval(<f-args>)$/;"	c
 Pipe2eval	bundle/pipe2eval/plugin/pipe2eval.vim	/^function! Pipe2eval(lang)$/;"	f
 PrevNonBlankNonString	bundle/lang/after/indent/json.vim	/^function s:PrevNonBlankNonString(lnum)$/;"	f
+PrevNonBlankNonString	bundle/lang/indent/javascript.vim	/^function s:PrevNonBlankNonString(lnum)$/;"	f
 ProcessFile	bundle/snipmate/plugin/snipMate.vim	/^fun s:ProcessFile(file, ft, ...)$/;"	f
 ProcessSnippet	bundle/snipmate/autoload/snipMate.vim	/^fun s:ProcessSnippet(snip)$/;"	f
 PuppetLintVersion	bundle/syntastic/syntax_checkers/puppet/puppetlint.vim	/^function! s:PuppetLintVersion()$/;"	f
@@ -147,12 +176,14 @@ ReloadAllSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ReloadAllSnippets()
 ReloadSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ReloadSnippets(ft)$/;"	f
 RemoveDir	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:RemoveDir(dir)$/;"	f
 RemoveSnippet	bundle/snipmate/autoload/snipMate.vim	/^fun s:RemoveSnippet()$/;"	f
+RemoveTrailingComments	bundle/lang/indent/javascript.vim	/^function s:RemoveTrailingComments(content)$/;"	f
 ResetAllSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ResetAllSnippets()$/;"	f
 ResetSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ResetSnippets(ft)$/;"	f
 Right	bundle/tabular/autoload/tabular.vim	/^function! s:Right(string, fieldwidth)$/;"	f
 Router	bundle/sparkup/ftplugin/html/sparkup.py	/^class Router:$/;"	c
 SIBLING	bundle/sparkup/ftplugin/html/sparkup.py	/^    SIBLING = 16$/;"	v	class:Token
 SaveClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:SaveClasspath()$/;"	f
+SelectJavascript	bundle/lang/ftdetect/javascript.vim	/^fun! s:SelectJavascript()$/;"	f
 SelectWord	bundle/snipmate/autoload/snipMate.vim	/^fun s:SelectWord()$/;"	f
 SetLines	bundle/tabular/autoload/tabular.vim	/^function! s:SetLines(start, len, strings)$/;"	f
 ShowAvailableSnips	bundle/snipmate/plugin/snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
@@ -435,11 +466,13 @@ YAIFAGetVar	bundle/yaifa/plugin/yaifa.vim	/^function! YAIFAGetVar(var)$/;"	f
 YAIFAMagic	bundle/yaifa/plugin/yaifa.vim	/^command -nargs=0 -bar YAIFAMagic call YAIFA()$/;"	c
 [[	bundle/lang/after/ftplugin/html.vim	/^nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?<\\(html\\\\|body\\\\|head\\\\|address\\\\|article\\\\|aside\\\\|audio\\\\|blockquote\\\\|canvas\\\\|dd\\\\|div\\\\|dl\\\\|fieldset\\\\|figcaption\\\\|figure\\\\|footer\\\\|form\\\\|h1\\\\|header\\\\|hgroup\\\\|hr\\\\|noscript\\\\|ol\\\\|output\\\\|p\\\\|pre\\\\|section\\\\|table\\\\|tfoot\\\\|ul\\\\|video\\)')<cr>$/;"	m
 [[	bundle/lang/after/ftplugin/javascript.vim	/^nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?\\v^\\s*(function\\|var)')<cr>$/;"	m
+[[	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^nnoremap <silent> <buffer> [[ :<C-U>call <SID>sectionmovement('{{','b','n',v:count1)<CR>$/;"	m
 \\	bundle/commentary/plugin/commentary.vim	/^  nmap \\\\  <Plug>Commentary$/;"	m
 \\\	bundle/commentary/plugin/commentary.vim	/^  nmap \\\\\\ <Plug>CommentaryLine$/;"	m
 \\u	bundle/commentary/plugin/commentary.vim	/^  nmap \\\\u <Plug>CommentaryUndo$/;"	m
 ]]	bundle/lang/after/ftplugin/html.vim	/^nnoremap <silent> <buffer> ]] :call functions#Custom_jump('\/<\\(html\\\\|body\\\\|head\\\\|address\\\\|article\\\\|aside\\\\|audio\\\\|blockquote\\\\|canvas\\\\|dd\\\\|div\\\\|dl\\\\|fieldset\\\\|figcaption\\\\|figure\\\\|footer\\\\|form\\\\|h1\\\\|header\\\\|hgroup\\\\|hr\\\\|noscript\\\\|ol\\\\|output\\\\|p\\\\|pre\\\\|section\\\\|table\\\\|tfoot\\\\|ul\\\\|video\\)')<cr>$/;"	m
 ]]	bundle/lang/after/ftplugin/javascript.vim	/^nnoremap <silent> <buffer> ]] :call functions#Custom_jump('\/\\v^\\s*(function\\|var)')<cr>$/;"	m
+]]	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^nnoremap <silent> <buffer> ]] :<C-U>call <SID>sectionmovement('{{','' ,'n',v:count1)<CR>$/;"	m
 __getattr__	bundle/sparkup/ftplugin/html/sparkup.py	/^    def __getattr__(self, attr):$/;"	m	class:Options	file:
 __init__	bundle/sparkup/ftplugin/html/sparkup.py	/^                 attributes=None, name=None, text=None):$/;"	m	class:Element
 __init__	bundle/sparkup/ftplugin/html/sparkup.py	/^    def __init__(self):$/;"	m	class:Router
@@ -475,24 +508,36 @@ acp#onBs	bundle/autocomplpop/autoload/acp.vim	/^function acp#onBs()$/;"	f
 acp#onPopupCloseSnipmate	bundle/autocomplpop/autoload/acp.vim	/^function acp#onPopupCloseSnipmate()$/;"	f
 acp#onPopupPost	bundle/autocomplpop/autoload/acp.vim	/^function acp#onPopupPost()$/;"	f
 acp#unlock	bundle/autocomplpop/autoload/acp.vim	/^function acp#unlock()$/;"	f
+ae	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^onoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>$/;"	m
 ai	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>ai :<C-u>cal <Sid>HandleTextObjectMapping(0, 0, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 ai	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>ai :<C-u>cal <Sid>HandleTextObjectMapping(0, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
+align	bundle/tmp_lion/plugin/lion.vim	/^function! s:align(mode, type, vis, align_char)$/;"	f
+alignColon	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignColon(type, ...)$/;"	f
+alignEqual	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignEqual(type, ...)$/;"	f
+alignLeft	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignLeft(type, ...)$/;"	f
+alignRight	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignRight(type, ...)$/;"	f
 analyse_line	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line(line)$/;"	f
 analyse_line_indentation	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line_indentation(line)$/;"	f
 analyse_line_type	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line_type(line)$/;"	f
 append	bundle/sparkup/ftplugin/html/sparkup.py	/^    def append(self, object):$/;"	m	class:Element
 args	bundle/syntastic/syntax_checkers/fortran/gfortran.vim	/^function s:args()$/;"	f
 args	bundle/syntastic/syntax_checkers/ruby/jruby.vim	/^function s:args()$/;"	f
+assign_map	bundle/tmp_lion/plugin/lion.vim	/^function! s:assign_map(map, func)$/;"	f
 attributes	bundle/sparkup/ftplugin/html/sparkup.py	/^    attributes = None$/;"	v	class:Element
 attributes	bundle/sparkup/ftplugin/html/sparkup.py	/^    attributes = None$/;"	v	class:Token
 b:current_syntax	bundle/lang/after/syntax/actionscript.vim	/^let b:current_syntax = "actionscript"$/;"	v
 b:current_syntax	bundle/lang/after/syntax/css.vim	/^let b:current_syntax = "css"$/;"	v
 b:current_syntax	bundle/lang/after/syntax/json.vim	/^let b:current_syntax = "json"$/;"	v
 b:current_syntax	bundle/lang/after/syntax/markdown.vim	/^let b:current_syntax = "markdown"$/;"	v
+b:current_syntax	bundle/lang/syntax/javascript.vim	/^let b:current_syntax = "javascript"$/;"	v
+b:current_syntax	bundle/tmp_moustache_handlebars/syntax/mustache.vim	/^let b:current_syntax = "mustache"$/;"	v
 b:did_indent	bundle/lang/after/indent/css.vim	/^let b:did_indent = 1$/;"	v
 b:did_indent	bundle/lang/after/indent/json.vim	/^let b:did_indent = 1$/;"	v
+b:did_indent	bundle/lang/indent/javascript.vim	/^let b:did_indent = 1$/;"	v
+b:javascript_fold	bundle/lang/syntax/javascript.vim	/^let b:javascript_fold='true'$/;"	v
 b:match_words	bundle/lang/after/ftplugin/html.vim	/^let b:match_words='<:>,<\\@<=\\([^\/][^ \\t>]*\\)[^>]*\\%(>\\|$\\):<\\@<=\/\\1>'$/;"	v
 b:match_words	bundle/lang/after/ftplugin/javascript.vim	/^let b:match_words = '\\<function\\>:\\<return\\>,\\<do\\>:\\<while\\>,\\<switch\\>:\\<case\\>:\\<default\\>,\\<if\\>:\\<else\\>,\\<try\\>:\\<catch\\>:\\<finally\\>'$/;"	v
+b:match_words	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^  let b:match_words = b:match_words$/;"	v
 b:undo_ftplugin	bundle/lang/ftplugin/markdown.vim	/^let b:undo_ftplugin .= "|setl cms< com< fo<"$/;"	v
 bash_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^bash_eval(){$/;"	f
 beep	bundle/surround/plugin/surround.vim	/^function! s:beep()$/;"	f
@@ -512,9 +557,11 @@ colors_name	colors/jellybeans.vim	/^let colors_name = "jellybeans"$/;"	v
 colors_name	colors/sorcerer.vim	/^let colors_name = "sorcerer"$/;"	v
 colors_name	colors/sorcerer_16.vim	/^let colors_name = "sorcerer_16"$/;"	v
 colors_name	colors/zazen.vim	/^let colors_name = "zazen"$/;"	v
+command	bundle/tmp_lion/plugin/lion.vim	/^function! s:command(func, ...)$/;"	f
 count_braces	bundle/lang/after/indent/css.vim	/^function s:count_braces(lnum, count_open)$/;"	f
 cs	bundle/surround/plugin/surround.vim	/^  nmap cs  <Plug>Csurround$/;"	m
 dbg	bundle/yaifa/plugin/yaifa.vim	/^function! s:dbg(s)$/;"	f
+debug_str	bundle/tmp_lion/plugin/lion.vim	/^function! s:debug_str(str)$/;"	f
 deepdbg	bundle/yaifa/plugin/yaifa.vim	/^function! s:deepdbg(s)$/;"	f
 default_command_files	bundle/pipe2eval/plugin/pipe2eval.sh	/^default_command_files(){$/;"	f
 default_command_reset	bundle/pipe2eval/plugin/pipe2eval.sh	/^default_command_reset(){$/;"	f
@@ -530,6 +577,7 @@ depth	bundle/sparkup/ftplugin/html/sparkup.py	/^    depth = -1$/;"	v	class:Eleme
 dia	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> dia \/\\v"\\ze[ >\/]<CR>di"$/;"	m
 dialect	bundle/sparkup/ftplugin/html/sparkup.py	/^    dialect = None$/;"	v	class:Parser
 did_actionscript_syn_inits	bundle/lang/after/syntax/actionscript.vim	/^    let did_actionscript_syn_inits = 1$/;"	v
+did_javascript_syn_inits	bundle/lang/syntax/javascript.vim	/^    let did_javascript_syn_inits = 1$/;"	v
 did_json_syn_inits	bundle/lang/after/syntax/json.vim	/^    let did_json_syn_inits = 1$/;"	v
 dosurround	bundle/surround/plugin/surround.vim	/^function! s:dosurround(...) " {{{1$/;"	f
 ds	bundle/surround/plugin/surround.vim	/^  nmap ds  <Plug>Dsurround$/;"	m
@@ -544,6 +592,7 @@ extractafter	bundle/surround/plugin/surround.vim	/^function! s:extractafter(str)
 extractbefore	bundle/surround/plugin/surround.vim	/^function! s:extractbefore(str)$/;"	f
 feedPopup	bundle/autocomplpop/autoload/acp.vim	/^function s:feedPopup()$/;"	f
 finishPopup	bundle/autocomplpop/autoload/acp.vim	/^function s:finishPopup(fGroup1)$/;"	f
+first_non_ws_after	bundle/tmp_lion/plugin/lion.vim	/^function! s:first_non_ws_after(line, pattern, start, count)$/;"	f
 fixindent	bundle/surround/plugin/surround.vim	/^function! s:fixindent(str,spc)$/;"	f
 fn_call	bundle/pipe2eval/plugin/pipe2eval.sh	/^fn_call(){$/;"	f
 fn_exists	bundle/pipe2eval/plugin/pipe2eval.sh	/^fn_exists(){$/;"	f
@@ -569,6 +618,7 @@ functions#ToUnix	autoload/functions.vim	/^function functions#ToUnix()$/;"	f
 functions#URLencoding	autoload/functions.vim	/^function functions#URLencoding()$/;"	f
 functions#UpdateAnchor	autoload/functions.vim	/^function functions#UpdateAnchor()$/;"	f
 functions#UpdateWidth	autoload/functions.vim	/^function functions#UpdateWidth()$/;"	f
+functions#WrapCommand	autoload/functions.vim	/^function functions#WrapCommand(direction)$/;"	f
 g:SyntasticChecker	bundle/syntastic/plugin/syntastic/checker.vim	/^let g:SyntasticChecker = {}$/;"	v
 g:SyntasticLoclist	bundle/syntastic/plugin/syntastic/loclist.vim	/^let g:SyntasticLoclist = {}$/;"	v
 g:SyntasticMakeprgBuilder	bundle/syntastic/plugin/syntastic/makeprg_builder.vim	/^let g:SyntasticMakeprgBuilder = {}$/;"	v
@@ -577,8 +627,14 @@ g:SyntasticRegistry	bundle/syntastic/plugin/syntastic/registry.vim	/^let g:Synta
 g:SyntasticSigner	bundle/syntastic/plugin/syntastic/signer.vim	/^let g:SyntasticSigner = {}$/;"	v
 g:did_ft	bundle/snipmate/plugin/snipMate.vim	/^let g:did_ft = {}$/;"	v
 g:indent_guides_auto_colors	colors/jellybeans.vim	/^  let g:indent_guides_auto_colors = 0$/;"	v
+g:javascript_conceal	bundle/lang/syntax/javascript.vim	/^  let g:javascript_conceal = 0$/;"	v
 g:jellybeans_background_color	colors/jellybeans.vim	/^  let g:jellybeans_background_color = "151515"$/;"	v
 g:jellybeans_background_color_256	colors/jellybeans.vim	/^  let g:jellybeans_background_color_256=233$/;"	v
+g:lion_create_maps	bundle/tmp_lion/plugin/lion.vim	/^	let g:lion_create_maps = 1$/;"	v
+g:lion_map_colon	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_colon = 'g:'$/;"	v
+g:lion_map_equal	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_equal = 'g='$/;"	v
+g:lion_map_left	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_left = 'gL'$/;"	v
+g:lion_map_right	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_right = 'gl'$/;"	v
 g:loaded_acp	bundle/autocomplpop/plugin/acp.vim	/^let g:loaded_acp = 1$/;"	v
 g:loaded_autoload_acp	bundle/autocomplpop/autoload/acp.vim	/^let g:loaded_autoload_acp = 1$/;"	v
 g:loaded_commentary	bundle/commentary/plugin/commentary.vim	/^let g:loaded_commentary = 1$/;"	v
@@ -765,8 +821,10 @@ getPuppetMakeprg	bundle/syntastic/syntax_checkers/puppet/puppetlint.vim	/^functi
 get_closing_tag	bundle/sparkup/ftplugin/html/sparkup.py	/^    def get_closing_tag(self):$/;"	m	class:Element
 get_default_tag	bundle/sparkup/ftplugin/html/sparkup.py	/^    def get_default_tag(self):$/;"	m	class:Element
 get_last_child	bundle/sparkup/ftplugin/html/sparkup.py	/^    def get_last_child(self):$/;"	m	class:Element
+get_next_token	bundle/lang/plugin/jsbeautify.vim	/^function! s:get_next_token()$/;"	f
 get_opening_tag	bundle/sparkup/ftplugin/html/sparkup.py	/^    def get_opening_tag(self):$/;"	m	class:Element
 getchar	bundle/surround/plugin/surround.vim	/^function! s:getchar()$/;"	f
+getpos	bundle/tmp_lion/plugin/lion.vim	/^function! s:getpos(start, end, mode)$/;"	f
 go	bundle/commentary/plugin/commentary.vim	/^function! s:go(type,...) abort$/;"	f
 go_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^go_eval(){$/;"	f
 grey_color	colors/jellybeans.vim	/^fun! s:grey_color(n)$/;"	f
@@ -778,8 +836,11 @@ help_content	bundle/sparkup/ftplugin/html/sparkup.py	/^    help_content = [$/;"	
 html_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^html_eval(){$/;"	f
 iI	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 iI	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
+ie	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^onoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>$/;"	m
 ii	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>ii :<C-u>cal <Sid>HandleTextObjectMapping(1, 0, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 ii	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>ii :<C-u>cal <Sid>HandleTextObjectMapping(1, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
+in_array	bundle/lang/plugin/jsbeautify.vim	/^function! s:in_array(what, arr)$/;"	f
+indent	bundle/lang/plugin/jsbeautify.vim	/^function! s:indent()$/;"	f
 indent	bundle/sparkup/ftplugin/html/sparkup.py	/^    indent = ''$/;"	v	class:Parser
 info	bundle/yaifa/plugin/yaifa.vim	/^function! s:info(s)$/;"	f
 inputreplacement	bundle/surround/plugin/surround.vim	/^function! s:inputreplacement()$/;"	f
@@ -788,6 +849,7 @@ insert	bundle/surround/plugin/surround.vim	/^function! s:insert(...) " {{{1$/;"	
 insertion#Absolute2Relative	bundle/insertion/autoload/insertion.vim	/^function! insertion#Absolute2Relative(path)$/;"	f
 insertion#InsertIMG	bundle/insertion/autoload/insertion.vim	/^function! insertion#InsertIMG(...)$/;"	f
 isModifiedSinceLastCall	bundle/autocomplpop/autoload/acp.vim	/^function s:isModifiedSinceLastCall()$/;"	f
+is_js	bundle/lang/plugin/jsbeautify.vim	/^function! s:is_js()$/;"	f
 javascript_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^javascript_eval(){$/;"	f
 javascript_merge	bundle/pipe2eval/plugin/pipe2eval.sh	/^javascript_merge(){$/;"	f
 json_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^json_eval(){$/;"	f
@@ -795,6 +857,7 @@ last_child	bundle/sparkup/ftplugin/html/sparkup.py	/^    last_child = property(g
 load_colors	colors/jellybeans.vim	/^  fun! s:load_colors(defs)$/;"	f
 load_string	bundle/sparkup/ftplugin/html/sparkup.py	/^    def load_string(self, str):$/;"	m	class:Parser
 loaded_checkpatch_syntax_checker	bundle/syntastic/syntax_checkers/c/checkpatch.vim	/^let loaded_checkpatch_syntax_checker = 1$/;"	v
+loaded_jsbeautify	bundle/lang/plugin/jsbeautify.vim	/^let loaded_jsbeautify = 3$/;"	v
 loaded_make_syntax_checker	bundle/syntastic/syntax_checkers/c/make.vim	/^let loaded_make_syntax_checker = 1$/;"	v
 loaded_snips	bundle/snipmate/plugin/snipMate.vim	/^let loaded_snips = 1$/;"	v
 loaded_sparse_syntax_checker	bundle/syntastic/syntax_checkers/c/sparse.vim	/^let loaded_sparse_syntax_checker = 1$/;"	v
@@ -810,12 +873,14 @@ main	bundle/syntastic/syntax_checkers/erlang/erlang_check_file.erl	/^main([FileN
 main	bundle/syntastic/syntax_checkers/erlang/erlang_check_file.erl	/^main([FileName| LibDirs=[_|_]]) ->$/;"	f
 main_syntax	bundle/lang/after/syntax/actionscript.vim	/^  let main_syntax = 'actionscript'$/;"	v
 main_syntax	bundle/lang/after/syntax/json.vim	/^  let main_syntax = 'json'$/;"	v
+main_syntax	bundle/lang/syntax/javascript.vim	/^  let main_syntax = 'javascript'$/;"	v
 makeCurrentBehaviorSet	bundle/autocomplpop/autoload/acp.vim	/^function s:makeCurrentBehaviorSet()$/;"	f
 makeDefaultBehavior	bundle/autocomplpop/plugin/acp.vim	/^function s:makeDefaultBehavior()$/;"	f
 makeSnipmateItem	bundle/autocomplpop/autoload/acp.vim	/^function s:makeSnipmateItem(key, snip)$/;"	f
 mapForMappingDriven	bundle/autocomplpop/autoload/acp.vim	/^function s:mapForMappingDriven()$/;"	f
 markdown_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^markdown_eval(){$/;"	f
 match	bundle/syntastic/syntax_checkers/less/less-lint.js	/^    var match;$/;"	v
+match_pos	bundle/tmp_lion/plugin/lion.vim	/^function! s:match_pos(mode, line, char, count, line_number, start, end)$/;"	f
 mongo_command_collections	bundle/pipe2eval/plugin/pipe2eval.sh	/^mongo_command_collections(){$/;"	f
 mongo_command_connections	bundle/pipe2eval/plugin/pipe2eval.sh	/^mongo_command_connections(){$/;"	f
 mongo_command_dbs	bundle/pipe2eval/plugin/pipe2eval.sh	/^mongo_command_dbs(){$/;"	f
@@ -864,6 +929,9 @@ populate	bundle/sparkup/ftplugin/html/sparkup.py	/^    populate = False$/;"	v	cl
 prefix	bundle/sparkup/ftplugin/html/sparkup.py	/^    prefix = ''$/;"	v	class:Parser
 prefix	bundle/sparkup/ftplugin/html/sparkup.py	/^    prefix = None$/;"	v	class:Element
 prevnonblanknoncomment	bundle/lang/after/indent/css.vim	/^function s:prevnonblanknoncomment(lnum)$/;"	f
+print_newline	bundle/lang/plugin/jsbeautify.vim	/^function! s:print_newline(ignore_repeated) $/;"	f
+print_space	bundle/lang/plugin/jsbeautify.vim	/^function! s:print_space()$/;"	f
+print_token	bundle/lang/plugin/jsbeautify.vim	/^function! s:print_token()$/;"	f
 process	bundle/surround/plugin/surround.vim	/^function! s:process(string)$/;"	f
 process_commands	bundle/pipe2eval/plugin/pipe2eval.sh	/^process_commands(){$/;"	f
 python_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^python_eval(){$/;"	f
@@ -873,11 +941,13 @@ r_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^r_eval(){$/;"	f
 redis_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^redis_eval(){$/;"	f
 redraw	bundle/surround/plugin/surround.vim	/^function! s:redraw()$/;"	f
 reindent	bundle/surround/plugin/surround.vim	/^function! s:reindent() " {{{1$/;"	f
+remove_indent	bundle/lang/plugin/jsbeautify.vim	/^function! s:remove_indent()$/;"	f
 render	bundle/sparkup/ftplugin/html/sparkup.py	/^    def render(self):$/;"	m	class:Element
 render	bundle/sparkup/ftplugin/html/sparkup.py	/^    def render(self):$/;"	m	class:Parser
 required	bundle/sparkup/ftplugin/html/sparkup.py	/^    required = {$/;"	v	class:HtmlDialect
 required	bundle/sparkup/ftplugin/html/sparkup.py	/^    required = {}$/;"	v	class:Dialect
 restoreTempOptions	bundle/autocomplpop/autoload/acp.vim	/^function s:restoreTempOptions(group)$/;"	f
+restore_mode	bundle/lang/plugin/jsbeautify.vim	/^function! s:restore_mode()$/;"	f
 results	bundle/yaifa/plugin/yaifa.vim	/^function! s:results()$/;"	f
 rgb	colors/jellybeans.vim	/^fun! s:rgb(rgb)$/;"	f
 rgb_color	colors/jellybeans.vim	/^fun! s:rgb_color(x, y, z)$/;"	f
@@ -897,12 +967,19 @@ s:TabOnly	bundle/yaifa/plugin/yaifa.vim	/^let s:TabOnly = "TabOnly"$/;"	v
 s:TabularCommands	bundle/tabular/plugin/Tabular.vim	/^let s:TabularCommands = {}$/;"	v
 s:behavsCurrent	bundle/autocomplpop/autoload/acp.vim	/^let s:behavsCurrent = []$/;"	v
 s:block_regex	bundle/lang/after/indent/json.vim	/^let s:block_regex = '\\%({\\)\\s*\\%(|\\%([*@]\\=\\h\\w*,\\=\\s*\\)\\%(,\\s*[*@]\\=\\h\\w*\\)*|\\)\\=' . s:line_term$/;"	v
+s:block_regex	bundle/lang/indent/javascript.vim	/^let s:block_regex = '\\%([{[]\\)\\s*\\%(|\\%([*@]\\=\\h\\w*,\\=\\s*\\)\\%(,\\s*[*@]\\=\\h\\w*\\)*|\\)\\=' . s:line_term$/;"	v
 s:c0	bundle/indent-object/plugin/indent-object.vim	/^let s:c0 = -1$/;"	v
 s:c1	bundle/indent-object/plugin/indent-object.vim	/^let s:c1 = -1$/;"	v
 s:check_file	bundle/syntastic/syntax_checkers/erlang/erlang.vim	/^let s:check_file = expand('<sfile>:p:h') . '\/erlang_check_file.erl'$/;"	v
 s:check_file	bundle/syntastic/syntax_checkers/less/lessc.vim	/^    let s:check_file = 'lessc'$/;"	v
 s:check_file	bundle/syntastic/syntax_checkers/less/lessc.vim	/^    let s:check_file = 'node ' . expand('<sfile>:p:h') . '\/less-lint.js'$/;"	v
+s:comma_first	bundle/lang/indent/javascript.vim	/^let s:comma_first = '^\\s*,'$/;"	v
+s:comma_last	bundle/lang/indent/javascript.vim	/^let s:comma_last = ',\\s*$'$/;"	v
+s:continuation_regex	bundle/lang/indent/javascript.vim	/^let s:continuation_regex = '\\%([\\\\*+\/.:]\\|\\%(<%\\)\\@<![=-]\\|\\W[|&?]\\|||\\|&&\\)' . s:line_term$/;"	v
+s:count	bundle/tmp_lion/plugin/lion.vim	/^let s:count = 1$/;"	v
 s:cpo_save	bundle/lang/after/indent/json.vim	/^let s:cpo_save = &cpo$/;"	v
+s:cpo_save	bundle/lang/indent/javascript.vim	/^let s:cpo_save = &cpo$/;"	v
+s:cpo_save	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^let s:cpo_save = &cpo$/;"	v
 s:defaultCheckers	bundle/syntastic/plugin/syntastic/registry.vim	/^let s:defaultCheckers = {$/;"	v
 s:default_includes	bundle/syntastic/autoload/syntastic/c.vim	/^let s:default_includes = [ '.', '..', 'include', 'includes',$/;"	v
 s:default_indent	bundle/yaifa/plugin/yaifa.vim	/^        let s:default_indent = 'space'$/;"	v
@@ -921,9 +998,11 @@ s:ignore_html_errors	bundle/syntastic/syntax_checkers/html/tidy.vim	/^let s:igno
 s:imports	bundle/syntastic/syntax_checkers/sass/sass.vim	/^    let s:imports = "--compass"$/;"	v
 s:imports	bundle/syntastic/syntax_checkers/sass/sass.vim	/^let s:imports = ""$/;"	v
 s:indent_re	bundle/yaifa/plugin/yaifa.vim	/^let s:indent_re = '\\m^\\(\\s\\+\\)\\(\\S.\\+\\)$'$/;"	v
+s:js_keywords	bundle/lang/indent/javascript.vim	/^let s:js_keywords = '^\\s*\\(break\\|case\\|catch\\|continue\\|debugger\\|default\\|delete\\|do\\|else\\|finally\\|for\\|function\\|if\\|in\\|instanceof\\|new\\|return\\|switch\\|this\\|throw\\|try\\|typeof\\|var\\|void\\|while\\|with\\)'$/;"	v
 s:l0	bundle/indent-object/plugin/indent-object.vim	/^let s:l0 = -1$/;"	v
 s:l1	bundle/indent-object/plugin/indent-object.vim	/^let s:l1 = -1$/;"	v
 s:line_term	bundle/lang/after/indent/json.vim	/^let s:line_term = '\\s*\\%(\\%(\\\/\\\/\\).*\\)\\=$'$/;"	v
+s:line_term	bundle/lang/indent/javascript.vim	/^let s:line_term = '\\s*\\%(\\%(\\\/\\\/\\).*\\)\\=$'$/;"	v
 s:lockCount	bundle/autocomplpop/autoload/acp.vim	/^let s:lockCount = 0$/;"	v
 s:low_color	colors/jellybeans.vim	/^  let s:low_color = 0$/;"	v
 s:low_color	colors/jellybeans.vim	/^  let s:low_color = 1$/;"	v
@@ -932,10 +1011,12 @@ s:max_lines	bundle/yaifa/plugin/yaifa.vim	/^        let s:max_lines = 1024*2$/;"
 s:max_lines	bundle/yaifa/plugin/yaifa.vim	/^        let s:max_lines = g:yaifa_max_lines$/;"	v
 s:mixed_re	bundle/yaifa/plugin/yaifa.vim	/^let s:mixed_re = '\\m^\\(\\t\\)\\+\\( \\+\\)$'$/;"	v
 s:modemap	bundle/syntastic/plugin/syntastic.vim	/^let s:modemap = g:SyntasticModeMap.Instance()$/;"	v
+s:msl_regex	bundle/lang/indent/javascript.vim	/^let s:msl_regex = '\\%([\\\\*+\/.:([]\\|\\%(<%\\)\\@<![=-]\\|\\W[|&?]\\|||\\|&&\\)' . s:line_term$/;"	v
 s:nb_processed_lines	bundle/yaifa/plugin/yaifa.vim	/^let s:nb_processed_lines = 0$/;"	v
 s:next_sign_id	bundle/syntastic/plugin/syntastic/signer.vim	/^let s:next_sign_id = s:first_sign_id$/;"	v
 s:ocamlpp	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^    let s:ocamlpp="camlp4o"$/;"	v
 s:ocamlpp	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^    let s:ocamlpp="camlp4r"$/;"	v
+s:one_line_scope_regex	bundle/lang/indent/javascript.vim	/^let s:one_line_scope_regex = '\\<\\%(if\\|else\\|for\\|while\\)\\>[^{;]*' . s:line_term$/;"	v
 s:registry	bundle/syntastic/plugin/syntastic.vim	/^let s:registry = g:SyntasticRegistry.Instance()$/;"	v
 s:running_windows	bundle/syntastic/plugin/syntastic.vim	/^let s:running_windows = has("win16") || has("win32")$/;"	v
 s:sass_cache_location	bundle/syntastic/syntax_checkers/sass/sass.vim	/^let s:sass_cache_location = tempname()$/;"	v
@@ -951,22 +1032,32 @@ s:save_cpo	bundle/tabular/after/plugin/TabularMaps.vim	/^let s:save_cpo = &cpo$/
 s:savecpo	bundle/tabular/autoload/tabular.vim	/^let s:savecpo = &cpo$/;"	v
 s:savecpo	bundle/tabular/plugin/Tabular.vim	/^let s:savecpo = &cpo$/;"	v
 s:signer	bundle/syntastic/plugin/syntastic.vim	/^let s:signer = g:SyntasticSigner.New()$/;"	v
+s:skip_expr	bundle/lang/indent/javascript.vim	/^let s:skip_expr = "synIDattr(synID(line('.'),col('.'),1),'name') =~ '".s:syng_strcom."'"$/;"	v
 s:snipItems	bundle/autocomplpop/autoload/acp.vim	/^let s:snipItems = {}$/;"	v
 s:snippets	bundle/snipmate/plugin/snipMate.vim	/^let s:snippets = {} | let s:multi_snips = {}$/;"	v
 s:swset	bundle/yaifa/plugin/yaifa.vim	/^let s:swset = len(split(redir,"\\n")) > 1$/;"	v
+s:syng_linecom	bundle/lang/indent/javascript.vim	/^let s:syng_linecom = 'linecomment\\c'$/;"	v
+s:syng_multiline	bundle/lang/indent/javascript.vim	/^let s:syng_multiline = 'comment\\c'$/;"	v
+s:syng_strcom	bundle/lang/indent/javascript.vim	/^let s:syng_strcom = 'string\\|regex\\|comment\\c'$/;"	v
+s:syng_string	bundle/lang/indent/javascript.vim	/^let s:syng_string = 'regex\\c'$/;"	v
 s:syntastic_elixir_compile_command	bundle/syntastic/syntax_checkers/elixir/elixir.vim	/^    let s:syntastic_elixir_compile_command = 'mix compile'$/;"	v
 s:syntastic_elixir_compile_command	bundle/syntastic/syntax_checkers/elixir/elixir.vim	/^let s:syntastic_elixir_compile_command = 'elixir'$/;"	v
 s:tempOptionSet	bundle/autocomplpop/autoload/acp.vim	/^let s:tempOptionSet = [{}, {}]$/;"	v
 s:termBlack	colors/jellybeans.vim	/^    let s:termBlack = "Black"$/;"	v
 s:termBlack	colors/jellybeans.vim	/^    let s:termBlack = "Grey"$/;"	v
+s:ternary	bundle/lang/indent/javascript.vim	/^let s:ternary = '^\\s\\+[?|:]'$/;"	v
+s:ternary_q	bundle/lang/indent/javascript.vim	/^let s:ternary_q = '^\\s\\+?'$/;"	v
+s:var_stmt	bundle/lang/indent/javascript.vim	/^let s:var_stmt = '^\\s*var'$/;"	v
 s:verbose_debug	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_debug = 2$/;"	v
 s:verbose_deep	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_deep  = 3$/;"	v
 s:verbose_info	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_info  = 1$/;"	v
 s:verbose_quiet	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_quiet = 0$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = g:yaifa_verbosity$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = s:default_verbosity$/;"	v
+sectionmovement	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^function! s:sectionmovement(pattern,flags,mode,count)$/;"	f
 setCompletefunc	bundle/autocomplpop/autoload/acp.vim	/^function s:setCompletefunc()$/;"	f
 setTempOption	bundle/autocomplpop/autoload/acp.vim	/^function s:setTempOption(group, name, value)$/;"	f
+set_mode	bundle/lang/plugin/jsbeautify.vim	/^function! s:set_mode(mode)$/;"	f
 short_tags	bundle/sparkup/ftplugin/html/sparkup.py	/^    short_tags = ($/;"	v	class:HtmlDialect
 short_tags	bundle/sparkup/ftplugin/html/sparkup.py	/^    short_tags = ()$/;"	v	class:Dialect
 shortcuts	bundle/sparkup/ftplugin/html/sparkup.py	/^    shortcuts = {$/;"	v	class:HtmlDialect
@@ -1002,15 +1093,19 @@ tabular#TabularizeStrings	bundle/tabular/autoload/tabular.vim	/^function! tabula
 text	bundle/sparkup/ftplugin/html/sparkup.py	/^    text = ''$/;"	v	class:Element
 text	bundle/sparkup/ftplugin/html/sparkup.py	/^    text = ''$/;"	v	class:Token
 tokens	bundle/sparkup/ftplugin/html/sparkup.py	/^    tokens = []$/;"	v	class:Parser
+trim_output	bundle/lang/plugin/jsbeautify.vim	/^function! s:trim_output()$/;"	f
 type	bundle/sparkup/ftplugin/html/sparkup.py	/^    type = 0$/;"	v	class:Token
 uname	bundle/syntastic/plugin/syntastic.vim	/^function! s:uname()$/;"	f
 undo	bundle/commentary/plugin/commentary.vim	/^function! s:undo()$/;"	f
+unindent	bundle/lang/plugin/jsbeautify.vim	/^function! s:unindent()$/;"	f
 unmapForMappingDriven	bundle/autocomplpop/autoload/acp.vim	/^function s:unmapForMappingDriven()$/;"	f
 usage	bundle/syntastic/syntax_checkers/perl/efm_perl.pl	/^sub usage {$/;"	s
 version	bundle/sparkup/ftplugin/html/sparkup.py	/^    def version(self):$/;"	m	class:Router
 version	bundle/sparkup/ftplugin/html/sparkup.py	/^version = "0.1.3"$/;"	v
 via	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> via \/\\v"\\ze[ >\/]<CR>vi"$/;"	m
 wrap	bundle/surround/plugin/surround.vim	/^function! s:wrap(string,char,type,...)$/;"	f
+wrap_around	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^function! s:wrap_around()$/;"	f
+wrap_inside	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^function! s:wrap_inside()$/;"	f
 wrapreg	bundle/surround/plugin/surround.vim	/^function! s:wrapreg(reg,char,...)$/;"	f
 xml_eval	bundle/pipe2eval/plugin/pipe2eval.sh	/^xml_eval(){$/;"	f
 yS	bundle/surround/plugin/surround.vim	/^  nmap yS  <Plug>YSurround$/;"	m
@@ -1020,3 +1115,11 @@ yia	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> yia \/\\v"\\ze[ >\/]
 ys	bundle/surround/plugin/surround.vim	/^  nmap ys  <Plug>Ysurround$/;"	m
 yss	bundle/surround/plugin/surround.vim	/^  nmap yss <Plug>Yssurround$/;"	m
 z	bundle/sparkup/ftplugin/html/sparkup.py	/^    z = Router()$/;"	v
+{{	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{ {{}}<left><left>$/;"	m
+{{!	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{! {{!}}<left><left>$/;"	m
+{{#	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{# {{#}}<cr>{{\/}}<up><left><left>$/;"	m
+{{<	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{< {{<}}<left><left>$/;"	m
+{{>	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{> {{>}}<left><left>$/;"	m
+{{if	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{if {{#if }}<cr>{{\/if}}<up><left>$/;"	m
+{{ife	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{ife {{#if }}<cr>{{else}}<cr>{{\/if}}<up><up><left>$/;"	m
+{{{	bundle/tmp_moustache_handlebars/ftplugin/mustache.vim	/^inoremap <buffer> {{{ {{{}}}<left><left><left>$/;"	m
