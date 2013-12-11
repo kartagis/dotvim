@@ -14,7 +14,6 @@ function functions#ListRecentFiles(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function functions#MRU(command, arg)
-
   execute "" . a:command . " " . a:arg
 
 endfunction
@@ -67,13 +66,14 @@ endfunction
 " ===========================================================================
 
 " experimental search/replace across project
-function functions#ReplaceThat()
-  call functions#Replace(expand(input("Replace: ")))
+function functions#ReplaceThis(visual)
+  if a:visual == 1
+    call functions#Replace(functions#GetVisualSelection())
 
-endfunction
+  else
+    call functions#Replace(expand(input("Replace: ")))
 
-function functions#ReplaceThis()
-  call functions#Replace(functions#GetVisualSelection())
+  endif
 
 endfunction
 
@@ -92,64 +92,30 @@ function functions#Replace(search_pattern)
     return
 
   elseif user_choice == 1
-    let file_pattern = "%"
+    execute "%s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
 
-  elseif user_choice == 2
-    let file_pattern = "**/*." . expand("%:e")
+  else
+    tabedit %
+    if user_choice == 2
+      let file_pattern = "**/*." . expand("%:e")
 
-  elseif user_choice == 3
-    let file_pattern = "**/*"
+    elseif user_choice == 3
+      let file_pattern = "**/*"
 
-  elseif user_choice == 4
-    let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
+    elseif user_choice == 4
+      let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
 
+    endif
+
+    silent execute "vimgrep " . a:search_pattern . " " . file_pattern
+    execute "Qfdo s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
   endif
 
-  tabedit %
-  silent execute "vimgrep " . a:search_pattern . " " . file_pattern
-  cwindow
-  execute "Qfdo s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
-
 endfunction
-" function functions#ReplaceThis()
-"   let search_pattern      = functions#GetVisualSelection()
-"   let replacement_pattern = expand(input("Replace " . search_pattern . " with: "))
-"   echo "\n"
-"   let file_pattern        = ""
-"   let user_choice         = inputlist([
-"     \ 'In...',
-"     \ '1. the current file only',
-"     \ '2. every ' . &filetype . ' file in ' . getcwd(),
-"     \ '3. every file (except &wildignore) in ' . getcwd(),
-"     \ '4. custom file pattern...'])
-
-"   if user_choice == 0
-"     return
-
-"   elseif user_choice == 1
-"     let file_pattern = "%"
-
-"   elseif user_choice == 2
-"     let file_pattern = "**/*." . expand("%:e")
-
-"   elseif user_choice == 3
-"     let file_pattern = "**/*"
-
-"   elseif user_choice == 4
-"     let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
-
-"   endif
-
-"   silent execute "vimgrep " . search_pattern . " " . file_pattern
-"   tabnew
-"   cwindow
-"   execute "Qfdo s/" . search_pattern . "/" . replacement_pattern . "/ec"
-
-" endfunction
 
 " ===========================================================================
 
-" :tag /foo but limited to the current buffer
+" like :tag /foo but  the completion is limited to the current buffer
 function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
   " absolute paths are machine/user-dependent
   " Tagit() now uses relative paths so we can
@@ -479,6 +445,8 @@ endfunction
 
 " normal characters --> HTML entities
 function functions#Entities()
+  mark `
+
   silent s/Á/\&Aacute;/e
   silent s/á/\&aacute;/e
   silent s/Â/\&Acirc;/e
@@ -960,6 +928,7 @@ function functions#ReverseEntities()
   silent s/&Yuml;/Ÿ/e
   silent s/&Zeta;/Ζ/e
   silent s/&zeta;/ζ/e
+
 endfunction
 
 " normal characters --> URL encoded characters

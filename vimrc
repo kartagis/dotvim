@@ -99,7 +99,7 @@ if has('gui_running')
   set columns=140
 
   if os == 'Darwin'
-    set guifont=Inconsolata-g:h13
+    set guifont=Inconsolata-g:h12
     set fuoptions=maxvert,maxhorz
     set clipboard^=unnamed
 
@@ -210,8 +210,8 @@ xnoremap <leader>o <Esc>:let @/ = functions#GetVisualSelection()<CR>
 
 xnoremap <leader>q :s/<C-r>=@/<CR>/
 
-nnoremap <leader>Q :call functions#ReplaceThat()<CR>
-xnoremap <leader>Q :call functions#ReplaceThis()<CR>
+nnoremap <leader>Q :call functions#ReplaceThis(0)<CR>
+xnoremap <leader>Q :call functions#ReplaceThis(1)<CR>
 
 nnoremap <leader>x *``cgn
 nnoremap <leader>X #``cgN

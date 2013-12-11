@@ -2,9 +2,10 @@ xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
 nnoremap <buffer> <leader>& :call functions#Entities()<CR>
-nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+nnoremap <buffer> <leader>Ã© :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>
-xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+xnoremap <buffer> <leader>Ã© :call functions#ReverseEntities()<CR>
+command! -buffer Entities :%call functions#Entities()
 
 command! -buffer UA :call functions#UpdateAnchor()
 
@@ -15,7 +16,7 @@ nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
 nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
 nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 
-" à revoir
+" Ã  revoir
 " nnoremap <buffer> caa /\v"[ >/]/e<CR>vF=bc
 " nnoremap <buffer> daa /\v"[ >/]/e<CR>vF=bd
 " nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by

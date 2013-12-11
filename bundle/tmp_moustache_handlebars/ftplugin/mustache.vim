@@ -16,16 +16,6 @@ if exists("loaded_matchit") && exists("b:match_words")
   \ . '\%({{\)\@<=/\s*\1\s*}}'
 endif
 
-inoremap <buffer> {{{ {{{}}}<left><left><left>
-inoremap <buffer> {{ {{}}<left><left>
-inoremap <buffer> {{! {{!}}<left><left>
-inoremap <buffer> {{< {{<}}<left><left>
-inoremap <buffer> {{> {{>}}<left><left>
-inoremap <buffer> {{# {{#}}<cr>{{/}}<up><left><left>
-inoremap <buffer> {{if {{#if }}<cr>{{/if}}<up><left>
-inoremap <buffer> {{ife {{#if }}<cr>{{else}}<cr>{{/if}}<up><up><left>
-
-
 " Section movement
 " Adapted from vim-ruby - many thanks to the maintainers of that plugin
 
