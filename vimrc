@@ -82,6 +82,11 @@ augroup Default
 
   autocmd GUIEnter * set vb t_vb=
 
+  autocmd BufLeave * let b:winview = winsaveview()
+  autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+
+  autocmd BufEnter * call matchadd("Error", "\s\+$")
+
 augroup END
 
 """""""""""""""""""""""""""""""""
@@ -228,8 +233,6 @@ nnoremap <End>  :call functions#WrapCommand("down")<CR>
 nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
 
-match Error /\s\+$/
-
 set wildcharm=<C-z>
 set path=**
 
@@ -251,15 +254,6 @@ nnoremap <leader>p :ptjump /
 nnoremap <leader>me :MRU <C-z><S-Tab>
 nnoremap <leader>ms :SMRU <C-z><S-Tab>
 nnoremap <leader>mv :VMRU <C-z><S-Tab>
-
-inoremap {, {},<Left><Left>
-inoremap [, [],<Left><Left>
-inoremap (; ();<Left><Left>
-inoremap {; {};<Left><Left>
-inoremap [; [];<Left><Left>
-inoremap (<Space> (<Space><Space>)<Left><Left>
-inoremap {<Space> {<Space><Space>}<Left><Left>
-inoremap [<Space> [<Space><Space>]<Left><Left>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
