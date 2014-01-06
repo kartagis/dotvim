@@ -295,8 +295,8 @@ function functions#AutoSave()
 endfunction
 
 function functions#SmartUpdate()
-  if &buftype != "nofile" && expand('%') != ''
-    update
+  if &buftype != "nofile" && expand('%') != '' && &modified
+    write
 
   endif
 
