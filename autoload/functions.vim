@@ -933,7 +933,6 @@ endfunction
 
 " normal characters --> URL encoded characters
 function functions#URLencoding()
-  silent s/e/%20/e
   silent s/!/%21/e
   silent s/ /%22/e
   silent s/#/%23/e
@@ -1090,7 +1089,6 @@ endfunction
 
 " URL encoded characters --> normal characters
 function functions#ReverseURLencoding()
-  silent s/%20/e/e
   silent s/%21/!/e
   silent s/%22/ /e
   silent s/%23/#/e

@@ -5,11 +5,15 @@ nnoremap <buffer> <leader>& :call functions#Entities()<CR>
 nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>
 xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
-command! -buffer Entities :%call functions#Entities()
+command! -buffer Entities :call functions#Entities()
+command! -buffer Entities :call functions#RevEntities()
 
 command! -buffer UA :call functions#UpdateAnchor()
 
 command! -buffer UW :call functions#UpdateWidth()
+
+command! -buffer URLEncode :call functions#URLencoding()
+command! -buffer RevURLEncode :call functions#ReverseURLencoding()
 
 nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
