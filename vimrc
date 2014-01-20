@@ -83,7 +83,7 @@ augroup VIMRC
   autocmd BufLeave * let b:winview = winsaveview()
   autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 
-  autocmd BufEnter * call matchadd("Error", "\s\+$")
+  autocmd BufEnter * call matchadd("Error", "\\s\\+$", -1)
 
 augroup END
 
@@ -104,10 +104,12 @@ if has('gui_running')
   if os == 'Darwin'
     set guifont=Inconsolata-g:h12
     set fuoptions=maxvert,maxhorz
+    set clipboard^=unnamed
 
   elseif os == 'Linux'
     set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
+    set clipboard^=unnamedplus
 
   endif
 
@@ -117,6 +119,14 @@ else
 
   elseif &t_Co < 256
     colorscheme sorcerer_16
+
+  endif
+
+  if os == 'Darwin'
+    set clipboard^=unnamed
+
+  elseif os == 'Linux'
+    set clipboard^=unnamedplus
 
   endif
 
@@ -145,11 +155,6 @@ nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
 xnoremap <leader>p "_dP
-nnoremap <leader>P "+P
-
-xnoremap <leader>y "+y
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
 
 nnoremap Y y$
 
@@ -247,6 +252,8 @@ nnoremap <leader>p :ptjump /
 nnoremap <leader>me :MRU <C-z><S-Tab>
 nnoremap <leader>ms :SMRU <C-z><S-Tab>
 nnoremap <leader>mv :VMRU <C-z><S-Tab>
+
+nnoremap <F6> :execute "Ex <bar> call search('" . expand('%:t') . "') <bar> normal! zz"<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
