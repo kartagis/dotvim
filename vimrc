@@ -253,7 +253,10 @@ nnoremap <leader>me :MRU <C-z><S-Tab>
 nnoremap <leader>ms :SMRU <C-z><S-Tab>
 nnoremap <leader>mv :VMRU <C-z><S-Tab>
 
-nnoremap <F6> :execute "Ex <bar> call search('" . expand('%:t') . "') <bar> normal! zz"<CR>
+nnoremap <F6> :execute "Explore <bar> call search('" . expand('%:t') . "') <bar> normal! zz"<CR>
+
+cnoremap %% <C-r>=expand('%')<CR>
+cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
