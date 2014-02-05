@@ -256,6 +256,28 @@ nnoremap <leader>mv :VMRU <C-z><S-Tab>
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap gV `[v`]
+
+" available mappings
+" http://www.reddit.com/r/vim/comments/1x31ng/follow_my_leader/
+" cd
+" cg
+" cm
+" co
+" cp
+" cq
+" cr
+" cu
+" cv
+" cx
+" cy
+" cz
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
