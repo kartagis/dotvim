@@ -165,9 +165,6 @@ xnoremap < <gv
 onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
-nnoremap <leader>a :Tabularize<Space>/
-xnoremap <leader>a :Tabularize<Space>/
-
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 nnoremap j      gj
@@ -175,8 +172,8 @@ nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
-nnoremap gb  :buffers<CR>:b<Space>
-nnoremap gsb :buffers<CR>:sb<Space>
+nnoremap gb :buffers<CR>:b<Space>
+nnoremap gs :buffers<CR>:sb<Space>
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -202,24 +199,19 @@ nnoremap <leader>* :ptjump /<c-r>=expand('<cword>')<CR><CR>
 " EXPERIMENTAL! "
 """""""""""""""""
 
-nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cr :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cR :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap cr :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap cR :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
-nnoremap <leader>o *``
-xnoremap <leader>o <Esc>:let @/ = functions#GetVisualSelection()<CR>
+nnoremap cq :call functions#ReplaceThis(0)<CR>
+xnoremap cq :call functions#ReplaceThis(1)<CR>
 
-xnoremap <leader>q :s/<C-r>=@/<CR>/
-
-nnoremap <leader>Q :call functions#ReplaceThis(0)<CR>
-xnoremap <leader>Q :call functions#ReplaceThis(1)<CR>
-
-nnoremap <leader>x *``cgn
-nnoremap <leader>X #``cgN
-xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+nnoremap cx *``cgn
+nnoremap cX #``cgN
+xnoremap cx <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap cX <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 inoremap <expr> <CR> functions#SmartEnter()
 
@@ -264,18 +256,19 @@ nnoremap <C-l> <C-w>l
 nnoremap gV `[v`]
 
 " available mappings
+" lowercase only
 " http://www.reddit.com/r/vim/comments/1x31ng/follow_my_leader/
-" cd
-" cg
-" cm
-" co
-" cp
-" cq
-" cr
-" cu
-" cv
-" cx
-" cy
+" cd              dc               gb change buffer
+" cg              dg               gc
+" cm              dm               gl
+" co              dn               gs change buffer (split)
+" cp              dq               gy
+" cq replace in…  dr
+" cr replace      du
+" cu              dv
+" cv              dx
+" cx cgn          dy
+" cy              dz
 " cz
 
 """""""""""""""""""""""
