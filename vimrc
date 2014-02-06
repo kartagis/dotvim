@@ -83,7 +83,7 @@ augroup VIMRC
   autocmd BufLeave * let b:winview = winsaveview()
   autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 
-  autocmd BufEnter * call matchadd("Error", "\\s\\+$", -1)
+  autocmd BufEnter,WinEnter * call matchadd("Error", "\\s\\+$", -1)
 
 augroup END
 
@@ -254,22 +254,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap gV `[v`]
-
-" available mappings
-" lowercase only
-" http://www.reddit.com/r/vim/comments/1x31ng/follow_my_leader/
-" cd              dc               gb change buffer
-" cg              dg               gc
-" cm              dm               gl
-" co              dn               gs change buffer (split)
-" cp              dq               gy
-" cq replace in…  dr
-" cr replace      du
-" cu              dv
-" cv              dx
-" cx cgn          dy
-" cy              dz
-" cz
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
