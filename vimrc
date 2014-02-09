@@ -63,7 +63,6 @@ set completeopt+=longest
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
-set lazyredraw
 set mouse=a
 set nostartofline
 set noswapfile
@@ -147,10 +146,6 @@ endif
 
 let mapleader = ","
 
-" inoremap <leader>, <C-x><C-o>
-" inoremap <leader>: <C-x><C-f>
-" inoremap <leader>- <C-x><C-l>
-
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
@@ -192,26 +187,20 @@ nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-nnoremap <leader>$ :tjump /<c-r>=expand('<cword>')<CR><CR>
-nnoremap <leader>* :ptjump /<c-r>=expand('<cword>')<CR><CR>
-
 """""""""""""""""
 " EXPERIMENTAL! "
 """""""""""""""""
 
-nnoremap cr :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap cR :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap cr :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap cR :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
-nnoremap cq :call functions#ReplaceThis(0)<CR>
-xnoremap cq :call functions#ReplaceThis(1)<CR>
-
-nnoremap cx *``cgn
-nnoremap cX #``cgN
-xnoremap cx <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap cX <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+nnoremap <leader>x *``cgn
+nnoremap <leader>X #``cgN
+xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 inoremap <expr> <CR> functions#SmartEnter()
 
@@ -236,24 +225,25 @@ nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
 nnoremap <leader>b :buffer <C-z><S-Tab>
 nnoremap <leader>B :sbuffer <C-z><S-Tab>
 
-nnoremap <leader>t :tjump /
-nnoremap <leader>T :Btag <C-z><S-Tab>
+nnoremap <leader>t :Bombit<CR>:tjump /
+nnoremap <leader>T :Bombit<CR>:Btag <C-z><S-Tab>
 
-nnoremap <leader>p :ptjump /
+nnoremap <leader>p :Bombit<CR>:ptjump /
 
-nnoremap <leader>me :MRU <C-z><S-Tab>
-nnoremap <leader>ms :SMRU <C-z><S-Tab>
-nnoremap <leader>mv :VMRU <C-z><S-Tab>
+nnoremap <C-]> :Bombit<CR><C-]>
+nnoremap <C-}> :Bombit<CR><C-}>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-Down> <C-w>w
+nnoremap <C-Up> <C-w>W
 
 nnoremap gV `[v`]
+
+cnoremap $t <CR>:t''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $d <CR>:d<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -308,6 +298,8 @@ command! -nargs=1 Qfdofile try | silent cfirst |
 \ while 1 | execute <q-args> | silent cnfile | endwhile |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
 \ endtry
+
+command! -nargs=+ Replace call functions#Replace(<f-args>)
 
 """""""""""""""""""
 " PLUGIN SETTINGS "

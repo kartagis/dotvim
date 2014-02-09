@@ -66,20 +66,8 @@ endfunction
 " ===========================================================================
 
 " experimental search/replace across project
-function functions#ReplaceThis(visual)
-  if a:visual == 1
-    call functions#Replace(functions#GetVisualSelection())
-
-  else
-    call functions#Replace(expand(input("Replace: ")))
-
-  endif
-
-endfunction
-
-function functions#Replace(search_pattern)
-  let replacement_pattern = expand(input("Replace: " . a:search_pattern . " with: "))
-  echo "\n"
+function functions#Replace(search_pattern, replacement_pattern)
+  echo "Replace " . expand(a:search_pattern) . " with: " . expand(a:replacement_pattern) . "\n"
   let file_pattern        = ""
   let user_choice         = inputlist([
     \ 'In...',
@@ -92,7 +80,7 @@ function functions#Replace(search_pattern)
     return
 
   elseif user_choice == 1
-    execute "%s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
+    execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
 
   else
     tabedit %
@@ -108,7 +96,7 @@ function functions#Replace(search_pattern)
     endif
 
     silent execute "vimgrep " . a:search_pattern . " " . file_pattern
-    execute "Qfdo s/" . a:search_pattern . "/" . replacement_pattern . "/ec"
+    execute "Qfdo s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
   endif
 
 endfunction
@@ -171,7 +159,7 @@ endfunction
 
 " create JavaScript handler method
 " above the current block;
-function functions#Handler()
+function functions#InsertHandler()
   silent normal! $2B
   silent normal! yiw
 
@@ -367,16 +355,17 @@ endfunction
 
 function functions#GenerateTags(location)
   " tag-relative didn't work when using absolute paths, fixed
-  execute ":silent !cd " . shellescape(a:location) . " && ctags -R --tag-relative=yes --exclude=\*.min.\* -f tags . > /dev/null 2>&1" | execute ":redraw!"
+  let tag = system("cd " . shellescape(a:location) . " && ctags -R --tag-relative=yes --exclude=\*.min.\* -f tags .")
 
 endfunction
 
-" Ignore user's choice to not write a tags file.
+" Force tags file generation
 function functions#Bombit()
-  if exists("g:tagit_notags")
-    unlet g:tagit_notags
+  if len(tagfiles()) > 0
+    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
 
-    call functions#Tagit()
+  else
+    call functions#GenerateTags(getcwd())
 
   endif
 
