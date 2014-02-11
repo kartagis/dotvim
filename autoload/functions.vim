@@ -1,3 +1,24 @@
+function functions#Qfdo(file)
+  try
+    silent cfirst
+
+    while 1
+      execute <q-args>
+
+      if a:file == 0
+        silent cnext
+
+      else
+        silent cnfile
+
+    endwhile
+
+  catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
+
+  endtry
+
+endfunction
+
 " naive MRU
 function functions#ListRecentFiles(ArgLead, CmdLine, CursorPos)
   let the_oldfiles = deepcopy(v:oldfiles)

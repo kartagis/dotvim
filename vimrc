@@ -36,6 +36,7 @@ set smartcase
 set encoding=utf-8
 set termencoding=utf-8
 
+set wildcharm=<C-z>
 set wildignore=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
@@ -67,6 +68,7 @@ set mouse=a
 set nostartofline
 set noswapfile
 set nrformats-=octal
+set path=**
 set previewheight=4
 set scrolloff=4
 set virtualedit=block
@@ -162,17 +164,22 @@ onoremap W :<C-u>norm W<CR>
 
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
-nnoremap gb :buffers<CR>:b<Space>
-nnoremap gs :buffers<CR>:sb<Space>
+" juggling with buffers
+nnoremap <leader>b :buffer <C-z><S-Tab>
+nnoremap <leader>B :sbuffer <C-z><S-Tab>
 
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+nnoremap <PageUp>   :bp<CR>
+nnoremap <PageDown> :bn<CR>
 
+" juggling with lines
 nnoremap <leader>k      :move-2<CR>==
 nnoremap <leader>j      :move+<CR>==
 nnoremap <leader><Up>   :move-2<CR>==
@@ -182,39 +189,13 @@ xnoremap <leader>j      :move'>+<CR>gv=gv
 xnoremap <leader><Up>   :move-2<CR>gv=gv
 xnoremap <leader><Down> :move'>+<CR>gv=gv
 
+" juggling with words
 nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-"""""""""""""""""
-" EXPERIMENTAL! "
-"""""""""""""""""
-
-nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
-
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
-
-nnoremap <leader>x *``cgn
-nnoremap <leader>X #``cgN
-xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
-
-inoremap <expr> <CR> functions#SmartEnter()
-
-" nnoremap <End>  :cnext<CR>zv
-" nnoremap <Home> :cprevious<CR>zv
-nnoremap <Home> :call functions#WrapCommand("up")<CR>
-nnoremap <End>  :call functions#WrapCommand("down")<CR>
-
-nnoremap <PageUp>   :bp<CR>
-nnoremap <PageDown> :bn<CR>
-
-set wildcharm=<C-z>
-set path=**
-
+" juggling with files
 nnoremap <leader>f :find *
 nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
 nnoremap <leader>s :sfind *
@@ -222,8 +203,33 @@ nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
 nnoremap <leader>v :vert sfind *
 nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
 
-nnoremap <leader>b :buffer <C-z><S-Tab>
-nnoremap <leader>B :sbuffer <C-z><S-Tab>
+" juggling with windows
+nnoremap <C-Down> <C-w>w
+nnoremap <C-Up> <C-w>W
+
+" super fast search/replace
+nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
+
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+
+" faster 'dot formula'
+nnoremap <leader>x *``cgn
+nnoremap <leader>X #``cgN
+xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+
+"""""""""""""""""
+" EXPERIMENTAL! "
+"""""""""""""""""
+
+inoremap <expr> <CR> functions#SmartEnter()
+
+" nnoremap <End>  :cnext<CR>zv
+" nnoremap <Home> :cprevious<CR>zv
+nnoremap <Home> :call functions#WrapCommand("up")<CR>
+nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
 nnoremap <leader>T :Bombit<CR>:Btag <C-z><S-Tab>
@@ -236,14 +242,13 @@ nnoremap <C-}> :Bombit<CR><C-}>
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
-nnoremap <C-Down> <C-w>w
-nnoremap <C-Up> <C-w>W
-
 nnoremap gV `[v`]
 
 cnoremap $t <CR>:t''<CR>
 cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>
+cnoremap $d <CR>:d<CR>''
+cnoremap &t <CR>:''t.<CR>
+cnoremap &m <CR>:''m.<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -286,18 +291,11 @@ command! SV         source $MYVIMRC
 command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
 
 command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRU  call functions#MRU("edit", <f-args>)
-command! -nargs=1 -complete=customlist,functions#ListRecentFiles SMRU call functions#MRU("split", <f-args>)
-command! -nargs=1 -complete=customlist,functions#ListRecentFiles VMRU call functions#MRU("vsplit", <f-args>)
+command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUS call functions#MRU("split", <f-args>)
+command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUV call functions#MRU("vsplit", <f-args>)
 
-command! -nargs=1 Qfdo try | silent cfirst |
-\ while 1 | execute <q-args> | silent cnext | endwhile |
-\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
-\ endtry
-
-command! -nargs=1 Qfdofile try | silent cfirst |
-\ while 1 | execute <q-args> | silent cnfile | endwhile |
-\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
-\ endtry
+command! -nargs=1 Qfdo call Qfdo(0)
+command! -nargs=1 Qfdofile call Qfdo(1)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)
 
