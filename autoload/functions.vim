@@ -145,6 +145,10 @@ function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
 
 endfunction
 
+function functions#FilterTags(stub)
+
+endfunction
+
 function functions#Btag(arg)
   try
     execute "silent tag " . a:arg
@@ -386,7 +390,7 @@ function functions#Bombit()
     call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
 
   else
-    call functions#GenerateTags(getcwd())
+    return
 
   endif
 
