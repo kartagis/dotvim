@@ -145,11 +145,13 @@ function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
 
 endfunction
 
-function functions#FilterTags(stub)
-
-endfunction
-
 function functions#Btag(arg)
+  " let buf_list = filter(taglist('/*' . a:arg), 'v:val.filename == bufname("%")')
+  " let name_list = filter(buf_list, 'v:val.name == "' . a:arg . '"')
+
+  " normal gg
+
+  " execute name_list[0].cmd
   try
     execute "silent tag " . a:arg
 
