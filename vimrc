@@ -285,7 +285,7 @@ command! Trailer    mark `|%s/\s\+$//|normal! ``
 command! Todo       tselect TODO
 command! Fixme      tselect FIXME
 
-command! EV         tabnew $MYVIMRC
+command! EV         tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV         source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)

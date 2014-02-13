@@ -1,3 +1,4 @@
+" :Qfdo made into a proper function
 function functions#Qfdo(file)
   try
     silent cfirst
@@ -18,6 +19,8 @@ function functions#Qfdo(file)
   endtry
 
 endfunction
+
+" ===========================================================================
 
 " naive MRU
 function functions#ListRecentFiles(ArgLead, CmdLine, CursorPos)
@@ -146,11 +149,10 @@ function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function functions#Btag(arg)
+  " keep it for later
   " let buf_list = filter(taglist('/*' . a:arg), 'v:val.filename == bufname("%")')
   " let name_list = filter(buf_list, 'v:val.name == "' . a:arg . '"')
-
   " normal gg
-
   " execute name_list[0].cmd
   try
     execute "silent tag " . a:arg
@@ -381,8 +383,20 @@ function functions#Tagit()
 endfunction
 
 function functions#GenerateTags(location)
-  " tag-relative didn't work when using absolute paths, fixed
-  let tag = system("cd " . shellescape(a:location) . " && ctags -R --tag-relative=yes --exclude=\*.min.\* -f tags .")
+  let ctags_command  = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
+
+  if a:location =~ ".vim"
+    let ctags_command += "--exclude=\*.js --exclude=\*.css --exclude=\*.html --exclude=\*.py --exclude=\*.pl --exclude=\*.el"
+    let ctags_command += "-f tags ."
+
+    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command)
+
+  else
+    let ctags_command += "-f tags ."
+
+    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command)
+
+  endif
 
 endfunction
 
