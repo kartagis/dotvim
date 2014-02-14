@@ -148,6 +148,54 @@ endif
 
 let mapleader = ","
 
+" juggling with files
+nnoremap <leader>f :find *
+nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>s :sfind *
+nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>v :vert sfind *
+nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
+
+" juggling with buffers
+nnoremap <leader>b :buffer <C-z><S-Tab>
+nnoremap <leader>B :sbuffer <C-z><S-Tab>
+
+nnoremap <PageUp>   :bp<CR>
+nnoremap <PageDown> :bn<CR>
+
+" juggling with windows
+nnoremap <C-Down> <C-w>w
+nnoremap <C-Up> <C-w>W
+
+" juggling with lines
+nnoremap <leader>k      :move-2<CR>==
+nnoremap <leader>j      :move+<CR>==
+nnoremap <leader><Up>   :move-2<CR>==
+nnoremap <leader><Down> :move+<CR>==
+xnoremap <leader>k      :move-2<CR>gv=gv
+xnoremap <leader>j      :move'>+<CR>gv=gv
+xnoremap <leader><Up>   :move-2<CR>gv=gv
+xnoremap <leader><Down> :move'>+<CR>gv=gv
+
+" juggling with words
+nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+
+" super fast search/replace
+nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
+
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+
+" faster 'dot formula'
+nnoremap <leader>x *``cgn
+nnoremap <leader>X #``cgN
+xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
@@ -171,54 +219,6 @@ nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
-
-" juggling with buffers
-nnoremap <leader>b :buffer <C-z><S-Tab>
-nnoremap <leader>B :sbuffer <C-z><S-Tab>
-
-nnoremap <PageUp>   :bp<CR>
-nnoremap <PageDown> :bn<CR>
-
-" juggling with lines
-nnoremap <leader>k      :move-2<CR>==
-nnoremap <leader>j      :move+<CR>==
-nnoremap <leader><Up>   :move-2<CR>==
-nnoremap <leader><Down> :move+<CR>==
-xnoremap <leader>k      :move-2<CR>gv=gv
-xnoremap <leader>j      :move'>+<CR>gv=gv
-xnoremap <leader><Up>   :move-2<CR>gv=gv
-xnoremap <leader><Down> :move'>+<CR>gv=gv
-
-" juggling with words
-nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
-nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
-
-" juggling with files
-nnoremap <leader>f :find *
-nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
-nnoremap <leader>s :sfind *
-nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
-nnoremap <leader>v :vert sfind *
-nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
-
-" juggling with windows
-nnoremap <C-Down> <C-w>w
-nnoremap <C-Up> <C-w>W
-
-" super fast search/replace
-nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
-
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
-
-" faster 'dot formula'
-nnoremap <leader>x *``cgn
-nnoremap <leader>X #``cgN
-xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 """""""""""""""""
 " EXPERIMENTAL! "

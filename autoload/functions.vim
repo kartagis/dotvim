@@ -386,7 +386,7 @@ function functions#GenerateTags(location)
   let ctags_command  = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
 
   if a:location =~ ".vim"
-    let ctags_command += "--exclude=\*.js --exclude=\*.css --exclude=\*.html --exclude=\*.py --exclude=\*.pl --exclude=\*.el"
+    let ctags_command += "--languages=vim"
     let ctags_command += "-f tags ."
 
     let tag = system("cd " . shellescape(a:location) . " && " . ctags_command)
