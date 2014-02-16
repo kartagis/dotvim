@@ -36,21 +36,21 @@ hi PmenuSel     ctermfg=Black ctermbg=DarkGreen
 hi PmenuThumb   ctermfg=DarkGreen ctermbg=DarkGreen
 
 
-"hi Question     
+"hi Question
 hi Search       ctermfg=Black ctermbg=DarkGreen cterm=none
-"hi SignColumn   
+"hi SignColumn
 hi SpecialKey   ctermfg=DarkGrey ctermbg=none cterm=none
-"hi SpellBad     
-"hi SpellCap     
-"hi SpellLocal   
-"hi SpellRare    
+"hi SpellBad
+"hi SpellCap
+"hi SpellLocal
+"hi SpellRare
 hi StatusLine   ctermfg=Black ctermbg=DarkCyan cterm=none
 hi StatusLineNC ctermfg=Black ctermbg=DarkBlue cterm=NONE
 hi VertSplit    ctermfg=DarkBlue ctermbg=DarkBlue cterm=none
 hi TabLine      ctermbg=Blue ctermfg=Black cterm=none
 hi TabLineFill  ctermbg=Blue ctermfg=DarkBlue
 hi TabLineSel   ctermbg=Cyan ctermfg=Black cterm=none
-"hi Title        
+"hi Title
 hi Visual       ctermbg=DarkYellow ctermfg=Black cterm=none
 hi WarningMsg   ctermfg=DarkYellow
 hi WildMenu     ctermfg=White ctermbg=DarkBlue

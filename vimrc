@@ -196,6 +196,7 @@ nnoremap <leader>X #``cgN
 xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
 xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
+" various stuff
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 

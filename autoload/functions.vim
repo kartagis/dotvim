@@ -155,11 +155,11 @@ function functions#Btag(arg)
   " normal gg
   " execute name_list[0].cmd
   try
-    execute "silent tag " . a:arg
+    execute "silent tag /" . a:arg
 
   catch
     try
-      execute "silent tag /" . a:arg
+      execute "silent tag " . a:arg
 
     catch
       echo "No tag " . a:arg . " found."
@@ -236,7 +236,7 @@ function functions#SmartEnter()
   endif
 
   " I still have to decide if it's useful to me
-  if getline(".") =~ '^\s*\(//\|#\|"\)\s*$'
+  if getline(".") =~ '^\s*\(\*\|//\|#\|"\)\s*$'
     return "\<C-u>"
 
   endif
@@ -406,6 +406,7 @@ endfunction
 function functions#Bombit()
   if len(tagfiles()) > 0 && !exists("t:tagit_notags")
     update
+
     call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
 
   endif
