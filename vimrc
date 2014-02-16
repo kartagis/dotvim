@@ -250,6 +250,9 @@ cnoremap $d <CR>:d<CR>''
 cnoremap &t <CR>:''t.<CR>
 cnoremap &m <CR>:''m.<CR>
 
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "<S-Tab>"
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
@@ -294,7 +297,7 @@ command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRU  call funct
 command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUS call functions#MRU("split", <f-args>)
 command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUV call functions#MRU("vsplit", <f-args>)
 
-command! -nargs=1 Qfdo call Qfdo(0)
+command! -nargs=1 Qfdo     call Qfdo(0)
 command! -nargs=1 Qfdofile call Qfdo(1)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)

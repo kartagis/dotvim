@@ -1,7 +1,7 @@
 nnoremap <buffer> <leader>g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
 
-nnoremap <buffer> <C-]> :call Tagit()<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
-nnoremap <buffer> <C-}> :call Tagit()<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <buffer> <C-}> :Bombit<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 nnoremap <silent> <buffer> ]] :call functions#Custom_jump('/\v^\s*(function\|var)')<cr>
 nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?\v^\s*(function\|var)')<cr>

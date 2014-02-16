@@ -330,7 +330,9 @@ endfunction
 " if no answer is given, nothing is done and we try to not
 " bother the user again
 function functions#Tagit()
-  if !exists("g:tagit_notags") && expand('%') != ''
+  if !exists("t:tagit_notags") && expand('%') != ''
+    update
+
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
@@ -346,7 +348,7 @@ function functions#Tagit()
               \ '1. In the working directory: ' . current_dir . '/tags'])
 
         if user_choice == 0
-          let g:tagit_notags = 1
+          let t:tagit_notags = 1
 
           return
 
@@ -362,7 +364,7 @@ function functions#Tagit()
               \ '2. In the directory of the current file: ' . this_dir . '/tags'])
 
         if user_choice == 0
-          let g:tagit_notags = 1
+          let t:tagit_notags = 1
 
           return
 
@@ -402,11 +404,9 @@ endfunction
 
 " Force tags file generation
 function functions#Bombit()
-  if len(tagfiles()) > 0
+  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
+    update
     call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
-
-  else
-    return
 
   endif
 
