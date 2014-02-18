@@ -1,3 +1,9 @@
+let @a = '$T"i border="0" style="display:block;"'
+
+let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
+
+setlocal indentkeys-=*<Return>
+
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
@@ -5,15 +11,6 @@ nnoremap <buffer> <leader>& :call functions#Entities()<CR>
 nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
 xnoremap <buffer> <leader>& :call functions#Entities()<CR>
 xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
-command! -buffer Entities :call functions#Entities()
-command! -buffer Entities :call functions#RevEntities()
-
-command! -buffer UA :call functions#UpdateAnchor()
-
-command! -buffer UW :call functions#UpdateWidth()
-
-command! -buffer URLEncode :call functions#URLencoding()
-command! -buffer RevURLEncode :call functions#ReverseURLencoding()
 
 nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
@@ -28,12 +25,6 @@ nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 
 nnoremap <silent> <buffer> ]] :call functions#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
-
-let @a = '$T"i border="0" style="display:block;"'
-
-let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
-
-setlocal indentkeys-=*<Return>
 
 if has('gui_running')
   if os == 'Darwin' || os == 'Mac'
@@ -50,3 +41,15 @@ if has('gui_running')
   endif
 
 endif
+
+command! -buffer Entities    call functions#Entities()
+command! -buffer RevEntities call functions#RevEntities()
+
+command! -buffer URLEncode    call functions#URLencoding()
+command! -buffer RevURLEncode call functions#ReverseURLencoding()
+
+command! -buffer UA call functions#UpdateAnchor()
+
+command! -buffer UW call functions#UpdateWidth()
+
+command! -buffer -range=% Format execute <line1> . "," . <line2> . "!html-beautify -f - -I -s " . &shiftwidth
