@@ -220,6 +220,7 @@ nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
+" sdsdkskd
 
 """""""""""""""""
 " EXPERIMENTAL! "
@@ -233,7 +234,7 @@ nnoremap <Home> :call functions#WrapCommand("up")<CR>
 nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :Bombit<CR>:Btag <C-z><S-Tab>
+nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
 
 nnoremap <leader>p :Bombit<CR>:ptjump /
 
@@ -270,7 +271,7 @@ endfor
 """""""""""""""""""
 
 command! Tagit      call functions#Tagit()
-command! Bombit     call functions#Bombit()
+command! Bombit     call functions#Bombit(0)
 
 command! ToUnix     call functions#ToUnix()
 

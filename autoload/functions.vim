@@ -330,13 +330,13 @@ endfunction
 " if no answer is given, nothing is done and we try to not
 " bother the user again
 function functions#Tagit()
-  if !exists("t:tagit_notags") && expand('%') != ''
-    update
+  update
 
+  if !exists("t:tagit_notags") && expand('%') != ''
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-      call functions#GenerateTags(tags_location)
+      call functions#GenerateTags(tags_location, 0)
 
     else
       let this_dir    = expand('%:p:h')
@@ -353,7 +353,7 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
+          call functions#GenerateTags(current_dir, 0)
 
         endif
 
@@ -369,10 +369,10 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
+          call functions#GenerateTags(current_dir, 0)
 
         elseif user_choice == 2
-          call functions#GenerateTags(this_dir)
+          call functions#GenerateTags(this_dir, 0)
 
         endif
 
@@ -384,30 +384,30 @@ function functions#Tagit()
 
 endfunction
 
-function functions#GenerateTags(location)
-  let ctags_command  = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
+function functions#GenerateTags(location, buffer_only)
+  if a:buffer_only == 0
+    let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\* --exclude=\*.html --exclude=\*.css --exclude=README* "
 
-  if a:location =~ ".vim"
-    let ctags_command += "--languages=vim"
-    let ctags_command += "-f tags ."
+    if a:location =~ ".vim"
+      let ctags_command += "--languages=vim"
 
-    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command)
+    endif
 
   else
-    let ctags_command += "-f tags ."
-
-    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command)
+    let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
 
   endif
+
+  let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 
 endfunction
 
 " Force tags file generation
-function functions#Bombit()
-  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    update
+function functions#Bombit(buffer_only)
+  update
 
-    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
+  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
+    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only)
 
   endif
 
