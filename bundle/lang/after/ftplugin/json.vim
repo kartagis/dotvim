@@ -6,4 +6,5 @@ if has('conceal')
 
 endif
 
-command! -buffer Format %!python -m json.tool
+command! -buffer -range=% Format execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth
+
