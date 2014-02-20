@@ -86,6 +86,9 @@ augroup VIMRC
 
   autocmd BufEnter,WinEnter * call matchadd("Error", "\\s\\+$", -1)
 
+  autocm VimEnter * inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "<Tab>"
+  autocm VimEnter * inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "<S-Tab>"
+
 augroup END
 
 """""""""""""""""""""""""""""""""
@@ -251,9 +254,6 @@ cnoremap $m <CR>:m''<CR>
 cnoremap $d <CR>:d<CR>''
 cnoremap &t <CR>:''t.<CR>
 cnoremap &m <CR>:''m.<CR>
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "<S-Tab>"
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
