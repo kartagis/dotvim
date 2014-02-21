@@ -86,9 +86,6 @@ augroup VIMRC
 
   autocmd BufEnter,WinEnter * call matchadd("Error", "\\s\\+$", -1)
 
-  autocm VimEnter * inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "<Tab>"
-  autocm VimEnter * inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "<S-Tab>"
-
 augroup END
 
 """""""""""""""""""""""""""""""""
@@ -228,6 +225,13 @@ nnoremap <up>   gk
 """""""""""""""""
 " EXPERIMENTAL! "
 """""""""""""""""
+
+" simple recursive grep
+command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
+command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
+nmap gR :RecurGrep<Space>
+nmap gr :RecurGrepFast<Space>
+nmap gwR :RecurGrep <cword><CR>
 
 inoremap <expr> <CR> functions#SmartEnter()
 
