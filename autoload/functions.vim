@@ -336,7 +336,7 @@ function functions#Tagit()
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-      call functions#GenerateTags(tags_location, 0)
+      call functions#GenerateTags(tags_location)
 
     else
       let this_dir    = expand('%:p:h')
@@ -353,7 +353,7 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0)
+          call functions#GenerateTags(current_dir)
 
         endif
 
@@ -369,10 +369,10 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0)
+          call functions#GenerateTags(current_dir)
 
         elseif user_choice == 2
-          call functions#GenerateTags(this_dir, 0)
+          call functions#GenerateTags(this_dir)
 
         endif
 
@@ -384,17 +384,12 @@ function functions#Tagit()
 
 endfunction
 
-function functions#GenerateTags(location, buffer_only)
-  if a:buffer_only == 0
-    let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\* --exclude=\*.html --exclude=\*.css --exclude=README* "
+" FIXME: this part is a mess but I'm tired
+function functions#GenerateTags(location)
+  let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
 
-    if a:location =~ ".vim"
-      let ctags_command += "--languages=vim"
-
-    endif
-
-  else
-    let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
+  if &filetype == "vim"
+    let ctags_command .= " --languages=vim"
 
   endif
 
@@ -402,12 +397,29 @@ function functions#GenerateTags(location, buffer_only)
 
 endfunction
 
+function functions#GenerateLocalTags(location)
+  let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
+
+  let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
+
+endfunction
+
 " Force tags file generation
-function functions#Bombit(buffer_only)
+function functions#Bombit()
   update
 
   if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only)
+    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
+
+  endif
+
+endfunction
+
+function functions#BombitLocal()
+  update
+
+  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
+    call functions#GenerateLocalTags(fnamemodify(tagfiles()[0], ":p:h"))
 
   endif
 

@@ -226,13 +226,6 @@ nnoremap <up>   gk
 " EXPERIMENTAL! "
 """""""""""""""""
 
-" simple recursive grep
-command! -nargs=1 RecurGrep lvimgrep /<args>/gj ./**/*.* | lopen | set nowrap
-command! -nargs=1 RecurGrepFast silent exec 'lgrep! <q-args> ./**/*.*' | lopen
-nmap gR :RecurGrep<Space>
-nmap gr :RecurGrepFast<Space>
-nmap gwR :RecurGrep <cword><CR>
-
 inoremap <expr> <CR> functions#SmartEnter()
 
 " nnoremap <End>  :cnext<CR>zv
@@ -241,7 +234,7 @@ nnoremap <Home> :call functions#WrapCommand("up")<CR>
 nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
+nnoremap <leader>T :call functions#BombitLocal()<CR>:Btag <C-z><S-Tab>
 
 nnoremap <leader>p :Bombit<CR>:ptjump /
 
@@ -275,7 +268,7 @@ endfor
 """""""""""""""""""
 
 command! Tagit      call functions#Tagit()
-command! Bombit     call functions#Bombit(0)
+command! Bombit     call functions#Bombit()
 
 command! ToUnix     call functions#ToUnix()
 
