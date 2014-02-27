@@ -284,7 +284,9 @@ endfunction
 
 function functions#TagExpander(next)
   if a:next ==# "<" && getline(".")[col(".")] ==# "/"
-    if getline(".")[searchpos("<", "bnW")[1]] ==# "/"
+    let first_after = getline(".")[col(".") + 1]
+    echom first_after
+    if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# first_after
       return "\<CR>"
 
     else
@@ -336,7 +338,7 @@ function functions#Tagit()
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-      call functions#GenerateTags(tags_location)
+      call functions#GenerateTags(tags_location, 0)
 
     else
       let this_dir    = expand('%:p:h')
@@ -353,7 +355,7 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
+          call functions#GenerateTags(current_dir, 0)
 
         endif
 
@@ -369,10 +371,10 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir)
+          call functions#GenerateTags(current_dir, 0)
 
         elseif user_choice == 2
-          call functions#GenerateTags(this_dir)
+          call functions#GenerateTags(this_dir, 0)
 
         endif
 
@@ -384,42 +386,33 @@ function functions#Tagit()
 
 endfunction
 
-" FIXME: this part is a mess but I'm tired
-function functions#GenerateTags(location)
-  let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
-
-  if &filetype == "vim"
-    let ctags_command .= " --languages=vim"
-
-  endif
-
-  let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
-
-endfunction
-
-function functions#GenerateLocalTags(location)
-  let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
-
-  let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
-
-endfunction
-
 " Force tags file generation
-function functions#Bombit()
+function functions#Bombit(buffer_only)
   update
 
   if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"))
+    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only)
 
   endif
 
 endfunction
 
-function functions#BombitLocal()
-  update
+" the actual tag generation function
+function functions#GenerateTags(location, buffer_only)
+  if a:buffer_only == 0
+    let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
 
-  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#GenerateLocalTags(fnamemodify(tagfiles()[0], ":p:h"))
+    if &filetype == "vim"
+      let ctags_command .= " --languages=vim"
+
+    endif
+
+    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
+
+  elseif a:buffer_only == 1
+    let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
+
+    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 
   endif
 
@@ -471,16 +464,22 @@ function functions#UpdateAnchor()
   silent normal! vi"
   silent normal! "_dP
 
+  silent normal ''
+
 endfunction
 
 " ===========================================================================
 
 " DOS to UNIX encoding
 function functions#ToUnix()
+  mark `
+
   silent update
   silent e ++ff=dos
   silent setlocal ff=unix
   silent w
+
+  silent ``
 
 endfunction
 
@@ -729,10 +728,14 @@ function functions#Entities()
   silent s/Ζ/\&Zeta;/e
   silent s/ζ/\&zeta;/e
 
+  silent normal ``
+
 endfunction
 
 " HTML entities --> normal characters
 function functions#ReverseEntities()
+  mark `
+
   silent s/&Aacute;/Á/e
   silent s/&aacute;/á/e
   silent s/&Acirc;/Â/e
@@ -972,10 +975,14 @@ function functions#ReverseEntities()
   silent s/&Zeta;/Ζ/e
   silent s/&zeta;/ζ/e
 
+  silent normal ``
+
 endfunction
 
 " normal characters --> URL encoded characters
 function functions#URLencoding()
+  mark `
+
   silent s/!/%21/e
   silent s/ /%22/e
   silent s/#/%23/e
@@ -1128,10 +1135,15 @@ function functions#URLencoding()
   silent s/ý/%FD/e
   silent s/þ/%FE/e
   silent s/ÿ/%FF/e
+
+  silent normal ``
+
 endfunction
 
 " URL encoded characters --> normal characters
 function functions#ReverseURLencoding()
+  mark `
+
   silent s/%21/!/e
   silent s/%22/ /e
   silent s/%23/#/e
@@ -1285,5 +1297,7 @@ function functions#ReverseURLencoding()
   silent s/%FD/ý/e
   silent s/%FE/þ/e
   silent s/%FF/ÿ/e
-endfunction
 
+  silent normal ``
+
+endfunction

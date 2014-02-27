@@ -234,7 +234,7 @@ nnoremap <Home> :call functions#WrapCommand("up")<CR>
 nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :call functions#BombitLocal()<CR>:Btag <C-z><S-Tab>
+nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
 
 nnoremap <leader>p :Bombit<CR>:ptjump /
 
@@ -268,7 +268,7 @@ endfor
 """""""""""""""""""
 
 command! Tagit      call functions#Tagit()
-command! Bombit     call functions#Bombit()
+command! Bombit     call functions#Bombit(0)
 
 command! ToUnix     call functions#ToUnix()
 
@@ -284,8 +284,8 @@ command! CMD        let @+ = ":" . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
 
-command! Todo       tselect TODO
-command! Fixme      tselect FIXME
+command! TD         tselect TODO
+command! FM         tselect FIXME
 
 command! EV         tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV         source $MYVIMRC
@@ -296,8 +296,8 @@ command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRU  call funct
 command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUS call functions#MRU("split", <f-args>)
 command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUV call functions#MRU("vsplit", <f-args>)
 
-command! -nargs=1 Qfdo     call Qfdo(0)
-command! -nargs=1 Qfdofile call Qfdo(1)
+command! -nargs=1 Qfdo     call functions#Qfdo(0)
+command! -nargs=1 Qfdofile call functions#Qfdo(1)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)
 
