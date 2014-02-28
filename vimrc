@@ -72,6 +72,7 @@ set path=**
 set previewheight=4
 set scrolloff=4
 set virtualedit=block
+set winheight=999
 
 augroup VIMRC
   autocmd!
@@ -163,8 +164,8 @@ nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
 
 " juggling with windows
-nnoremap <C-Down> <C-w>w<C-w>_
-nnoremap <C-Up> <C-w>W<C-w>_
+nnoremap <C-Down> <C-w>w
+nnoremap <C-Up> <C-w>W
 
 " juggling with lines
 nnoremap <leader>k      :move-2<CR>==
