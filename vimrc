@@ -72,7 +72,6 @@ set path=**
 set previewheight=4
 set scrolloff=4
 set virtualedit=block
-set winheight=999
 
 augroup VIMRC
   autocmd!
@@ -150,11 +149,11 @@ let mapleader = ","
 
 " juggling with files
 nnoremap <leader>f :find *
-nnoremap <leader>F :find <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>F :find <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap <leader>s :sfind *
-nnoremap <leader>S :sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap <leader>v :vert sfind *
-nnoremap <leader>V :vert sfind <C-R>=expand('%:h').'/*'<CR>
+nnoremap <leader>V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
 " juggling with buffers
 nnoremap <leader>b :buffer <C-z><S-Tab>
@@ -164,8 +163,8 @@ nnoremap <PageUp>   :bp<CR>
 nnoremap <PageDown> :bn<CR>
 
 " juggling with windows
-nnoremap <C-Down> <C-w>w
-nnoremap <C-Up> <C-w>W
+nnoremap <C-Down> <C-w>w<C-w>_
+nnoremap <C-Up> <C-w>W<C-w>_
 
 " juggling with lines
 nnoremap <leader>k      :move-2<CR>==
@@ -290,11 +289,11 @@ command! FM         tselect FIXME
 command! EV         tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV         source $MYVIMRC
 
-command! -nargs=1 -complete=customlist,functions#ListBufTags Btag call functions#Btag(<f-args>)
+command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#Btag(<f-args>)
 
-command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRU  call functions#MRU("edit", <f-args>)
-command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUS call functions#MRU("split", <f-args>)
-command! -nargs=1 -complete=customlist,functions#ListRecentFiles MRUV call functions#MRU("vsplit", <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRU  call functions#MRU("edit", <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRUS call functions#MRU("split", <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRUV call functions#MRU("vsplit", <f-args>)
 
 command! -nargs=1 Qfdo     call functions#Qfdo(0)
 command! -nargs=1 Qfdofile call functions#Qfdo(1)

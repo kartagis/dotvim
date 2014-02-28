@@ -23,7 +23,7 @@ endfunction
 " ===========================================================================
 
 " naive MRU
-function functions#ListRecentFiles(ArgLead, CmdLine, CursorPos)
+function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
   let the_oldfiles = deepcopy(v:oldfiles)
 
   let my_oldfiles = filter(the_oldfiles, 'v:val =~ a:ArgLead')
@@ -128,11 +128,9 @@ endfunction
 " ===========================================================================
 
 " like :tag /foo but  the completion is limited to the current buffer
-function functions#ListBufTags(ArgLead, CmdLine, CursorPos)
-  " absolute paths are machine/user-dependent
-  " Tagit() now uses relative paths so we can
-  " do the same here: much simpler
-  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
+function functions#BtagComplete(ArgLead, CmdLine, CursorPos)
+  " let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
+  let temp_list = taglist('/*' . a:ArgLead)
 
   if len(temp_list) > 0
     let return_list = []
@@ -284,9 +282,7 @@ endfunction
 
 function functions#TagExpander(next)
   if a:next ==# "<" && getline(".")[col(".")] ==# "/"
-    let first_after = getline(".")[col(".") + 1]
-    echom first_after
-    if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# first_after
+    if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# getline(".")[col(".") + 1]
       return "\<CR>"
 
     else
@@ -410,7 +406,8 @@ function functions#GenerateTags(location, buffer_only)
     let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 
   elseif a:buffer_only == 1
-    let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
+    let ctags_command = "ctags -L <(echo " . expand('%') . ")"
+    " let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
 
     let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 
