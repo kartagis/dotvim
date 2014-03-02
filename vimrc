@@ -84,7 +84,7 @@ augroup VIMRC
   autocmd BufLeave * let b:winview = winsaveview()
   autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 
-  autocmd BufEnter,WinEnter * call matchadd("Error", "\\s\\+$", -1)
+  autocmd BufEnter,WinEnter * call matchadd('Error', '\s\+$', -1)
 
 augroup END
 
@@ -278,9 +278,9 @@ command! LCD        lcd %:p:h
 command! CD         cd %:p:h
 
 " sharing is caring
-command! VPF        execute "w !vpaste ft=" . &filetype
+command! VPF        execute 'w !vpaste ft=' . &filetype
 command! -range VPV execute "'<,'>w !vpaste ft=" . &filetype
-command! CMD        let @+ = ":" . @:
+command! CMD        let @+ = ':' . @:
 
 command! Trailer    mark `|%s/\s\+$//|normal! ``
 
@@ -292,9 +292,9 @@ command! SV         source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#Btag(<f-args>)
 
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRU  call functions#MRU("edit", <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRUS call functions#MRU("split", <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRUV call functions#MRU("vsplit", <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRU  call functions#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRUS call functions#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MRUV call functions#MRU('vsplit', <f-args>)
 
 command! -nargs=1 Qfdo     call functions#Qfdo(0)
 command! -nargs=1 Qfdofile call functions#Qfdo(1)
@@ -324,6 +324,6 @@ let g:syntastic_mode_map            = {
   \ 'passive_filetypes' : ['css', 'python', 'html', 'xhtml', 'php']
   \ }
 
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1  = "inc"
-let g:html_indent_inctags = "html,body,head,tbody,p"
+let g:html_indent_script1 = 'inc'
+let g:html_indent_style1  = 'inc'
+let g:html_indent_inctags = 'html,body,head,tbody,p'
