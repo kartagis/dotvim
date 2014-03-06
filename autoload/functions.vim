@@ -154,6 +154,7 @@ function functions#Btag(arg)
   " execute name_list[0].cmd
   try
     execute "silent tag /" . a:arg
+    setlocal noai
 
   catch
     try
@@ -299,26 +300,6 @@ endfunction
 
 " ===========================================================================
 
-" saves all the visible windows if needed/possible
-function functions#AutoSave()
-  let this_window = winnr()
-
-  windo call functions#SmartUpdate()
-
-  execute this_window . 'wincmd w'
-
-endfunction
-
-function functions#SmartUpdate()
-  if &buftype != "nofile" && expand('%') != '' && &modified
-    write
-
-  endif
-
-endfunction
-
-" ===========================================================================
-
 " Trying to write a function for managing tags
 " ============================================
 " when a tags file already exists, it is re-generated
@@ -334,7 +315,7 @@ function functions#Tagit()
     if len(tagfiles()) > 0
       let tags_location = fnamemodify(tagfiles()[0], ":p:h")
 
-      call functions#GenerateTags(tags_location, 0)
+      call functions#GenerateTags(tags_location, 0, 0)
 
     else
       let this_dir    = expand('%:p:h')
@@ -351,7 +332,7 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0)
+          call functions#GenerateTags(current_dir, 0, 0)
 
         endif
 
@@ -367,10 +348,10 @@ function functions#Tagit()
           return
 
         elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0)
+          call functions#GenerateTags(current_dir, 0, 0)
 
         elseif user_choice == 2
-          call functions#GenerateTags(this_dir, 0)
+          call functions#GenerateTags(this_dir, 0, 0)
 
         endif
 
@@ -387,19 +368,19 @@ function functions#Bombit(buffer_only)
   update
 
   if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only)
+    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only, 1)
 
   endif
 
 endfunction
 
 " the actual tag generation function
-function functions#GenerateTags(location, buffer_only)
+function functions#GenerateTags(location, buffer_only, lang_only)
   if a:buffer_only == 0
     let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
 
-    if &filetype == "vim"
-      let ctags_command .= " --languages=vim"
+    if a:lang_only == 1
+      let ctags_command .= " --languages=" . &filetype
 
     endif
 
@@ -407,7 +388,6 @@ function functions#GenerateTags(location, buffer_only)
 
   elseif a:buffer_only == 1
     let ctags_command = "ctags -L <(echo " . expand('%') . ")"
-    " let ctags_command = "echo " . expand('%') . " > /tmp/thisfile && ctags -L /tmp/thisfile"
 
     let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 

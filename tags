@@ -27,16 +27,16 @@
 <Plug>Dsurround	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>Dsurround  :<C-U>call <SID>dosurround(<SID>inputtarget())<CR>$/;"	m
 <Plug>ISurround	bundle/surround/plugin/surround.vim	/^inoremap <silent> <Plug>ISurround  <C-R>=<SID>insert(1)<CR>$/;"	m
 <Plug>Isurround	bundle/surround/plugin/surround.vim	/^inoremap <silent> <Plug>Isurround  <C-R>=<SID>insert()<CR>$/;"	m
-<Plug>LionColon	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionColon <SID>command("<SID>alignColon")$/;"	m
-<Plug>LionEqual	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionEqual <SID>command("<SID>alignEqual")$/;"	m
-<Plug>LionLeft	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionLeft <SID>command("<SID>alignLeft")$/;"	m
-<Plug>LionRepeat	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <Plug>LionRepeat .$/;"	m
-<Plug>LionRight	bundle/tmp_lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionRight <SID>command("<SID>alignRight")$/;"	m
+<Plug>LionColon	bundle/lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionColon <SID>command("<SID>alignColon")$/;"	m
+<Plug>LionEqual	bundle/lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionEqual <SID>command("<SID>alignEqual")$/;"	m
+<Plug>LionLeft	bundle/lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionLeft <SID>command("<SID>alignLeft")$/;"	m
+<Plug>LionRepeat	bundle/lion/plugin/lion.vim	/^nnoremap <silent> <Plug>LionRepeat .$/;"	m
+<Plug>LionRight	bundle/lion/plugin/lion.vim	/^nnoremap <silent> <expr> <Plug>LionRight <SID>command("<SID>alignRight")$/;"	m
 <Plug>SurroundRepeat	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>SurroundRepeat .$/;"	m
-<Plug>VLionColon	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionColon <SID>command("<SID>alignColon", 1)$/;"	m
-<Plug>VLionEqual	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionEqual <SID>command("<SID>alignEqual", 1)$/;"	m
-<Plug>VLionLeft	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionLeft <SID>command("<SID>alignLeft", 1)$/;"	m
-<Plug>VLionRight	bundle/tmp_lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionRight <SID>command("<SID>alignRight", 1)$/;"	m
+<Plug>VLionColon	bundle/lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionColon <SID>command("<SID>alignColon", 1)$/;"	m
+<Plug>VLionEqual	bundle/lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionEqual <SID>command("<SID>alignEqual", 1)$/;"	m
+<Plug>VLionLeft	bundle/lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionLeft <SID>command("<SID>alignLeft", 1)$/;"	m
+<Plug>VLionRight	bundle/lion/plugin/lion.vim	/^vnoremap <silent> <expr> <Plug>VLionRight <SID>command("<SID>alignRight", 1)$/;"	m
 <Plug>VSurround	bundle/surround/plugin/surround.vim	/^vnoremap <silent> <Plug>VSurround  :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 1 : 0)<CR>$/;"	m
 <Plug>VgSurround	bundle/surround/plugin/surround.vim	/^vnoremap <silent> <Plug>VgSurround :<C-U>call <SID>opfunc(visualmode(),visualmode() ==# 'V' ? 0 : 1)<CR>$/;"	m
 <Plug>YSsurround	bundle/surround/plugin/surround.vim	/^nnoremap <silent> <Plug>YSsurround :<C-U>call <SID>opfunc2(v:count1)<CR>$/;"	m
@@ -63,11 +63,8 @@ AcpDisable	bundle/autocomplpop/plugin/acp.vim	/^command! -bar -narg=0 AcpDisable
 AcpEnable	bundle/autocomplpop/plugin/acp.vim	/^command! -bar -narg=0 AcpEnable  call acp#enable()$/;"	c
 AcpLock	bundle/autocomplpop/plugin/acp.vim	/^command! -bar -narg=0 AcpLock    call acp#lock()$/;"	c
 AcpUnlock	bundle/autocomplpop/plugin/acp.vim	/^command! -bar -narg=0 AcpUnlock  call acp#unlock()$/;"	c
-AddTabularPattern	bundle/tabular/plugin/Tabular.vim	/^com! -nargs=+ -bang AddTabularPattern$/;"	c
-AddTabularPattern	bundle/tabular/plugin/Tabular.vim	/^function! AddTabularPattern(command, force)$/;"	f
-AddTabularPipeline	bundle/tabular/plugin/Tabular.vim	/^com! -nargs=+ -bang AddTabularPipeline$/;"	c
-AddTabularPipeline	bundle/tabular/plugin/Tabular.vim	/^function! AddTabularPipeline(command, force)$/;"	f
 AddToClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:AddToClasspath(classpath,path)$/;"	f
+AlreadySelected	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:AlreadySelected(to)$/;"	f
 Args	bundle/syntastic/syntax_checkers/html/tidy.vim	/^function s:Args()$/;"	f
 Args	bundle/syntastic/syntax_checkers/javascript/jshint.vim	/^function s:Args()$/;"	f
 AutoComplPopDisable	bundle/autocomplpop/plugin/acp.vim	/^command! -bar -narg=0 AutoComplPopDisable AcpDisable$/;"	c
@@ -78,8 +75,6 @@ AutoToggleLocList	bundle/syntastic/plugin/syntastic.vim	/^function! s:AutoToggle
 BackwardsSnippet	bundle/snipmate/plugin/snipMate.vim	/^fun! BackwardsSnippet()$/;"	f
 BuildTabStops	bundle/snipmate/autoload/snipMate.vim	/^fun s:BuildTabStops(snip, lnum, col, indent)$/;"	f
 CacheErrors	bundle/syntastic/plugin/syntastic.vim	/^function! s:CacheErrors(...)$/;"	f
-Center	bundle/tabular/autoload/tabular.vim	/^function! s:Center(string, fieldwidth)$/;"	f
-ChooseCommandMap	bundle/tabular/plugin/Tabular.vim	/^function! s:ChooseCommandMap(commandline)$/;"	f
 ChooseSnippet	bundle/snipmate/plugin/snipMate.vim	/^fun s:ChooseSnippet(scope, trigger)$/;"	f
 ClearCache	bundle/syntastic/plugin/syntastic.vim	/^function! s:ClearCache()$/;"	f
 ClearErrorHighlights	bundle/syntastic/plugin/syntastic.vim	/^function! s:ClearErrorHighlights()$/;"	f
@@ -87,12 +82,12 @@ Close	bundle/snipmate/ftplugin/html_snip_helper.vim	/^fun! Close()$/;"	f
 CmpLoclist	bundle/syntastic/syntax_checkers/python/pylint.vim	/^function! s:CmpLoclist(a, b)$/;"	f
 CmpLoclist	bundle/syntastic/syntax_checkers/tex/chktex.vim	/^function! s:CmpLoclist(a, b)$/;"	f
 CompleteCheckerName	bundle/syntastic/plugin/syntastic.vim	/^function! s:CompleteCheckerName(argLead, cmdLine, cursorPos)$/;"	f
-CompleteTabularizeCommand	bundle/tabular/plugin/Tabular.vim	/^function! s:CompleteTabularizeCommand(argstart, cmdline, cursorpos)$/;"	f
 ConfFlag	bundle/syntastic/syntax_checkers/javascript/jsl.vim	/^function s:ConfFlag()$/;"	f
 Count	bundle/snipmate/autoload/snipMate.vim	/^fun s:Count(haystack, needle)$/;"	f
 CurrentFiletypes	bundle/syntastic/plugin/syntastic.vim	/^function! s:CurrentFiletypes()$/;"	f
 DefineSnips	bundle/snipmate/plugin/snipMate.vim	/^fun s:DefineSnips(dir, aliasft, realft)$/;"	f
 EchoCurrentError	bundle/syntastic/plugin/syntastic.vim	/^function! s:EchoCurrentError()$/;"	f
+Edges	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Edges(to)$/;"	f
 EditClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:EditClasspath()$/;"	f
 Entities	bundle/lang/after/ftplugin/html.vim	/^command! -buffer Entities    call functions#Entities()$/;"	c
 Errors	bundle/syntastic/plugin/syntastic.vim	/^command! Errors call s:ShowLocList()$/;"	c
@@ -101,13 +96,13 @@ ExtraMakeprgArgs	bundle/syntastic/syntax_checkers/perl/perl.vim	/^function! s:Ex
 ExtractSnips	bundle/snipmate/plugin/snipMate.vim	/^fun! ExtractSnips(dir, ft)$/;"	f
 ExtractSnipsFile	bundle/snipmate/plugin/snipMate.vim	/^fun! ExtractSnipsFile(file, ft)$/;"	f
 Filename	bundle/snipmate/autoload/snipMate.vim	/^fun! Filename(...)$/;"	f
-FilterString	bundle/tabular/autoload/tabular.vim	/^function! s:FilterString(lines, commandstring)$/;"	f
 FindInParent	bundle/syntastic/syntax_checkers/haxe/haxe.vim	/^function! s:FindInParent(fln,flsrt,flstp)$/;"	f
 Format	bundle/lang/after/ftplugin/css.vim	/^command! -buffer -range=% Format execute <line1> . "," . <line2> . "!css-beautify -f - -s " . &shiftwidth$/;"	c
 Format	bundle/lang/after/ftplugin/html.vim	/^command! -buffer -range=% Format execute <line1> . "," . <line2> . "!html-beautify -f - -I -s " . &shiftwidth$/;"	c
 Format	bundle/lang/after/ftplugin/javascript.vim	/^command! -buffer -range=% Format execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth$/;"	c
 Format	bundle/lang/after/ftplugin/json.vim	/^command! -buffer -range=% Format execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth$/;"	c
 ForwardToZshChecker	bundle/syntastic/syntax_checkers/sh/sh.vim	/^function! s:ForwardToZshChecker()$/;"	f
+Fuel	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Fuel(repeat)$/;"	f
 GetCSSIndent	bundle/lang/after/indent/css.vim	/^function GetCSSIndent()$/;"	f
 GetJSONIndent	bundle/lang/after/indent/json.vim	/^function GetJSONIndent()$/;"	f
 GetJavascriptIndent	bundle/lang/indent/javascript.vim	/^function GetJavascriptIndent()$/;"	f
@@ -141,6 +136,7 @@ InMultiVarStatement	bundle/lang/indent/javascript.vim	/^function s:InMultiVarSta
 InOneLineScope	bundle/lang/indent/javascript.vim	/^function s:InOneLineScope(lnum)$/;"	f
 IndentWithContinuation	bundle/lang/indent/javascript.vim	/^function s:IndentWithContinuation(lnum, ind, width)$/;"	f
 Init	bundle/syntastic/autoload/syntastic/c.vim	/^function! s:Init()$/;"	f
+Init	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Init()$/;"	f
 IsInMultilineComment	bundle/lang/indent/javascript.vim	/^function s:IsInMultilineComment(lnum, col)$/;"	f
 IsInString	bundle/lang/after/indent/json.vim	/^function s:IsInString(lnum, col)$/;"	f
 IsInString	bundle/lang/indent/javascript.vim	/^function s:IsInString(lnum, col)$/;"	f
@@ -150,7 +146,6 @@ IsRedrawRequiredAfterMake	bundle/syntastic/plugin/syntastic.vim	/^function! s:Is
 IsShellValid	bundle/syntastic/syntax_checkers/sh/sh.vim	/^function! s:IsShellValid()$/;"	f
 Jsbeautify	bundle/lang/plugin/jsbeautify.vim	/^function! g:Jsbeautify()$/;"	f
 JshintNew	bundle/syntastic/syntax_checkers/javascript/jshint.vim	/^function s:JshintNew()$/;"	f
-Left	bundle/tabular/autoload/tabular.vim	/^function! s:Left(string, fieldwidth)$/;"	f
 LineHasOpeningBrackets	bundle/lang/after/indent/json.vim	/^function s:LineHasOpeningBrackets(lnum)$/;"	f
 LineHasOpeningBrackets	bundle/lang/indent/javascript.vim	/^function s:LineHasOpeningBrackets(lnum)$/;"	f
 LoadClasspathFromConfigFile	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:LoadClasspathFromConfigFile()$/;"	f
@@ -159,7 +154,6 @@ MakeSnip	bundle/snipmate/plugin/snipMate.vim	/^fun! MakeSnip(scope, trigger, con
 Match	bundle/lang/after/indent/json.vim	/^function s:Match(lnum, regex)$/;"	f
 Match	bundle/lang/indent/javascript.vim	/^function s:Match(lnum, regex)$/;"	f
 OSSupportsShellpipeHack	bundle/syntastic/plugin/syntastic.vim	/^function! s:OSSupportsShellpipeHack()$/;"	f
-ParsePattern	bundle/tabular/plugin/Tabular.vim	/^function! s:ParsePattern(string)$/;"	f
 Pipe2	bundle/pipe2eval/plugin/pipe2eval.vim	/^com! -nargs=+ Pipe2 call Pipe2eval(<f-args>)$/;"	c
 Pipe2eval	bundle/pipe2eval/plugin/pipe2eval.vim	/^function! Pipe2eval(lang)$/;"	f
 PrevNonBlankNonString	bundle/lang/after/indent/json.vim	/^function s:PrevNonBlankNonString(lnum)$/;"	f
@@ -180,23 +174,19 @@ ResetAllSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ResetAllSnippets()$/
 ResetSnippets	bundle/snipmate/plugin/snipMate.vim	/^fun! ResetSnippets(ft)$/;"	f
 RevEntities	bundle/lang/after/ftplugin/html.vim	/^command! -buffer RevEntities call functions#RevEntities()$/;"	c
 RevURLEncode	bundle/lang/after/ftplugin/html.vim	/^command! -buffer RevURLEncode call functions#ReverseURLencoding()$/;"	c
-Right	bundle/tabular/autoload/tabular.vim	/^function! s:Right(string, fieldwidth)$/;"	f
 SaveClasspath	bundle/syntastic/syntax_checkers/java/javac.vim	/^function! s:SaveClasspath()$/;"	f
+Select	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Select(to)$/;"	f
+SelectBestCandidate	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:SelectBestCandidate(candidates)$/;"	f
 SelectJavascript	bundle/lang/ftdetect/javascript.vim	/^fun! s:SelectJavascript()$/;"	f
 SelectWord	bundle/snipmate/autoload/snipMate.vim	/^fun s:SelectWord()$/;"	f
-SetLines	bundle/tabular/autoload/tabular.vim	/^function! s:SetLines(start, len, strings)$/;"	f
 ShowAvailableSnips	bundle/snipmate/plugin/snipMate.vim	/^fun! ShowAvailableSnips()$/;"	f
 ShowLocList	bundle/syntastic/plugin/syntastic.vim	/^function! s:ShowLocList()$/;"	f
+Size	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Size(startline, startcol, endline, endcol)$/;"	f
 SlimrbVersion	bundle/syntastic/syntax_checkers/slim/slimrb.vim	/^function! s:SlimrbVersion()$/;"	f
 Sparkup	bundle/sparkup/ftplugin/html/sparkup.vim	/^function! s:Sparkup()$/;"	f
 SparkupNext	bundle/sparkup/ftplugin/html/sparkup.vim	/^function! s:SparkupNext()$/;"	f
 SparkupPrevious	bundle/sparkup/ftplugin/html/sparkup.vim	/^function! s:SparkupPrevious()$/;"	f
-SplitCDeclarations	bundle/tabular/after/plugin/TabularMaps.vim	/^function! SplitCDeclarations(lines)$/;"	f
-SplitCommands	bundle/tabular/plugin/Tabular.vim	/^function! s:SplitCommands(string)$/;"	f
-SplitDelim	bundle/tabular/autoload/tabular.vim	/^function! s:SplitDelim(string, delim)$/;"	f
-StripLeadingSpaces	bundle/tabular/autoload/tabular.vim	/^function! s:StripLeadingSpaces(string)$/;"	f
-StripTrailingSpaces	bundle/tabular/autoload/tabular.vim	/^function! s:StripTrailingSpaces(string)$/;"	f
-Strlen	bundle/tabular/autoload/tabular.vim	/^function! s:Strlen(string)$/;"	f
+Start	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Start(repeat)$/;"	f
 SyntasticAddToErrors	bundle/syntastic/plugin/syntastic.vim	/^function! SyntasticAddToErrors(errors, options)$/;"	f
 SyntasticCheck	bundle/syntastic/plugin/syntastic.vim	/^command! -nargs=? -complete=custom,s:CompleteCheckerName SyntasticCheck call s:UpdateErrors(0, <f-args>) <bar> call s:Redraw()$/;"	c
 SyntasticChecker.New	bundle/syntastic/plugin/syntastic/checker.vim	/^function! g:SyntasticChecker.New(args)$/;"	f
@@ -438,10 +428,6 @@ SyntaxCheckers_zpt_zptlint_GetLocList	bundle/syntastic/syntax_checkers/zpt/zptli
 SyntaxCheckers_zpt_zptlint_IsAvailable	bundle/syntastic/syntax_checkers/zpt/zptlint.vim	/^function! SyntaxCheckers_zpt_zptlint_IsAvailable()$/;"	f
 SyntaxCheckers_zsh_zsh_GetLocList	bundle/syntastic/syntax_checkers/zsh/zsh.vim	/^function! SyntaxCheckers_zsh_zsh_GetLocList()$/;"	f
 SyntaxCheckers_zsh_zsh_IsAvailable	bundle/syntastic/syntax_checkers/zsh/zsh.vim	/^function! SyntaxCheckers_zsh_zsh_IsAvailable()$/;"	f
-Tabular.vim	bundle/tabular/plugin/Tabular.vim	1;"	F
-TabularMaps.vim	bundle/tabular/after/plugin/TabularMaps.vim	1;"	F
-Tabularize	bundle/tabular/plugin/Tabular.vim	/^   \\ Tabularize <line1>,<line2>call Tabularize(<q-args>)$/;"	c
-Tabularize	bundle/tabular/plugin/Tabular.vim	/^function! Tabularize(command) range$/;"	f
 TernDef	bundle/tern/autoload/tern.vim	/^command! TernDef py tern_lookupDefinition("edit")$/;"	c
 TernDefPreview	bundle/tern/autoload/tern.vim	/^command! TernDefPreview py tern_lookupDefinition("pedit")$/;"	c
 TernDefSplit	bundle/tern/autoload/tern.vim	/^command! TernDefSplit py tern_lookupDefinition("split")$/;"	c
@@ -452,7 +438,7 @@ TernRefs	bundle/tern/autoload/tern.vim	/^command! TernRefs py tern_refs()$/;"	c
 TernRename	bundle/tern/autoload/tern.vim	/^command! TernRename exe 'py tern_rename("'.input("new name? ",expand("<cword>")).'")'$/;"	c
 TernShutDown	bundle/tern/autoload/tern.vim	/^augroup TernShutDown$/;"	a
 TernType	bundle/tern/autoload/tern.vim	/^command! TernType py tern_lookupType()$/;"	c
-TextObjWordBasedColumn	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! TextObjWordBasedColumn(textobj)$/;"	f
+TextObjWordBasedColumn	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! TextObjWordBasedColumn(textobj)$/;"	f
 TextObject	bundle/indent-object/plugin/indent-object.vim	/^function! <Sid>TextObject(inner, incbelow, vis, range, count)$/;"	f
 TidyEncOptByFenc	bundle/syntastic/syntax_checkers/html/tidy.vim	/^function! s:TidyEncOptByFenc()$/;"	f
 TidyEncOptByFenc	bundle/syntastic/syntax_checkers/xhtml/tidy.vim	/^function! s:TidyEncOptByFenc()$/;"	f
@@ -468,6 +454,7 @@ UpdatePlaceholderTabStops	bundle/snipmate/autoload/snipMate.vim	/^fun s:UpdatePl
 UpdateTabStops	bundle/snipmate/autoload/snipMate.vim	/^fun s:UpdateTabStops()$/;"	f
 UpdateVars	bundle/snipmate/autoload/snipMate.vim	/^fun s:UpdateVars()$/;"	f
 ValidateError	bundle/syntastic/syntax_checkers/html/tidy.vim	/^function! s:ValidateError(text)$/;"	f
+Water	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:Water()$/;"	f
 WideMsg	bundle/syntastic/plugin/syntastic.vim	/^function! s:WideMsg(msg)$/;"	f
 YAIFA	bundle/yaifa/plugin/yaifa.vim	/^augroup YAIFA$/;"	a
 YAIFA	bundle/yaifa/plugin/yaifa.vim	/^function! YAIFA(...)$/;"	f
@@ -482,10 +469,10 @@ YAIFAMagic	bundle/yaifa/plugin/yaifa.vim	/^command -nargs=0 -bar YAIFAMagic call
 ]]	bundle/lang/after/ftplugin/html.vim	/^nnoremap <silent> <buffer> ]] :call functions#Custom_jump('\/<\\(html\\\\|body\\\\|head\\\\|address\\\\|article\\\\|aside\\\\|audio\\\\|blockquote\\\\|canvas\\\\|dd\\\\|div\\\\|dl\\\\|fieldset\\\\|figcaption\\\\|figure\\\\|footer\\\\|form\\\\|h1\\\\|header\\\\|hgroup\\\\|hr\\\\|noscript\\\\|ol\\\\|output\\\\|p\\\\|pre\\\\|section\\\\|table\\\\|tfoot\\\\|ul\\\\|video\\)')<cr>$/;"	m
 ]]	bundle/lang/after/ftplugin/javascript.vim	/^nnoremap <silent> <buffer> ]] :call functions#Custom_jump('\/\\v^\\s*(function\\|var)')<cr>$/;"	m
 ]]	bundle/lang/ftplugin/mustache.vim	/^nnoremap <silent> <buffer> ]] :<C-U>call <SID>sectionmovement('{{','' ,'n',v:count1)<CR>$/;"	m
-aC	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> aC :call TextObjWordBasedColumn("aW")<cr>$/;"	m
+aC	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> aC :call TextObjWordBasedColumn("aW")<cr>$/;"	m
 aI	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>aI :<C-u>cal <Sid>HandleTextObjectMapping(0, 1, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 aI	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>aI :<C-u>cal <Sid>HandleTextObjectMapping(0, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
-ac	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> ac :call TextObjWordBasedColumn("aw")<cr>$/;"	m
+ac	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> ac :call TextObjWordBasedColumn("aw")<cr>$/;"	m
 acp#completeSnipmate	bundle/autocomplpop/autoload/acp.vim	/^function acp#completeSnipmate(findstart, base)$/;"	f
 acp#disable	bundle/autocomplpop/autoload/acp.vim	/^function acp#disable()$/;"	f
 acp#enable	bundle/autocomplpop/autoload/acp.vim	/^function acp#enable()$/;"	f
@@ -511,18 +498,18 @@ actionscript.vim	bundle/lang/after/syntax/actionscript.vim	1;"	F
 ae	bundle/lang/ftplugin/mustache.vim	/^onoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>$/;"	m
 ai	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>ai :<C-u>cal <Sid>HandleTextObjectMapping(0, 0, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 ai	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>ai :<C-u>cal <Sid>HandleTextObjectMapping(0, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
-align	bundle/tmp_lion/plugin/lion.vim	/^function! s:align(mode, type, vis, align_char)$/;"	f
-alignColon	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignColon(type, ...)$/;"	f
-alignEqual	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignEqual(type, ...)$/;"	f
-alignLeft	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignLeft(type, ...)$/;"	f
-alignRight	bundle/tmp_lion/plugin/lion.vim	/^function! s:alignRight(type, ...)$/;"	f
+align	bundle/lion/plugin/lion.vim	/^function! s:align(mode, type, vis, align_char)$/;"	f
+alignColon	bundle/lion/plugin/lion.vim	/^function! s:alignColon(type, ...)$/;"	f
+alignEqual	bundle/lion/plugin/lion.vim	/^function! s:alignEqual(type, ...)$/;"	f
+alignLeft	bundle/lion/plugin/lion.vim	/^function! s:alignLeft(type, ...)$/;"	f
+alignRight	bundle/lion/plugin/lion.vim	/^function! s:alignRight(type, ...)$/;"	f
 analyse_line	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line(line)$/;"	f
 analyse_line_indentation	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line_indentation(line)$/;"	f
 analyse_line_type	bundle/yaifa/plugin/yaifa.vim	/^function! s:analyse_line_type(line)$/;"	f
 apprentice.vim	colors/apprentice.vim	1;"	F
 args	bundle/syntastic/syntax_checkers/fortran/gfortran.vim	/^function s:args()$/;"	f
 args	bundle/syntastic/syntax_checkers/ruby/jruby.vim	/^function s:args()$/;"	f
-assign_map	bundle/tmp_lion/plugin/lion.vim	/^function! s:assign_map(map, func)$/;"	f
+assign_map	bundle/lion/plugin/lion.vim	/^function! s:assign_map(map, func)$/;"	f
 b:current_syntax	bundle/lang/after/syntax/actionscript.vim	/^let b:current_syntax = "actionscript"$/;"	v
 b:current_syntax	bundle/lang/after/syntax/css.vim	/^let b:current_syntax = "css"$/;"	v
 b:current_syntax	bundle/lang/after/syntax/json.vim	/^let b:current_syntax = "json"$/;"	v
@@ -554,13 +541,14 @@ closurecompiler.vim	bundle/syntastic/syntax_checkers/javascript/closurecompiler.
 coco.vim	bundle/syntastic/syntax_checkers/co/coco.vim	1;"	F
 coffee.vim	bundle/syntastic/syntax_checkers/coffee/coffee.vim	1;"	F
 coffeelint.vim	bundle/syntastic/syntax_checkers/coffee/coffeelint.vim	1;"	F
-col_bounds_max	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:col_bounds_max(start_col, stop_col, col_bounds)$/;"	f
-col_bounds_min	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:col_bounds_min(start_col, stop_col, col_bounds)$/;"	f
+col_bounds_max	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:col_bounds_max(start_col, stop_col, col_bounds)$/;"	f
+col_bounds_min	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:col_bounds_min(start_col, stop_col, col_bounds)$/;"	f
 colors_name	colors/apprentice.vim	/^let colors_name = "apprentice"$/;"	v
 colors_name	colors/sorcerer.vim	/^let colors_name = "sorcerer"$/;"	v
 colors_name	colors/sorcerer_16.vim	/^let colors_name = "sorcerer_16"$/;"	v
-command	bundle/tmp_lion/plugin/lion.vim	/^function! s:command(func, ...)$/;"	f
+command	bundle/lion/plugin/lion.vim	/^function! s:command(func, ...)$/;"	f
 commentary.vim	bundle/commentary/plugin/commentary.vim	1;"	F
+concrete.vim	colors/concrete.vim	1;"	F
 count_braces	bundle/lang/after/indent/css.vim	/^function s:count_braces(lnum, count_open)$/;"	f
 cs	bundle/surround/plugin/surround.vim	/^  nmap cs  <Plug>Csurround$/;"	m
 css.vim	bundle/insertion/after/ftplugin/css.vim	1;"	F
@@ -571,7 +559,7 @@ csslint.vim	bundle/syntastic/syntax_checkers/css/csslint.vim	1;"	F
 cucumber.vim	bundle/syntastic/syntax_checkers/cucumber/cucumber.vim	1;"	F
 dart_analyzer.vim	bundle/syntastic/syntax_checkers/dart/dart_analyzer.vim	1;"	F
 dbg	bundle/yaifa/plugin/yaifa.vim	/^function! s:dbg(s)$/;"	f
-debug_str	bundle/tmp_lion/plugin/lion.vim	/^function! s:debug_str(str)$/;"	f
+debug_str	bundle/lion/plugin/lion.vim	/^function! s:debug_str(str)$/;"	f
 deepdbg	bundle/yaifa/plugin/yaifa.vim	/^function! s:deepdbg(s)$/;"	f
 defineOption	bundle/autocomplpop/plugin/acp.vim	/^function s:defineOption(name, default)$/;"	f
 dia	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> dia \/\\v"\\ze[ >\/]<CR>di"$/;"	m
@@ -588,19 +576,18 @@ exe	bundle/syntastic/syntax_checkers/ruby/jruby.vim	/^function s:exe()$/;"	f
 extractafter	bundle/surround/plugin/surround.vim	/^function! s:extractafter(str)$/;"	f
 extractbefore	bundle/surround/plugin/surround.vim	/^function! s:extractbefore(str)$/;"	f
 feedPopup	bundle/autocomplpop/autoload/acp.vim	/^function s:feedPopup()$/;"	f
-find_boundary_row	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:find_boundary_row(start_line, start_col, start_vcol, indent_level, step)$/;"	f
-find_smart_boundary_cols	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:find_smart_boundary_cols(start_line, stop_line, cursor_col, textobj, whitespace_only)$/;"	f
+find_boundary_row	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:find_boundary_row(start_line, start_col, start_vcol, indent_level, step)$/;"	f
+find_smart_boundary_cols	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:find_smart_boundary_cols(start_line, stop_line, cursor_col, textobj, whitespace_only)$/;"	f
 finishPopup	bundle/autocomplpop/autoload/acp.vim	/^function s:finishPopup(fGroup1)$/;"	f
-first_non_ws_after	bundle/tmp_lion/plugin/lion.vim	/^function! s:first_non_ws_after(line, pattern, start, count)$/;"	f
+first_non_ws_after	bundle/lion/plugin/lion.vim	/^function! s:first_non_ws_after(line, pattern, start, count)$/;"	f
 fixindent	bundle/surround/plugin/surround.vim	/^function! s:fixindent(str,spc)$/;"	f
 flake8.vim	bundle/syntastic/syntax_checkers/python/flake8.vim	1;"	F
-functions#AutoSave	autoload/functions.vim	/^function functions#AutoSave()$/;"	f
 functions#Bombit	autoload/functions.vim	/^function functions#Bombit(buffer_only)$/;"	f
 functions#Btag	autoload/functions.vim	/^function functions#Btag(arg)$/;"	f
 functions#BtagComplete	autoload/functions.vim	/^function functions#BtagComplete(ArgLead, CmdLine, CursorPos)$/;"	f
 functions#Custom_jump	autoload/functions.vim	/^function functions#Custom_jump(motion) range$/;"	f
 functions#Entities	autoload/functions.vim	/^function functions#Entities()$/;"	f
-functions#GenerateTags	autoload/functions.vim	/^function functions#GenerateTags(location, buffer_only)$/;"	f
+functions#GenerateTags	autoload/functions.vim	/^function functions#GenerateTags(location, buffer_only, lang_only)$/;"	f
 functions#GetVisualSelection	autoload/functions.vim	/^function functions#GetVisualSelection()$/;"	f
 functions#InsertHandler	autoload/functions.vim	/^function functions#InsertHandler()$/;"	f
 functions#InsertLog	autoload/functions.vim	/^function functions#InsertLog()$/;"	f
@@ -612,7 +599,6 @@ functions#Replace	autoload/functions.vim	/^function functions#Replace(search_pat
 functions#ReverseEntities	autoload/functions.vim	/^function functions#ReverseEntities()$/;"	f
 functions#ReverseURLencoding	autoload/functions.vim	/^function functions#ReverseURLencoding()$/;"	f
 functions#SmartEnter	autoload/functions.vim	/^function functions#SmartEnter()$/;"	f
-functions#SmartUpdate	autoload/functions.vim	/^function functions#SmartUpdate()$/;"	f
 functions#TagExpander	autoload/functions.vim	/^function functions#TagExpander(next)$/;"	f
 functions#Tagit	autoload/functions.vim	/^function functions#Tagit()$/;"	f
 functions#ToUnix	autoload/functions.vim	/^function functions#ToUnix()$/;"	f
@@ -627,13 +613,14 @@ g:SyntasticMakeprgBuilder	bundle/syntastic/plugin/syntastic/makeprg_builder.vim	
 g:SyntasticModeMap	bundle/syntastic/plugin/syntastic/modemap.vim	/^let g:SyntasticModeMap = {}$/;"	v
 g:SyntasticRegistry	bundle/syntastic/plugin/syntastic/registry.vim	/^let g:SyntasticRegistry = {}$/;"	v
 g:SyntasticSigner	bundle/syntastic/plugin/syntastic/signer.vim	/^let g:SyntasticSigner = {}$/;"	v
+g:colors_name	colors/concrete.vim	/^let g:colors_name="concrete"$/;"	v
 g:did_ft	bundle/snipmate/plugin/snipMate.vim	/^let g:did_ft = {}$/;"	v
 g:javascript_conceal	bundle/lang/syntax/javascript.vim	/^  let g:javascript_conceal = 0$/;"	v
-g:lion_create_maps	bundle/tmp_lion/plugin/lion.vim	/^	let g:lion_create_maps = 1$/;"	v
-g:lion_map_colon	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_colon = 'g:'$/;"	v
-g:lion_map_equal	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_equal = 'g='$/;"	v
-g:lion_map_left	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_left = 'gL'$/;"	v
-g:lion_map_right	bundle/tmp_lion/plugin/lion.vim	/^		let g:lion_map_right = 'gl'$/;"	v
+g:lion_create_maps	bundle/lion/plugin/lion.vim	/^	let g:lion_create_maps = 1$/;"	v
+g:lion_map_colon	bundle/lion/plugin/lion.vim	/^		let g:lion_map_colon = 'g:'$/;"	v
+g:lion_map_equal	bundle/lion/plugin/lion.vim	/^		let g:lion_map_equal = 'g='$/;"	v
+g:lion_map_left	bundle/lion/plugin/lion.vim	/^		let g:lion_map_left = 'gL'$/;"	v
+g:lion_map_right	bundle/lion/plugin/lion.vim	/^		let g:lion_map_right = 'gl'$/;"	v
 g:loaded_acp	bundle/autocomplpop/plugin/acp.vim	/^let g:loaded_acp = 1$/;"	v
 g:loaded_autoload_acp	bundle/autocomplpop/autoload/acp.vim	/^let g:loaded_autoload_acp = 1$/;"	v
 g:loaded_commentary	bundle/commentary/plugin/commentary.vim	/^let g:loaded_commentary = 1$/;"	v
@@ -726,7 +713,8 @@ g:loaded_syntastic_yaml_jsyaml_checker	bundle/syntastic/syntax_checkers/yaml/jsy
 g:loaded_syntastic_z80_z80syntaxchecker_checker	bundle/syntastic/syntax_checkers/z80/z80syntaxchecker.vim	/^let g:loaded_syntastic_z80_z80syntaxchecker_checker=1$/;"	v
 g:loaded_syntastic_zpt_zptlint_checker	bundle/syntastic/syntax_checkers/zpt/zptlint.vim	/^let g:loaded_syntastic_zpt_zptlint_checker=1$/;"	v
 g:loaded_syntastic_zsh_zsh_checker	bundle/syntastic/syntax_checkers/zsh/zsh.vim	/^let g:loaded_syntastic_zsh_zsh_checker=1$/;"	v
-g:loaded_textobj_word_column	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^let g:loaded_textobj_word_column = 1$/;"	v
+g:loaded_textobj_word_column	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^let g:loaded_textobj_word_column = 1$/;"	v
+g:loaded_wildfire	bundle/tmp_wildfire/plugin/wildfire.vim	/^let g:loaded_wildfire = 1$/;"	v
 g:loaded_yaifa	bundle/yaifa/plugin/yaifa.vim	/^let g:loaded_yaifa = 1$/;"	v
 g:pipe2eval	bundle/pipe2eval/plugin/pipe2eval.vim	/^let g:pipe2eval = expand('<sfile>:p:h') . '\/pipe2eval.sh'$/;"	v
 g:sparkupExecuteMapping	bundle/sparkup/ftplugin/html/sparkup.vim	/^  let g:sparkupExecuteMapping = '<c-e>'$/;"	v
@@ -805,14 +793,18 @@ g:syntastic_style_error_symbol	bundle/syntastic/plugin/syntastic/signer.vim	/^  
 g:syntastic_style_warning_symbol	bundle/syntastic/plugin/syntastic/signer.vim	/^    let g:syntastic_style_warning_symbol = 'S>'$/;"	v
 g:syntastic_tex_chktex_showmsgs	bundle/syntastic/syntax_checkers/tex/chktex.vim	/^    let g:syntastic_tex_chktex_showmsgs = 1$/;"	v
 g:syntastic_warning_symbol	bundle/syntastic/plugin/syntastic/signer.vim	/^    let g:syntastic_warning_symbol = '>>'$/;"	v
-g:tabular_default_format	bundle/tabular/autoload/tabular.vim	/^  let g:tabular_default_format = "l1"$/;"	v
-g:tabular_loaded	bundle/tabular/plugin/Tabular.vim	/^let g:tabular_loaded = 1$/;"	v
 g:tern#arguments	bundle/tern/autoload/tern.vim	/^  let g:tern#arguments = []$/;"	v
 g:tern#command	bundle/tern/autoload/tern.vim	/^  let g:tern#command = ["node", expand('<sfile>:h') . '\/..\/node_modules\/tern\/bin\/tern', '--no-port-file']$/;"	v
 g:tern_map_keys	bundle/tern/autoload/tern.vim	/^  let g:tern_map_keys = 0$/;"	v
 g:tern_map_prefix	bundle/tern/autoload/tern.vim	/^  let g:tern_map_prefix = '<LocalLeader>'$/;"	v
 g:tern_request_timeout	bundle/tern/autoload/tern.vim	/^  let g:tern_request_timeout = 1$/;"	v
 g:tern_show_argument_hints	bundle/tern/autoload/tern.vim	/^  let g:tern_show_argument_hints = 'no'$/;"	v
+g:wildfire_fuel_map	bundle/tmp_wildfire/plugin/wildfire.vim	/^let g:wildfire_fuel_map =$/;"	v
+g:wildfire_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^        let g:wildfire_objects[ft] = objects$/;"	v
+g:wildfire_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^    let g:wildfire_objects = {"*": s:objects}$/;"	v
+g:wildfire_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^let g:wildfire_objects = {}$/;"	v
+g:wildfire_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^let g:wildfire_objects =$/;"	v
+g:wildfire_water_map	bundle/tmp_wildfire/plugin/wildfire.vim	/^let g:wildfire_water_map =$/;"	v
 gc	bundle/commentary/plugin/commentary.vim	/^  nmap gc  <Plug>Commentary$/;"	m
 gcc	bundle/commentary/plugin/commentary.vim	/^  nmap gcc <Plug>CommentaryLine$/;"	m
 gcc.vim	bundle/syntastic/syntax_checkers/ada/gcc.vim	1;"	F
@@ -829,7 +821,7 @@ getPuppetLintErrors	bundle/syntastic/syntax_checkers/puppet/puppetlint.vim	/^fun
 getPuppetMakeprg	bundle/syntastic/syntax_checkers/puppet/puppetlint.vim	/^function! s:getPuppetMakeprg()$/;"	f
 get_next_token	bundle/lang/plugin/jsbeautify.vim	/^function! s:get_next_token()$/;"	f
 getchar	bundle/surround/plugin/surround.vim	/^function! s:getchar()$/;"	f
-getpos	bundle/tmp_lion/plugin/lion.vim	/^function! s:getpos(start, end, mode)$/;"	f
+getpos	bundle/lion/plugin/lion.vim	/^function! s:getpos(start, end, mode)$/;"	f
 gfortran.vim	bundle/syntastic/syntax_checkers/fortran/gfortran.vim	1;"	F
 ghc-mod.vim	bundle/syntastic/syntax_checkers/haskell/ghc-mod.vim	1;"	F
 gjslint.vim	bundle/syntastic/syntax_checkers/javascript/gjslint.vim	1;"	F
@@ -842,17 +834,17 @@ hdevtools.vim	bundle/syntastic/syntax_checkers/haskell/hdevtools.vim	1;"	F
 html.vim	bundle/insertion/after/ftplugin/html.vim	1;"	F
 html.vim	bundle/lang/after/ftplugin/html.vim	1;"	F
 html_snip_helper.vim	bundle/snipmate/ftplugin/html_snip_helper.vim	1;"	F
-iC	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> iC :call TextObjWordBasedColumn("iW")<cr>$/;"	m
+iC	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> iC :call TextObjWordBasedColumn("iW")<cr>$/;"	m
 iI	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 iI	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>iI :<C-u>cal <Sid>HandleTextObjectMapping(1, 1, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
-ic	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> ic :call TextObjWordBasedColumn("iw")<cr>$/;"	m
+ic	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^  onoremap <silent> ic :call TextObjWordBasedColumn("iw")<cr>$/;"	m
 ie	bundle/lang/ftplugin/mustache.vim	/^onoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>$/;"	m
 ii	bundle/indent-object/plugin/indent-object.vim	/^onoremap <silent>ii :<C-u>cal <Sid>HandleTextObjectMapping(1, 0, 0, [line("."), line("."), col("."), col(".")])<CR>$/;"	m
 ii	bundle/indent-object/plugin/indent-object.vim	/^vnoremap <silent>ii :<C-u>cal <Sid>HandleTextObjectMapping(1, 0, 1, [line("'<"), line("'>"), col("'<"), col("'>")])<CR><Esc>gv$/;"	m
 in_array	bundle/lang/plugin/jsbeautify.vim	/^function! s:in_array(what, arr)$/;"	f
 indent	bundle/lang/plugin/jsbeautify.vim	/^function! s:indent()$/;"	f
 indent-object.vim	bundle/indent-object/plugin/indent-object.vim	1;"	F
-indent_level	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:indent_level(line_num)$/;"	f
+indent_level	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:indent_level(line_num)$/;"	f
 info	bundle/yaifa/plugin/yaifa.vim	/^function! s:info(s)$/;"	f
 inputreplacement	bundle/surround/plugin/surround.vim	/^function! s:inputreplacement()$/;"	f
 inputtarget	bundle/surround/plugin/surround.vim	/^function! s:inputtarget()$/;"	f
@@ -862,7 +854,7 @@ insertion#Absolute2Relative	bundle/insertion/autoload/insertion.vim	/^function! 
 insertion#InsertIMG	bundle/insertion/autoload/insertion.vim	/^function! insertion#InsertIMG(...)$/;"	f
 insertion.vim	bundle/insertion/autoload/insertion.vim	1;"	F
 isModifiedSinceLastCall	bundle/autocomplpop/autoload/acp.vim	/^function s:isModifiedSinceLastCall()$/;"	f
-is_comment	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:is_comment(line_num, column)$/;"	f
+is_comment	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:is_comment(line_num, column)$/;"	f
 is_js	bundle/lang/plugin/jsbeautify.vim	/^function! s:is_js()$/;"	f
 javac.vim	bundle/syntastic/syntax_checkers/java/javac.vim	1;"	F
 javascript.vim	bundle/lang/after/ftplugin/javascript.vim	1;"	F
@@ -884,7 +876,7 @@ jsonval.vim	bundle/syntastic/syntax_checkers/json/jsonval.vim	1;"	F
 jsyaml.vim	bundle/syntastic/syntax_checkers/yaml/jsyaml.vim	1;"	F
 lacheck.vim	bundle/syntastic/syntax_checkers/tex/lacheck.vim	1;"	F
 lessc.vim	bundle/syntastic/syntax_checkers/less/lessc.vim	1;"	F
-lion.vim	bundle/tmp_lion/plugin/lion.vim	1;"	F
+lion.vim	bundle/lion/plugin/lion.vim	1;"	F
 loaded_checkpatch_syntax_checker	bundle/syntastic/syntax_checkers/c/checkpatch.vim	/^let loaded_checkpatch_syntax_checker = 1$/;"	v
 loaded_jsbeautify	bundle/lang/plugin/jsbeautify.vim	/^let loaded_jsbeautify = 3$/;"	v
 loaded_make_syntax_checker	bundle/syntastic/syntax_checkers/c/make.vim	/^let loaded_make_syntax_checker = 1$/;"	v
@@ -894,6 +886,7 @@ loaded_ycm_c_syntax_checker	bundle/syntastic/syntax_checkers/c/ycm.vim	/^let loa
 loaded_ycm_cpp_syntax_checker	bundle/syntastic/syntax_checkers/cpp/ycm.vim	/^let loaded_ycm_cpp_syntax_checker = 1$/;"	v
 loaded_ycm_objc_syntax_checker	bundle/syntastic/syntax_checkers/objc/ycm.vim	/^let loaded_ycm_objc_syntax_checker = 1$/;"	v
 loclist.vim	bundle/syntastic/plugin/syntastic/loclist.vim	1;"	F
+log	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:log(msg)$/;"	f
 log	bundle/yaifa/plugin/yaifa.vim	/^function! s:log(level, s)$/;"	f
 luac.vim	bundle/syntastic/syntax_checkers/lua/luac.vim	1;"	F
 macruby.vim	bundle/syntastic/syntax_checkers/ruby/macruby.vim	1;"	F
@@ -910,7 +903,7 @@ mapForMappingDriven	bundle/autocomplpop/autoload/acp.vim	/^function s:mapForMapp
 markdown.vim	bundle/lang/after/syntax/markdown.vim	1;"	F
 markdown.vim	bundle/lang/ftdetect/markdown.vim	1;"	F
 markdown.vim	bundle/lang/ftplugin/markdown.vim	1;"	F
-match_pos	bundle/tmp_lion/plugin/lion.vim	/^function! s:match_pos(mode, line, char, count, line_number, start, end)$/;"	f
+match_pos	bundle/lion/plugin/lion.vim	/^function! s:match_pos(mode, line, char, count, line_number, start, end)$/;"	f
 mcs.vim	bundle/syntastic/syntax_checkers/cs/mcs.vim	1;"	F
 mlint.vim	bundle/syntastic/syntax_checkers/matlab/mlint.vim	1;"	F
 modemap.vim	bundle/syntastic/plugin/syntastic/modemap.vim	1;"	F
@@ -921,6 +914,7 @@ mustache.vim	bundle/lang/syntax/mustache.vim	1;"	F
 nagelfar.vim	bundle/syntastic/syntax_checkers/tcl/nagelfar.vim	1;"	F
 nasm.vim	bundle/syntastic/syntax_checkers/nasm/nasm.vim	1;"	F
 nvcc.vim	bundle/syntastic/syntax_checkers/cuda/nvcc.vim	1;"	F
+odd_quotes	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:odd_quotes(quote, s)$/;"	f
 opfunc	bundle/surround/plugin/surround.vim	/^function! s:opfunc(type,...) " {{{1$/;"	f
 opfunc2	bundle/surround/plugin/surround.vim	/^function! s:opfunc2(arg)$/;"	f
 osacompile.vim	bundle/syntastic/syntax_checkers/applescript/osacompile.vim	1;"	F
@@ -981,7 +975,6 @@ s:Mixed	bundle/yaifa/plugin/yaifa.vim	/^let s:Mixed = "Mixed"$/;"	v
 s:NoIndent	bundle/yaifa/plugin/yaifa.vim	/^let s:NoIndent = "NoIndent"$/;"	v
 s:SpaceOnly	bundle/yaifa/plugin/yaifa.vim	/^let s:SpaceOnly = "SpaceOnly"$/;"	v
 s:TabOnly	bundle/yaifa/plugin/yaifa.vim	/^let s:TabOnly = "TabOnly"$/;"	v
-s:TabularCommands	bundle/tabular/plugin/Tabular.vim	/^let s:TabularCommands = {}$/;"	v
 s:behavsCurrent	bundle/autocomplpop/autoload/acp.vim	/^let s:behavsCurrent = []$/;"	v
 s:block_regex	bundle/lang/after/indent/json.vim	/^let s:block_regex = '\\%({\\)\\s*\\%(|\\%([*@]\\=\\h\\w*,\\=\\s*\\)\\%(,\\s*[*@]\\=\\h\\w*\\)*|\\)\\=' . s:line_term$/;"	v
 s:block_regex	bundle/lang/indent/javascript.vim	/^let s:block_regex = '\\%([{[]\\)\\s*\\%(|\\%([*@]\\=\\h\\w*,\\=\\s*\\)\\%(,\\s*[*@]\\=\\h\\w*\\)*|\\)\\=' . s:line_term$/;"	v
@@ -993,7 +986,8 @@ s:check_file	bundle/syntastic/syntax_checkers/less/lessc.vim	/^    let s:check_f
 s:comma_first	bundle/lang/indent/javascript.vim	/^let s:comma_first = '^\\s*,'$/;"	v
 s:comma_last	bundle/lang/indent/javascript.vim	/^let s:comma_last = ',\\s*$'$/;"	v
 s:continuation_regex	bundle/lang/indent/javascript.vim	/^let s:continuation_regex = '\\%([\\\\*+\/.:]\\|\\%(<%\\)\\@<![=-]\\|\\W[|&?]\\|||\\|&&\\)' . s:line_term$/;"	v
-s:count	bundle/tmp_lion/plugin/lion.vim	/^let s:count = 1$/;"	v
+s:count	bundle/lion/plugin/lion.vim	/^let s:count = 1$/;"	v
+s:counts	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:counts = {}$/;"	v
 s:cpo_save	bundle/lang/after/indent/json.vim	/^let s:cpo_save = &cpo$/;"	v
 s:cpo_save	bundle/lang/ftplugin/mustache.vim	/^let s:cpo_save = &cpo$/;"	v
 s:cpo_save	bundle/lang/indent/javascript.vim	/^let s:cpo_save = &cpo$/;"	v
@@ -1009,7 +1003,6 @@ s:did_snip_helper	bundle/snipmate/ftplugin/html_snip_helper.vim	/^let s:did_snip
 s:did_snips_mappings	bundle/snipmate/after/plugin/snipMate.vim	/^let s:did_snips_mappings = 1$/;"	v
 s:done_bundles	autoload/pathogen.vim	/^let s:done_bundles = ''$/;"	v
 s:first_sign_id	bundle/syntastic/plugin/syntastic/signer.vim	/^let s:first_sign_id = 5000$/;"	v
-s:formatelempat	bundle/tabular/autoload/tabular.vim	/^let s:formatelempat = '\\%([lrc]\\d\\+\\)'$/;"	v
 s:iBehavs	bundle/autocomplpop/autoload/acp.vim	/^let s:iBehavs = 0$/;"	v
 s:ignore_html_errors	bundle/syntastic/syntax_checkers/html/tidy.vim	/^let s:ignore_html_errors = [$/;"	v
 s:imports	bundle/syntastic/syntax_checkers/sass/sass.vim	/^    let s:imports = "--compass"$/;"	v
@@ -1021,6 +1014,7 @@ s:l1	bundle/indent-object/plugin/indent-object.vim	/^let s:l1 = -1$/;"	v
 s:line_term	bundle/lang/after/indent/json.vim	/^let s:line_term = '\\s*\\%(\\%(\\\/\\\/\\).*\\)\\=$'$/;"	v
 s:line_term	bundle/lang/indent/javascript.vim	/^let s:line_term = '\\s*\\%(\\%(\\\/\\\/\\).*\\)\\=$'$/;"	v
 s:lockCount	bundle/autocomplpop/autoload/acp.vim	/^let s:lockCount = 0$/;"	v
+s:logfile	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:logfile = expand("<sfile>:p:h") . s:pathsep . "wildfire.log"$/;"	v
 s:map_key_default	bundle/pipe2eval/plugin/pipe2eval.vim	/^let s:map_key_default = "<Space>"$/;"	v
 s:max_lines	bundle/yaifa/plugin/yaifa.vim	/^        let s:max_lines = 1024*2$/;"	v
 s:max_lines	bundle/yaifa/plugin/yaifa.vim	/^        let s:max_lines = g:yaifa_max_lines$/;"	v
@@ -1029,9 +1023,14 @@ s:modemap	bundle/syntastic/plugin/syntastic.vim	/^let s:modemap = g:SyntasticMod
 s:msl_regex	bundle/lang/indent/javascript.vim	/^let s:msl_regex = '\\%([\\\\*+\/.:([]\\|\\%(<%\\)\\@<![=-]\\|\\W[|&?]\\|||\\|&&\\)' . s:line_term$/;"	v
 s:nb_processed_lines	bundle/yaifa/plugin/yaifa.vim	/^let s:nb_processed_lines = 0$/;"	v
 s:next_sign_id	bundle/syntastic/plugin/syntastic/signer.vim	/^let s:next_sign_id = s:first_sign_id$/;"	v
+s:objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^    let s:objects = g:wildfire_objects$/;"	v
+s:objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:objects = [$/;"	v
+s:objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:objects = g:wildfire_objects$/;"	v
 s:ocamlpp	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^    let s:ocamlpp="camlp4o"$/;"	v
 s:ocamlpp	bundle/syntastic/syntax_checkers/ocaml/camlp4o.vim	/^    let s:ocamlpp="camlp4r"$/;"	v
 s:one_line_scope_regex	bundle/lang/indent/javascript.vim	/^let s:one_line_scope_regex = '\\<\\%(if\\|else\\|for\\|while\\)\\>[^{;]*' . s:line_term$/;"	v
+s:origin	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:origin = []$/;"	v
+s:pathsep	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:pathsep = has("win32") ? "\\\\" : "\/"$/;"	v
 s:registry	bundle/syntastic/plugin/syntastic.vim	/^let s:registry = g:SyntasticRegistry.Instance()$/;"	v
 s:running_windows	bundle/syntastic/plugin/syntastic.vim	/^let s:running_windows = has("win16") || has("win32")$/;"	v
 s:sass_cache_location	bundle/syntastic/syntax_checkers/sass/sass.vim	/^let s:sass_cache_location = tempname()$/;"	v
@@ -1043,9 +1042,8 @@ s:save_cpo	bundle/syntastic/syntax_checkers/c/make.vim	/^let s:save_cpo = &cpo$/
 s:save_cpo	bundle/syntastic/syntax_checkers/cpp/gcc.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	bundle/syntastic/syntax_checkers/d/dmd.vim	/^let s:save_cpo = &cpo$/;"	v
 s:save_cpo	bundle/syntastic/syntax_checkers/objc/gcc.vim	/^let s:save_cpo = &cpo$/;"	v
-s:save_cpo	bundle/tabular/after/plugin/TabularMaps.vim	/^let s:save_cpo = &cpo$/;"	v
-s:savecpo	bundle/tabular/autoload/tabular.vim	/^let s:savecpo = &cpo$/;"	v
-s:savecpo	bundle/tabular/plugin/Tabular.vim	/^let s:savecpo = &cpo$/;"	v
+s:save_cpo	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:save_cpo = &cpo$/;"	v
+s:selections_history	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:selections_history = []$/;"	v
 s:signer	bundle/syntastic/plugin/syntastic.vim	/^let s:signer = g:SyntasticSigner.New()$/;"	v
 s:skip_expr	bundle/lang/indent/javascript.vim	/^let s:skip_expr = "synIDattr(synID(line('.'),col('.'),1),'name') =~ '".s:syng_strcom."'"$/;"	v
 s:snipItems	bundle/autocomplpop/autoload/acp.vim	/^let s:snipItems = {}$/;"	v
@@ -1067,6 +1065,9 @@ s:verbose_info	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_info  = 1$/;"	v
 s:verbose_quiet	bundle/yaifa/plugin/yaifa.vim	/^let s:verbose_quiet = 0$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = g:yaifa_verbosity$/;"	v
 s:verbosity	bundle/yaifa/plugin/yaifa.vim	/^        let s:verbosity = s:default_verbosity$/;"	v
+s:vim_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^    let s:vim_objects = extend(s:vim_objects, {"a".kind : 1, "i".kind : 1})$/;"	v
+s:vim_objects	bundle/tmp_wildfire/plugin/wildfire.vim	/^let s:vim_objects = {}$/;"	v
+safenet	bundle/tmp_wildfire/plugin/wildfire.vim	/^fu! s:safenet(count)$/;"	f
 sass.vim	bundle/syntastic/syntax_checkers/sass/sass.vim	1;"	F
 sass.vim	bundle/syntastic/syntax_checkers/scss/sass.vim	1;"	F
 scalac.vim	bundle/syntastic/syntax_checkers/scala/scalac.vim	1;"	F
@@ -1105,10 +1106,6 @@ syntastic#util#ParseShebang	bundle/syntastic/autoload/syntastic/util.vim	/^funct
 syntastic#util#versionIsAtLeast	bundle/syntastic/autoload/syntastic/util.vim	/^function syntastic#util#versionIsAtLeast(installed, required)$/;"	f
 syntastic.vim	bundle/syntastic/plugin/syntastic.vim	1;"	F
 syntastic_auto_jump	bundle/syntastic/plugin/syntastic.vim	/^    let syntastic_auto_jump=0$/;"	v
-tabular#ElementFormatPattern	bundle/tabular/autoload/tabular.vim	/^function! tabular#ElementFormatPattern()$/;"	f
-tabular#PipeRange	bundle/tabular/autoload/tabular.vim	/^function! tabular#PipeRange(includepat, ...) range$/;"	f
-tabular#TabularizeStrings	bundle/tabular/autoload/tabular.vim	/^function! tabular#TabularizeStrings(strings, delim, ...)$/;"	f
-tabular.vim	bundle/tabular/autoload/tabular.vim	1;"	F
 tern#Complete	bundle/tern/autoload/tern.vim	/^function! tern#Complete(findstart, complWord)$/;"	f
 tern#DefaultKeyMap	bundle/tern/autoload/tern.vim	/^function! tern#DefaultKeyMap(...)$/;"	f
 tern#Disable	bundle/tern/autoload/tern.vim	/^function! tern#Disable()$/;"	f
@@ -1134,8 +1131,10 @@ via	bundle/lang/after/ftplugin/html.vim	/^nnoremap <buffer> via \/\\v"\\ze[ >\/]
 vim,	bundle/tern/autoload/tern.vim	/^import vim, os, platform, subprocess, urllib2, webbrowser, json, re, string, time$/;"	m
 vim.vim	bundle/lang/after/ftplugin/vim.vim	1;"	F
 w3.vim	bundle/syntastic/syntax_checkers/html/w3.vim	1;"	F
-whitespace_column_wanted	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	/^function! s:whitespace_column_wanted(start_line, stop_line, cursor_col)$/;"	f
-word-column.vim	bundle/tmp_textobj-word-column/plugin/textobj/word-column.vim	1;"	F
+whitespace_column_wanted	bundle/textobj-word-column/plugin/textobj/word-column.vim	/^function! s:whitespace_column_wanted(start_line, stop_line, cursor_col)$/;"	f
+wildfire	bundle/tmp_wildfire/plugin/wildfire.vim	/^augroup wildfire$/;"	a
+wildfire.vim	bundle/tmp_wildfire/plugin/wildfire.vim	1;"	F
+word-column.vim	bundle/textobj-word-column/plugin/textobj/word-column.vim	1;"	F
 wrap	bundle/surround/plugin/surround.vim	/^function! s:wrap(string,char,type,...)$/;"	f
 wrap_around	bundle/lang/ftplugin/mustache.vim	/^function! s:wrap_around()$/;"	f
 wrap_inside	bundle/lang/ftplugin/mustache.vim	/^function! s:wrap_inside()$/;"	f
