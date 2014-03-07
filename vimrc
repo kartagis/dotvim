@@ -77,7 +77,7 @@ set winheight=999
 augroup VIMRC
   autocmd!
 
-  autocmd FocusLost,InsertLeave * wall
+  autocmd FocusLost,InsertLeave * bufdo call functions#AutoSave()
 
   autocmd GUIEnter * set vb t_vb=
 
