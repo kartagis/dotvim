@@ -16,30 +16,7 @@ function functions#SmartUpdate()
 
 endfunction
 
-" ===========================================================================
-" :Qfdo made into a proper function
-function functions#Qfdo(file)
-  try
-    silent cfirst
-
-    while 1
-      execute <q-args>
-
-      if a:file == 0
-        silent cnext
-
-      else
-        silent cnfile
-
-    endwhile
-
-  catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
-
-  endtry
-
-endfunction
-
-" ===========================================================================
+" =======:===================================================================
 
 " naive MRU
 function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
@@ -108,39 +85,24 @@ endfunction
 
 " ===========================================================================
 
-" experimental search/replace across project
-function functions#Replace(search_pattern, replacement_pattern)
-  echo "Replace " . expand(a:search_pattern) . " with: " . expand(a:replacement_pattern) . "\n"
-  let file_pattern        = ""
-  let user_choice         = inputlist([
-    \ 'In...',
-    \ '1. the current file only',
-    \ '2. every ' . &filetype . ' file in ' . getcwd(),
-    \ '3. every file (except &wildignore) in ' . getcwd(),
-    \ '4. custom file pattern...'])
+" simplistic search/replace across project
+function functions#Replace(search_pattern, replacement_pattern, file_pattern)
 
-  if user_choice == 0
-    return
+  silent execute "vimgrep " . a:search_pattern . " " . a:file_pattern
 
-  elseif user_choice == 1
-    execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
+  try
+    silent cfirst
 
-  else
-    tabedit %
-    if user_choice == 2
-      let file_pattern = "**/*." . expand("%:e")
+    while 1
+      execute "s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
 
-    elseif user_choice == 3
-      let file_pattern = "**/*"
+      silent cnext
 
-    elseif user_choice == 4
-      let file_pattern = substitute(input("\nCustom file pattern:\n"), "\n", "", "g")
+    endwhile
 
-    endif
+  catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
 
-    silent execute "vimgrep " . a:search_pattern . " " . file_pattern
-    execute "Qfdo s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
-  endif
+  endtry
 
 endfunction
 
@@ -478,7 +440,7 @@ function functions#ToUnix()
   silent ``
 
 endfunction
-
+	
 " ===========================================================================
 
 " normal characters --> HTML entities

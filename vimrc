@@ -77,7 +77,7 @@ set winheight=999
 augroup VIMRC
   autocmd!
 
-  autocmd FocusLost,InsertLeave * bufdo call functions#AutoSave()
+  autocmd FocusLost,InsertLeave * call functions#AutoSave()
 
   autocmd GUIEnter * set vb t_vb=
 
@@ -220,7 +220,6 @@ nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
-" sdsdkskd
 
 """""""""""""""""
 " EXPERIMENTAL! "
@@ -228,8 +227,6 @@ nnoremap <up>   gk
 
 inoremap <expr> <CR> functions#SmartEnter()
 
-" nnoremap <End>  :cnext<CR>zv
-" nnoremap <Home> :cprevious<CR>zv
 nnoremap <Home> :call functions#WrapCommand("up")<CR>
 nnoremap <End>  :call functions#WrapCommand("down")<CR>
 
@@ -295,9 +292,6 @@ command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call function
 command! -nargs=1 -complete=customlist,functions#MRUComplete MRU  call functions#MRU('edit', <f-args>)
 command! -nargs=1 -complete=customlist,functions#MRUComplete MRUS call functions#MRU('split', <f-args>)
 command! -nargs=1 -complete=customlist,functions#MRUComplete MRUV call functions#MRU('vsplit', <f-args>)
-
-command! -nargs=1 Qfdo     call functions#Qfdo(0)
-command! -nargs=1 Qfdofile call functions#Qfdo(1)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)
 

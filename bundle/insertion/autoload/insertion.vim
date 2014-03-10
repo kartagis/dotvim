@@ -1,4 +1,4 @@
-function! insertion#InsertIMG(...)
+function insertion#InsertIMG(...)
   if(a:0 > 0)
     let path = a:1
 
@@ -45,43 +45,13 @@ function! insertion#InsertIMG(...)
 
 endfunction
 
-" function! HTML_insertHref(...)
-"   if(a:0 > 0)
-"     let path = a:1
-
-"   else
-"     if(has("browse"))
-"       let path = browse('', 'Get file for <a href="">', '.', '')
-
-"     else
-"       echo "Your VIM doesn't support the :browse command, insert file path manualy."
-"       return
-
-"     endif
-
-"   endif
-
-"   if(path[0] == '/')
-"     let path = Absolute2Relative(path)
-
-"   endif
-
-"   let old_x = @x
-"   let @x = '<a href="' . path . '">' . path . '</a>'
-
-"   normal "xp==$4hT>vt<
-
-"   let @x = old_x
-
-" endfunction
-
-function! insertion#Absolute2Relative(path)
-  let pat = a:path
-  let cur = getcwd() . '/'
+function insertion#Absolute2Relative(path)
+  let pat  = a:path
+  let cur  = getcwd() . '/'
   let lPat = strlen(pat)
   let lCur = strlen(cur)
-  let i = 0
-  let beg = 0
+  let i    = 0
+  let beg  = 0
 
   while(i < lPat && i < lCur)
     if(pat[i] == cur[i])
