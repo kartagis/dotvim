@@ -2,7 +2,8 @@
 function functions#AutoSave()
   let this_window = winnr()
 
-  windo call functions#SmartUpdate()
+  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
+  " windo call functions#SmartUpdate()
 
   execute this_window . 'wincmd w'
 
@@ -94,9 +95,9 @@ function functions#Replace(search_pattern, replacement_pattern, file_pattern)
     silent cfirst
 
     while 1
-      execute "s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
+      execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
 
-      silent cnext
+      silent cnfile
 
     endwhile
 
@@ -440,7 +441,7 @@ function functions#ToUnix()
   silent ``
 
 endfunction
-	
+
 " ===========================================================================
 
 " normal characters --> HTML entities
