@@ -14,4 +14,4 @@ xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 nnoremap <buffer> <leader>h :call functions#InsertHandler()<CR>
 nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>
 
-command! -buffer -range=% Format execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth
+command! -buffer -range=% Format let b:winview = winsaveview() | execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth | call winrestview(b:winview)

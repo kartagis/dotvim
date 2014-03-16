@@ -147,6 +147,8 @@ endif
 """""""""""""""""""
 
 let mapleader = ","
+" available keys: a c e   i   mno q   u w yz
+"                 A CDE GHIJKLMNOPQ   U W YZ
 
 " juggling with files
 nnoremap <leader>f :find *
@@ -289,9 +291,9 @@ command! SV         source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#Btag(<f-args>)
 
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRU  call functions#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRUS call functions#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MRUV call functions#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#MRU('vsplit', <f-args>)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)
 
@@ -313,9 +315,9 @@ let g:syntastic_auto_jump           = 1
 let g:syntastic_auto_loc_list       = 1
 let g:syntastic_enable_signs        = 1
 let g:syntastic_mode_map            = {
-  \ 'mode'              : 'active',
+  \ 'mode'              : 'passive',
   \ 'active_filetypes'  : ['javascript'],
-  \ 'passive_filetypes' : ['css', 'python', 'html', 'xhtml', 'php']
+  \ 'passive_filetypes' : []
   \ }
 
 let g:html_indent_script1 = 'inc'
