@@ -1,3 +1,35 @@
+"""""""
+" WIP "
+"""""""
+" TODO: scale down the color palette from 26 to 24
+"
+" 101
+" 103
+" 107
+" 131
+" 138
+" 146
+" 180
+" 231
+" 233
+" 234
+" 235
+" 236
+" 238
+" 239
+" 240
+" 241
+" 243
+" 245
+" 250
+" 44
+" 59
+" 66
+" 67
+" 73
+" 74
+" 95
+
 set background=dark
 
 hi clear
@@ -9,7 +41,7 @@ endif
 
 let colors_name = "greybeard"
 
-hi Normal           ctermfg=255  ctermbg=234  guifg=#eeeeee guibg=#1c1c1c cterm=NONE           gui=NONE
+hi Normal           ctermfg=250  ctermbg=234  guifg=#bcbcbc guibg=#1c1c1c cterm=NONE           gui=NONE
 hi Comment          ctermfg=243  ctermbg=NONE guifg=#767676 guibg=NONE    cterm=NONE           gui=NONE
 hi Constant         ctermfg=138  ctermbg=NONE guifg=#af8787 guibg=NONE    cterm=NONE           gui=NONE
 hi Error            ctermfg=231  ctermbg=131  guifg=#ffffff guibg=#af5f5f cterm=NONE           gui=NONE
@@ -32,13 +64,14 @@ hi PmenuThumb       ctermbg=66   ctermfg=66   guibg=#5f8787 guifg=#5f8787 cterm=
 
 hi MoreMsg          ctermbg=234  ctermfg=66   guibg=#1c1c1c guifg=#5f8787 cterm=NONE           gui=NONE
 hi ModeMsg          ctermbg=66   ctermfg=233  guibg=#5f8787 guifg=#121212 cterm=NONE           gui=NONE
+hi Question         ctermbg=107  ctermfg=234  guibg=#1c1c1c guifg=#87af5f cterm=NONE           gui=NONE
+hi WarningMsg       ctermbg=234  ctermfg=131  guibg=#1c1c1c guifg=#af5f5f cterm=NONE           gui=NONE
 
 hi TabLine          ctermbg=233  ctermfg=240  guibg=#121212 guifg=#585858 cterm=NONE           gui=NONE
 hi TabLineSel       ctermbg=236  ctermfg=73   guibg=#303030 guifg=#5fafaf cterm=NONE           gui=NONE
 hi TabLineFill      ctermbg=233  ctermfg=233  guibg=#121212 guifg=#121212 cterm=NONE           gui=reverse
 
 hi Cursor           ctermbg=241  ctermfg=NONE guibg=#626262 guifg=NONE    cterm=NONE           gui=NONE
-
 hi CursorLine       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
 hi CursorLineNr     ctermbg=236  ctermfg=73   guibg=#303030 guifg=#5fafaf cterm=NONE           gui=NONE
 
@@ -57,41 +90,18 @@ hi FoldColumn       ctermbg=235  ctermfg=245  guibg=#4e4e4e guifg=#a8a8a8 cterm=
 hi WildMenu         ctermbg=67   ctermfg=234  guibg=#8787af guifg=#1c1c1c cterm=bold           gui=bold
 hi VertSplit        ctermbg=59   ctermfg=59   guibg=#686868 guifg=#686868 cterm=NONE           gui=NONE
 
-" " hi ColorColumn        ctermbg=234  ctermfg=NONE guibg=#1c1c1c guifg=NONE    cterm=NONE           gui=NONE
-" " hi Conceal            ctermbg=248  ctermfg=252  guibg=#a9a9a9 guifg=#d3d3d3 cterm=NONE           gui=NONE
-" " hi Directory          ctermbg=234  ctermfg=33   guibg=#1c1c1c guifg=#0f49ff cterm=NONE           gui=NONE
-" " hi IncSearch          ctermbg=202  ctermfg=231  guibg=#ff4500 guifg=#ffffff cterm=bold           gui=NONE
-" " hi MatchParen         ctermbg=234   ctermfg=226  guibg=#1c1c1c guifg=#fff000 cterm=bold           gui=NONE
-      " hi Question           ctermbg=NONE ctermfg=148  guibg=NONE    guifg=#c3de4f cterm=bold           gui=NONE
-      " hi Search             ctermbg=148  ctermfg=234   guibg=#c3de4f guifg=#1c1c1c cterm=bold           gui=NONE
-      " hi SignColumn         ctermbg=187  ctermfg=231  guibg=#cdcdb4 guifg=#ffffff cterm=NONE           gui=NONE
-      " hi SpecialKey         ctermbg=NONE ctermfg=238  guibg=NONE    guifg=#424242 cterm=NONE           gui=NONE
-      " hi Title              ctermbg=NONE ctermfg=66   guibg=NONE    guifg=#2c8b8b cterm=bold           gui=NONE
-" hi lCursor            ctermbg=145  ctermfg=234  guibg=#c2c2b0 guifg=#1c1c1c cterm=NONE           gui=NONE
-" hi CursorColumn       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
+hi Title            ctermbg=NONE ctermfg=180  guibg=NONE    guifg=#d7af87 cterm=bold           gui=NONE
+hi SpecialKey       ctermbg=NONE ctermfg=238  guibg=NONE    guifg=#424242 cterm=NONE           gui=NONE
 
-  " " hi SpellBad           ctermbg=NONE ctermfg=196  guibg=NONE    guifg=NONE    guisp=#ee2c2c        cterm=undercurl gui=undercurl
-  " " hi SpellCap           ctermbg=NONE ctermfg=21   guibg=NONE    guifg=NONE    guisp=#0f49ff        cterm=undercurl gui=undercurl
-  " " hi SpellLocal         ctermbg=NONE ctermfg=30   guibg=NONE    guifg=NONE    guisp=#2c8b8b        cterm=undercurl gui=undercurl
-  " " hi SpellRare          ctermbg=NONE ctermfg=201  guibg=NONE    guifg=NONE    guisp=#ff00ff        cterm=undercurl gui=undercurl
+hi DiffAdd          ctermbg=107  ctermfg=234  guibg=#87af5f guifg=#1c1c1c cterm=NONE           gui=NONE
+hi DiffChange       ctermbg=74   ctermfg=234  guibg=#5fafd7 guifg=#1c1c1c cterm=NONE           gui=NONE
+hi DiffDelete       ctermbg=131  ctermfg=234  guibg=#af5f5f guifg=#1c1c1c cterm=NONE           gui=NONE
+hi DiffText         ctermbg=67   ctermfg=234  guibg=#5f87af guifg=#1c1c1c cterm=NONE           gui=NONE
 
-" " hi diffOldFile        ctermbg=NONE ctermfg=170  guibg=NONE    guifg=#da70d6 cterm=NONE           gui=italic
-" " hi diffNewFile        ctermbg=NONE ctermfg=226  guibg=NONE    guifg=#ffff00 cterm=NONE           gui=italic
-" " hi diffFile           ctermbg=NONE ctermfg=214  guibg=NONE    guifg=#ffa500 cterm=NONE           gui=italic
-" " hi diffLine           ctermbg=NONE ctermfg=201  guibg=NONE    guifg=#ff00ff cterm=NONE           gui=italic
-" " hi diffRemoved        ctermbg=NONE ctermfg=167  guibg=NONE    guifg=#cd5555 cterm=NONE           gui=NONE
-" " hi diffChanged        ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
-" " hi diffAdded          ctermbg=NONE ctermfg=148  guibg=NONE    guifg=#c3de4f cterm=NONE           gui=NONE
-" hi DiffAdd            ctermbg=35   ctermfg=234  guibg=#36a165 guifg=#1c1c1c cterm=NONE           gui=NONE
-" hi DiffChange         ctermbg=110  ctermfg=234  guibg=#6ea1cf guifg=#1c1c1c cterm=NONE           gui=NONE
-" hi DiffDelete         ctermbg=88   ctermfg=234  guibg=#8b3626 guifg=#1c1c1c cterm=NONE           gui=NONE
-" hi DiffText           ctermbg=117  ctermfg=234  guibg=#8bdaed guifg=#1c1c1c cterm=NONE           gui=NONE
+hi IncSearch        ctermbg=131  ctermfg=234  guibg=#af5f5f guifg=#1c1c1c cterm=NONE           gui=NONE
+hi Search           ctermbg=107  ctermfg=234  guibg=#87af5f guifg=#1c1c1c cterm=NONE           gui=NONE
 
-" hi javaScriptOpAssign ctermbg=NONE ctermfg=96   guibg=NONE    guifg=#8f6f8f cterm=NONE           gui=NONE
-
-" hi pythonDecorator    ctermbg=NONE ctermfg=101  guibg=NONE    guifg=#807e59 cterm=NONE           gui=NONE
-" hi pythonException    ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
-" hi pythonExClass      ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#996666 cterm=NONE           gui=NONE
+hi Directory        ctermfg=73   ctermbg=NONE guifg=#5fafaf guibg=NONE    cterm=NONE           gui=NONE
 
 hi link Boolean            Constant
 hi link Character          Constant
@@ -123,3 +133,29 @@ hi link htmlLink           string
 hi link htmlTag            htmlTagName
 hi link htmlEndTag         htmlTagName
 hi link htmlSpecialTagName htmlTagName
+
+" hi ColorColumn        ctermbg=234  ctermfg=NONE guibg=#1c1c1c guifg=NONE    cterm=NONE           gui=NONE
+" hi Conceal            ctermbg=248  ctermfg=252  guibg=#a9a9a9 guifg=#d3d3d3 cterm=NONE           gui=NONE
+" hi MatchParen         ctermbg=234   ctermfg=226  guibg=#1c1c1c guifg=#fff000 cterm=bold           gui=NONE
+" hi SignColumn         ctermbg=187  ctermfg=231  guibg=#cdcdb4 guifg=#ffffff cterm=NONE           gui=NONE
+" hi lCursor            ctermbg=145  ctermfg=234  guibg=#c2c2b0 guifg=#1c1c1c cterm=NONE           gui=NONE
+" hi CursorColumn       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
+
+" hi SpellBad           ctermbg=NONE ctermfg=196  guibg=NONE    guifg=NONE    guisp=#ee2c2c        cterm=undercurl gui=undercurl
+" hi SpellCap           ctermbg=NONE ctermfg=21   guibg=NONE    guifg=NONE    guisp=#0f49ff        cterm=undercurl gui=undercurl
+" hi SpellLocal         ctermbg=NONE ctermfg=30   guibg=NONE    guifg=NONE    guisp=#2c8b8b        cterm=undercurl gui=undercurl
+" hi SpellRare          ctermbg=NONE ctermfg=201  guibg=NONE    guifg=NONE    guisp=#ff00ff        cterm=undercurl gui=undercurl
+
+" hi diffOldFile        ctermbg=NONE ctermfg=170  guibg=NONE    guifg=#da70d6 cterm=NONE           gui=italic
+" hi diffNewFile        ctermbg=NONE ctermfg=226  guibg=NONE    guifg=#ffff00 cterm=NONE           gui=italic
+" hi diffFile           ctermbg=NONE ctermfg=214  guibg=NONE    guifg=#ffa500 cterm=NONE           gui=italic
+" hi diffLine           ctermbg=NONE ctermfg=201  guibg=NONE    guifg=#ff00ff cterm=NONE           gui=italic
+" hi diffRemoved        ctermbg=NONE ctermfg=167  guibg=NONE    guifg=#cd5555 cterm=NONE           gui=NONE
+" hi diffChanged        ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
+" hi diffAdded          ctermbg=NONE ctermfg=148  guibg=NONE    guifg=#c3de4f cterm=NONE           gui=NONE
+
+" hi javaScriptOpAssign ctermbg=NONE ctermfg=96   guibg=NONE    guifg=#8f6f8f cterm=NONE           gui=NONE
+
+" hi pythonDecorator    ctermbg=NONE ctermfg=101  guibg=NONE    guifg=#807e59 cterm=NONE           gui=NONE
+" hi pythonException    ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
+" hi pythonExClass      ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#996666 cterm=NONE           gui=NONE
