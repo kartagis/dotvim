@@ -95,7 +95,7 @@ augroup END
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  colorscheme sorcerer
+  colorscheme greybeard
 
   set guioptions-=T
 
@@ -116,7 +116,7 @@ if has('gui_running')
 
 else
   if &t_Co >= 256
-    colorscheme sorcerer
+    colorscheme greybeard
 
   elseif &t_Co < 256
     colorscheme sorcerer_16
@@ -137,6 +137,10 @@ else
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
+  endif
+
+  if has('mouse_sgr')
+    set ttymouse=sgr
   endif
 
   nnoremap <Esc>A <up>

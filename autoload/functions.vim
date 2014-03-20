@@ -46,37 +46,19 @@ endfunction
 function functions#WrapCommand(direction)
   if a:direction == "up"
     try
-      lprevious
+      cprevious
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      llast
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-      try
-        cprevious
-
-      catch /^Vim\%((\a\+)\)\=:E553/
-        clast
-
-      endtry
+      clast
 
     endtry
 
   elseif a:direction == "down"
     try
-      lnext
+      cnext
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      lfirst
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-      try
-        cnext
-
-      catch /^Vim\%((\a\+)\)\=:E553/
-        cfirst
-
-      endtry
+      cfirst
 
     endtry
 
@@ -89,15 +71,15 @@ endfunction
 " simplistic search/replace across project
 function functions#Replace(search_pattern, replacement_pattern, file_pattern)
 
-  silent execute "vimgrep " . a:search_pattern . " " . a:file_pattern
+  silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
 
   try
-    silent cfirst
+    silent lfirst
 
     while 1
       execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
 
-      silent cnfile
+      silent lnfile
 
     endwhile
 
