@@ -2,6 +2,26 @@
 " WIP "
 """""""
 " TODO: scale down the color palette to 16 if possible
+" 101  #87875f
+" 108  #87af87
+" 110  #8fafd7
+" 131  #af5f5f
+" 138  #af8787
+" 180  #ffffff
+" 215  #d7875f
+" 23   #005f5f
+" 232  #080808
+" 234  #1c1c1c
+" 236  #303030
+" 238  #444444
+" 240  #585858
+" 242  #6c6c6c
+" 250  #bcbcbc
+" 44   #00d7d7
+" 66   #5f8787
+" 67   #5f87af
+" 73   #5fafaf
+" 74   #5fafd7
 
 set background=dark
 
@@ -20,7 +40,7 @@ hi Constant         ctermbg=NONE ctermfg=138  guibg=NONE    guifg=#af8787 cterm=
 hi Error            ctermbg=131  ctermfg=250  guibg=#af5f5f guifg=#bcbcbc cterm=NONE           gui=NONE
 hi Identifier       ctermbg=NONE ctermfg=67   guibg=NONE    guifg=#5f87af cterm=NONE           gui=NONE
 hi Ignore           ctermbg=NONE ctermfg=234  guibg=NONE    guifg=#1c1c1c cterm=NONE           gui=NONE
-hi PreProc          ctermbg=NONE ctermfg=30   guibg=NONE    guifg=#008787 cterm=NONE           gui=NONE
+hi PreProc          ctermbg=NONE ctermfg=23   guibg=NONE    guifg=#005f5f cterm=NONE           gui=NONE
 hi Special          ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af5f5f cterm=NONE           gui=NONE
 hi Statement        ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#8fafd7 cterm=NONE           gui=NONE
 hi Todo             ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=reverse        gui=reverse
@@ -34,12 +54,12 @@ hi LineNr           ctermbg=232  ctermfg=240  guibg=#080808 guifg=#585858 cterm=
 
 hi Pmenu            ctermbg=238  ctermfg=250  guibg=#444444 guifg=#bcbcbc cterm=NONE           gui=NONE
 hi PmenuSel         ctermbg=66   ctermfg=234  guibg=#5f8787 guifg=#1c1c1c cterm=NONE           gui=NONE
-hi PmenuSbar        ctermbg=239  ctermfg=NONE guibg=#585858 guifg=NONE    cterm=NONE           gui=NONE
+hi PmenuSbar        ctermbg=240  ctermfg=NONE guibg=#585858 guifg=NONE    cterm=NONE           gui=NONE
 hi PmenuThumb       ctermbg=66   ctermfg=66   guibg=#5f8787 guifg=#5f8787 cterm=NONE           gui=NONE
 
 hi ErrorMsg         ctermbg=131  ctermfg=250  guibg=#af5f5f guifg=#bcbcbc cterm=NONE           gui=NONE
 hi MoreMsg          ctermbg=NONE ctermfg=66   guibg=NONE    guifg=#5f8787 cterm=NONE           gui=NONE
-hi ModeMsg          ctermbg=108  ctermfg=234  guibg=#87af87 guifg=#080808 cterm=NONE           gui=NONE
+hi ModeMsg          ctermbg=108  ctermfg=234  guibg=#87af87 guifg=#1c1c1c cterm=NONE           gui=NONE
 hi Question         ctermbg=NONE ctermfg=108  guibg=NONE    guifg=#87af87 cterm=NONE           gui=NONE
 hi WarningMsg       ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af5f5f cterm=NONE           gui=NONE
 
@@ -63,7 +83,7 @@ hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=
 hi Folded           ctermbg=240  ctermfg=250  guibg=#585858 guifg=#bcbcbc cterm=NONE           gui=NONE
 hi FoldColumn       ctermbg=240  ctermfg=250  guibg=#585858 guifg=#bcbcbc cterm=NONE           gui=NONE
 
-hi WildMenu         ctermbg=250  ctermfg=234  guibg=#5f87af guifg=#bcbcbc cterm=bold           gui=bold
+hi WildMenu         ctermbg=232  ctermfg=250  guibg=#080808 guifg=#bcbcbc cterm=bold           gui=bold
 hi VertSplit        ctermbg=242  ctermfg=242  guibg=#6c6c6c guifg=#6c6c6c cterm=NONE           gui=NONE
 
 hi Title            ctermbg=NONE ctermfg=180  guibg=NONE    guifg=#ffffff cterm=bold           gui=NONE
@@ -102,7 +122,7 @@ hi link Structure          Type
 hi link Tag                Special
 hi link Typedef            Type
 
-hi link htmlLink           string
+hi link htmlLink           String
 hi link htmlTag            htmlTagName
 hi link htmlEndTag         htmlTagName
 hi link htmlSpecialTagName htmlTagName
