@@ -95,7 +95,7 @@ augroup END
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  colorscheme greybeard
+  colorscheme apprentice
 
   set guioptions-=T
 
@@ -116,7 +116,7 @@ if has('gui_running')
 
 else
   if &t_Co >= 256
-    colorscheme greybeard
+    colorscheme apprentice
 
   elseif &t_Co < 256
     colorscheme sorcerer_16
