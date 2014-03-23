@@ -74,6 +74,8 @@ set scrolloff=4
 set virtualedit=block
 set winheight=999
 
+colorscheme apprentice
+
 augroup VIMRC
   autocmd!
 
@@ -95,7 +97,6 @@ augroup END
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-  colorscheme apprentice
 
   set guioptions-=T
 
@@ -115,14 +116,6 @@ if has('gui_running')
   endif
 
 else
-  if &t_Co >= 256
-    colorscheme apprentice
-
-  elseif &t_Co < 256
-    colorscheme sorcerer_16
-
-  endif
-
   if os == 'Darwin'
     set clipboard^=unnamed
 
