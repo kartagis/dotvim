@@ -100,6 +100,7 @@ if &t_Co >= 256 || has('gui_running')
   hi Search           ctermbg=108  ctermfg=235  guibg=#87af87 guifg=#262626 cterm=NONE           gui=NONE
 
   hi Directory        ctermbg=NONE ctermfg=73   guibg=NONE    guifg=#5fafaf cterm=NONE           gui=NONE
+  hi MatchParen       ctermbg=NONE ctermfg=229  guibg=NONE    guifg=#ffffaf cterm=bold           gui=NONE
 
 else
   " WIP:
@@ -209,7 +210,6 @@ hi link htmlSpecialTagName htmlTagName
 
 " hi ColorColumn        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
 " hi Conceal            ctermbg=248  ctermfg=252  guibg=#a9a9a9 guifg=#d3d3d3 cterm=NONE           gui=NONE
-" hi MatchParen         ctermbg=NONE ctermfg=226  guibg=NONE    guifg=#fff000 cterm=bold           gui=NONE
 " hi SignColumn         ctermbg=187  ctermfg=250  guibg=#cdcdb4 guifg=#bcbcbc cterm=NONE           gui=NONE
 " hi lCursor            ctermbg=145  ctermfg=235  guibg=#c2c2b0 guifg=#262626 cterm=NONE           gui=NONE
 " hi CursorColumn       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
