@@ -2,27 +2,6 @@
 " Maintainer:   Romain Lafourcade (romainlafourcade@gmail.com)
 " Essentially a streamlining and conversion to X11 colors of
 " 'sorcerer' by Jeet Sukumaran (jeetsukumaran@gmailcom)
-"
-" 101  #87875f
-" 103  #8787af
-" 108  #87af87
-" 110  #8fafd7
-" 131  #af5f5f
-" 208  #ff8700
-" 229  #ffffaf
-" 231  #ffffff
-" 234  #1c1c1c
-" 235  #262626
-" 236  #303030
-" 238  #444444
-" 240  #585858
-" 242  #6c6c6c
-" 250  #bcbcbc
-" 44   #00d7d7
-" 65   #5f875f
-" 66   #5f8787
-" 73   #5fafaf
-" 60   #5f5f87
 
 set background=dark
 
@@ -70,6 +49,7 @@ if &t_Co >= 256 || has('gui_running')
 
   hi Cursor           ctermbg=242  ctermfg=NONE guibg=#6c6c6c guifg=NONE    cterm=NONE           gui=NONE
   hi CursorLine       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
+  hi CursorColumn     ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
   hi CursorLineNr     ctermbg=236  ctermfg=73   guibg=#303030 guifg=#5fafaf cterm=NONE           gui=NONE
 
   hi helpLeadBlank    ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
@@ -102,9 +82,13 @@ if &t_Co >= 256 || has('gui_running')
   hi Directory        ctermbg=NONE ctermfg=73   guibg=NONE    guifg=#5fafaf cterm=NONE           gui=NONE
   hi MatchParen       ctermbg=NONE ctermfg=229  guibg=NONE    guifg=#ffffaf cterm=bold           gui=NONE
 
+  hi SpellBad         ctermbg=NONE ctermfg=131  guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#af5f5f
+  hi SpellCap         ctermbg=NONE ctermfg=73   guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#5fafaf
+  hi SpellLocal       ctermbg=NONE ctermfg=65   guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#5f875f
+  hi SpellRare        ctermbg=NONE ctermfg=208  guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#ff8700
+
 else
-  " WIP:
-  " 8color TERM
+  " TODO: finich colors for 8color TERM
   hi Normal           ctermbg=NONE      ctermfg=LightGrey   cterm=NONE
   hi Comment          ctermbg=NONE      ctermfg=DarkBlue    cterm=NONE
   hi Boolean          ctermbg=NONE      ctermfg=DarkYellow  cterm=NONE
@@ -173,6 +157,11 @@ else
 
   hi Directory        ctermbg=NONE      ctermfg=Cyan        cterm=NONE
 
+  hi SpellBad         ctermbg=NONE      ctermfg=Red         cterm=undercurl
+  hi SpellCap         ctermbg=NONE      ctermfg=Cyan        cterm=undercurl
+  hi SpellLocal       ctermbg=NONE      ctermfg=Green       cterm=undercurl
+  hi SpellRare        ctermbg=NONE      ctermfg=Magenta     cterm=undercurl
+
 endif
 
 hi link Boolean            Constant
@@ -205,6 +194,14 @@ hi link htmlTag            htmlTagName
 hi link htmlEndTag         htmlTagName
 hi link htmlSpecialTagName htmlTagName
 
+hi link diffOnly           WarningMsg
+hi link diffIdentical      WarningMsg
+hi link diffDiffer         WarningMsg
+hi link diffBDiffer        WarningMsg
+hi link diffIsA            WarningMsg
+hi link diffNoEOL          WarningMsg
+hi link diffCommon         WarningMsg
+
 " TODO: scale down the color palette to 16 if possible
 " TODO: work on the highlights below
 
@@ -212,23 +209,4 @@ hi link htmlSpecialTagName htmlTagName
 " hi Conceal            ctermbg=248  ctermfg=252  guibg=#a9a9a9 guifg=#d3d3d3 cterm=NONE           gui=NONE
 " hi SignColumn         ctermbg=187  ctermfg=250  guibg=#cdcdb4 guifg=#bcbcbc cterm=NONE           gui=NONE
 " hi lCursor            ctermbg=145  ctermfg=235  guibg=#c2c2b0 guifg=#262626 cterm=NONE           gui=NONE
-" hi CursorColumn       ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
 
-" hi SpellBad           ctermbg=NONE ctermfg=196  guibg=NONE    guifg=NONE    guisp=#ee2c2c        cterm=undercurl gui=undercurl
-" hi SpellCap           ctermbg=NONE ctermfg=21   guibg=NONE    guifg=NONE    guisp=#0f49ff        cterm=undercurl gui=undercurl
-" hi SpellLocal         ctermbg=NONE ctermfg=30   guibg=NONE    guifg=NONE    guisp=#2c8b8b        cterm=undercurl gui=undercurl
-" hi SpellRare          ctermbg=NONE ctermfg=201  guibg=NONE    guifg=NONE    guisp=#ff00ff        cterm=undercurl gui=undercurl
-
-" hi diffOldFile        ctermbg=NONE ctermfg=170  guibg=NONE    guifg=#da70d6 cterm=NONE           gui=italic
-" hi diffNewFile        ctermbg=NONE ctermfg=226  guibg=NONE    guifg=#ffff00 cterm=NONE           gui=italic
-" hi diffFile           ctermbg=NONE ctermfg=214  guibg=NONE    guifg=#ffa500 cterm=NONE           gui=italic
-" hi diffLine           ctermbg=NONE ctermfg=201  guibg=NONE    guifg=#ff00ff cterm=NONE           gui=italic
-" hi diffRemoved        ctermbg=NONE ctermfg=1103 guibg=NONE    guifg=#cd5555 cterm=NONE           gui=NONE
-" hi diffChanged        ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
-" hi diffAdded          ctermbg=NONE ctermfg=148  guibg=NONE    guifg=#c3de4f cterm=NONE           gui=NONE
-
-" hi javaScriptOpAssign ctermbg=NONE ctermfg=96   guibg=NONE    guifg=#8f6f8f cterm=NONE           gui=NONE
-
-" hi pythonDecorator    ctermbg=NONE ctermfg=101  guibg=NONE    guifg=#807e59 cterm=NONE           gui=NONE
-" hi pythonException    ctermbg=NONE ctermfg=110  guibg=NONE    guifg=#6ea1cf cterm=NONE           gui=NONE
-" hi pythonExClass      ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#996666 cterm=NONE           gui=NONE

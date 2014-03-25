@@ -52,8 +52,8 @@ if &t_Co >= 256 || has('gui_running')
   hi helpLeadBlank    ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
   hi helpNormal       ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
 
-  hi StatusLine       ctermbg=103  ctermfg=253  guibg=#8787af guifg=#dadada cterm=NONE           gui=NONE
-  hi StatusLineNC     ctermbg=246  ctermfg=253  guibg=#949494 guifg=#dadada cterm=NONE           gui=italic
+    hi StatusLine       ctermbg=103  ctermfg=238  guibg=#8787af guifg=#dadada cterm=NONE           gui=NONE
+    hi StatusLineNC     ctermbg=246  ctermfg=238  guibg=#949494 guifg=#dadada cterm=NONE           gui=italic
 
   hi Visual           ctermbg=95   ctermfg=253  guibg=#875f5f guifg=#dadada cterm=NONE           gui=NONE
   hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=bold,underline gui=bold,underline
@@ -79,8 +79,7 @@ if &t_Co >= 256 || has('gui_running')
   hi Directory        ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af5f5f cterm=NONE           gui=NONE
 
 else
-  " WIP:
-  " 8color TERM
+  " TODO: finich colors for 8color TERM
   hi Normal           ctermbg=NONE      ctermfg=LightGrey   cterm=NONE
   hi Comment          ctermbg=NONE      ctermfg=DarkBlue    cterm=NONE
   hi Boolean          ctermbg=NONE      ctermfg=DarkYellow  cterm=NONE
