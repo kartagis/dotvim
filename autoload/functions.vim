@@ -21,9 +21,7 @@ endfunction
 
 " naive MRU
 function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
-  let the_oldfiles = deepcopy(v:oldfiles)
-
-  let my_oldfiles = filter(the_oldfiles, 'v:val =~ a:ArgLead')
+  let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
 
   if len(my_oldfiles) > 16
     call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
@@ -35,7 +33,7 @@ function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function functions#MRU(command, arg)
-  execute "" . a:command . " " . a:arg
+  execute a:command . " " . a:arg
 
 endfunction
 
