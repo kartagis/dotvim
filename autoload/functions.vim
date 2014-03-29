@@ -3,27 +3,16 @@ function functions#AutoSave()
   let this_window = winnr()
 
   windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
-  " windo call functions#SmartUpdate()
 
   execute this_window . 'wincmd w'
 
 endfunction
 
-function functions#SmartUpdate()
-  if &buftype != "nofile" && expand('%') != '' && &modified
-    write
-
-  endif
-
-endfunction
-
-" =======:===================================================================
+" ===========================================================================
 
 " naive MRU
 function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
-  let the_oldfiles = deepcopy(v:oldfiles)
-
-  let my_oldfiles = filter(the_oldfiles, 'v:val =~ a:ArgLead')
+  let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
 
   if len(my_oldfiles) > 16
     call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
@@ -35,7 +24,7 @@ function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function functions#MRU(command, arg)
-  execute "" . a:command . " " . a:arg
+  execute a:command . " " . a:arg
 
 endfunction
 
@@ -118,7 +107,6 @@ function functions#Btag(arg)
   " execute name_list[0].cmd
   try
     execute "silent tag /" . a:arg
-    setlocal noai
 
   catch
     try

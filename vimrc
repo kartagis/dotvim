@@ -256,6 +256,8 @@ cnoremap $d <CR>:d<CR>''
 cnoremap &t <CR>:''t.<CR>
 cnoremap &m <CR>:''m.<CR>
 
+nmap <leader>q <Plug>KweasyJump
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
