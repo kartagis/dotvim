@@ -341,10 +341,7 @@ function functions#GenerateTags(location, buffer_only, lang_only)
   elseif a:buffer_only == 1
     let ctags_command = "ctags -L <(echo " . expand('%') . ")"
 
-    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f " . expand('%:h') . "/." . expand('%:t:r') . ".tags .")
-
-    let b:original_tags = &tags
-    execute "setlocal tags=" . expand('%:h') . "/." . expand('%:t:r') . ".tags"
+    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 
   endif
 
