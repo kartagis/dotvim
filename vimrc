@@ -234,8 +234,9 @@ nnoremap <up>   gk
 
 inoremap <expr> <CR> functions#SmartEnter()
 
-nnoremap <Home> :call functions#WrapCommand("up")<CR>
-nnoremap <End>  :call functions#WrapCommand("down")<CR>
+nnoremap <Home>  :call functions#WrapCommand("up", "c")<CR>
+nnoremap <End>   :call functions#WrapCommand("down", "c")<CR>
+nnoremap <Space> :call functions#WrapCommand("down", "l")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
 nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
@@ -255,8 +256,6 @@ cnoremap $m <CR>:m''<CR>
 cnoremap $d <CR>:d<CR>''
 cnoremap &t <CR>:''t.<CR>
 cnoremap &m <CR>:''m.<CR>
-
-nmap <leader>q <Plug>KweasyJump
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

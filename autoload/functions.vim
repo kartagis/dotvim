@@ -32,22 +32,22 @@ endfunction
 
 " wrapping :cnext/:cprevious and :lnext/:lprevious
 " quick and dirty
-function functions#WrapCommand(direction)
+function functions#WrapCommand(direction, prefix)
   if a:direction == "up"
     try
-      cprevious
+      execute a:prefix . "previous"
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      clast
+      execute a:prefix . "last"
 
     endtry
 
   elseif a:direction == "down"
     try
-      cnext
+      execute a:prefix . "next"
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      cfirst
+      execute a:prefix . "first"
 
     endtry
 
