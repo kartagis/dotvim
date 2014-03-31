@@ -3,21 +3,12 @@ function functions#AutoSave()
   let this_window = winnr()
 
   windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
-  " windo call functions#SmartUpdate()
 
   execute this_window . 'wincmd w'
 
 endfunction
 
-function functions#SmartUpdate()
-  if &buftype != "nofile" && expand('%') != '' && &modified
-    write
-
-  endif
-
-endfunction
-
-" =======:===================================================================
+" ===========================================================================
 
 " naive MRU
 function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
@@ -41,22 +32,22 @@ endfunction
 
 " wrapping :cnext/:cprevious and :lnext/:lprevious
 " quick and dirty
-function functions#WrapCommand(direction)
+function functions#WrapCommand(direction, prefix)
   if a:direction == "up"
     try
-      cprevious
+      execute a:prefix . "previous"
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      clast
+      execute a:prefix . "last"
 
     endtry
 
   elseif a:direction == "down"
     try
-      cnext
+      execute a:prefix . "next"
 
     catch /^Vim\%((\a\+)\)\=:E553/
-      cfirst
+      execute a:prefix . "first"
 
     endtry
 
@@ -116,7 +107,6 @@ function functions#Btag(arg)
   " execute name_list[0].cmd
   try
     execute "silent tag /" . a:arg
-    setlocal noai
 
   catch
     try
