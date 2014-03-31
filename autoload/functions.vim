@@ -40,6 +40,9 @@ function functions#WrapCommand(direction, prefix)
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "last"
 
+    catch /^Vim\%((\a\+)\)\=:E776/
+      normal! l
+
     endtry
 
   elseif a:direction == "down"
@@ -48,6 +51,9 @@ function functions#WrapCommand(direction, prefix)
 
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "first"
+
+    catch /^Vim\%((\a\+)\)\=:E776/
+      normal! l
 
     endtry
 

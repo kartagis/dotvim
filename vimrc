@@ -234,9 +234,9 @@ nnoremap <up>   gk
 
 inoremap <expr> <CR> functions#SmartEnter()
 
-nnoremap <Home>  :call functions#WrapCommand("up", "c")<CR>
-nnoremap <End>   :call functions#WrapCommand("down", "c")<CR>
-nnoremap <Space> :call functions#WrapCommand("down", "l")<CR>
+nnoremap <silent> <Home>  :call functions#WrapCommand("up", "c")<CR>
+nnoremap <silent> <End>   :call functions#WrapCommand("down", "c")<CR>
+nnoremap <silent> <Space> :call functions#WrapCommand("down", "l")<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
 nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
@@ -300,6 +300,7 @@ command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call function
 command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#MRU('edit', <f-args>)
 command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#MRU('split', <f-args>)
 command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#MRU('tabedit', <f-args>)
 
 command! -nargs=+ Replace call functions#Replace(<f-args>)
 
