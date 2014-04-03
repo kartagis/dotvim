@@ -15,3 +15,8 @@ nnoremap <buffer> <leader>h :call functions#InsertHandler()<CR>
 nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>
 
 command! -buffer -range=% Format let b:winview = winsaveview() | execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth | call winrestview(b:winview)
+
+" poor man's syntastic
+" setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
+" setlocal makeprg=jshint
+" inoremap <silent> <buffer> <Esc> <Esc>:silent make % <bar> redraw! <bar> cwindow <bar> wincmd p<CR>

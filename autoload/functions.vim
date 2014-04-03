@@ -2,7 +2,7 @@
 function functions#AutoSave()
   let this_window = winnr()
 
-  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
+  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | doautocmd BufWritePost | endif
 
   execute this_window . 'wincmd w'
 
@@ -41,7 +41,6 @@ function functions#WrapCommand(direction, prefix)
       execute a:prefix . "last"
 
     catch /^Vim\%((\a\+)\)\=:E776/
-      normal! l
 
     endtry
 
@@ -53,7 +52,6 @@ function functions#WrapCommand(direction, prefix)
       execute a:prefix . "first"
 
     catch /^Vim\%((\a\+)\)\=:E776/
-      normal! l
 
     endtry
 

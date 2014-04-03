@@ -234,9 +234,9 @@ nnoremap <up>   gk
 
 inoremap <expr> <CR> functions#SmartEnter()
 
-nnoremap <silent> <Home>  :call functions#WrapCommand("up", "c")<CR>
-nnoremap <silent> <End>   :call functions#WrapCommand("down", "c")<CR>
-nnoremap <silent> <Space> :call functions#WrapCommand("down", "l")<CR>
+nnoremap <silent> <Home>  :call functions#WrapCommand('up', 'c')<CR>
+nnoremap <silent> <End>   :call functions#WrapCommand('down', 'c')<CR>
+nnoremap <silent> <Space> :call functions#WrapCommand('down', 'l')<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
 nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
