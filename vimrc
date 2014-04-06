@@ -68,7 +68,7 @@ set mouse=a
 set nostartofline
 set noswapfile
 set nrformats-=octal
-set path=**
+set path=.,**
 set previewheight=4
 set scrolloff=4
 set virtualedit=block
@@ -81,7 +81,7 @@ augroup VIMRC
 
   autocmd FocusLost,InsertLeave * call functions#AutoSave()
 
-  autocmd GUIEnter * set vb t_vb=
+  autocmd GUIEnter * set visualbell t_vb=
 
   autocmd BufLeave * let b:winview = winsaveview()
   autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
@@ -132,6 +132,7 @@ else
     execute "set <xLeft>=\e[1;*D"
   endif
 
+  " allows clicking after the 223rd column
   if has('mouse_sgr')
     set ttymouse=sgr
   endif
