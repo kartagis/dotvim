@@ -273,28 +273,27 @@ endfor
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit      call functions#Tagit()
-command! Bombit     call functions#Bombit(0)
+command! Tagit       call functions#Tagit()
+command! Bombit      call functions#Bombit(0)
 
-command! ToUnix     call functions#ToUnix()
+command! ToUnix      call functions#ToUnix()
 
-command! SS         echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+command! SS          echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
-command! LCD        lcd %:p:h
-command! CD         cd %:p:h
+command! LCD         lcd %:p:h
+command! CD          cd %:p:h
 
 " sharing is caring
-command! VPF        execute 'w !vpaste ft=' . &filetype
-command! -range VPV execute "'<,'>w !vpaste ft=" . &filetype
-command! CMD        let @+ = ':' . @:
+command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+command! CMD         let @+ = ':' . @:
 
-command! Trailer    mark `|%s/\s\+$//|normal! ``
+command! Trailer     mark `|%s/\s\+$//|normal! ``
 
-command! TD         tselect TODO
-command! FM         tselect FIXME
+command! TD          tselect TODO
+command! FM          tselect FIXME
 
-command! EV         tabnew $MYVIMRC <bar> lcd %:p:h
-command! SV         source $MYVIMRC
+command! EV          tabnew $MYVIMRC <bar> lcd %:p:h
+command! SV          source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#Btag(<f-args>)
 
