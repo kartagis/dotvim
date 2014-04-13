@@ -1,4 +1,8 @@
-let b:match_words = '\<function\>:\<return\>,\<do\>:\<while\>,\<switch\>:\<case\>:\<default\>,\<if\>:\<else\>,\<try\>:\<catch\>:\<finally\>'
+let b:match_words = '\<function\>:\<return\>,'
+  \ . '\<do\>:\<while\>,'
+  \ . '\<switch\>:\<case\>:\<default\>,'
+  \ . '\<if\>:\<else\>,'
+  \ . '\<try\>:\<catch\>:\<finally\>'
 
 nnoremap <buffer> <leader>g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
 
@@ -14,7 +18,9 @@ xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 nnoremap <buffer> <leader>h :call functions#InsertHandler()<CR>
 nnoremap <buffer> <leader>l :call functions#InsertLog()<CR>
 
-command! -buffer -range=% Format let b:winview = winsaveview() | execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth | call winrestview(b:winview)
+command! -buffer -range=% Format let b:winview = winsaveview() |
+  \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth |
+  \ call winrestview(b:winview)
 
 " poor man's syntastic
 " setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
