@@ -168,8 +168,8 @@ nnoremap <leader>V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap <leader>b :buffer <C-z><S-Tab>
 nnoremap <leader>B :sbuffer <C-z><S-Tab>
 
-nnoremap <PageUp>   :bp<CR>
-nnoremap <PageDown> :bn<CR>
+nnoremap <PageUp>   :bprevious<CR>
+nnoremap <PageDown> :bnext<CR>
 
 " juggling with windows
 nnoremap <C-Down> <C-w>w
@@ -190,6 +190,12 @@ nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR
 nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+
+" juggling with completions
+inoremap <leader>, <C-x><C-o>
+inoremap <leader>/ <C-x><C-f>
+inoremap <leader>- <C-x><C-l>
+inoremap <leader>* <C-x><C-n>
 
 " super fast search/replace
 nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
@@ -251,12 +257,6 @@ cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 nnoremap gV `[v`]
-
-cnoremap $t <CR>:t''<CR>
-cnoremap $m <CR>:m''<CR>
-cnoremap $d <CR>:d<CR>''
-cnoremap &t <CR>:''t.<CR>
-cnoremap &m <CR>:''m.<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

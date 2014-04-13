@@ -2,3 +2,6 @@
 /.netrwbook
 /.netrwhist
 /tags
+*.jpg
+*.gif
+*.png
