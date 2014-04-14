@@ -88,6 +88,11 @@ augroup VIMRC
 
   autocmd BufEnter,WinEnter * call matchadd('Error', '\s\+$', -1)
 
+  autocmd BufLeave *.css  normal! mC
+  autocmd BufLeave *.html normal! mH
+  autocmd BufLeave *.js   normal! mJ
+  autocmd BufLeave *.php  normal! mP
+
 augroup END
 
 """""""""""""""""""""""""""""""""
