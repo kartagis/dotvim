@@ -20,6 +20,7 @@ set incsearch
 set laststatus=2
 set switchbuf=useopen,usetab
 set tags=./tags;,tags;
+set tags^=./.temptags
 set wildmenu
 
 " better

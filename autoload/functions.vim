@@ -84,16 +84,17 @@ endfunction
 
 " ===========================================================================
 
-" like :tag /foo but  the completion is limited to the current buffer
 function functions#BtagComplete(ArgLead, CmdLine, CursorPos)
-  " let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
-  let temp_list = taglist('/*' . a:ArgLead)
+  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
 
   if len(temp_list) > 0
     let return_list = []
 
     for item in temp_list
-      call add(return_list, item.name)
+      if count(return_list, item.name) == 0
+        call add(return_list, item.name)
+
+      endif
 
     endfor
 
@@ -103,18 +104,26 @@ function functions#BtagComplete(ArgLead, CmdLine, CursorPos)
 
 endfunction
 
+" like :tag /foo but  the completion is limited to the current buffer
 function functions#Btag(arg)
-  " keep it for later
-  " let buf_list = filter(taglist('/*' . a:arg), 'v:val.filename == bufname("%")')
-  " let name_list = filter(buf_list, 'v:val.name == "' . a:arg . '"')
-  " normal gg
-  " execute name_list[0].cmd
   try
     execute "silent tag /" . a:arg
+
+    try
+      call delete(expand("%:p:h") . "/.temptags")
+
+    catch
+    endtry
 
   catch
     try
       execute "silent tag " . a:arg
+
+      try
+        call delete(expand("%:p:h") . "/.temptags")
+
+      catch
+      endtry
 
     catch
       echo "No tag " . a:arg . " found."
@@ -345,7 +354,7 @@ function functions#GenerateTags(location, buffer_only, lang_only)
   elseif a:buffer_only == 1
     let ctags_command = "ctags -L <(echo " . expand('%') . ")"
 
-    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
+    let tag = system("cd " . expand('%:p:h') . " && " . ctags_command . " -f .temptags .")
 
   endif
 
