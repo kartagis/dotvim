@@ -80,7 +80,7 @@ colorscheme apprentice
 augroup VIMRC
   autocmd!
 
-  autocmd FocusLost,InsertLeave * call functions#AutoSave()
+  autocmd FocusLost,InsertLeave * call functions#global#AutoSave()
 
   autocmd GUIEnter * set visualbell t_vb=
 
@@ -207,14 +207,14 @@ inoremap <leader>* <C-x><C-n>
 nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
+xnoremap <leader>R :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
 " faster 'dot formula'
 nnoremap <leader>x *``cgn
 nnoremap <leader>X #``cgN
-xnoremap <leader>x <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap <leader>X <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+xnoremap <leader>x <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
+xnoremap <leader>X <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
 " various stuff
 nnoremap <leader>d "_d
@@ -245,14 +245,14 @@ nnoremap <up>   gk
 " EXPERIMENTAL! "
 """""""""""""""""
 
-inoremap <expr> <CR> functions#SmartEnter()
+inoremap <expr> <CR> functions#global#SmartEnter()
 
-nnoremap <silent> <Home>  :call functions#WrapCommand('up', 'c')<CR>
-nnoremap <silent> <End>   :call functions#WrapCommand('down', 'c')<CR>
-nnoremap <silent> <Space> :call functions#WrapCommand('down', 'l')<CR>
+nnoremap <silent> <Home>  :call functions#global#WrapCommand('up', 'c')<CR>
+nnoremap <silent> <End>   :call functions#global#WrapCommand('down', 'c')<CR>
+nnoremap <silent> <Space> :call functions#global#WrapCommand('down', 'l')<CR>
 
 nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :call functions#Bombit(1)<CR>:Btag <C-z><S-Tab>
+nnoremap <leader>T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
 
 nnoremap <leader>p :Bombit<CR>:ptjump /
 
@@ -279,10 +279,10 @@ endfor
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit       call functions#Tagit()
-command! Bombit      call functions#Bombit(0)
+command! Tagit       call functions#tags#Tagit()
+command! Bombit      call functions#tags#Bombit(0)
 
-command! ToUnix      call functions#ToUnix()
+command! ToUnix      call functions#global#ToUnix()
 
 command! SS          echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
@@ -301,14 +301,14 @@ command! FM          tselect FIXME
 command! EV          tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV          source $MYVIMRC
 
-command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#Btag(<f-args>)
+command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#tags#Btag(<f-args>)
 
-command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#MRU('tabedit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#global#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#global#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
 
-command! -nargs=+ Replace call functions#Replace(<f-args>)
+command! -nargs=+ Replace call functions#global#Replace(<f-args>)
 
 """""""""""""""""""
 " PLUGIN SETTINGS "

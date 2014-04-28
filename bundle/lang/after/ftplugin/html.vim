@@ -7,10 +7,10 @@ setlocal indentkeys-=*<Return>
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>& :call functions#Entities()<CR>
-nnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
-xnoremap <buffer> <leader>& :call functions#Entities()<CR>
-xnoremap <buffer> <leader>é :call functions#ReverseEntities()<CR>
+nnoremap <buffer> <leader>& :call html#Entities()<CR>
+nnoremap <buffer> <leader>é :call html#ReverseEntities()<CR>
+xnoremap <buffer> <leader>& :call html#Entities()<CR>
+xnoremap <buffer> <leader>é :call html#ReverseEntities()<CR>
 
 nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
@@ -23,8 +23,8 @@ nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 " nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by
 " nnoremap <buffer> vaa /\v"[ >/]/e<CR>vF=b
 
-nnoremap <silent> <buffer> ]] :call functions#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
-nnoremap <silent> <buffer> [[ :call functions#Custom_jump('?<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
+nnoremap <silent> <buffer> ]] :call function#global#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
+nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 
 if has('gui_running')
   if os == 'Darwin' || os == 'Mac'
@@ -42,15 +42,15 @@ if has('gui_running')
 
 endif
 
-command! -buffer Entities    call functions#Entities()
-command! -buffer RevEntities call functions#RevEntities()
+command! -buffer Entities    call html#Entities()
+command! -buffer RevEntities call html#RevEntities()
 
-command! -buffer URLEncode    call functions#URLencoding()
-command! -buffer RevURLEncode call functions#ReverseURLencoding()
+command! -buffer URLEncode    call html#URLencoding()
+command! -buffer RevURLEncode call html#ReverseURLencoding()
 
-command! -buffer UA call functions#UpdateAnchor()
+command! -buffer UA call html#UpdateAnchor()
 
-command! -buffer UW call functions#UpdateWidth()
+command! -buffer UW call html#UpdateWidth()
 
 command! -buffer -range=% Format let b:winview = winsaveview() |
   \ execute <line1> . "," . <line2> . "!html-beautify -f - -I -s " . &shiftwidth |

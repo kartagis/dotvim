@@ -1,386 +1,6 @@
-" saves all the visible windows if needed/possible
-function functions#AutoSave()
-  let this_window = winnr()
-
-  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | doautocmd BufWritePost | endif
-
-  execute this_window . 'wincmd w'
-
-endfunction
-
-" ===========================================================================
-
-" naive MRU
-function functions#MRUComplete(ArgLead, CmdLine, CursorPos)
-  let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
-
-  if len(my_oldfiles) > 16
-    call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
-
-  endif
-
-  return my_oldfiles
-
-endfunction
-
-function functions#MRU(command, arg)
-  execute a:command . " " . a:arg
-
-endfunction
-
-" ===========================================================================
-
-" wrapping :cnext/:cprevious and :lnext/:lprevious
-" quick and dirty
-function functions#WrapCommand(direction, prefix)
-  if a:direction == "up"
-    try
-      execute a:prefix . "previous"
-
-    catch /^Vim\%((\a\+)\)\=:E553/
-      execute a:prefix . "last"
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-
-    endtry
-
-  elseif a:direction == "down"
-    try
-      execute a:prefix . "next"
-
-    catch /^Vim\%((\a\+)\)\=:E553/
-      execute a:prefix . "first"
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-
-    endtry
-
-  endif
-
-endfunction
-
-" ===========================================================================
-
-" simplistic search/replace across project
-function functions#Replace(search_pattern, replacement_pattern, file_pattern)
-
-  silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
-
-  try
-    silent lfirst
-
-    while 1
-      execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
-
-      silent lnfile
-
-    endwhile
-
-  catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
-
-  endtry
-
-endfunction
-
-" ===========================================================================
-
-function functions#BtagComplete(ArgLead, CmdLine, CursorPos)
-  let temp_list = filter(taglist('/*' . a:ArgLead), 'v:val.filename == bufname("%")')
-
-  if len(temp_list) > 0
-    let return_list = []
-
-    for item in temp_list
-      if count(return_list, item.name) == 0
-        call add(return_list, item.name)
-
-      endif
-
-    endfor
-
-    return return_list
-
-  endif
-
-endfunction
-
-" like :tag /foo but  the completion is limited to the current buffer
-function functions#Btag(arg)
-  try
-    execute "silent tag /" . a:arg
-
-    try
-      call delete(expand("%:p:h") . "/.temptags")
-
-    catch
-    endtry
-
-  catch
-    try
-      execute "silent tag " . a:arg
-
-      try
-        call delete(expand("%:p:h") . "/.temptags")
-
-      catch
-      endtry
-
-    catch
-      echo "No tag " . a:arg . " found."
-
-    endtry
-
-  endtry
-
-endfunction
-
-" ===========================================================================
-
-" insert console.log("<cword>:", <cword>)
-" under the current line
-function functions#InsertLog()
-  silent normal! yiw
-
-  mark `
-
-  silent normal! oconsole.log("":", ");
-  silent normal! ``
-
-endfunction
-
-" ===========================================================================
-
-" create JavaScript handler method
-" above the current block;
-function functions#InsertHandler()
-  silent normal! $2B
-  silent normal! yiw
-
-  mark `
-
-  silent normal! {
-  silent normal! Ovar " = function(e) {};
-  silent normal! O// do something
-
-endfunction
-
-" ===========================================================================
-
-" from $VIMRUNTIME/ftplugin/python.vim
-function functions#Custom_jump(motion) range
-  let cnt = v:count1
-  let save = @/
-
-  mark '
-
-  while cnt > 0
-    silent! execute a:motion
-
-    let cnt = cnt - 1
-
-  endwhile
-
-  call histdel('/', -1)
-
-  let @/ = save
-
-endfunction
-
-" ===========================================================================
-
-" tries to make <CR> a little smarter in insert mode:
-" - expands {}, [], (), <tag></tag> 'correctly'
-" - removes empty comment marker
-" - more?
-function functions#SmartEnter()
-  " beware of the cmdline window
-  if &buftype == "nofile"
-    return "\<CR>"
-
-  endif
-
-  " I still have to decide if it's useful to me
-  if getline(".") =~ '^\s*\(\*\|//\|#\|"\)\s*$'
-    return "\<C-u>"
-
-  endif
-
-  let previous = getline(".")[col(".")-2]
-  let next     = getline(".")[col(".")-1]
-
-  if previous ==# "{"
-    return functions#PairExpander(previous, "}", next)
-
-  elseif previous ==# "["
-    return functions#PairExpander(previous, "]", next)
-
-  elseif previous ==# "("
-    return functions#PairExpander(previous, ")", next)
-
-  elseif previous ==# ">"
-    return functions#TagExpander(next)
-
-  else
-    return "\<CR>"
-
-  endif
-
-endfunction
-
-function functions#PairExpander(left, right, next)
-  let pair_position = searchpairpos(a:left, "", a:right, "Wn")
-
-  if a:next !=# a:right && pair_position[0] == 0
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
-
-  elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
-
-  elseif a:next ==# a:right
-    return "\<CR>\<C-o>==\<C-o>O"
-
-  else
-    return "\<CR>"
-
-  endif
-
-endfunction
-
-function functions#TagExpander(next)
-  if a:next ==# "<" && getline(".")[col(".")] ==# "/"
-    if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# getline(".")[col(".") + 1]
-      return "\<CR>"
-
-    else
-      return "\<CR>\<C-o>==\<C-o>O"
-
-    endif
-
-  else
-    return "\<CR>"
-
-  endif
-
-endfunction
-
-" ===========================================================================
-
-" Trying to write a function for managing tags
-" ============================================
-" when a tags file already exists, it is re-generated
-" when there's no tags file, the user is asked what to do:
-" * generate a tags file in the current directory
-" * generate a tags file in the directory of the current file
-" if no answer is given, nothing is done and we try to not
-" bother the user again
-function functions#Tagit()
-  update
-
-  if !exists("t:tagit_notags") && expand('%') != ''
-    if len(tagfiles()) > 0
-      let tags_location = fnamemodify(tagfiles()[0], ":p:h")
-
-      call functions#GenerateTags(tags_location, 0, 0)
-
-    else
-      let this_dir    = expand('%:p:h')
-      let current_dir = getcwd()
-
-      if this_dir == current_dir
-        let user_choice = inputlist([
-              \ 'Do you want to generate a tags file?',
-              \ '1. In the working directory: ' . current_dir . '/tags'])
-
-        if user_choice == 0
-          let t:tagit_notags = 1
-
-          return
-
-        elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0, 0)
-
-        endif
-
-      elseif this_dir != current_dir
-        let user_choice = inputlist([
-              \ 'Where do you want to generate a tags file?',
-              \ '1. In the working directory:             ' . current_dir . '/tags',
-              \ '2. In the directory of the current file: ' . this_dir . '/tags'])
-
-        if user_choice == 0
-          let t:tagit_notags = 1
-
-          return
-
-        elseif user_choice == 1
-          call functions#GenerateTags(current_dir, 0, 0)
-
-        elseif user_choice == 2
-          call functions#GenerateTags(this_dir, 0, 0)
-
-        endif
-
-      endif
-
-    endif
-
-  endif
-
-endfunction
-
-" Force tags file generation
-function functions#Bombit(buffer_only)
-  update
-
-  if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only, 1)
-
-  endif
-
-endfunction
-
-" the actual tag generation function
-function functions#GenerateTags(location, buffer_only, lang_only)
-  if a:buffer_only == 0
-    let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
-
-    if a:lang_only == 1
-      let ctags_command .= " --languages=" . &filetype
-
-    endif
-
-    let tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
-
-  elseif a:buffer_only == 1
-    let ctags_command = "ctags -L <(echo " . expand('%') . ")"
-
-    let tag = system("cd " . expand('%:p:h') . " && " . ctags_command . " -f .temptags .")
-
-  endif
-
-endfunction
-
-" ===========================================================================
-
-" return a representation of the selected text
-" suitable for use as a search pattern
-function functions#GetVisualSelection()
-  let old_reg = @v
-
-  normal! gv"vy
-
-  let raw_search = @v
-  let @v = old_reg
-
-  return substitute(escape(raw_search, '\/.*$^~[]'), "\n", '\\n', "g")
-
-endfunction
-
-" ===========================================================================
-
 " use the width attribute of the current IMG
 " to update the width attribute of the parent TD
-function functions#UpdateWidth()
+function html#UpdateWidth()
   silent normal! 0
   silent normal! /\vwidth\="/e
   silent normal! yi"
@@ -394,7 +14,7 @@ endfunction
 " URLs pasted from Word or Powerpoint often end with a pesky newline
 " this macro puts the URL in the href attribute
 " of the next anchor
-function functions#UpdateAnchor()
+function html#UpdateAnchor()
   mark '
 
   silent normal! ^
@@ -412,23 +32,8 @@ endfunction
 
 " ===========================================================================
 
-" DOS to UNIX encoding
-function functions#ToUnix()
-  mark `
-
-  silent update
-  silent e ++ff=dos
-  silent setlocal ff=unix
-  silent w
-
-  silent ``
-
-endfunction
-
-" ===========================================================================
-
 " normal characters --> HTML entities
-function functions#Entities()
+function html#Entities()
   mark `
 
   silent s/Á/\&Aacute;/e
@@ -675,7 +280,7 @@ function functions#Entities()
 endfunction
 
 " HTML entities --> normal characters
-function functions#ReverseEntities()
+function html#ReverseEntities()
   mark `
 
   silent s/&Aacute;/Á/e
@@ -922,7 +527,7 @@ function functions#ReverseEntities()
 endfunction
 
 " normal characters --> URL encoded characters
-function functions#URLencoding()
+function html#URLencoding()
   mark `
 
   silent s/!/%21/e
@@ -1083,7 +688,7 @@ function functions#URLencoding()
 endfunction
 
 " URL encoded characters --> normal characters
-function functions#ReverseURLencoding()
+function html#ReverseURLencoding()
   mark `
 
   silent s/%21/!/e
