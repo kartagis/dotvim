@@ -301,12 +301,12 @@ command! FM          tselect FIXME
 command! EV          tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV          source $MYVIMRC
 
-command! -nargs=1 -complete=customlist,functions#BtagComplete Btag call functions#tags#Btag(<f-args>)
+command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
 
-command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#global#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#global#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete ME call functions#global#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call functions#global#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
 
 command! -nargs=+ Replace call functions#global#Replace(<f-args>)
 
