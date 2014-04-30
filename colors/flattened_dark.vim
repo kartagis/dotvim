@@ -1,4 +1,4 @@
-" 'flatened_dark.vim' -- Vim color scheme.
+" 'flattened_dark.vim' -- Vim color scheme.
 " Maintainer:   Romain Lafourcade (romainlafourcade@gmail.com)
 " A no-bullshit dark Solarized.
 
@@ -11,7 +11,7 @@ if exists('syntax_on')
 
 endif
 
-let colors_name = 'flatened_dark'
+let colors_name = 'flattened_dark'
 
 if &t_Co >= 256 || has('gui_running')
   hi  Normal                                  cterm=NONE  ctermfg=244  ctermbg=234  guifg=#839496  guibg=#002b36
