@@ -1,5 +1,6 @@
 " saves all the visible windows if needed/possible
 function functions#global#AutoSave()
+
   let this_window = winnr()
 
   windo if &buftype != "nofile" && expand('%') != '' && &modified | write | doautocmd BufWritePost | endif
