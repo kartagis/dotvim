@@ -2,8 +2,6 @@
 " Maintainer:   Romain Lafourcade (romainlafourcade@gmail.com)
 " A no-bullshit light Solarized.
 
-set background=light
-
 hi clear
 
 if exists('syntax_on')
@@ -15,6 +13,8 @@ let colors_name = 'flattened_light'
 
 if &t_Co >= 256 || has('gui_running')
   hi Normal                                                     cterm=NONE  ctermfg=240  ctermbg=230  guifg=#657b83  guibg=#fdf6e3
+
+  set background=light
 
   hi ColorColumn                                                cterm=NONE  ctermbg=187  guibg=#eee8d5
   hi Comment                                                    cterm=NONE  ctermfg=245  gui=italic  guifg=#93a1a1
@@ -216,6 +216,8 @@ else
   " 16 color terminals
   " ugly without a solarized terminal palette
   hi Normal                                                         cterm=NONE  ctermfg=11  ctermbg=15
+
+  set background=light
 
   hi ColorColumn                                                    cterm=NONE  ctermbg=7
   hi Comment                                                        cterm=NONE  ctermfg=14
