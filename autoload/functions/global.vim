@@ -208,6 +208,6 @@ function functions#global#ToUnix()
   silent setlocal ff=unix
   silent w
 
-  silent ``
+  silent normal ``
 
 endfunction
