@@ -264,6 +264,8 @@ cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 nnoremap gV `[v`]
 
+xnoremap <C-a> :s/\%V\d\+/\=submatch(0) + 1<CR>
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
