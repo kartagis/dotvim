@@ -264,7 +264,8 @@ cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 nnoremap gV `[v`]
 
-xnoremap <C-a> :s/\%V\d\+/\=submatch(0) + 1<CR>
+xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
+xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
