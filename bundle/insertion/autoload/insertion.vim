@@ -13,7 +13,7 @@ function insertion#InsertIMG(...)
 
   endif
 
-  let image_attributes = substitute(system('identify -format %wx%h "' . path . '"'),'\n','','')
+  let image_attributes = substitute(system('mediainfo --Inform="Image;%Width%x%Height%" "' . path . '"'),'\n','','')
 
   if(path[0] == '/')
     let path = insertion#Absolute2Relative(path)
