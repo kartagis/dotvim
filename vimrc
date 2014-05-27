@@ -46,7 +46,7 @@ set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=list:full
 
-set statusline=%<\ %n\ %f\ %m%r%y%=\ Line:\ \%l\/\%L\ Column:\ \%c\ 
+set statusline=%<\ %f\ %m%y%w%=\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -296,7 +296,7 @@ command! CD          cd %:p:h
 command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! CMD         let @+ = ':' . @:
 
-command! Trailer     mark `|%s/\s\+$//|normal! ``
+command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``
 
 command! TD          tselect TODO
 command! FM          tselect FIXME
