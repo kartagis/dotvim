@@ -179,7 +179,7 @@ nnoremap <PageDown> :bnext<CR>
 
 " juggling with windows
 nnoremap <C-Down> <C-w>w
-nnoremap <C-Up> <C-w>W
+nnoremap <C-Up>   <C-w>W
 
 " juggling with lines
 nnoremap <leader>k      :move-2<CR>==
@@ -240,6 +240,10 @@ nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
+
+" merci twal
+onoremap w :<C-u>norm w<CR>
+onoremap W :<C-u>norm W<CR>
 
 """""""""""""""""
 " EXPERIMENTAL! "

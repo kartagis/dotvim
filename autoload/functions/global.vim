@@ -1,9 +1,25 @@
+" increment selected column of numbers
+" TODO: use v:count
+function functions#global#Incr()
+  let a = line('.') - line("'<")
+  let c = virtcol("'<")
+
+  if a > 0
+    execute 'normal! ' . c . '|' . a . "\<C-a>"
+
+  endif
+
+  normal `<
+
+endfunction
+
+" ===========================================================================
+
 " saves all the visible windows if needed/possible
 function functions#global#AutoSave()
-
   let this_window = winnr()
 
-  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | doautocmd BufWritePost | endif
+  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
 
   execute this_window . 'wincmd w'
 
