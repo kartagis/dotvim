@@ -231,7 +231,7 @@ xnoremap < <gv
 onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
-nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
+nnoremap <leader><Space><Space> m`o<Esc>kO<Esc>``
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
