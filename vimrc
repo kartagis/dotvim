@@ -136,11 +136,13 @@ else
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
+
   endif
 
   " allows clicking after the 223rd column
   if has('mouse_sgr')
     set ttymouse=sgr
+
   endif
 
   nnoremap <Esc>A <up>
@@ -227,10 +229,6 @@ nnoremap Y y$
 xnoremap > >gv
 xnoremap < <gv
 
-" merci twal
-onoremap w :<C-u>norm w<CR>
-onoremap W :<C-u>norm W<CR>
-
 nnoremap <leader><Space><Space> m`o<Esc>kO<Esc>``
 
 cnoremap <C-a> <Home>
@@ -270,6 +268,8 @@ nnoremap gV `[v`]
 
 xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
+
+xnoremap <F7> :call functions#global#Incr()<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

@@ -19,7 +19,7 @@ endfunction
 function functions#global#AutoSave()
   let this_window = winnr()
 
-  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
+  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | if &filetype == "javascript" | doautocmd BufWritePost | endif | endif
 
   execute this_window . 'wincmd w'
 
