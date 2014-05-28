@@ -15,14 +15,17 @@ nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?\v^\s*(functi
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>h :call javascript#InsertHandler()<CR>
-nnoremap <buffer> <leader>l yiwm`oconsole.log("":", ");``
+" generate event handler
+nnoremap <buffer> <leader>h yiw}o<C-u>function <C-r>"(e){<CR>};<C-o>O
+" console.log
+nnoremap <buffer> <leader>l yiwm`o<C-u>console.log("<C-r>":", <C-r>"):<Esc>``
 
 command! -buffer -range=% Format let b:winview = winsaveview() |
   \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth |
   \ call winrestview(b:winview)
 
-" poor man's syntastic
-" setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
-" setlocal makeprg=jshint
-" inoremap <silent> <buffer> <Esc> <Esc>:silent make % <bar> redraw! <bar> cwindow <bar> wincmd p<CR>
+" poor man's syntastic ;-)
+setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
+setlocal makeprg=jshint
+command! -buffer Make silent make % | silent redraw! | silent cwindow | silent wincmd p
+autocmd BufWritePost <buffer> Make

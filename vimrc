@@ -179,7 +179,7 @@ nnoremap <PageDown> :bnext<CR>
 
 " juggling with windows
 nnoremap <C-Down> <C-w>w
-nnoremap <C-Up> <C-w>W
+nnoremap <C-Up>   <C-w>W
 
 " juggling with lines
 nnoremap <leader>k      :move-2<CR>==
@@ -227,10 +227,6 @@ nnoremap Y y$
 xnoremap > >gv
 xnoremap < <gv
 
-" merci twal
-onoremap w :<C-u>norm w<CR>
-onoremap W :<C-u>norm W<CR>
-
 nnoremap <leader><Space><Space> O<C-o>j<C-o>o<C-o>k<Esc>
 
 cnoremap <C-a> <Home>
@@ -240,6 +236,10 @@ nnoremap j      gj
 nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
+
+" merci twal
+onoremap w :<C-u>norm w<CR>
+onoremap W :<C-u>norm W<CR>
 
 """""""""""""""""
 " EXPERIMENTAL! "
@@ -267,7 +267,7 @@ nnoremap gV `[v`]
 xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-nnoremap <F7> jr
+xnoremap <F7> :call functions#global#Incr()<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -284,15 +284,15 @@ endfor
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit       call functions#tags#Tagit()
-command! Bombit      call functions#tags#Bombit(0)
+command! Tagit  call functions#tags#Tagit()
+command! Bombit call functions#tags#Bombit(0)
 
-command! ToUnix      call functions#global#ToUnix()
+command! ToUnix call functions#global#ToUnix()
 
-command! SS          echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
-command! LCD         lcd %:p:h
-command! CD          cd %:p:h
+command! LCD lcd %:p:h
+command! CD  cd %:p:h
 
 " sharing is caring
 command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
@@ -300,11 +300,11 @@ command! CMD         let @+ = ':' . @:
 
 command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``
 
-command! TD          tselect TODO
-command! FM          tselect FIXME
+command! TD tselect TODO
+command! FM tselect FIXME
 
-command! EV          tabnew $MYVIMRC <bar> lcd %:p:h
-command! SV          source $MYVIMRC
+command! EV tabnew $MYVIMRC <bar> lcd %:p:h
+command! SV source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
 

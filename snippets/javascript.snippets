@@ -167,9 +167,6 @@ snippet jsonp
 # JSON.stringify
 snippet jsons
 	JSON.stringify(${0:object});
-# require()
-snippet require
-	var ${1:instance_name} = require("${2:package_name}");
 ###############
 # Constructor #
 ###############
@@ -227,6 +224,9 @@ snippet req
 	require(["${1:package_name}"], function(${2:argument}) {
 		$3
 	});
+# require()
+snippet require
+	var ${1:instance_name} = require("${2:package_name}");
 # define
 snippet def function
 	define(function ${1:function_name}() {
