@@ -15,7 +15,7 @@ endfunction
 " this macro puts the URL in the href attribute
 " of the next anchor
 function html#UpdateAnchor()
-  mark '
+  let b:winview = winsaveview()
 
   silent normal! ^
   silent normal! v$h
@@ -26,7 +26,10 @@ function html#UpdateAnchor()
   silent normal! vi"
   silent normal! "_dP
 
-  silent normal ''
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction
 
@@ -34,7 +37,7 @@ endfunction
 
 " normal characters --> HTML entities
 function html#Entities()
-  mark `
+  let b:winview = winsaveview()
 
   silent s/Á/\&Aacute;/e
   silent s/á/\&aacute;/e
@@ -275,13 +278,16 @@ function html#Entities()
   silent s/Ζ/\&Zeta;/e
   silent s/ζ/\&zeta;/e
 
-  silent normal ``
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction
 
 " HTML entities --> normal characters
 function html#ReverseEntities()
-  mark `
+  let b:winview = winsaveview()
 
   silent s/&Aacute;/Á/e
   silent s/&aacute;/á/e
@@ -522,13 +528,16 @@ function html#ReverseEntities()
   silent s/&Zeta;/Ζ/e
   silent s/&zeta;/ζ/e
 
-  silent normal ``
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction
 
 " normal characters --> URL encoded characters
 function html#URLencoding()
-  mark `
+  let b:winview = winsaveview()
 
   silent s/!/%21/e
   silent s/ /%22/e
@@ -683,13 +692,16 @@ function html#URLencoding()
   silent s/þ/%FE/e
   silent s/ÿ/%FF/e
 
-  silent normal ``
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction
 
 " URL encoded characters --> normal characters
 function html#ReverseURLencoding()
-  mark `
+  let b:winview = winsaveview()
 
   silent s/%21/!/e
   silent s/%22/ /e
@@ -845,6 +857,9 @@ function html#ReverseURLencoding()
   silent s/%FE/þ/e
   silent s/%FF/ÿ/e
 
-  silent normal ``
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction

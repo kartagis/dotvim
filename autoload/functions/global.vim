@@ -41,7 +41,13 @@ function functions#global#MRUComplete(ArgLead, CmdLine, CursorPos)
 endfunction
 
 function functions#global#MRU(command, arg)
-  execute a:command . " " . a:arg
+  if a:command == "tabedit"
+    execute a:command . " " . a:arg . "\|lcd %:p:h"
+
+  else
+    execute a:command . " " . a:arg
+
+  endif
 
 endfunction
 
@@ -217,13 +223,16 @@ endfunction
 
 " DOS to UNIX encoding
 function functions#global#ToUnix()
-  mark `
+  let b:winview = winsaveview()
 
   silent update
   silent e ++ff=dos
   silent setlocal ff=unix
   silent w
 
-  silent normal ``
+  if(exists('b:winview'))
+    call winrestview(b:winview)
+
+  endif
 
 endfunction
