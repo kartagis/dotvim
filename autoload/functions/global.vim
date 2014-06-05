@@ -19,7 +19,7 @@ endfunction
 function functions#global#AutoSave()
   let this_window = winnr()
 
-  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | if &filetype == "javascript" | doautocmd BufWritePost | endif | endif
+  windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
 
   execute this_window . 'wincmd w'
 
@@ -63,7 +63,11 @@ function functions#global#WrapCommand(direction, prefix)
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "last"
 
+    catch /^Vim\%((\a\+)\)\=:E42/
+      echo "No error."
+
     catch /^Vim\%((\a\+)\)\=:E776/
+      echo "No location list."
 
     endtry
 
@@ -74,7 +78,11 @@ function functions#global#WrapCommand(direction, prefix)
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "first"
 
+    catch /^Vim\%((\a\+)\)\=:E42/
+      echo "No error."
+
     catch /^Vim\%((\a\+)\)\=:E776/
+      echo "No location list."
 
     endtry
 
