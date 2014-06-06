@@ -111,11 +111,7 @@ function functions#global#WrapCommand(direction, prefix)
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "last"
 
-    catch /^Vim\%((\a\+)\)\=:E42/
-      echo "No error."
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-      echo "No location list."
+    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
 
     endtry
 
@@ -126,11 +122,7 @@ function functions#global#WrapCommand(direction, prefix)
     catch /^Vim\%((\a\+)\)\=:E553/
       execute a:prefix . "first"
 
-    catch /^Vim\%((\a\+)\)\=:E42/
-      echo "No error."
-
-    catch /^Vim\%((\a\+)\)\=:E776/
-      echo "No location list."
+    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
 
     endtry
 
@@ -143,19 +135,25 @@ endfunction
 " simplistic search/replace across project
 function functions#global#Replace(search_pattern, replacement_pattern, file_pattern)
 
-  silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
-
   try
-    silent lfirst
+    silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
 
-    while 1
-      execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
+    try
+      silent lfirst
 
-      silent lnfile
+      while 1
+        execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
 
-    endwhile
+        silent lnfile
 
-  catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
+      endwhile
+
+    catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
+
+    endtry
+
+  catch /^Vim\%((\a\+)\)\=:E480/
+    echo "No match found"
 
   endtry
 
@@ -196,7 +194,6 @@ function functions#global#SmartEnter()
 
   endif
 
-  " I still have to decide if it's useful to me
   if getline(".") =~ '^\s*\(\*\|//\|#\|"\)\s*$'
     return "\<C-u>"
 
