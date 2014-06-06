@@ -286,15 +286,15 @@ endfor
 " CUSTOM COMMANDS "
 """""""""""""""""""
 
-command! Tagit       call functions#tags#Tagit()
-command! Bombit      call functions#tags#Bombit(0)
+command! Tagit  call functions#tags#Tagit()
+command! Bombit call functions#tags#Bombit(0)
 
-command! ToUnix      call functions#global#ToUnix()
+command! ToUnix call functions#global#ToUnix()
 
-command! SS          echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
-command! LCD         lcd %:p:h
-command! CD          cd %:p:h
+command! LCD lcd %:p:h
+command! CD  cd %:p:h
 
 " sharing is caring
 command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
@@ -302,11 +302,11 @@ command! CMD         let @+ = ':' . @:
 
 command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``
 
-command! TD          tselect TODO
-command! FM          tselect FIXME
+command! TD tselect TODO
+command! FM tselect FIXME
 
-command! EV          tabnew $MYVIMRC <bar> lcd %:p:h
-command! SV          source $MYVIMRC
+command! EV tabnew $MYVIMRC <bar> lcd %:p:h
+command! SV source $MYVIMRC
 
 command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
 
