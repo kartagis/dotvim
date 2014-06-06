@@ -271,6 +271,52 @@ xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=s
 
 xnoremap <F7> :call functions#global#Incr()<CR>
 
+function! Exchange()
+  let words = [
+    \ ["TRUE" , "FALSE"],
+    \ ["True" , "False"],
+    \ ["true" , "false"],
+    \ ["top" , "right" , "bottom" , "left"],
+    \ ["none" , "block"],
+    \ ["==" , "!="],
+    \ ["first" , "last"]
+    \ ]
+
+  if exists("b:exchange_words")
+    let words += b:exchange_words
+  endif
+
+  let current_word = expand("<cword>")
+  let new_word = ""
+
+  for pair in words
+    for word in pair
+      if current_word ==# word
+        if index(pair, word) < len(pair) -1
+          let new_word = pair[index(pair, word) + 1]
+
+        elseif index(pair, word) == len(pair) -1
+          let new_word = pair[0]
+
+        endif
+
+      endif
+
+    endfor
+
+  endfor
+
+  if new_word != ""
+    execute 'normal "_ciw' . new_word
+
+  else
+    return
+
+  endif
+
+endfunction
+nnoremap <leader>e :call Exchange()<CR>
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
@@ -297,7 +343,7 @@ command! LCD lcd %:p:h
 command! CD  cd %:p:h
 
 " sharing is caring
-command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+command! -range=% VP  <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! CMD         let @+ = ':' . @:
 
 command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``
