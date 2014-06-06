@@ -1,3 +1,51 @@
+" cycle common words
+function functions#global#Exchange()
+  let words = [
+    \ ["TRUE", "FALSE"],
+    \ ["True", "False"],
+    \ ["true", "false"],
+    \ ["top", "right", "bottom", "left", "center"],
+    \ ["none", "block"],
+    \ ["first", "last"],
+    \ ["||", "&&"],
+    \ ]
+
+  if exists("b:exchange_words")
+    let words += b:exchange_words
+  endif
+
+  let current_word = expand("<cword>")
+  let new_word = ""
+
+  for pair in words
+    for word in pair
+      if current_word ==# word
+        if index(pair, word) < len(pair) - 1
+          let new_word = pair[index(pair, word) + 1]
+
+        elseif index(pair, word) == len(pair) - 1
+          let new_word = pair[0]
+
+        endif
+
+      endif
+
+    endfor
+
+  endfor
+
+  if new_word != ""
+    execute 'normal "_ciw' . new_word
+
+  else
+    return
+
+  endif
+
+endfunction
+
+" ===========================================================================
+
 " increment selected column of numbers
 " TODO: use v:count
 function functions#global#Incr()
