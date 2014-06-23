@@ -10,6 +10,10 @@ function functions#global#Exchange()
     \ ["||", "&&"],
     \ ]
 
+  if exists("g:exchange_words")
+    let words += g:exchange_words
+  endif
+
   if exists("b:exchange_words")
     let words += b:exchange_words
   endif

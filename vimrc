@@ -55,9 +55,6 @@ set foldlevelstart=999
 set foldmethod=indent
 set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
-set t_vb=
-set visualbell
-
 set splitbelow
 set splitright
 
@@ -73,7 +70,6 @@ set path=.,**
 set previewheight=4
 set scrolloff=4
 set virtualedit=block
-set winheight=999
 
 colorscheme apprentice
 
@@ -82,17 +78,16 @@ augroup VIMRC
 
   autocmd FocusLost,InsertLeave * call functions#global#AutoSave()
 
-  autocmd GUIEnter * set visualbell t_vb=
+  autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
   autocmd BufLeave * let b:winview = winsaveview()
   autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
 
-  autocmd BufEnter,WinEnter * call matchadd('Error', '\s\+$', -1)
-
-  autocmd BufLeave *.css  normal! mC
-  autocmd BufLeave *.html normal! mH
-  autocmd BufLeave *.js   normal! mJ
-  autocmd BufLeave *.php  normal! mP
+  autocmd BufLeave *.css        normal! mC
+  autocmd BufLeave *.html       normal! mH
+  autocmd BufLeave *.js         normal! mJ
+  autocmd BufLeave *.php        normal! mP
+  autocmd BufLeave vimrc,*.vim  normal! mV
 
 augroup END
 
