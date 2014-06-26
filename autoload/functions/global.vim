@@ -138,7 +138,6 @@ endfunction
 
 " simplistic search/replace across project
 function functions#global#Replace(search_pattern, replacement_pattern, file_pattern)
-
   try
     silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
 
