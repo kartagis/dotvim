@@ -271,13 +271,20 @@ xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=s
 
 xnoremap <F7> :call functions#global#Incr()<CR>
 
+let g:exchange_words = [
+      \ ["gif", "jpg", "png"],
+      \]
+
 nnoremap <leader>e :call functions#global#Exchange()<CR>
+
+nnoremap mù m`
+nnoremap ùù ``
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
 
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '"', "'" ]
   execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
@@ -299,7 +306,7 @@ command! LCD lcd %:p:h
 command! CD  cd %:p:h
 
 " sharing is caring
-command! -range=% VP  <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! CMD         let @+ = ':' . @:
 
 command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``

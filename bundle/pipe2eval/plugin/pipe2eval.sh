@@ -4,6 +4,8 @@
 # * each buffer should has it's own context
 
 INPUT_LANG=$1
+INPUT_FILE="$2"
+
 if [ -z "$PIP2EVAL_TMP_FILE_PATH" ]; then
 	PIP2EVAL_TMP_FILE_PATH=/dev/shm/
 fi
@@ -33,6 +35,13 @@ process_commands(){
 	fi
 }
 
+hr() {
+	echo -n "$1"
+	pad=$(printf '%0.1s' "-"{1..80})
+	padlen=$((80 - ${#1} - ${#2}))
+	printf '%0.*s' $padlen $pad
+	echo "$2"
+}
 
 # commands ---------------------------------------------------------------------
 
@@ -154,6 +163,21 @@ coffee_merge(){
 	cat "$TMP_FILE.new" >> $TMP_FILE;
 }
 
+# livescript ------------------------------------------------------------------
+
+ls_eval(){
+	cat $TMP_FILE $TMP_FILE.new |\
+		sed -e '/^$/d' |\
+		sed '$ s/^\([ \t]*\)\(.*\)$/\1____ =\2\
+\1console.log ____\
+\1____/' > $TMP_FILE.eval
+	livescript $TMP_FILE.eval 2> $TMP_FILE.error | sed -e 's/^\(.*\)$/# \1/'
+}
+
+ls_merge(){
+	cat "$TMP_FILE.new" >> $TMP_FILE;
+}
+
 # javascript -------------------------------------------------------------------
 
 javascript_eval(){
@@ -227,9 +251,52 @@ lua_reset(){
 
 # go ---------------------------------------------------------------------------
 
+go_reset(){
+	go_eval
+}
+
 go_eval(){
+	hr "// "
+	$INPUT_LANG run "$INPUT_FILE" | sed -e 's/^\(.*\)$/\/\/ \1/'
+}
+
+# rust -------------------------------------------------------------------------
+
+rust_eval(){
 	sed -i '/^\/\//d' $TMP_FILE.new
 	$INPUT_LANG run $TMP_FILE.new | sed -e 's/^\(.*\)$/\/\/ \1/'
+}
+
+# haskell ----------------------------------------------------------------------
+
+haskell_reset(){
+	> $TMP_FILE
+	> $TMP_FILE.error
+	echo '-- context cleared'
+}
+
+haskell_eval(){
+	if grep -q '^main' $TMP_FILE.new; then
+		cat $TMP_FILE "$TMP_FILE.new" |\
+			runhaskell 2> "$TMP_FILE.error" | sed -e 's/^\(.*\)$/-- \1/'
+	fi
+}
+
+# haskell_merge(){
+# 	cat "$TMP_FILE.new" | sed '/^main/,$ d' >> $TMP_FILE;
+# }
+
+# c ----------------------------------------------------------------------------
+
+c_reset(){
+	c_eval
+}
+
+c_eval(){
+	argv="$(sed -n 's/\s*\/\/// p' $TMP_FILE.new)"
+	cc -Wall -g "$INPUT_FILE" -o "$TMP_FILE.o"
+	hr "// "
+	"$TMP_FILE.o" $argv 2> "$TMP_FILE.error" | sed -e 's/^\(.*\)$/\/\/ \1/'
 }
 
 # bash -------------------------------------------------------------------------
@@ -259,7 +326,7 @@ markdown_eval(){
 mongo_exec(){
 	[ -f $TMP_FILE.host ] && host=$(cat $TMP_FILE.host) || host=127.0.0.1
 	[ -f $TMP_FILE.port ] && port=$(cat $TMP_FILE.port) || port=27017
-	[ -f $TMP_FILE.db ] && db=$(cat $TMP_FILE.db) 
+	[ -f $TMP_FILE.db ] && db=$(cat $TMP_FILE.db)
 	mongo --quiet --host $host --port $port $db $TMP_FILE.eval
 }
 
@@ -322,7 +389,7 @@ mongo_command_connections(){
 mongo_command_session(){
 	[ -f $TMP_FILE.host ] && host=$(cat $TMP_FILE.host) || host=127.0.0.1
 	[ -f $TMP_FILE.port ] && port=$(cat $TMP_FILE.port) || port=27017
-	[ -f $TMP_FILE.db ] && db=$(cat $TMP_FILE.db) 
+	[ -f $TMP_FILE.db ] && db=$(cat $TMP_FILE.db)
 
 	echo "host $host"
 	echo "port $port"
@@ -387,6 +454,24 @@ sql_eval(){
 	fi
 }
 
+# sqlite -----------------------------------------------------------------------
+
+sqlite_eval(){
+	file=`sed -ne 's/^-- file \(.*\)$/\1/p' < $TMP_FILE.new`
+
+	FILE_SAVED=$TMP_FILE.file
+
+	if [ -n "$file" ]; then
+		echo $file > $FILE_SAVED
+	fi
+
+	_FILE="`cat $FILE_SAVED`"
+
+	sqlite3 "$_FILE" < $TMP_FILE.new |\
+		sed -e 's/^\(.*\)$/-- \1/'
+}
+
+
 # xml --------------------------------------------------------------------------
 
 xml_eval(){
@@ -404,6 +489,13 @@ redis_eval(){
 
 json_eval(){
 	python -mjson.tool < $TMP_FILE.new
+}
+
+# yaml -------------------------------------------------------------------------
+
+yaml_eval(){
+	ruby -ryaml -rjson -e 'puts JSON.pretty_generate(YAML.load(STDIN.read))' \
+		< $TMP_FILE.new 2> "$TMP_FILE.error" | sed -e 's/^\(.*\)$/# \1/'
 }
 
 # html -------------------------------------------------------------------------
