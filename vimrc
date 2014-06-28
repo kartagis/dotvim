@@ -210,8 +210,12 @@ xnoremap <leader>R :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 " faster 'dot formula'
 nnoremap <leader>x *``cgn
 nnoremap <leader>X #``cgN
+
 xnoremap <leader>x <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
 xnoremap <leader>X <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
+
+inoremap <leader>x <Esc>gn<C-g>
+inoremap <leader>X <Esc>gN<C-g>
 
 " various stuff
 nnoremap <leader>d "_d
@@ -272,6 +276,7 @@ let g:exchange_words = [
 
 nnoremap <leader>e :call functions#global#Exchange()<CR>
 
+" backtick issues in iTerm/Terminal
 nnoremap mù m`
 nnoremap ùù ``
 

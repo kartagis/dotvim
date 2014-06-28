@@ -121,12 +121,6 @@ function acp#meetsForRubyOmni(context)
 endfunction
 
 "
-"function acp#meetsForActionScriptOmni(context)
-  "return g:acp_behaviorPythonOmniLength >= 0 &&
-        "\ a:context =~ '[^. \t]\(\.\|:\)\k\{' . g:acp_behaviorPythonOmniLength . ',}$'
-"endfunction
-
-"
 function acp#meetsForJavaScriptOmni(context)
   return g:acp_behaviorPythonOmniLength >= 0 &&
         \ a:context =~ '\k\.\k\{' . g:acp_behaviorPythonOmniLength . ',}$'
