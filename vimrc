@@ -156,7 +156,7 @@ endif
 """""""""""""""""""
 
 let mapleader = ","
-" available keys: a c e   i   mno q   u w yz
+" available keys: a c         mno q   u w yz
 "                 A CDE GHIJKLMNOPQ   U W YZ
 
 " juggling with files
@@ -268,13 +268,9 @@ nnoremap gV `[v`]
 xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap <F7> :call functions#global#Incr()<CR>
+xnoremap <leader>i :call functions#global#Incr()<CR>
 
-let g:exchange_words = [
-      \ ["gif", "jpg", "png"],
-      \]
-
-nnoremap <leader>e :call functions#global#Exchange()<CR>
+nnoremap <leader>e :call functions#global#Cycle()<CR>
 
 " backtick issues in iTerm/Terminal
 nnoremap mù m`

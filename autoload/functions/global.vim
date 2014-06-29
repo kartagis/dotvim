@@ -1,5 +1,5 @@
 " cycle common words
-function functions#global#Exchange()
+function functions#global#Cycle()
   let words = [
     \ ["TRUE", "FALSE"],
     \ ["True", "False"],
@@ -8,14 +8,15 @@ function functions#global#Exchange()
     \ ["none", "block"],
     \ ["first", "last"],
     \ ["||", "&&"],
+    \ ["gif", "jpg", "png"]
     \ ]
 
-  if exists("g:exchange_words")
-    let words += g:exchange_words
+  if exists("g:cycle_words")
+    let words += g:cycle_words
   endif
 
-  if exists("b:exchange_words")
-    let words += b:exchange_words
+  if exists("b:cycle_words")
+    let words += b:cycle_words
   endif
 
   let current_word = expand("<cword>")
