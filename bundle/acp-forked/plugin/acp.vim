@@ -37,6 +37,7 @@ function s:makeDefaultBehavior()
         \   'html'         : [],
         \   'xhtml'        : [],
         \   'css'          : [],
+        \   'less'         : [],
         \ }
   "---------------------------------------------------------------------------
   if !empty(g:acp_behaviorUserDefinedFunction) &&
@@ -126,6 +127,12 @@ function s:makeDefaultBehavior()
         \ })
   "---------------------------------------------------------------------------
   call add(behavs.css, {
+        \   'command' : "\<C-x>\<C-o>",
+        \   'meets'   : 'acp#meetsForCssOmni',
+        \   'repeat'  : 0,
+        \ })
+  "---------------------------------------------------------------------------
+  call add(behavs.less, {
         \   'command' : "\<C-x>\<C-o>",
         \   'meets'   : 'acp#meetsForCssOmni',
         \   'repeat'  : 0,

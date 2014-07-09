@@ -206,10 +206,10 @@ function acp#onPopupPost()
     inoremap <silent> <expr>  <BS>  acp#onBs()
 
     " adding <Tab> for choosing items
-    silent let s:original_tab       = maparg("<Tab>", "i", 0, 1)
-    silent let s:original_shift_tab = maparg("<S-Tab>", "i", 0, 1)
-    silent inoremap <silent> <Tab>   <C-n>
-    silent inoremap <silent> <S-Tab> <C-p>
+    " silent let s:original_tab       = maparg("<Tab>", "i", 0, 1)
+    " silent let s:original_shift_tab = maparg("<S-Tab>", "i", 0, 1)
+    " silent inoremap <silent> <Tab>   <C-n>
+    " silent inoremap <silent> <S-Tab> <C-p>
     silent inoremap <silent> <Down>  <C-n>
     silent inoremap <silent> <Up>    <C-p>
 
@@ -398,23 +398,23 @@ function s:finishPopup(fGroup1)
   inoremap <C-h> <Nop> | iunmap <C-h>
   inoremap <BS>  <Nop> | iunmap <BS>
 
-  if exists("s:original_tab") && !empty("s:original_tab")
-    let tab_noremap = s:original_tab.noremap ? "noremap"   : "map"
-    let tab_silent  = s:original_tab.silent  ? " <silent>" : ""
-    let tab_expr    = s:original_tab.expr    ? " <expr>"   : ""
-    let tab_buffer  = s:original_tab.buffer  ? " <buffer>" : ""
-    let tab_rhs     = s:original_tab.rhs
-    silent execute "i" . tab_noremap . tab_silent . tab_expr . tab_buffer . " <Tab> " . tab_rhs
-  endif
+  " if exists("s:original_tab") && !empty("s:original_tab")
+  "   let tab_noremap = s:original_tab.noremap ? "noremap"   : "map"
+  "   let tab_silent  = s:original_tab.silent  ? " <silent>" : ""
+  "   let tab_expr    = s:original_tab.expr    ? " <expr>"   : ""
+  "   let tab_buffer  = s:original_tab.buffer  ? " <buffer>" : ""
+  "   let tab_rhs     = s:original_tab.rhs
+  "   silent execute "i" . tab_noremap . tab_silent . tab_expr . tab_buffer . " <Tab> " . tab_rhs
+  " endif
 
-  if exists("s:original_shift_tab") && !empty("s:original_shift_tab")
-    let shift_tab_noremap = s:original_tab.noremap ? "noremap"   : "map"
-    let shift_tab_silent  = s:original_tab.silent  ? " <silent>" : ""
-    let shift_tab_expr    = s:original_tab.expr    ? " <expr>"   : ""
-    let shift_tab_buffer  = s:original_tab.buffer  ? " <buffer>" : ""
-    let shift_tab_rhs     = s:original_tab.rhs
-    silent execute "i" . shift_tab_noremap . shift_tab_silent . shift_tab_expr . shift_tab_buffer . " <S-Tab>" . shift_tab_rhs
-  endif
+  " if exists("s:original_shift_tab") && !empty("s:original_shift_tab")
+  "   let shift_tab_noremap = s:original_tab.noremap ? "noremap"   : "map"
+  "   let shift_tab_silent  = s:original_tab.silent  ? " <silent>" : ""
+  "   let shift_tab_expr    = s:original_tab.expr    ? " <expr>"   : ""
+  "   let shift_tab_buffer  = s:original_tab.buffer  ? " <buffer>" : ""
+  "   let shift_tab_rhs     = s:original_tab.rhs
+  "   silent execute "i" . shift_tab_noremap . shift_tab_silent . shift_tab_expr . shift_tab_buffer . " <S-Tab>" . shift_tab_rhs
+  " endif
 
   inoremap <Down> <Down>
   inoremap <Up>   <Up>
