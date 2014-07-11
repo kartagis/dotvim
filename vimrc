@@ -27,7 +27,7 @@ set wildmenu
 set autoindent
 set expandtab
 set shiftround
-set shiftwidth=2
+set shiftwidth=4
 set smarttab
 
 set gdefault
