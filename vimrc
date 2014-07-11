@@ -174,6 +174,8 @@ nnoremap <leader>B :sbuffer <C-z><S-Tab>
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>
 
+nnoremap gb :buffers<CR>:buffer<Space>
+
 " juggling with windows
 nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
@@ -270,7 +272,7 @@ xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=s
 
 xnoremap <leader>i :call functions#global#Incr()<CR>
 
-nnoremap <leader>e :call functions#global#Cycle()<CR>
+nnoremap <leader>c :call functions#global#Cycle()<CR>
 
 " backtick issues in iTerm/Terminal
 nnoremap mù m`
@@ -332,18 +334,6 @@ let g:netrw_winsize   = '30'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 1
 let g:netrw_liststyle = 3
-
-let g:syntastic_check_on_open       = 0
-let g:syntastic_enable_balloons     = 0
-let g:syntastic_enable_highlighting = 0
-let g:syntastic_auto_jump           = 1
-let g:syntastic_auto_loc_list       = 1
-let g:syntastic_enable_signs        = 1
-let g:syntastic_mode_map            = {
-  \ 'mode'              : 'passive',
-  \ 'active_filetypes'  : ['javascript'],
-  \ 'passive_filetypes' : []
-  \ }
 
 let g:html_indent_script1 = 'inc'
 let g:html_indent_style1  = 'inc'
