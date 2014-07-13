@@ -104,7 +104,7 @@ if has('gui_running')
   set columns=140
 
   if os == 'Darwin'
-    set guifont=Inconsolata-g:h12
+    set guifont=Fira\ Mono:h12
     set fuoptions=maxvert,maxhorz
     set clipboard^=unnamed
 
