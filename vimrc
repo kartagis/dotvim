@@ -180,18 +180,12 @@ nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
 
 " juggling with lines
-nnoremap <leader>k      :move-2<CR>==
-nnoremap <leader>j      :move+<CR>==
 nnoremap <leader><Up>   :move-2<CR>==
 nnoremap <leader><Down> :move+<CR>==
-xnoremap <leader>k      :move-2<CR>gv=gv
-xnoremap <leader>j      :move'>+<CR>gv=gv
 xnoremap <leader><Up>   :move-2<CR>gv=gv
 xnoremap <leader><Down> :move'>+<CR>gv=gv
 
 " juggling with words
-nnoremap <leader>h       "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader>l       "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
@@ -234,8 +228,6 @@ nnoremap <leader><Space><Space> m`o<Esc>kO<Esc>``
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-nnoremap j      gj
-nnoremap k      gk
 nnoremap <Down> gj
 nnoremap <up>   gk
 
