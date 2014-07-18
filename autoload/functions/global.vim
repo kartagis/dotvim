@@ -1,3 +1,17 @@
+" jump to css
+function functions#global#JumpToStyle(extension)
+  let id_pos    = searchpos("id", "nb", line('.'))[1]
+  let class_pos = searchpos("class", "nb", line('.'))[1]
+
+  if class_pos > 0 || id_pos > 0
+    if class_pos < id_pos
+      execute ":vim '#" . expand('<cword>') . "' **/*." . a:extension
+    elseif class_pos > id_pos
+      execute ":vim '." . expand('<cword>') . "' **/*." . a:extension
+    endif
+  endif
+endfunction
+
 " cycle common words
 function functions#global#Cycle()
   let words = [

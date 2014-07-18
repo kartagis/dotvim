@@ -66,7 +66,7 @@ function functions#tags#Bombit(buffer_only)
   update
 
   if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-    call functions#tags#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only, 1)
+    call functions#tags#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), a:buffer_only, 0)
 
   endif
 
