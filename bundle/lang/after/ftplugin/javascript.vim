@@ -29,15 +29,3 @@ setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
 command! -buffer Make silent make % | silent redraw! | silent cwindow | silent wincmd p
 autocmd BufWritePost <buffer> Make
-
-function! JsIncludeExpr(file)
-  if (filereadable(a:file))
-    return a:file
-  else
-    let l:file2=substitute(substitute(a:file,'\\.js$','','g'),'$','/index.js','g')
-    return l:file2
-  endif
-endfunction
-setlocal include=require(.\\zs[^'\"]*\\ze
-setlocal includeexpr=JsIncludeExpr(v:fname)
-setlocal suffixesadd=.js

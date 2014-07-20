@@ -23,24 +23,11 @@ nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 " nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by
 " nnoremap <buffer> vaa /\v"[ >/]/e<CR>vF=b
 
-nnoremap <silent> <buffer> ]] :call function#global#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
+nnoremap <silent> <buffer> ]] :call functions#global#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 
-if has('gui_running')
-  if os == 'Darwin' || os == 'Mac'
-    nnoremap <buffer> <F12>f :exe ':silent !open -a firefox %'<CR>
-    nnoremap <buffer> <F12>c :exe ':silent !open -a "google chrome" %'<CR>
-    nnoremap <buffer> <F12>o :exe ':silent !open -a opera %'<CR>
-    nnoremap <buffer> <F12>s :exe ':silent !open -a safari %'<CR>
-
-  elseif os == 'Linux'
-    nnoremap <buffer> <F12>f :exe ':silent !firefox % &'<CR>
-    nnoremap <buffer> <F12>c :exe ':silent !chromium-browser % &'<CR>
-    nnoremap <buffer> <F12>o :exe ':silent !opera % &'<CR>
-
-  endif
-
-endif
+nnoremap <buffer> gdl :call html#JumpToStyle("less")<CR>
+nnoremap <buffer> gdc :call html#JumpToStyle("css")<CR>
 
 command! -buffer Entities    call html#Entities()
 command! -buffer RevEntities call html#RevEntities()

@@ -22,4 +22,7 @@ setlocal comments=s1:/*,mb:*,ex:*/
 
 let &l:include = '^\s*@import\s\+\%(url(\)\=["'']\='
 
+nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <buffer> <C-}> :Bombit<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
+
 " vim:set sw=2:
