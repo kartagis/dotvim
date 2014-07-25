@@ -209,9 +209,6 @@ nnoremap <leader>X #``cgN
 xnoremap <leader>x <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
 xnoremap <leader>X <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
-inoremap <leader>x <Esc>gn<C-g>
-inoremap <leader>X <Esc>gN<C-g>
-
 " various stuff
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
@@ -268,6 +265,18 @@ nnoremap <leader>c :call functions#global#Cycle()<CR>
 " backtick issues in iTerm/Terminal
 nnoremap mù m`
 nnoremap ùù ``
+
+nnoremap § *``gn<C-g>
+inoremap § <C-o>gn<C-g>
+
+nnoremap cX  :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cx  :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+
+nnoremap cxf yiw?function<CR>$v%<Esc>:'<,'>s/\<<C-r>"\>/
+
+nnoremap cx( yiwvi(<Esc>:'<,'>s/\<<C-r>"\>/
+nnoremap cx{ yiwvi{<Esc>:'<,'>s/\<<C-r>"\>/
+nnoremap cx[ yiwvi[<Esc>:'<,'>s/\<<C-r>"\>/
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
