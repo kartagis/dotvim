@@ -269,14 +269,15 @@ nnoremap ùù ``
 nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
 
-nnoremap cX  :%s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap cx  :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cX  :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-nnoremap cxf yiw?function<CR>$v%<Esc>:'<,'>s/\<<C-r>"\>/
+nnoremap cxf m`?function<CR>$v%<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
-nnoremap cx( yiwvi(<Esc>:'<,'>s/\<<C-r>"\>/
-nnoremap cx{ yiwvi{<Esc>:'<,'>s/\<<C-r>"\>/
-nnoremap cx[ yiwvi[<Esc>:'<,'>s/\<<C-r>"\>/
+nnoremap cxb m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cxB m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap cx[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nmap     cx] cx[
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
