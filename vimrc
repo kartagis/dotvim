@@ -1,6 +1,6 @@
 filetype off
 syntax off
-"TODO:sdgksgdksgd
+
 call pathogen#infect()
 
 filetype plugin indent on
