@@ -1,6 +1,6 @@
 filetype off
 syntax off
-
+"TODO:sdgksgdksgd
 call pathogen#infect()
 
 filetype plugin indent on
@@ -196,18 +196,18 @@ inoremap <leader>- <C-x><C-l>
 inoremap <leader>* <C-x><C-n>
 
 " super fast search/replace
-nnoremap <leader>r :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <leader>R :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>        :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <leader>r :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
-xnoremap <leader>R :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
+xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
+xnoremap <Space>        :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
 " faster 'dot formula'
-nnoremap <leader>x *``cgn
-nnoremap <leader>X #``cgN
+nnoremap <leader>; *``cgn
+nnoremap <leader>; #``cgN
 
-xnoremap <leader>x <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
-xnoremap <leader>X <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
+xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
+xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
 " various stuff
 nnoremap <leader>d "_d
@@ -269,15 +269,12 @@ nnoremap ùù ``
 nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
 
-nnoremap cx  :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap cX  :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
-nnoremap cxf m`?function<CR>$v%<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-
-nnoremap cxb m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap cxB m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap cx[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     cx] cx[
+nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nmap     <Space>] <Space><Space>[
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
