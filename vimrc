@@ -155,8 +155,8 @@ endif
 """""""""""""""""""
 
 let mapleader = ","
-" available keys: a c         mno q   u w yz
-"                 A CDE GHIJKLMNOPQ   U W YZ
+" available keys: a c         mno qr  u wxyz
+"                 A CDE GHIJKLMNOPQR  U WXYZ
 
 " juggling with files
 nnoremap <leader>f :find *
@@ -197,17 +197,17 @@ inoremap <leader>* <C-x><C-n>
 
 " super fast search/replace
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>        :%s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
-xnoremap <Space>        :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
+xnoremap <Space>%       :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
 " faster 'dot formula'
 nnoremap <leader>; *``cgn
-nnoremap <leader>; #``cgN
+nnoremap <leader>: #``cgN
 
 xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
-xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
+xnoremap <leader>: <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
 " various stuff
 nnoremap <leader>d "_d
@@ -260,7 +260,7 @@ xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=s
 
 xnoremap <leader>i :call functions#global#Incr()<CR>
 
-nnoremap <leader>c :call functions#global#Cycle()<CR>
+nnoremap cy :call functions#global#Cycle()<CR>
 
 " backtick issues in iTerm/Terminal
 nnoremap mù m`
@@ -274,7 +274,7 @@ nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>
 nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     <Space>] <Space><Space>[
+nmap     <Space>] <Space>[
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
