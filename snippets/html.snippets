@@ -156,6 +156,10 @@ snippet tds
 	td[width=${1}][align=${2:left}][valign=${3:top}]${4}
 #
 # <FORM>
+snippet radio
+	<input type="radio" name="${1:some_name}" value="${2}"`Close()`>${3}
+snippet checkbox
+	<input type="checkbox" name="${1:some_name}" value="${2}"`Close()`>${3}
 snippet input
 	<input type="${1:text/submit/reset/radio/pasword/image/file/checkbox/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
 snippet label

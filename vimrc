@@ -336,3 +336,5 @@ let g:netrw_liststyle = 3
 let g:html_indent_script1 = 'inc'
 let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
+
+let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'

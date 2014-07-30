@@ -31,7 +31,7 @@ function insertion#InsertIMG(...)
 
     startinsert
 
-  elseif &filetype == "css"
+  elseif &filetype == "css" || &filetype == "less"
     let @x = substitute(image_attributes,'\([0-9]*\)x\([0-9]*\)','background: transparent url(' . path . ') no-repeat scroll top left;\nwidth: \1px;\nheight: \2px;','')
 
     normal "xp3==
