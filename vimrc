@@ -174,6 +174,7 @@ nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>
 
 nnoremap gb :buffers<CR>:buffer<Space>
+nnoremap gB :buffers<CR>:sbuffer<Space>
 
 " juggling with windows
 nnoremap <C-Down> <C-w>w
