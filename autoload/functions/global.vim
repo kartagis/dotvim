@@ -1,3 +1,25 @@
+" filter the current quickfix
+function functions#global#GrepQuickFix(pat)
+  if !exists("g:qfl")
+    let g:qfl = getqflist()
+  endif
+
+  call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
+
+endfunction
+
+function functions#global#ResetQuickFix()
+  try
+    call setqflist(g:qfl)
+
+  catch
+
+  endtry
+
+endfunction
+
+" ===========================================================================
+
 " cycle common words
 function functions#global#Cycle()
   let words = [

@@ -323,6 +323,8 @@ command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call func
 
 command! -nargs=+ Replace call functions#global#Replace(<f-args>)
 
+command! -nargs=* GQ call functions#global#GrepQuickFix(<q-args>)
+
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
