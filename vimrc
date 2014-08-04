@@ -277,6 +277,8 @@ nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nmap     <Space>] <Space>[
 
+nnoremap [I [I:
+
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
