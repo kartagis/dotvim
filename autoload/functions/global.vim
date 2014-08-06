@@ -102,7 +102,7 @@ endfunction
 
 " ===========================================================================
 
-" naive MRU
+" simplistic MRU
 function functions#global#MRUComplete(ArgLead, CmdLine, CursorPos)
   let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
 
@@ -159,13 +159,13 @@ endfunction
 
 " ===========================================================================
 
-" simplistic search/replace across project
-function functions#global#Replace(search_pattern, replacement_pattern, file_pattern)
+" simplistic grep/ack/ag-based search/replace across project
+function functions#global#Replace(search_pattern, replacement_pattern, argument)
   try
-    silent execute "lvimgrep " . a:search_pattern . " " . a:file_pattern
+    silent execute 'lgrep! "\b' . a:search_pattern . '\b" ' . a:argument
 
     try
-      silent lfirst
+      silent lfirst|redraw!
 
       while 1
         execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"

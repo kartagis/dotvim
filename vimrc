@@ -248,8 +248,7 @@ nnoremap <leader>T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
 
 nnoremap <leader>p :Bombit<CR>:ptjump /
 
-nnoremap <C-]> :Bombit<CR><C-]>
-nnoremap <C-}> :Bombit<CR><C-}>
+nnoremap g] :Bombit<CR>g<C-]>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
@@ -273,11 +272,23 @@ inoremap § <C-o>gn<C-g>
 nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
 nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nmap     <Space>( <Space>B
+nmap     <Space>) <Space>B
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nmap     <Space>{ <Space>B
+nmap     <Space>} <Space>B
 nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nmap     <Space>] <Space>[
 
 nnoremap [I [I:
+
+" The Silver Searcher
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  nnoremap K :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
+  command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+endif
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -323,7 +334,7 @@ command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call func
 command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
 command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
 
-command! -nargs=+ Replace call functions#global#Replace(<f-args>)
+command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
 
 command! -nargs=* GQ call functions#global#GrepQuickFix(<q-args>)
 

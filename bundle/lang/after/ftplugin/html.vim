@@ -26,9 +26,6 @@ nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 nnoremap <silent> <buffer> ]] :call functions#global#Custom_jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>
 
-nnoremap <buffer> gdl :call html#JumpToStyle("less")<CR>
-nnoremap <buffer> gdc :call html#JumpToStyle("css")<CR>
-
 command! -buffer Entities    call html#Entities()
 command! -buffer RevEntities call html#RevEntities()
 
