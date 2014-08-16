@@ -1,20 +1,10 @@
-" filter the current quickfix
-function functions#global#GrepQuickFix(pat)
-  if !exists("g:qfl")
-    let g:qfl = getqflist()
+" filter the current location list
+function functions#global#FilterLocList(pat)
+  if !exists("g:locl")
+    let g:locl = getloclist(0)
   endif
 
-  call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
-
-endfunction
-
-function functions#global#ResetQuickFix()
-  try
-    call setqflist(g:qfl)
-
-  catch
-
-  endtry
+  call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
 
 endfunction
 
@@ -160,9 +150,13 @@ endfunction
 " ===========================================================================
 
 " simplistic grep/ack/ag-based search/replace across project
-function functions#global#Replace(search_pattern, replacement_pattern, argument)
+function functions#global#Replace(search_pattern, replacement_pattern, ...)
   try
-    silent execute 'lgrep! "\b' . a:search_pattern . '\b" ' . a:argument
+    if a:0 > 0
+      silent execute 'lgrep! "\b' . a:search_pattern . '\b" ' . a:1
+    else
+      silent execute 'lgrep! "\b' . a:search_pattern . '\b"'
+    endif
 
     try
       silent lfirst|redraw!

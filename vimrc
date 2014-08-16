@@ -266,17 +266,10 @@ nnoremap cy :call functions#global#Cycle()<CR>
 nnoremap mù m`
 nnoremap ùù ``
 
-nnoremap § *``gn<C-g>
-inoremap § <C-o>gn<C-g>
-
 nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
 nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     <Space>( <Space>B
-nmap     <Space>) <Space>B
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     <Space>{ <Space>B
-nmap     <Space>} <Space>B
 nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nmap     <Space>] <Space>[
 
@@ -286,8 +279,8 @@ nnoremap [I [I:
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
   set grepformat=%f:%l:%c:%m,%f:%l:%m
-  nnoremap K :silent! grep! "\b<C-r><C-w>\b"<CR>:cwindow<CR>:redraw!<CR>
-  command! -nargs=+ -complete=file_in_path -bar Ag silent grep! <args>|cwindow|redraw!
+  nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
+  command! -nargs=+ -complete=file_in_path -bar Search silent! lgrep! <args> | lwindow | redraw!
 endif
 
 """""""""""""""""""""""
@@ -335,8 +328,6 @@ command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call func
 command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
 
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
-
-command! -nargs=* GQ call functions#global#GrepQuickFix(<q-args>)
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
