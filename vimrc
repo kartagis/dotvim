@@ -73,14 +73,14 @@ let mapleader = ","
 " available keys for <leader> mappings: a c e    jklmno qr  u wxyz
 "                                       A CDE GHIJKLMNOPQR  U WXYZ
 
-""""""""""
-" COLORS "
-""""""""""
+"""""""""""""""""
+" PRETTY COLORS "
+"""""""""""""""""
 colorscheme apprentice
 
-"""""""""""""""""""""
-" DEFAULT BEHAVIORS "
-"""""""""""""""""""""
+"""""""""""""""""""
+" USEFUL DEFAULTS "
+"""""""""""""""""""
 augroup VIMRC
   autocmd!
 
@@ -208,15 +208,10 @@ nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+
 """""""""""""""""""""""""""""
 " JUGGLING WITH COMPLETIONS "
 """""""""""""""""""""""""""""
-inoremap <expr> <CR> pumvisible() ? '\<C-y>' : '\<CR>'
-
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '\<Tab>'
-inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '\<S-Tab>'
-
-inoremap <expr> <leader>, pumvisible() ? '<C-x><C-o>' : '<C-x><C-o><C-p><C-p><Down>'
-inoremap <expr> <leader>/ pumvisible() ? '<C-x><C-f>' : '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <leader>- pumvisible() ? '<C-x><C-l>' : '<C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-inoremap <expr> <leader>= pumvisible() ? '<C-x><C-n>' : '<C-x><C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <leader>, <C-x><C-o><Down><C-p><Down>
+inoremap <leader>/ <C-x><C-f><Down><C-p><Down>
+inoremap <leader>- <C-x><C-l><Down><C-p><Down>
+inoremap <leader>= <C-x><C-n><Down><C-p><Down>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
