@@ -11,18 +11,16 @@ runtime macros/matchit.vim
 """"""""""""""""""""
 " GENERIC SETTINGS "
 """"""""""""""""""""
-
-" minimal
+" basic
 set backspace=indent,eol,start
 set hidden
 set incsearch
 set laststatus=2
 set switchbuf=useopen,usetab
 set tags=./tags;,tags;
-set tags^=./.temptags
 set wildmenu
 
-" better
+" fancy
 set autoindent
 set expandtab
 set shiftround
@@ -68,10 +66,21 @@ set nrformats-=octal
 set path=.,**
 set previewheight=1
 set scrolloff=4
+set tags^=./.temptags
 set virtualedit=block
 
+let mapleader = ","
+" available keys for <leader> mappings: a c e    jklmno qr  u wxyz
+"                                       A CDE GHIJKLMNOPQR  U WXYZ
+
+""""""""""
+" COLORS "
+""""""""""
 colorscheme apprentice
 
+"""""""""""""""""""""
+" DEFAULT BEHAVIORS "
+"""""""""""""""""""""
 augroup VIMRC
   autocmd!
 
@@ -80,7 +89,7 @@ augroup VIMRC
   autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
   autocmd BufLeave * let b:winview = winsaveview()
-  autocmd BufEnter * if(exists('b:winview')) | call winrestview(b:winview) | endif
+  autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
 
   autocmd BufLeave *.css,*.less normal! mC
   autocmd BufLeave *.html       normal! mH
@@ -93,7 +102,6 @@ augroup END
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
-
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
@@ -150,15 +158,9 @@ else
 
 endif
 
-"""""""""""""""""""
-" CUSTOM MAPPINGS "
-"""""""""""""""""""
-
-let mapleader = ","
-" available keys: a c         mno qr  u wxyz
-"                 A CDE GHIJKLMNOPQR  U WXYZ
-
-" juggling with files
+"""""""""""""""""""""""
+" JUGGLING WITH FILES "
+"""""""""""""""""""""""
 nnoremap <leader>f :find *
 nnoremap <leader>F :find <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap <leader>s :sfind *
@@ -166,51 +168,132 @@ nnoremap <leader>S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap <leader>v :vert sfind *
 nnoremap <leader>V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
-" juggling with buffers
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete ME call functions#global#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call functions#global#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
+
+"""""""""""""""""""""""""
+" JUGGLING WITH BUFFERS "
+"""""""""""""""""""""""""
 nnoremap <leader>b :buffer <C-z><S-Tab>
 nnoremap <leader>B :sbuffer <C-z><S-Tab>
-
-nnoremap <PageUp>   :bprevious<CR>
-nnoremap <PageDown> :bnext<CR>
 
 nnoremap gb :buffers<CR>:buffer<Space>
 nnoremap gB :buffers<CR>:sbuffer<Space>
 
-" juggling with windows
+nnoremap <PageUp>   :bprevious<CR>
+nnoremap <PageDown> :bnext<CR>
+
+"""""""""""""""""""""""""
+" JUGGLING WITH WINDOWS "
+"""""""""""""""""""""""""
 nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
 
-" juggling with lines
+"""""""""""""""""""""""
+" JUGGLING WITH LINES "
+"""""""""""""""""""""""
 nnoremap <leader><Up>   :move-2<CR>==
 nnoremap <leader><Down> :move+<CR>==
 xnoremap <leader><Up>   :move-2<CR>gv=gv
 xnoremap <leader><Down> :move'>+<CR>gv=gv
 
-" juggling with words
+"""""""""""""""""""""""
+" JUGGLING WITH WORDS "
+"""""""""""""""""""""""
 nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
 nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
-" juggling with completions
-inoremap <leader>, <C-x><C-o>
-inoremap <leader>/ <C-x><C-f>
-inoremap <leader>- <C-x><C-l>
-inoremap <leader>* <C-x><C-n>
+"""""""""""""""""""""""""""""
+" JUGGLING WITH COMPLETIONS "
+"""""""""""""""""""""""""""""
+inoremap <expr> <CR> pumvisible() ? '\<C-y>' : '\<CR>'
 
-" super fast search/replace
+inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '\<Tab>'
+inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '\<S-Tab>'
+
+inoremap <expr> <leader>, pumvisible() ? '<C-x><C-o>' : '<C-x><C-o><C-p><C-p><Down>'
+inoremap <expr> <leader>/ pumvisible() ? '<C-x><C-f>' : '<C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <leader>- pumvisible() ? '<C-x><C-l>' : '<C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+inoremap <expr> <leader>= pumvisible() ? '<C-x><C-n>' : '<C-x><C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
+""""""""""""""""""""""""""
+" JUGGLING WITH SEARCHES "
+""""""""""""""""""""""""""
+nnoremap [I [I:
+
+if executable("ag")
+  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+
+  nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
+
+  command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
+
+endif
+
+""""""""""""""""""""""""""""""""
+" JUGGLING WITH SEARCH/REPLACE "
+""""""""""""""""""""""""""""""""
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
 xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
 xnoremap <Space>%       :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
-" faster 'dot formula'
+nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nmap     <Space>] <Space>[
+
+command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
+
+"""""""""""""""""""""""""
+" JUGGLING WITH CHANGES "
+"""""""""""""""""""""""""
 nnoremap <leader>; *``cgn
 nnoremap <leader>: #``cgN
 
 xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
 xnoremap <leader>: <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
-" various stuff
+""""""""""""""""""""""""""""""""""""""
+" JUGGLING WITH ERRORS AND LOCATIONS "
+""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Home>   :call functions#global#WrapCommand('up', 'c')<CR>
+nnoremap <silent> <End>    :call functions#global#WrapCommand('down', 'c')<CR>
+
+nnoremap <silent> <C-Home> :call functions#global#WrapCommand('up', 'l')<CR>
+nnoremap <silent> <C-End>  :call functions#global#WrapCommand('down', 'l')<CR>
+
+""""""""""""""""""""""
+" JUGGLING WITH TAGS "
+""""""""""""""""""""""
+command! Tagit  call functions#tags#Tagit()
+command! Bombit call functions#tags#Bombit(0)
+
+command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
+
+nnoremap <leader>t :Bombit<CR>:tjump /
+nnoremap <leader>T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
+
+nnoremap <leader>p :Bombit<CR>:ptjump /
+
+nnoremap g] :Bombit<CR>g<C-]>
+
+"""""""""""""""""""""""""
+" JUGGLING WITH NUMBERS "
+"""""""""""""""""""""""""
+xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
+xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
+
+xnoremap <leader>i :call functions#global#Incr()<CR>
+
+""""""""""""""""""""
+" VARIOUS MAPPINGS "
+""""""""""""""""""""
 nnoremap <leader>d "_d
 xnoremap <leader>d "_d
 
@@ -233,74 +316,32 @@ nnoremap <up>   gk
 onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
-"""""""""""""""""
-" EXPERIMENTAL! "
-"""""""""""""""""
-
 inoremap <expr> <CR> functions#global#SmartEnter()
-
-nnoremap <silent> <Home>  :call functions#global#WrapCommand('up', 'c')<CR>
-nnoremap <silent> <End>   :call functions#global#WrapCommand('down', 'c')<CR>
-nnoremap <silent> <Space> :call functions#global#WrapCommand('down', 'l')<CR>
-
-nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
-
-nnoremap <leader>p :Bombit<CR>:ptjump /
-
-nnoremap g] :Bombit<CR>g<C-]>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 nnoremap gV `[v`]
 
-xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
-xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
-
-xnoremap <leader>i :call functions#global#Incr()<CR>
-
 nnoremap cy :call functions#global#Cycle()<CR>
 
-" backtick issues in iTerm/Terminal
 nnoremap mù m`
 nnoremap ùù ``
-
-nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-
-nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     <Space>] <Space>[
-
-nnoremap [I [I:
-
-" The Silver Searcher
-if executable("ag")
-  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-  nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
-  command! -nargs=+ -complete=file_in_path -bar Search silent! lgrep! <args> | lwindow | redraw!
-endif
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
-
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '"', "'" ]
   execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+
 endfor
 
-"""""""""""""""""""
-" CUSTOM COMMANDS "
-"""""""""""""""""""
-
-command! Tagit  call functions#tags#Tagit()
-command! Bombit call functions#tags#Bombit(0)
-
+""""""""""""""""""""
+" VARIOUS COMMANDS "
+""""""""""""""""""""
 command! ToUnix call functions#global#ToUnix()
 
 command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
@@ -308,11 +349,7 @@ command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 command! LCD lcd %:p:h
 command! CD  cd %:p:h
 
-" sharing is caring
-command! -range=% VP execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
-command! CMD         let @+ = ':' . @:
-
-command! -range=% TR mark `|execute <line1> . ',' . <line2> . 's/\s\+$//'|normal! ``
+command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
 
 command! TD tselect TODO
 command! FM tselect FIXME
@@ -320,19 +357,13 @@ command! FM tselect FIXME
 command! EV tabnew $MYVIMRC <bar> lcd %:p:h
 command! SV source $MYVIMRC
 
-command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
-
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete ME call functions#global#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call functions#global#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
-
-command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
+" sharing is caring
+command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
-
 let g:snippets_dir = '~/.vim/snippets/'
 
 let g:netrw_winsize   = '30'
