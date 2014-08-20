@@ -6,7 +6,7 @@ let b:match_words = '\<function\>:\<return\>,'
   \ . '\<try\>:\<catch\>:\<finally\>'
 
 " banner
-nnoremap <buffer> <leader>g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
+nnoremap <buffer> ,g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
 
 " tag jumps
 nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
@@ -21,9 +21,9 @@ xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
 " generate event handler
-nnoremap <buffer> <leader>h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
+nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 " generate console.log
-nnoremap <buffer> <leader>l yiwm`o<C-u>console.log("<C-r>":", <C-r>");<Esc>==``
+nnoremap <buffer> ,l yiwm`o<C-u>console.log("<C-r>":", <C-r>");<Esc>==``
 
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |

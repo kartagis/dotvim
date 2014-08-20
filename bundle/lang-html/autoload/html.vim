@@ -6,7 +6,6 @@ function html#UpdateWidth()
   silent normal! yi"
   silent normal! ?\vwidth\=""?e
   silent normal! P
-
 endfunction
 
 " ===========================================================================
@@ -16,7 +15,6 @@ endfunction
 " of the next anchor
 function html#UpdateAnchor()
   let b:winview = winsaveview()
-
   silent normal! ^
   silent normal! v$h
   silent normal! y
@@ -25,12 +23,9 @@ function html#UpdateAnchor()
   silent normal! f"
   silent normal! vi"
   silent normal! "_dP
-
   if(exists('b:winview'))
     call winrestview(b:winview)
-
   endif
-
 endfunction
 
 " ===========================================================================
@@ -38,7 +33,6 @@ endfunction
 " normal characters --> HTML entities
 function html#Entities()
   let b:winview = winsaveview()
-
   silent s/Á/\&Aacute;/e
   silent s/á/\&aacute;/e
   silent s/Â/\&Acirc;/e
@@ -277,18 +271,14 @@ function html#Entities()
   silent s/Ÿ/\&Yuml;/e
   silent s/Ζ/\&Zeta;/e
   silent s/ζ/\&zeta;/e
-
   if(exists('b:winview'))
     call winrestview(b:winview)
-
   endif
-
 endfunction
 
 " HTML entities --> normal characters
 function html#ReverseEntities()
   let b:winview = winsaveview()
-
   silent s/&Aacute;/Á/e
   silent s/&aacute;/á/e
   silent s/&Acirc;/Â/e
@@ -527,18 +517,14 @@ function html#ReverseEntities()
   silent s/&Yuml;/Ÿ/e
   silent s/&Zeta;/Ζ/e
   silent s/&zeta;/ζ/e
-
   if(exists('b:winview'))
     call winrestview(b:winview)
-
   endif
-
 endfunction
 
 " normal characters --> URL encoded characters
 function html#URLencoding()
   let b:winview = winsaveview()
-
   silent s/!/%21/e
   silent s/ /%22/e
   silent s/#/%23/e
@@ -691,18 +677,14 @@ function html#URLencoding()
   silent s/ý/%FD/e
   silent s/þ/%FE/e
   silent s/ÿ/%FF/e
-
   if(exists('b:winview'))
     call winrestview(b:winview)
-
   endif
-
 endfunction
 
 " URL encoded characters --> normal characters
 function html#ReverseURLencoding()
   let b:winview = winsaveview()
-
   silent s/%21/!/e
   silent s/%22/ /e
   silent s/%23/#/e
@@ -856,10 +838,7 @@ function html#ReverseURLencoding()
   silent s/%FD/ý/e
   silent s/%FE/þ/e
   silent s/%FF/ÿ/e
-
   if(exists('b:winview'))
     call winrestview(b:winview)
-
   endif
-
 endfunction

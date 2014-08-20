@@ -7,10 +7,10 @@ setlocal indentkeys-=*<Return>
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-nnoremap <buffer> <leader>& :call html#Entities()<CR>
-nnoremap <buffer> <leader>é :call html#ReverseEntities()<CR>
-xnoremap <buffer> <leader>& :call html#Entities()<CR>
-xnoremap <buffer> <leader>é :call html#ReverseEntities()<CR>
+nnoremap <buffer> ,& :call html#Entities()<CR>
+nnoremap <buffer> ,é :call html#ReverseEntities()<CR>
+xnoremap <buffer> ,& :call html#Entities()<CR>
+xnoremap <buffer> ,é :call html#ReverseEntities()<CR>
 
 nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"

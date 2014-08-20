@@ -3,7 +3,6 @@
 
 if has('conceal')
   setlocal conceallevel=0
-
 endif
 
 command! -buffer -range=% Format let b:winview = winsaveview() |

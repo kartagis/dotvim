@@ -71,9 +71,8 @@ set scrolloff=4
 set tags^=./.temptags
 set virtualedit=block
 
-let mapleader = ","
-" available keys for <leader> mappings: a c e    jklmno qr  u wxyz
-"                                       A CDE GHIJKLMNOPQR  U WXYZ
+" available keys for , mappings: a c e    jklmno qr  u wxyz
+"                                A CDE GHIJKLMNOPQR  U WXYZ
 
 """""""""""""""""
 " PRETTY COLORS "
@@ -98,7 +97,6 @@ augroup VIMRC
   autocmd BufLeave *.js         normal! mJ
   autocmd BufLeave *.php        normal! mP
   autocmd BufLeave vimrc,*.vim  normal! mV
-
 augroup END
 
 """""""""""""""""""""""""""""""""
@@ -107,7 +105,6 @@ augroup END
 let os=substitute(system('uname'), '\n', '', '')
 
 if has('gui_running')
-
   set guioptions-=T
 
   set lines=40
@@ -117,21 +114,16 @@ if has('gui_running')
     set guifont=Fira\ Mono:h12
     set fuoptions=maxvert,maxhorz
     set clipboard^=unnamed
-
   elseif os == 'Linux'
     set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
     set clipboard^=unnamedplus
-
   endif
-
 else
   if os == 'Darwin'
     set clipboard^=unnamed
-
   elseif os == 'Linux'
     set clipboard^=unnamedplus
-
   endif
 
   if &term =~ '^screen'
@@ -140,13 +132,11 @@ else
     execute "set <xDown>=\e[1;*B"
     execute "set <xRight>=\e[1;*C"
     execute "set <xLeft>=\e[1;*D"
-
   endif
 
   " allows clicking after the 223rd column
   if has('mouse_sgr')
     set ttymouse=sgr
-
   endif
 
   nnoremap <Esc>A <up>
@@ -157,18 +147,17 @@ else
   inoremap <Esc>B <down>
   inoremap <Esc>C <right>
   inoremap <Esc>D <left>
-
 endif
 
 """""""""""""""""""""""
 " JUGGLING WITH FILES "
 """""""""""""""""""""""
-nnoremap <leader>f :find *
-nnoremap <leader>F :find <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap <leader>s :sfind *
-nnoremap <leader>S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap <leader>v :vert sfind *
-nnoremap <leader>V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,f :find *
+nnoremap ,F :find <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,s :sfind *
+nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,v :vert sfind *
+nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
 command! -nargs=1 -complete=customlist,functions#global#MRUComplete ME call functions#global#MRU('edit', <f-args>)
 command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call functions#global#MRU('split', <f-args>)
@@ -178,8 +167,8 @@ command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call func
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
 """""""""""""""""""""""""
-nnoremap <leader>b :buffer <C-z><S-Tab>
-nnoremap <leader>B :sbuffer <C-z><S-Tab>
+nnoremap ,b :buffer <C-z><S-Tab>
+nnoremap ,B :sbuffer <C-z><S-Tab>
 
 nnoremap gb :buffers<CR>:buffer<Space>
 nnoremap gB :buffers<CR>:sbuffer<Space>
@@ -196,24 +185,24 @@ nnoremap <C-Up>   <C-w>W
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
 """""""""""""""""""""""
-nnoremap <leader><Up>   :move-2<CR>==
-nnoremap <leader><Down> :move+<CR>==
-xnoremap <leader><Up>   :move-2<CR>gv=gv
-xnoremap <leader><Down> :move'>+<CR>gv=gv
+nnoremap ,<Up>   :move-2<CR>==
+nnoremap ,<Down> :move+<CR>==
+xnoremap ,<Up>   :move-2<CR>gv=gv
+xnoremap ,<Down> :move'>+<CR>gv=gv
 
 """""""""""""""""""""""
 " JUGGLING WITH WORDS "
 """""""""""""""""""""""
-nnoremap <leader><Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
-nnoremap <leader><Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
+nnoremap ,<Left>  "_yiw?\v\w+\_W+%#<CR>:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o><C-l>
+nnoremap ,<Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-l>
 
 """""""""""""""""""""""""""""
 " JUGGLING WITH COMPLETIONS "
 """""""""""""""""""""""""""""
-inoremap <leader>, <C-x><C-o><Down><C-p><Down>
-inoremap <leader>/ <C-x><C-f><Down><C-p><Down>
-inoremap <leader>- <C-x><C-l><Down><C-p><Down>
-inoremap <leader>= <C-x><C-n><Down><C-p><Down>
+inoremap ,, <C-x><C-o><Down><C-p><Down>
+inoremap ,; <C-p><Down><C-p><Down>
+inoremap ,: <C-x><C-f><Down><C-p><Down>
+inoremap ,= <C-x><C-l><Down><C-p><Down>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
@@ -227,7 +216,6 @@ if executable("ag")
   nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
 
   command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
-
 endif
 
 """"""""""""""""""""""""""""""""
@@ -250,11 +238,11 @@ command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
 """""""""""""""""""""""""
-nnoremap <leader>; *``cgn
-nnoremap <leader>: #``cgN
+nnoremap ,; *``cgn
+nnoremap ,, #``cgN
 
-xnoremap <leader>; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
-xnoremap <leader>: <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
+xnoremap ,; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
+xnoremap ,, <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
 """"""""""""""""""""""""""""""""""""""
 " JUGGLING WITH ERRORS AND LOCATIONS "
@@ -273,10 +261,10 @@ command! Bombit call functions#tags#Bombit(0)
 
 command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
 
-nnoremap <leader>t :Bombit<CR>:tjump /
-nnoremap <leader>T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
+nnoremap ,t :Bombit<CR>:tjump /
+nnoremap ,T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
 
-nnoremap <leader>p :Bombit<CR>:ptjump /
+nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
 
@@ -286,37 +274,25 @@ nnoremap g] :Bombit<CR>g<C-]>
 xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap <leader>i :call functions#global#Incr()<CR>
+xnoremap ,i :call functions#global#Incr()<CR>
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
 """"""""""""""""""""
-nnoremap <leader>d "_d
-xnoremap <leader>d "_d
+nnoremap ,d "_d
+xnoremap ,d "_d
 
-xnoremap <leader>p "_dP
+xnoremap ,p "_dP
 
 nnoremap Y y$
 
 xnoremap > >gv
 xnoremap < <gv
 
-nnoremap <leader><Space><Space> m`o<Esc>kO<Esc>``
-
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+nnoremap ,<Space><Space> m`o<Esc>kO<Esc>``
 
 nnoremap <Down> gj
 nnoremap <up>   gk
-
-" merci twal
-onoremap w :<C-u>norm w<CR>
-onoremap W :<C-u>norm W<CR>
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#global#SmartEnter()\<CR>"
-
-cnoremap %% <C-r>=expand('%')<CR>
-cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 nnoremap gV `[v`]
 
@@ -324,6 +300,18 @@ nnoremap cy :call functions#global#Cycle()<CR>
 
 nnoremap mù m`
 nnoremap ùù ``
+
+" merci twal
+onoremap w :<C-u>norm w<CR>
+onoremap W :<C-u>norm W<CR>
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#global#SmartEnter()\<CR>"
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
+cnoremap %% <C-r>=expand('%')<CR>
+cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -333,7 +321,6 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', 
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
   execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
-
 endfor
 
 """"""""""""""""""""
