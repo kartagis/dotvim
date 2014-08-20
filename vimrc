@@ -55,6 +55,8 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set splitbelow
 set splitright
 
+set complete-=w
+set complete-=u
 set completeopt+=longest
 set cursorline
 set fileformats=unix,dos,mac
@@ -311,7 +313,7 @@ nnoremap <up>   gk
 onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
-inoremap <expr> <CR> functions#global#SmartEnter()
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#global#SmartEnter()\<CR>"
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
