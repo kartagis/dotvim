@@ -1,7 +1,8 @@
 # #!/bin/bash
 snippet #!
-	#!/bin/bash
+	#!/usr/bin/env bash
 	
+	${1}
 snippet if
 	if [[ ${1:condition} ]]; then
 		${2:#statements}
@@ -13,7 +14,7 @@ snippet for
 	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
 		${3:#statements}
 	done
-snippet wh
+snippet while
 	while [[ ${1:condition} ]]; do
 		${2:#statements}
 	done
@@ -26,3 +27,11 @@ snippet case
 		${2:pattern})
 			${3};;
 	esac
+snippet fun
+	${1:function_name}() {
+		${0:#function_body}
+	}
+snippet ffun
+	function ${1:function_name}() {
+		${0:#function_body}
+	}

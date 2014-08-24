@@ -57,7 +57,7 @@ set splitright
 
 set complete-=w
 set complete-=u
-set completeopt+=longest
+set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
@@ -71,9 +71,6 @@ set scrolloff=4
 set tags^=./.temptags
 set virtualedit=block
 
-" available keys for , mappings: a c e    jklmno qr  u wxyz
-"                                A CDE GHIJKLMNOPQR  U WXYZ
-
 """""""""""""""""
 " PRETTY COLORS "
 """""""""""""""""
@@ -85,7 +82,7 @@ colorscheme apprentice
 augroup VIMRC
   autocmd!
 
-  autocmd FocusLost,InsertLeave * call functions#global#AutoSave()
+  autocmd FocusLost,InsertLeave * wall
 
   autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
@@ -149,6 +146,9 @@ else
   inoremap <Esc>D <left>
 endif
 
+" available keys for , mappings: a c e    jklmno qr  u wxyz
+"                                A CDE GHIJKLMNOPQR  U WXYZ
+
 """""""""""""""""""""""
 " JUGGLING WITH FILES "
 """""""""""""""""""""""
@@ -170,8 +170,8 @@ command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call func
 nnoremap ,b :buffer <C-z><S-Tab>
 nnoremap ,B :sbuffer <C-z><S-Tab>
 
-nnoremap gb :buffers<CR>:buffer<Space>
-nnoremap gB :buffers<CR>:sbuffer<Space>
+nnoremap gb :ls<CR>:buffer<Space>
+nnoremap gB :ls<CR>:sbuffer<Space>
 
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>
@@ -209,13 +209,13 @@ inoremap ,= <C-x><C-l><Down><C-p><Down>
 """"""""""""""""""""""""""
 nnoremap [I [I:
 
+nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
+
+command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
+
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
   set grepformat=%f:%l:%c:%m,%f:%l:%m
-
-  nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
-
-  command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
 endif
 
 """"""""""""""""""""""""""""""""
@@ -256,14 +256,10 @@ nnoremap <silent> <C-End>  :call functions#global#WrapCommand('down', 'l')<CR>
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "
 """"""""""""""""""""""
-command! Tagit  call functions#tags#Tagit()
-command! Bombit call functions#tags#Bombit(0)
-
-command! -nargs=1 -complete=customlist,functions#tags#BtagComplete Btag call functions#tags#Btag(<f-args>)
+command! Tagit  call functions#tags#Tagit(0)
+command! Bombit call functions#tags#Tagit(1)
 
 nnoremap ,t :Bombit<CR>:tjump /
-nnoremap ,T :call functions#tags#Bombit(1)<CR>:Btag <C-z><S-Tab>
-
 nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>

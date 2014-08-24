@@ -113,6 +113,16 @@ endfunction
 
 " simplistic grep/ack/ag-based search/replace across project
 function functions#global#Replace(search_pattern, replacement_pattern, ...)
+  let old_sb = &switchbuf
+  let &switchbuf = ''
+  " let g:current_buffers = []
+  " for buf in range(1,bufnr('$'))
+  "   if buflisted(buf)
+  "     add(g:current_buffers, buf)
+  "   endif
+  " endfor
+  wall
+  tabnew
   try
     if a:0 > 0
       silent execute 'lgrep! "\b' . a:search_pattern . '\b" ' . a:1
@@ -130,6 +140,11 @@ function functions#global#Replace(search_pattern, replacement_pattern, ...)
   catch /^Vim\%((\a\+)\)\=:E480/
     echo "No match found"
   endtry
+  let &switchbuf = old_sb
+endfunction
+
+function functions#global#TabWipe()
+  " stub
 endfunction
 
 " ===========================================================================
@@ -176,6 +191,8 @@ function functions#global#SmartEnter()
   endif
 endfunction
 
+" FIXME: there's an elusive bug in how a right char is
+" located in complex scenarios
 function functions#global#PairExpander(left, right, next)
   let pair_position = searchpairpos(a:left, "", a:right, "Wn")
   if a:next !=# a:right && pair_position[0] == 0
