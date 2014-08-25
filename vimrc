@@ -81,7 +81,7 @@ colorscheme apprentice
 augroup VIMRC
   autocmd!
 
-  autocmd FocusLost,InsertLeave * wall
+  autocmd FocusLost,InsertLeave * call functions#global#AutoSave()
 
   autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
