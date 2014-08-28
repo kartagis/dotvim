@@ -202,6 +202,7 @@ inoremap ,, <C-x><C-o><Down><C-p><Down>
 inoremap ,; <C-p><Down><C-p><Down>
 inoremap ,: <C-x><C-f><Down><C-p><Down>
 inoremap ,= <C-x><C-l><Down><C-p><Down>
+imap ,<Tab> <C-r><Tab>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
