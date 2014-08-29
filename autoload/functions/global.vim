@@ -115,12 +115,7 @@ endfunction
 function functions#global#Replace(search_pattern, replacement_pattern, ...)
   let old_sb = &switchbuf
   let &switchbuf = ''
-  " let g:current_buffers = []
-  " for buf in range(1,bufnr('$'))
-  "   if buflisted(buf)
-  "     add(g:current_buffers, buf)
-  "   endif
-  " endfor
+  let g:last_buffer = bufnr('$')
   wall
   tabnew
   try
@@ -144,7 +139,19 @@ function functions#global#Replace(search_pattern, replacement_pattern, ...)
 endfunction
 
 function functions#global#TabWipe()
-  " stub
+  let old_sb = &switchbuf
+  let &switchbuf = ''
+  if exists('g:last_buffer')
+    let start = g:last_buffer + 1
+    let end   = bufnr('$')
+    for buf in range(start, end)
+      execute "buffer " . buf
+      update
+    endfor
+    execute "bwipeout " . start . " " . end
+    unlet g:last_buffer
+  endif
+  let &switchbuf = old_sb
 endfunction
 
 " ===========================================================================
@@ -242,3 +249,4 @@ function functions#global#ToUnix()
     call winrestview(b:winview)
   endif
 endfunction
+

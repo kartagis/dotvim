@@ -234,6 +234,8 @@ nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nmap     <Space>] <Space>[
 
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
+" FIXME
+command! Done                                    call functions#global#TabWipe()
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
