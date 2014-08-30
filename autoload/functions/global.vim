@@ -125,7 +125,7 @@ function functions#global#Replace(search_pattern, replacement_pattern, ...)
       silent execute 'lgrep! "\b' . a:search_pattern . '\b"'
     endif
     try
-      silent lfirst|redraw!
+      silent lfirst | redraw!
       while 1
         execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
         silent lnfile
@@ -146,12 +146,13 @@ function functions#global#TabWipe()
     let end   = bufnr('$')
     for buf in range(start, end)
       execute "buffer " . buf
+      setlocal bufhidden=wipe
       update
     endfor
-    execute "bwipeout " . start . " " . end
     unlet g:last_buffer
   endif
   let &switchbuf = old_sb
+  bwipeout
 endfunction
 
 " ===========================================================================

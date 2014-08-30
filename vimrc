@@ -209,7 +209,7 @@ imap ,<Tab> <C-r><Tab>
 """"""""""""""""""""""""""
 nnoremap [I [I:
 
-nnoremap K :silent! lgrep! "\b<C-r><C-w>\b"<CR>:lwindow<CR>:redraw!<CR>
+nnoremap <silent> K :Grep <C-r><C-w><CR>
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
 
@@ -227,11 +227,9 @@ nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
 xnoremap <Space>%       :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
-nnoremap <Space>f mf?function<CR>$v%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>f mf]M[Mv%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>[ m`vi[<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nmap     <Space>] <Space>[
 
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
 " FIXME
@@ -265,6 +263,8 @@ nnoremap ,t :Bombit<CR>:tjump /
 nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
+
+nnoremap ,D :dlist //<CR>:
 
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "

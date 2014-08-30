@@ -1,3 +1,5 @@
+setlocal define=^\\s*\\(function\\\|var\\)
+
 " matchit
 let b:match_words = '\<function\>:\<return\>,'
   \ . '\<do\>:\<while\>,'
@@ -34,4 +36,4 @@ command! -buffer -range=% Format let b:winview = winsaveview() |
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
 command! -buffer Make silent make % | silent redraw! | silent cwindow | silent wincmd p
-autocmd BufWritePost <buffer> Make
+autocmd! BufWritePost <buffer> Make
