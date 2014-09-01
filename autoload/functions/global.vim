@@ -90,7 +90,7 @@ endfunction
 " ===========================================================================
 
 " wrapping :cnext/:cprevious and :lnext/:lprevious
-" quick and dirty
+" quick, dirty and working
 function functions#global#WrapCommand(direction, prefix)
   if a:direction == "up"
     try
@@ -111,48 +111,27 @@ endfunction
 
 " ===========================================================================
 
-" simplistic grep/ack/ag-based search/replace across project
+" Search/Replace
 function functions#global#Replace(search_pattern, replacement_pattern, ...)
-  let old_sb = &switchbuf
-  let &switchbuf = ''
-  let g:last_buffer = bufnr('$')
+  let search_string = 'ag --nogroup --nocolor --files-with-matches '
   wall
   tabnew
-  try
-    if a:0 > 0
-      silent execute 'lgrep! "\b' . a:search_pattern . '\b" ' . a:1
-    else
-      silent execute 'lgrep! "\b' . a:search_pattern . '\b"'
-    endif
-    try
-      silent lfirst | redraw!
-      while 1
-        execute "%s/" . a:search_pattern . "/" . a:replacement_pattern . "/ec"
-        silent lnfile
-      endwhile
-    catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
-    endtry
-  catch /^Vim\%((\a\+)\)\=:E480/
-    echo "No match found"
-  endtry
-  let &switchbuf = old_sb
+  let t:start_buffer = bufnr('$')
+  if a:0 > 0
+    silent arglocal `=system(search_string . a:search_pattern . ' ' . a:1)`
+  else
+    silent arglocal `=system(search_string . a:search_pattern)`
+  endif
+  argdo execute '%s/' . a:search_pattern . '/' . a:replacement_pattern . '/ec'
 endfunction
 
-function functions#global#TabWipe()
-  let old_sb = &switchbuf
-  let &switchbuf = ''
-  if exists('g:last_buffer')
-    let start = g:last_buffer + 1
-    let end   = bufnr('$')
-    for buf in range(start, end)
-      execute "buffer " . buf
-      setlocal bufhidden=wipe
-      update
-    endfor
-    unlet g:last_buffer
+" FIXME: ensure more predictable/consistent behavior
+function functions#global#Done()
+  if exists('t:start_buffer')
+    argdo write
+    execute t:start_buffer . ',' . bufnr('$') . 'bwipeout'
+    tabclose
   endif
-  let &switchbuf = old_sb
-  bwipeout
 endfunction
 
 " ===========================================================================

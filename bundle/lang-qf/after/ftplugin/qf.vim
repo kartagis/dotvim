@@ -7,6 +7,7 @@ wincmd J
 
 " come back after <CR>
 nnoremap <buffer> <CR> <CR><C-w>p
+nnoremap <buffer> §    :Filter <C-r><C-f><CR>
 
 " filter location list
 command! -buffer -nargs=* Filter call functions#global#FilterLocList(<q-args>)

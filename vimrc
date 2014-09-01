@@ -199,7 +199,7 @@ nnoremap ,<Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-
 " JUGGLING WITH COMPLETIONS "
 """""""""""""""""""""""""""""
 inoremap ,, <C-x><C-o><Down><C-p><Down>
-inoremap ,; <C-p><Down><C-p><Down>
+inoremap ,; <C-n><Down><C-p><Down>
 inoremap ,: <C-x><C-f><Down><C-p><Down>
 inoremap ,= <C-x><C-l><Down><C-p><Down>
 imap ,<Tab> <C-r><Tab>
@@ -232,8 +232,7 @@ nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
-" FIXME
-command! Done                                    call functions#global#TabWipe()
+command!                                 Done    call functions#global#Done()
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
