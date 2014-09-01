@@ -49,7 +49,6 @@ endfunction
 " ===========================================================================
 
 " increment selected column of numbers
-" TODO: use v:count
 function functions#global#Incr()
   let a = line('.') - line("'<")
   let c = virtcol("'<")

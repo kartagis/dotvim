@@ -234,6 +234,16 @@ nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
 command!                                 Done    call functions#global#Done()
 
+command! -nargs=1 Qdo try | silent cfirst |
+\ while 1 | execute <q-args> | silent cnext | endwhile |
+\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
+\ endtry
+
+command! -nargs=1 Qdofile try | silent cfirst |
+\ while 1 | execute <q-args> | silent cnfile | endwhile |
+\ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
+\ endtry
+
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
 """""""""""""""""""""""""
