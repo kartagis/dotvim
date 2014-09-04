@@ -221,6 +221,7 @@ endif
 """"""""""""""""""""""""""""""""
 " JUGGLING WITH SEARCH/REPLACE "
 """"""""""""""""""""""""""""""""
+" in the current buffer
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
@@ -231,18 +232,30 @@ nnoremap <Space>f mf]M[Mv%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
 
+" across multiple files
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
 command!                                 Done    call functions#global#Done()
 
-command! -nargs=1 Qdo try | silent cfirst |
-\ while 1 | execute <q-args> | silent cnext | endwhile |
+command! -nargs=1 Doline try |
+      \ len(getloclist('.') ? silent lfirst |
+\ while 1 | execute <q-args> | silent lnext | endwhile |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
 \ endtry
 
-command! -nargs=1 Qdofile try | silent cfirst |
-\ while 1 | execute <q-args> | silent cnfile | endwhile |
+command! -nargs=1 Dofile try | silent lfirst |
+\ while 1 | execute <q-args> | silent lnfile | endwhile |
 \ catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/ |
 \ endtry
+
+function! Foo()
+  if &filetype == "qf"
+    if len(getloclist('.')) > 0
+      echo "is loclist"
+    else
+      echo "is errorlist"
+    endif
+  endif
+endfunction
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
