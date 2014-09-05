@@ -1,39 +1,3 @@
-" filter the current location/quickfix list
-function functions#global#FilterList(pat)
-  if &filetype == "qf"
-    if len(getloclist('.')) > 0
-      if !exists("g:locl")
-        let g:locl = getloclist(0)
-      endif
-      call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
-    else
-      if !exists("g:qfl")
-        let g:qfl = getqflist()
-      endif
-      call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
-    endif
-  endif
-endfunction
-
-" restore the current location/quickfix list
-function functions#global#RestoreList()
-  if &filetype == "qf"
-    if len(getloclist('.')) > 0
-      try
-        call setloclist(0, g:locl)
-      catch
-      endtry
-    else
-      try
-        call setqflist(g:qfl)
-      catch
-      endtry
-    endif
-  endif
-endfunction
-
-" ===========================================================================
-
 " cycle common words
 function functions#global#Cycle()
   let words = [
