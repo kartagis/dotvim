@@ -228,9 +228,9 @@ nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
 xnoremap <Space>%       :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
 
-nnoremap <Space>f mf]M[Mv%<Esc>`f:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>b m`vi(<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
-nnoremap <Space>B m`vi{<Esc>``:'<,'>s/\<<C-r>=expand('<cword>')<CR>\>/
+nnoremap <Space>f "zyiw]M[MV%:s/\<<C-r>z\>/
+nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
+nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
 
 " across multiple files
 command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
@@ -244,15 +244,6 @@ nnoremap ,, #``cgN
 
 xnoremap ,; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
 xnoremap ,, <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
-
-""""""""""""""""""""""""""""""""""""""
-" JUGGLING WITH ERRORS AND LOCATIONS "
-""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Home>   :call functions#global#WrapCommand('up', 'c')<CR>
-nnoremap <silent> <End>    :call functions#global#WrapCommand('down', 'c')<CR>
-
-nnoremap <silent> <C-Home> :call functions#global#WrapCommand('up', 'l')<CR>
-nnoremap <silent> <C-End>  :call functions#global#WrapCommand('down', 'l')<CR>
 
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "

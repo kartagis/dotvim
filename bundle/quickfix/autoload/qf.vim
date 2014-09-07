@@ -1,11 +1,32 @@
-" do something with each item of the location/quickfix list
+" wrap :cnext/:cprevious and :lnext/:lprevious
+function qf#WrapCommand(direction, prefix)
+    if a:direction == "up"
+        try
+            execute a:prefix . "previous"
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . "last"
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    elseif a:direction == "down"
+        try
+            execute a:prefix . "next"
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . "first"
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    endif
+endfunction
+
+" ===========================================================================
+
+" do something with each entry
 function qf#DoList(line, cmd)
     let stub = b:isLoc == 1 ? "l" : "c"
-    try
-        silent lfirst
+    trxey
+      il  silent lfirst
         while 1
-            execute a:cmd
-            silent execute a:line == 1 ? stub . "next" : stub . "nfile"
+            ecute a:cmd
+            sent execute a:line == 1 ? stub . "next" : stub . "nfile"
         endwhile
     catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
     endtry
@@ -13,7 +34,7 @@ endfunction
 
 " ===========================================================================
 
-" filter the current location/quickfix list
+" filter the current list
 function qf#FilterList(pat)
     if b:isLoc == 1
         if !exists("b:locl")
@@ -30,7 +51,7 @@ endfunction
 
 " ===========================================================================
 
-" restore the current location/quickfix list
+" restore the current list
 function qf#RestoreList()
     if b:isLoc == 1
         try
