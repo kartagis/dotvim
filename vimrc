@@ -325,10 +325,10 @@ command! CD  cd %:p:h
 
 command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
 
-command! TD tselect TODO
-command! FM tselect FIXME
+command! TD Grep TODO:
+command! FM Grep FIXME:
 
-command! EV tabnew $MYVIMRC <bar> lcd %:p:h
+command! EV tabedit $MYVIMRC <bar> lcd %:p:h
 command! SV source $MYVIMRC
 
 " sharing is caring

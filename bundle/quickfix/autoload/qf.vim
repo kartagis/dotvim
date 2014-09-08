@@ -22,11 +22,11 @@ endfunction
 " do something with each entry
 function qf#DoList(line, cmd)
     let stub = b:isLoc == 1 ? "l" : "c"
-    trxey
-      il  silent lfirst
+    try
+      silent lfirst
         while 1
-            ecute a:cmd
-            sent execute a:line == 1 ? stub . "next" : stub . "nfile"
+            execute a:cmd
+            silent execute a:line == 1 ? stub . "next" : stub . "nfile"
         endwhile
     catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
     endtry
