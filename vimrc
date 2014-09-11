@@ -210,6 +210,7 @@ imap ,<Tab> <C-r><Tab>
 nnoremap [I [I:
 
 nnoremap <silent> K :Grep <C-r><C-w><CR>
+xnoremap <silent> K :<C-u>Grep <C-r>=functions#global#GetVisualSelection()<CR><CR>
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep <args> | lwindow | redraw!
 
@@ -256,7 +257,7 @@ nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
 
-nnoremap ,D :dlist //<CR>:
+nnoremap ,D :dlist /<CR>:
 
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "
@@ -264,7 +265,7 @@ nnoremap ,D :dlist //<CR>:
 xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap ,i :call functions#global#Incr()<CR>
+xnoremap ,i :<C-u>let vcount = v:count ? v:count : 0<CR>gv:call functions#global#Incr(vcount)<CR>
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
