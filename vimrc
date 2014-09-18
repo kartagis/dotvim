@@ -208,11 +208,12 @@ imap ,<Tab> <C-r><Tab>
 " JUGGLING WITH SEARCHES "
 """"""""""""""""""""""""""
 nnoremap [I [I:
+nnoremap ,i :ilist /
+
+command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
 
 nnoremap <silent> K :Grep <C-r><C-w><CR>
 xnoremap <silent> K :<C-u>Grep <C-r>=functions#global#GetVisualSelection()<CR><CR>
-
-command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep <args> | lwindow | redraw!
 
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -246,6 +247,9 @@ nnoremap ,, #``cgN
 xnoremap ,; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
 xnoremap ,, <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
+nnoremap § *``gn<C-g>
+inoremap § <C-o>gn<C-g>
+
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "
 """"""""""""""""""""""
@@ -257,7 +261,10 @@ nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
 
-nnoremap ,D :dlist /<CR>:
+nnoremap [D [D:
+nnoremap ,d :dlist /
+
+cmap <expr> <Tab> getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>"
 
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "
