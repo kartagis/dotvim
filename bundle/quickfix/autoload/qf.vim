@@ -53,15 +53,9 @@ endfunction
 
 " restore the current list
 function qf#RestoreList()
-    if b:isLoc == 1
-        try
-            call setloclist(0, b:locl)
-        catch
-        endtry
-    else
-        try
-            call setqflist(b:qfl)
-        catch
-        endtry
+    if b:isLoc == 1 && exists("b:locl")
+        call setloclist(0, b:locl)
+    elseif b:isLoc != 1 && !exists("b:locl")
+        call setqflist(b:qfl)
     endif
 endfunction

@@ -55,8 +55,6 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set splitbelow
 set splitright
 
-set complete-=w
-set complete-=u
 set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
@@ -184,10 +182,10 @@ nnoremap <C-Up>   <C-w>W
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
 """""""""""""""""""""""
-nnoremap ,<Up>   :move-2<CR>==
-nnoremap ,<Down> :move+<CR>==
-xnoremap ,<Up>   :move-2<CR>gv=gv
-xnoremap ,<Down> :move'>+<CR>gv=gv
+nnoremap ,<Up>   :<C-u>silent! move-2<CR>==
+nnoremap ,<Down> :<C-u>silent! move+<CR>==
+xnoremap ,<Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
+xnoremap ,<Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
 
 """""""""""""""""""""""
 " JUGGLING WITH WORDS "
@@ -208,7 +206,7 @@ imap ,<Tab> <C-r><Tab>
 " JUGGLING WITH SEARCHES "
 """"""""""""""""""""""""""
 nnoremap [I [I:
-nnoremap ,i :ilist /
+nnoremap ,I :ilist /
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
 
@@ -249,6 +247,7 @@ xnoremap ,, <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
 
 nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
+snoremap <expr> . @.
 
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "
@@ -262,7 +261,7 @@ nnoremap ,p :Bombit<CR>:ptjump /
 nnoremap g] :Bombit<CR>g<C-]>
 
 nnoremap [D [D:
-nnoremap ,d :dlist /
+nnoremap ,D :dlist /
 
 cmap <expr> <Tab> getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>"
 
