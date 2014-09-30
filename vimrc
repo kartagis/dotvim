@@ -35,10 +35,11 @@ set encoding=utf-8
 set termencoding=utf-8
 
 set wildcharm=<C-z>
-set wildignore=*.swp,*.bak
+set wildignore+=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignore+=tags
+set wildignore+=*/min/*,*/vendor/*
+set wildignore+=tags,cscope.*
 set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=list:full
