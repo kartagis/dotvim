@@ -51,7 +51,7 @@ endfunction
 
 " the actual tag generation function
 function functions#tags#GenerateTags(location, lang_only)
-  let ctags_command = "ctags -R --tag-relative=yes --exclude=.git --exclude=.svn --exclude=\*.min.\*"
+  let ctags_command = "ctags -R --tag-relative=yes"
   if a:lang_only == 1
     let ctags_command .= " --languages=" . &filetype
   endif

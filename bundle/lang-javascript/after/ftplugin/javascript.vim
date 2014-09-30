@@ -25,7 +25,12 @@ xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 " generate event handler
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 " generate console.log
+" FIXME
 nnoremap <buffer> ,l yiwm`o<C-u>console.log("<C-r>":", <C-r>");<Esc>==``
+
+" EXPERIMENTAL
+" turns data.foo into "data.foo", data.foo
+xnoremap <buffer> <F7> c"<C-r>"", <C-r>"<Esc>
 
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |
