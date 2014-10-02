@@ -97,7 +97,13 @@ augroup END
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
-let os=substitute(system('uname'), '\n', '', '')
+if !exists('os')
+  if has('win32') || has('win16')
+    let os = 'Windows'
+  else
+    let os = substitute(system('uname'), '\n', '', '')
+  endif
+endif
 
 if has('gui_running')
   set guioptions-=T
@@ -113,12 +119,18 @@ if has('gui_running')
     set guifont=Inconsolata-g\ Medium\ 10
     set guioptions-=m
     set clipboard^=unnamedplus
+  elseif os == 'Windows'
+    set guifont=Fira_Mono:h12:cANSI
+    set clipboard^=unnamed
+    set guioptions-=m
   endif
 else
   if os == 'Darwin'
     set clipboard^=unnamed
   elseif os == 'Linux'
     set clipboard^=unnamedplus
+  elseif os == 'Windows'
+    set clipboard^=unnmaded
   endif
 
   if &term =~ '^screen'
@@ -201,7 +213,6 @@ inoremap ,, <C-x><C-o><Down><C-p><Down>
 inoremap ,; <C-n><Down><C-p><Down>
 inoremap ,: <C-x><C-f><Down><C-p><Down>
 inoremap ,= <C-x><C-l><Down><C-p><Down>
-imap ,<Tab> <C-r><Tab>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
@@ -347,6 +358,7 @@ command!          CMD let @+ = ':' . @:
 " PLUGIN SETTINGS "
 """""""""""""""""""
 let g:snippets_dir = '~/.vim/snippets/'
+imap ,<Tab> <C-r><Tab>
 
 let g:netrw_winsize   = '30'
 let g:netrw_banner    = 0
