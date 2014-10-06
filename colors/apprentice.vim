@@ -7,7 +7,6 @@ hi clear
 
 if exists('syntax_on')
   syntax reset
-
 endif
 
 set background=dark
@@ -46,9 +45,9 @@ if &t_Co >= 256 || has('gui_running')
   hi Question         ctermbg=NONE ctermfg=108  guibg=NONE    guifg=#87af87 cterm=NONE           gui=NONE
   hi WarningMsg       ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af5f5f cterm=NONE           gui=NONE
 
-  hi TabLine          ctermbg=234  ctermfg=240  guibg=#1c1c1c guifg=#585858 cterm=NONE           gui=NONE
-  hi TabLineFill      ctermbg=234  ctermfg=234  guibg=#1c1c1c guifg=#1c1c1c cterm=NONE           gui=NONE
-  hi TabLineSel       ctermbg=236  ctermfg=73   guibg=#303030 guifg=#5fafaf cterm=NONE           gui=NONE
+  hi TabLine          ctermbg=238  ctermfg=234  guibg=#444444 guifg=#1c1c1c cterm=NONE           gui=NONE
+  hi TabLineFill      ctermbg=238  ctermfg=238  guibg=#444444 guifg=#444444 cterm=NONE           gui=NONE
+  hi TabLineSel       ctermbg=101  ctermfg=235  guibg=#87875f guifg=#262626 cterm=NONE           gui=NONE
 
   hi Cursor           ctermbg=242  ctermfg=NONE guibg=#6c6c6c guifg=NONE    cterm=NONE           gui=NONE
   hi CursorColumn     ctermbg=236  ctermfg=NONE guibg=#303030 guifg=NONE    cterm=NONE           gui=NONE
@@ -59,7 +58,7 @@ if &t_Co >= 256 || has('gui_running')
   hi helpNormal       ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
 
   hi StatusLine       ctermbg=101  ctermfg=235  guibg=#87875f guifg=#262626 cterm=NONE           gui=NONE
-  hi StatusLineNC     ctermbg=242  ctermfg=235  guibg=#6c6c6c guifg=#262626 cterm=NONE           gui=italic
+  hi StatusLineNC     ctermbg=238  ctermfg=234  guibg=#444444 guifg=#1c1c1c cterm=NONE           gui=italic
 
   hi Visual           ctermbg=110  ctermfg=235  guibg=#8fafd7 guifg=#262626 cterm=NONE           gui=NONE
   hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=bold,underline gui=bold,underline
@@ -67,7 +66,7 @@ if &t_Co >= 256 || has('gui_running')
   hi FoldColumn       ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
   hi Folded           ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
 
-  hi VertSplit        ctermbg=242  ctermfg=242  guibg=#6c6c6c guifg=#6c6c6c cterm=NONE           gui=NONE
+  hi VertSplit        ctermbg=238  ctermfg=238  guibg=#444444 guifg=#444444 cterm=NONE           gui=NONE
   hi WildMenu         ctermbg=110  ctermfg=235  guibg=#8fafd7 guifg=#262626 cterm=bold           gui=bold
 
   hi Function         ctermbg=NONE ctermfg=229  guibg=NONE    guifg=#ffffaf cterm=NONE           gui=NONE
@@ -92,7 +91,6 @@ if &t_Co >= 256 || has('gui_running')
 
   hi ColorColumn      ctermbg=131  ctermfg=NONE guibg=#af5f5f guifg=NONE    cterm=NONE           gui=NONE
   hi signColumn       ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
-
 elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
   set t_Co=16
 
@@ -126,9 +124,9 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
   hi Question         ctermbg=NONE        ctermfg=2           cterm=NONE
   hi WarningMsg       ctermbg=NONE        ctermfg=1           cterm=NONE
 
-  hi TabLine          ctermbg=0           ctermfg=7           cterm=NONE
-  hi TabLineFill      ctermbg=0           ctermfg=7           cterm=NONE
-  hi TabLineSel       ctermbg=8           ctermfg=14          cterm=NONE
+  hi TabLine          ctermbg=8           ctermfg=0           cterm=NONE
+  hi TabLineFill      ctermbg=8           ctermfg=0           cterm=NONE
+  hi TabLineSel       ctermbg=3           ctermfg=0           cterm=NONE
 
   hi Cursor           ctermbg=NONE        ctermfg=NONE        cterm=NONE
   hi CursorLine       ctermbg=8           ctermfg=NONE        cterm=NONE
@@ -170,7 +168,6 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
 
   hi ColorColumn      ctermbg=1           ctermfg=NONE        cterm=NONE
   hi SignColumn       ctermbg=0           ctermfg=7           cterm=NONE
-
 endif
 
 hi link Boolean            Constant
