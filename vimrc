@@ -192,7 +192,7 @@ nnoremap <PageDown> :bnext<CR>
 """""""""""""""""""""""""
 nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
-nnoremap <expr> ç &filetype == "qf" ? "\<C-w>p" : "\<C-w>b"
+nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"
 
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
@@ -323,8 +323,8 @@ cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 " cool tab
-cmap <expr> <Tab> getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : "<CR>/<C-r>/"
-cmap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "\<S-Tab>"
+cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : "<CR>/<C-r>/"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
