@@ -56,6 +56,7 @@ set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set splitbelow
 set splitright
 
+set complete=.,w,b
 set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
@@ -191,6 +192,7 @@ nnoremap <PageDown> :bnext<CR>
 """""""""""""""""""""""""
 nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
+nnoremap <expr> ç &filetype == "qf" ? "\<C-w>p" : "\<C-w>b"
 
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
@@ -275,8 +277,6 @@ nnoremap g] :Bombit<CR>g<C-]>
 nnoremap [D [D:
 nnoremap ,D :dlist /
 
-cmap <expr> <Tab> getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>"
-
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "
 """""""""""""""""""""""""
@@ -321,6 +321,10 @@ cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
+
+" cool tab
+cmap <expr> <Tab> getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : "<CR>/<C-r>/"
+cmap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "\<S-Tab>"
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
