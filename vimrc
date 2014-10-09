@@ -325,6 +325,8 @@ cnoremap :: <C-r>=expand('%:p:h')<CR>
 " cool tab
 cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : "<CR>/<C-r>/"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+cnoremap <expr> <CR>    getcmdtype() == "/" ? "<CR>:nohl<CR>" : "<CR>"
+nnoremap <C-l>          :silent! nohl<CR><C-l>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
