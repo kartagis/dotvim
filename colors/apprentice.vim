@@ -3,6 +3,29 @@
 " Essentially a streamlining and conversion to X11 colors of
 " 'sorcerer' by Jeet Sukumaran (jeetsukumaran@gmailcom)
 
+" MADE-UP NAME    HEX        XTERM  ANSI
+" ==================================================
+" almost black    #1c1c1c    234    0
+" darker grey     #262626    235    background color
+" dark grey       #303030    236
+" grey            #444444    238    8
+" medium grey     #585858    240
+" light grey      #6c6c6c    242    7
+" lighter grey    #bcbcbc    250    foreground color
+" white           #ffffff    231    16
+" purple          #5f5f87    60     5
+" light purple    #8787af    103    13
+" green           #5f875f    65     2
+" light green     #87af87    108    10
+" aqua            #5f8787    66     6
+" light aqua      #5fafaf    73     15
+" blue            #5f87af    67     4
+" light blue      #8fafd7    110    12
+" red             #af5f5f    131    1
+" orange          #ff8700    208    9
+" ocre            #87875f    110    3
+" yellow          #ffffaf    229    11
+
 hi clear
 
 if exists('syntax_on')
@@ -45,7 +68,7 @@ if &t_Co >= 256 || has('gui_running')
   hi Question         ctermbg=NONE ctermfg=108  guibg=NONE    guifg=#87af87 cterm=NONE           gui=NONE
   hi WarningMsg       ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af5f5f cterm=NONE           gui=NONE
 
-  hi TabLine          ctermbg=238  ctermfg=234  guibg=#444444 guifg=#1c1c1c cterm=NONE           gui=NONE
+  hi TabLine          ctermbg=238  ctermfg=101  guibg=#444444 guifg=#87875f cterm=NONE           gui=NONE
   hi TabLineFill      ctermbg=238  ctermfg=238  guibg=#444444 guifg=#444444 cterm=NONE           gui=NONE
   hi TabLineSel       ctermbg=101  ctermfg=235  guibg=#87875f guifg=#262626 cterm=NONE           gui=NONE
 
@@ -58,7 +81,7 @@ if &t_Co >= 256 || has('gui_running')
   hi helpNormal       ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
 
   hi StatusLine       ctermbg=101  ctermfg=235  guibg=#87875f guifg=#262626 cterm=NONE           gui=NONE
-  hi StatusLineNC     ctermbg=238  ctermfg=234  guibg=#444444 guifg=#1c1c1c cterm=NONE           gui=italic
+  hi StatusLineNC     ctermbg=238  ctermfg=101  guibg=#444444 guifg=#87875f cterm=NONE           gui=italic
 
   hi Visual           ctermbg=110  ctermfg=235  guibg=#8fafd7 guifg=#262626 cterm=NONE           gui=NONE
   hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=bold,underline gui=bold,underline
@@ -124,7 +147,7 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
   hi Question         ctermbg=NONE        ctermfg=2           cterm=NONE
   hi WarningMsg       ctermbg=NONE        ctermfg=1           cterm=NONE
 
-  hi TabLine          ctermbg=8           ctermfg=0           cterm=NONE
+  hi TabLine          ctermbg=8           ctermfg=3           cterm=NONE
   hi TabLineFill      ctermbg=8           ctermfg=0           cterm=NONE
   hi TabLineSel       ctermbg=3           ctermfg=0           cterm=NONE
 
@@ -136,7 +159,7 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
   hi helpNormal       ctermbg=NONE        ctermfg=NONE        cterm=NONE
 
   hi StatusLine       ctermbg=3           ctermfg=0           cterm=NONE
-  hi StatusLineNC     ctermbg=8           ctermfg=0           cterm=NONE
+  hi StatusLineNC     ctermbg=0           ctermfg=3           cterm=NONE
 
   hi Visual           ctermbg=15          ctermfg=0           cterm=NONE
   hi VisualNOS        ctermbg=NONE        ctermfg=NONE        cterm=bold,underline
