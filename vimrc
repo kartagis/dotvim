@@ -222,7 +222,7 @@ inoremap ,= <C-x><C-l><Down><C-p><Down>
 nnoremap [I [I:
 nnoremap ,I :ilist /
 
-command! -nargs=+ -complete=file_in_path -bar Grep silent! lgrep! <args> | lwindow | redraw!
+command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
 nnoremap <silent> K :Grep <C-r><C-w><CR>
 xnoremap <silent> K :<C-u>Grep <C-r>=functions#global#GetVisualSelection()<CR><CR>
