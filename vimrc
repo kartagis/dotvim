@@ -126,12 +126,10 @@ if has('gui_running')
     set guioptions-=m
   endif
 else
-  if os == 'Darwin'
+  if os == 'Darwin' || os == 'Windows'
     set clipboard^=unnamed
   elseif os == 'Linux'
     set clipboard^=unnamedplus
-  elseif os == 'Windows'
-    set clipboard^=unnmaded
   endif
 
   if &term =~ '^screen'
@@ -327,6 +325,8 @@ cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmd
 cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 cnoremap <expr> <CR>    getcmdtype() == "/" ? "<CR>:nohl<CR>" : "<CR>"
 nnoremap <C-l>          :silent! nohl<CR><C-l>
+
+cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
