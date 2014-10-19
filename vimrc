@@ -222,8 +222,8 @@ nnoremap ,I :ilist /
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-nnoremap <silent> K :Grep <C-r><C-w><CR>
-xnoremap <silent> K :<C-u>Grep <C-r>=functions#global#GetVisualSelection()<CR><CR>
+nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>")<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
+xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection()<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
 
 if executable("ag")
   set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -321,17 +321,18 @@ cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 " cool tab
-cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : "<CR>/<C-r>/"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
-cnoremap <expr> <CR>    getcmdtype() == "/" ? "<CR>:nohl<CR>" : "<CR>"
-nnoremap <C-l>          :silent! nohl<CR><C-l>
+cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : getcmdtype() == "/" ? "<CR>/<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>/<C-r>/" : "<S-Tab>"
+" experimental
+cnoremap <expr> <CR>  getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:silent nohl<CR>" : "<CR>"
+nnoremap        <C-l> :silent! nohl<CR><C-l>
 
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '"', "'" ]
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
   execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
   execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
   execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
@@ -357,7 +358,9 @@ command! EV tabedit $MYVIMRC <bar> lcd %:p:h
 command! SV source $MYVIMRC
 
 " sharing is caring
-command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+" command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+" vpaste is down so let's use sprunge instead
+command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""
