@@ -69,6 +69,7 @@ set path=.,**
 set previewheight=1
 set scrolloff=4
 set virtualedit=block
+let showbreak = '»»» '
 
 """""""""""""""""
 " PRETTY COLORS "
@@ -79,80 +80,80 @@ colorscheme apprentice
 " USEFUL DEFAULTS "
 """""""""""""""""""
 augroup VIMRC
-  autocmd!
+    autocmd!
 
-  autocmd FocusLost,InsertLeave * call functions#global#AutoSave()
+    autocmd FocusLost * call functions#global#AutoSave()
 
-  autocmd VimEnter,GUIEnter * set visualbell t_vb=
+    autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
-  autocmd BufLeave * let b:winview = winsaveview()
-  autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
 
-  autocmd BufLeave *.css,*.less normal! mC
-  autocmd BufLeave *.html       normal! mH
-  autocmd BufLeave *.js         normal! mJ
-  autocmd BufLeave *.php        normal! mP
-  autocmd BufLeave vimrc,*.vim  normal! mV
+    autocmd BufLeave *.css,*.less normal! mC
+    autocmd BufLeave *.html       normal! mH
+    autocmd BufLeave *.js         normal! mJ
+    autocmd BufLeave *.php        normal! mP
+    autocmd BufLeave vimrc,*.vim  normal! mV
 augroup END
 
 """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 if !exists('os')
-  if has('win32') || has('win16')
-    let os = 'Windows'
-  else
-    let os = substitute(system('uname'), '\n', '', '')
-  endif
+    if has('win32') || has('win16')
+        let os = 'Windows'
+    else
+        let os = substitute(system('uname'), '\n', '', '')
+    endif
 endif
 
 if has('gui_running')
-  set guioptions-=T
+    set guioptions-=T
 
-  set lines=40
-  set columns=140
+    set lines=40
+    set columns=140
 
-  if os == 'Darwin'
-    set guifont=Fira\ Mono:h12
-    set fuoptions=maxvert,maxhorz
-    set clipboard^=unnamed
-  elseif os == 'Linux'
-    set guifont=Inconsolata-g\ Medium\ 10
-    set guioptions-=m
-    set clipboard^=unnamedplus
-  elseif os == 'Windows'
-    set guifont=Fira_Mono:h12:cANSI
-    set clipboard^=unnamed
-    set guioptions-=m
-  endif
+    if os == 'Darwin'
+        set guifont=Fira\ Mono:h12
+        set fuoptions=maxvert,maxhorz
+        set clipboard^=unnamed
+    elseif os == 'Linux'
+        set guifont=Inconsolata-g\ Medium\ 10
+        set guioptions-=m
+        set clipboard^=unnamedplus
+    elseif os == 'Windows'
+        set guifont=Fira_Mono:h12:cANSI
+        set clipboard^=unnamed
+        set guioptions-=m
+    endif
 else
-  if os == 'Darwin' || os == 'Windows'
-    set clipboard^=unnamed
-  elseif os == 'Linux'
-    set clipboard^=unnamedplus
-  endif
+    if os == 'Darwin' || os == 'Windows'
+        set clipboard^=unnamed
+    elseif os == 'Linux'
+        set clipboard^=unnamedplus
+    endif
 
-  if &term =~ '^screen'
-    " tmux will send xterm-style keys when its xterm-keys option is on
-    execute "set <xUp>=\e[1;*A"
-    execute "set <xDown>=\e[1;*B"
-    execute "set <xRight>=\e[1;*C"
-    execute "set <xLeft>=\e[1;*D"
-  endif
+    if &term =~ '^screen'
+        " tmux will send xterm-style keys when its xterm-keys option is on
+        execute "set <xUp>=\e[1;*A"
+        execute "set <xDown>=\e[1;*B"
+        execute "set <xRight>=\e[1;*C"
+        execute "set <xLeft>=\e[1;*D"
+    endif
 
-  " allows clicking after the 223rd column
-  if has('mouse_sgr')
-    set ttymouse=sgr
-  endif
+    " allows clicking after the 223rd column
+    if has('mouse_sgr')
+        set ttymouse=sgr
+    endif
 
-  nnoremap <Esc>A <up>
-  nnoremap <Esc>B <down>
-  nnoremap <Esc>C <right>
-  nnoremap <Esc>D <left>
-  inoremap <Esc>A <up>
-  inoremap <Esc>B <down>
-  inoremap <Esc>C <right>
-  inoremap <Esc>D <left>
+    nnoremap <Esc>A <up>
+    nnoremap <Esc>B <down>
+    nnoremap <Esc>C <right>
+    nnoremap <Esc>D <left>
+    inoremap <Esc>A <up>
+    inoremap <Esc>B <down>
+    inoremap <Esc>C <right>
+    inoremap <Esc>D <left>
 endif
 
 " available keys for , mappings: a c e    jklmno qr  u wxyz
@@ -226,8 +227,8 @@ nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>")<bar>call histadd
 xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection()<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
 
 if executable("ag")
-  set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
 """"""""""""""""""""""""""""""""
@@ -333,10 +334,10 @@ cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
 for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
-  execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
-  execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
-  execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
-  execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
+    execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
+    execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
+    execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
+    execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
 """"""""""""""""""""
