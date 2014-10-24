@@ -69,7 +69,7 @@ set path=.,**
 set previewheight=1
 set scrolloff=4
 set virtualedit=block
-let showbreak = '»»» '
+let &showbreak = '»»» '
 
 """""""""""""""""
 " PRETTY COLORS "
@@ -221,6 +221,12 @@ inoremap ,= <C-x><C-l><Down><C-p><Down>
 nnoremap [I [I:
 nnoremap ,I :ilist /
 
+" experimental
+nnoremap <silent> [I :call functions#global#Ilist(0, 0)<CR>
+nnoremap <silent> ]I :call functions#global#Ilist(0, 1)<CR>
+xnoremap <silent> [I :<C-u>call functions#global#Ilist(1, 0)<CR>
+xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
+
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
 nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>")<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
@@ -299,8 +305,10 @@ xnoremap < <gv
 
 nnoremap ,<Space><Space> m`o<Esc>kO<Esc>``
 
-nnoremap <Down> gj
-nnoremap <up>   gk
+nnoremap <expr> k      v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j      v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> <Up>   v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> <Down> v:count == 0 ? 'gj' : 'j'
 
 nnoremap gV `[v`]
 

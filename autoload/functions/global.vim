@@ -1,3 +1,36 @@
+" Show ]I and [I results in the quickfix window.
+function! functions#global#Ilist(selection, start_at_cursor)
+    if a:selection
+        let old_reg = @v
+        normal! gv"vy
+        let search_pattern = substitute(escape(@v, '\/.*$^~[]'), '\\n', '\\n', 'g')
+        let @v = old_reg
+        redir => output
+            silent! execute (a:start_at_cursor ? '+,$' : '') . 'ilist /' . search_pattern
+        redir END
+    else
+        redir => output
+            silent! execute 'normal! ' . (a:start_at_cursor ? ']' : '[') . "I"
+        redir END
+    endif
+    let lines = split(output, '\n')
+    if lines[0] =~ '^Error detected'
+        echomsg 'Could not find "' . (a:selection ? search_pattern : expand("<cword>")) . '".'
+        return
+    endif
+    let [filename, line_info] = [lines[0], lines[1:-1]]
+    "turn the :ilist output into a quickfix dictionary
+    let qf_entries = map(line_info, "{
+        \ 'filename': filename,
+        \ 'lnum': split(v:val)[1],
+        \ 'text': getline(split(v:val)[1])
+        \ }")
+    call setqflist(qf_entries)
+    cwindow
+endfunction
+
+" ===========================================================================
+
 " cycle common words
 function functions#global#Cycle()
   let words = [
