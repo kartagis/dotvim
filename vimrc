@@ -69,7 +69,7 @@ set path=.,**
 set previewheight=1
 set scrolloff=4
 set virtualedit=block
-let &showbreak = '»»» '
+set showbreak=»»»\ 
 
 """""""""""""""""
 " PRETTY COLORS "
@@ -305,10 +305,10 @@ xnoremap < <gv
 
 nnoremap ,<Space><Space> m`o<Esc>kO<Esc>``
 
-nnoremap <expr> k      v:count == 0 ? 'gk' : 'k'
-nnoremap <expr> j      v:count == 0 ? 'gj' : 'j'
-nnoremap <expr> <Up>   v:count == 0 ? 'gk' : 'k'
-nnoremap <expr> <Down> v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k      v:count ? 'gk' : 'k'
+nnoremap <expr> j      v:count ? 'gj' : 'j'
+nnoremap <expr> <Up>   v:count ? 'gk' : 'k'
+nnoremap <expr> <Down> v:count ? 'gj' : 'j'
 
 nnoremap gV `[v`]
 
@@ -367,8 +367,7 @@ command! EV tabedit $MYVIMRC <bar> lcd %:p:h
 command! SV source $MYVIMRC
 
 " sharing is caring
-" command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
-" vpaste is down so let's use sprunge instead
+command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 

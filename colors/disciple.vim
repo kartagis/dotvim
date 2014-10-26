@@ -1,6 +1,31 @@
 " 'disciple.vim' -- Vim color scheme.
 " Maintainer:   Romain Lafourcade (romainlafourcade@gmail.com)
 
+" MADE-UP NAME             HEX        XTERM  ANSI
+" ==================================================
+" almost white             #dadada    253
+" very light grey          #d0d0d0    252    background color
+" lighter grey             #c6c6c6    251
+" slightly lighter grey    #b2b2b2    249
+" light grey               #9e9e9e    247
+" medium grey              #8a8a8a    245
+" almost black             #3a3a3a    237    foreground color
+" black                    #000000    16
+" beige                    #afaf87    144
+" ocre                     #87875f    101
+" light pink               #af87af    139
+" pink                     #875f87    96
+" light red                #af8787    138
+" red                      #af5f5f    131
+" light brown              #af875f    137
+" brown                    #875f00    94
+" turquoise                #5fafaf    73
+" orange                   #ff8700    208
+" purple                   #8787af    103
+" blue                     #005faf    25
+
+let s:almost_white = ['#dadada', '253', '15']
+
 hi clear
 
 if exists('syntax_on')
