@@ -229,8 +229,8 @@ xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>")<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
-xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection()<bar>call histadd("cmd",cmd)<bar>execute cmd<CR>
+nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar> call histadd("cmd",cmd) <bar> execute cmd<CR>
+xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar> call histadd("cmd",cmd) <bar> execute cmd<CR>
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -332,9 +332,6 @@ cnoremap :: <C-r>=expand('%:p:h')<CR>
 " cool tab
 cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : getcmdtype() == "/" ? "<CR>/<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>/<C-r>/" : "<S-Tab>"
-" experimental
-cnoremap <expr> <CR>  getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>:silent nohl<CR>" : "<CR>"
-nnoremap        <C-l> :silent! nohl<CR><C-l>
 
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 

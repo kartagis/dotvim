@@ -186,11 +186,11 @@ endfunction
 function functions#global#PairExpander(left, right, next)
   let pair_position = searchpairpos(a:left, "", a:right, "Wn")
   if a:next !=# a:right && pair_position[0] == 0
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+    return "\<CR>" . a:right . "\<C-o>==O"
   elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
-    return "\<CR>" . a:right . "\<C-o>==\<C-o>O"
+    return "\<CR>" . a:right . "\<C-o>==O"
   elseif a:next ==# a:right
-    return "\<CR>\<C-o>==\<C-o>O"
+    return "\<CR>\<C-o>==O"
   else
     return "\<CR>"
   endif
@@ -201,12 +201,13 @@ function functions#global#TagExpander(next)
     if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# getline(".")[col(".") + 1]
       return "\<CR>"
     else
-      return "\<CR>\<C-o>==\<C-o>O"
+      return "\<CR>\<C-o>==O"
     endif
   else
     return "\<CR>"
   endif
 endfunction
+
 " ===========================================================================
 
 " return a representation of the selected text
