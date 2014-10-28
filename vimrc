@@ -210,11 +210,10 @@ nnoremap ,<Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-
 """""""""""""""""""""""""""""
 " JUGGLING WITH COMPLETIONS "
 """""""""""""""""""""""""""""
-inoremap ,, <C-x><C-o><Down><C-p><Down>
-inoremap ,; <C-n><Down><C-p><Down>
-inoremap ,: <C-x><C-f><Down><C-p><Down>
-inoremap ,= <C-x><C-l><Down><C-p><Down>
-" :inoremap <F6> <C-n><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
+inoremap ,, <C-x><C-o><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
+inoremap ,; <C-n><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
+inoremap ,: <C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
+inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
