@@ -214,6 +214,7 @@ inoremap ,, <C-x><C-o><Down><C-p><Down>
 inoremap ,; <C-n><Down><C-p><Down>
 inoremap ,: <C-x><C-f><Down><C-p><Down>
 inoremap ,= <C-x><C-l><Down><C-p><Down>
+" :inoremap <F6> <C-n><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
