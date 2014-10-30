@@ -22,6 +22,9 @@ nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?\v^\s*(functi
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
+xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
+onoremap <buffer> af :normal vaf<CR>
+
 " generate event handler
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 " generate console.log

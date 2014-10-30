@@ -229,8 +229,12 @@ xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar> call histadd("cmd",cmd) <bar> execute cmd<CR>
-xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar> call histadd("cmd",cmd) <bar> execute cmd<CR>
+nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
+                        \ call histadd("cmd",cmd) <bar>
+                        \ execute cmd<CR>
+xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
+                        \ call histadd("cmd",cmd) <bar>
+                        \ execute cmd<CR>
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -305,10 +309,10 @@ xnoremap < <gv
 
 nnoremap ,<Space><Space> m`o<Esc>kO<Esc>``
 
-nnoremap <expr> k      v:count ? 'gk' : 'k'
-nnoremap <expr> j      v:count ? 'gj' : 'j'
-nnoremap <expr> <Up>   v:count ? 'gk' : 'k'
-nnoremap <expr> <Down> v:count ? 'gj' : 'j'
+nnoremap <expr> k      v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j      v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> <Up>   v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> <Down> v:count == 0 ? 'gj' : 'j'
 
 nnoremap gV `[v`]
 

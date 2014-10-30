@@ -24,8 +24,6 @@
 " purple                   #8787af    103
 " blue                     #005faf    25
 
-let s:almost_white = ['#dadada', '253', '15']
-
 hi clear
 
 if exists('syntax_on')
@@ -67,8 +65,8 @@ if &t_Co >= 256 || has('gui_running')
   hi Question         ctermbg=NONE ctermfg=96   guibg=NONE    guifg=#875f87 cterm=NONE           gui=NONE
   hi WarningMsg       ctermbg=NONE ctermfg=73   guibg=NONE    guifg=#5fafaf cterm=NONE           gui=NONE
 
-  hi TabLine          ctermbg=254  ctermfg=248  guibg=#e4e4e4 guifg=#a8a8a8 cterm=NONE           gui=NONE
-  hi TabLineFill      ctermbg=254  ctermfg=254  guibg=#e4e4e4 guifg=#e4e4e4 cterm=NONE           gui=reverse
+  hi TabLine          ctermbg=249  ctermfg=103  guibg=#e4e4e4 guifg=#a8a8a8 cterm=NONE           gui=NONE
+  hi TabLineFill      ctermbg=249  ctermfg=254  guibg=#e4e4e4 guifg=#e4e4e4 cterm=NONE           gui=reverse
   hi TabLineSel       ctermbg=252  ctermfg=131  guibg=#d0d0d0 guifg=#af5f5f cterm=NONE           gui=NONE
 
   hi Cursor           ctermbg=246  ctermfg=NONE guibg=#949494 guifg=NONE    cterm=NONE           gui=NONE
@@ -78,8 +76,8 @@ if &t_Co >= 256 || has('gui_running')
   hi helpLeadBlank    ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
   hi helpNormal       ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=NONE           gui=NONE
 
-  hi StatusLine       ctermbg=103  ctermfg=238  guibg=#8787af guifg=#dadada cterm=NONE           gui=NONE
-  hi StatusLineNC     ctermbg=246  ctermfg=238  guibg=#949494 guifg=#dadada cterm=NONE           gui=italic
+  hi StatusLine       ctermbg=101  ctermfg=237  guibg=#8787af guifg=#dadada cterm=NONE           gui=NONE
+  hi StatusLineNC     ctermbg=144  ctermfg=144  guibg=#949494 guifg=#dadada cterm=NONE           gui=italic
 
   hi Visual           ctermbg=95   ctermfg=253  guibg=#875f5f guifg=#dadada cterm=NONE           gui=NONE
   hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=bold,underline gui=bold,underline
