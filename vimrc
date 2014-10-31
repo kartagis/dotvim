@@ -334,8 +334,32 @@ cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 " cool tab
-cnoremap <expr> <Tab>   getcmdtype() == ":" ? getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" ? "<CR>:" : "<C-z>" : getcmdtype() == "/" ? "<CR>/<C-r>/" : getcmdtype() == "?" ? "<CR>?<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" ? "<CR>?<C-r>/" : getcmdtype() == "?" ? "<CR>/<C-r>/" : "<S-Tab>"
+cnoremap <expr> <Tab>   CmdLineTab()
+cnoremap <expr> <S-Tab> CmdLineShiftTab()
+function! CmdLineShiftTab()
+    if getcmdtype() == "/"
+        return "\<CR>?\<C-r>/"
+    elseif getcmdtype() == "?"
+        return "\<CR>/\<C-r>/"
+    else
+        return "\<S-Tab>"
+    endif
+endfunction
+function! CmdLineTab()
+    if getcmdtype() == ":"
+        if getcmdline() =~ "^dli" || getcmdline() =~ "^il"
+            return "\<CR>:"
+        else
+            return "\<C-z>"
+        endif
+    elseif getcmdtype() == "/"
+        return "\<CR>/\<C-r>/"
+    elseif getcmdtype() == "?"
+        return "\<CR>?\<C-r>/"
+    else
+        return "\<C-z>"
+    endif
+endfunction
 
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
