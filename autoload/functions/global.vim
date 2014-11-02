@@ -1,3 +1,32 @@
+" modify the behaviour of <Tab> and <S-Tab> on the command-line
+function functions#global#CmdLineTab()
+    if getcmdtype() == ":"
+        if getcmdline() =~ "^dli" || getcmdline() =~ "^il"
+            return "\<CR>:"
+        else
+            return "\<C-z>"
+        endif
+    elseif getcmdtype() == "/"
+        return "\<CR>/\<C-r>/"
+    elseif getcmdtype() == "?"
+        return "\<CR>?\<C-r>/"
+    else
+        return "\<C-z>"
+    endif
+endfunction
+
+function functions#global#CmdLineShiftTab()
+    if getcmdtype() == "/"
+        return "\<CR>?\<C-r>/"
+    elseif getcmdtype() == "?"
+        return "\<CR>/\<C-r>/"
+    else
+        return "\<S-Tab>"
+    endif
+endfunction
+
+" ===========================================================================
+
 " Show ]I and [I results in the quickfix window.
 function! functions#global#Ilist(selection, start_at_cursor)
     if a:selection

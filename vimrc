@@ -229,12 +229,12 @@ xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
-                        \ call histadd("cmd",cmd) <bar>
-                        \ execute cmd<CR>
-xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
-                        \ call histadd("cmd",cmd) <bar>
-                        \ execute cmd<CR>
+" nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
+"                         \ call histadd("cmd",cmd) <bar>
+"                         \ execute cmd<CR>
+" xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
+"                         \ call histadd("cmd",cmd) <bar>
+"                         \ execute cmd<CR>
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -334,32 +334,8 @@ cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
 " cool tab
-cnoremap <expr> <Tab>   CmdLineTab()
-cnoremap <expr> <S-Tab> CmdLineShiftTab()
-function! CmdLineShiftTab()
-    if getcmdtype() == "/"
-        return "\<CR>?\<C-r>/"
-    elseif getcmdtype() == "?"
-        return "\<CR>/\<C-r>/"
-    else
-        return "\<S-Tab>"
-    endif
-endfunction
-function! CmdLineTab()
-    if getcmdtype() == ":"
-        if getcmdline() =~ "^dli" || getcmdline() =~ "^il"
-            return "\<CR>:"
-        else
-            return "\<C-z>"
-        endif
-    elseif getcmdtype() == "/"
-        return "\<CR>/\<C-r>/"
-    elseif getcmdtype() == "?"
-        return "\<CR>?\<C-r>/"
-    else
-        return "\<C-z>"
-    endif
-endfunction
+cnoremap <expr> <Tab>   functions#global#CmdLineTab()
+cnoremap <expr> <S-Tab> functions#global#CmdLineShiftTab()
 
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
@@ -376,7 +352,7 @@ endfor
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
-command! ToUnix call functions#global#ToUnix()
+command! TU call functions#global#ToUnix()
 
 command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
@@ -395,6 +371,17 @@ command! SV source $MYVIMRC
 command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
+
+function! Redir(cmd)
+    redir => output
+    execute a:cmd
+    redir END
+    vnew
+    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+    put=output
+    g/^$/d _
+endfunction
+command! -nargs=1 Redir silent call Redir(<f-args>)
 
 """""""""""""""""""
 " PLUGIN SETTINGS "
