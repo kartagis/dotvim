@@ -61,6 +61,7 @@ set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
+set history=100
 set mouse=a
 set nostartofline
 set noswapfile
@@ -221,20 +222,14 @@ inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<
 nnoremap [I [I:
 nnoremap ,I :ilist /
 
-" experimental
-nnoremap <silent> [I :call functions#global#Ilist(0, 0)<CR>
-nnoremap <silent> ]I :call functions#global#Ilist(0, 1)<CR>
-xnoremap <silent> [I :<C-u>call functions#global#Ilist(1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
-
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-" nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
-"                         \ call histadd("cmd",cmd) <bar>
-"                         \ execute cmd<CR>
-" xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
-"                         \ call histadd("cmd",cmd) <bar>
-"                         \ execute cmd<CR>
+nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
+                        \ call histadd("cmd",cmd) <bar>
+                        \ execute cmd<CR>
+xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
+                        \ call histadd("cmd",cmd) <bar>
+                        \ execute cmd<CR>
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -372,17 +367,6 @@ command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filet
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
-function! Redir(cmd)
-    redir => output
-    execute a:cmd
-    redir END
-    vnew
-    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    put=output
-    g/^$/d _
-endfunction
-command! -nargs=1 Redir silent call Redir(<f-args>)
-
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
@@ -399,3 +383,15 @@ let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
 
 let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
+
+""""""""""""""""""""""""
+" EXPERIMENTAL SECTION "
+""""""""""""""""""""""""
+command! -nargs=1 Redir silent call Redir(<f-args>)
+
+command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+
+nnoremap <silent> [I :call functions#global#Ilist(0, 0)<CR>
+nnoremap <silent> ]I :call functions#global#Ilist(0, 1)<CR>
+xnoremap <silent> [I :<C-u>call functions#global#Ilist(1, 0)<CR>
+xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
