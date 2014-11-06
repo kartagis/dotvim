@@ -23,7 +23,7 @@ endfunction
 function qf#DoList(line, cmd)
     let stub = b:isLoc == 1 ? "l" : "c"
     try
-      silent lfirst
+      silent execute stub . "first"
         while 1
             execute a:cmd
             silent execute a:line == 1 ? stub . "next" : stub . "nfile"

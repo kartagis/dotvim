@@ -15,8 +15,8 @@ nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
 nnoremap <buffer> <C-}> :Bombit<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 " quick moves
-nnoremap <silent> <buffer> ]] :call functions#global#Custom_jump('/\v^\s*(function\|var)')<cr>
-nnoremap <silent> <buffer> [[ :call functions#global#Custom_jump('?\v^\s*(function\|var)')<cr>
+nnoremap <silent> <buffer> ]] :call functions#CustomJump('/\v^\s*(function\|var)')<cr>
+nnoremap <silent> <buffer> [[ :call functions#CustomJump('?\v^\s*(function\|var)')<cr>
 
 " block un/comment
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>

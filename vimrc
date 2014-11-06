@@ -83,7 +83,7 @@ colorscheme apprentice
 augroup VIMRC
     autocmd!
 
-    autocmd FocusLost * call functions#global#AutoSave()
+    autocmd FocusLost * call functions#AutoSave()
 
     autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
@@ -157,9 +157,6 @@ else
     inoremap <Esc>D <left>
 endif
 
-" available keys for , mappings: a c e    jklmno qr  u wxyz
-"                                A CDE GHIJKLMNOPQR  U WXYZ
-
 """""""""""""""""""""""
 " JUGGLING WITH FILES "
 """""""""""""""""""""""
@@ -170,10 +167,10 @@ nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,v :vert sfind *
 nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete ME call functions#global#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MS call functions#global#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MV call functions#global#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#global#MRUComplete MT call functions#global#MRU('tabedit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#MRU('tabedit', <f-args>)
 
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
@@ -227,7 +224,7 @@ command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindo
 nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
-xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#global#GetVisualSelection() <bar>
+xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
 
@@ -239,20 +236,11 @@ endif
 """"""""""""""""""""""""""""""""
 " JUGGLING WITH SEARCH/REPLACE "
 """"""""""""""""""""""""""""""""
-" in the current buffer
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#global#GetVisualSelection()<CR>/
-xnoremap <Space>%       :<C-u>%s/<C-r>=functions#global#GetVisualSelection()<CR>/
-
-nnoremap <Space>f "zyiw]M[MV%:s/\<<C-r>z\>/
-nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
-nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
-
-" across multiple files
-command! -nargs=+ -complete=file_in_path Replace call functions#global#Replace(<f-args>)
-command!                                 Done    call functions#global#Done()
+xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <Space>%       :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
@@ -260,8 +248,8 @@ command!                                 Done    call functions#global#Done()
 nnoremap ,; *``cgn
 nnoremap ,, #``cgN
 
-xnoremap ,; <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgn
-xnoremap ,, <Esc>:let @/ = functions#global#GetVisualSelection()<CR>cgN
+xnoremap ,; <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
+xnoremap ,, <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
@@ -270,8 +258,8 @@ snoremap <expr> . @.
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "
 """"""""""""""""""""""
-command! Tagit  call functions#tags#Tagit(0)
-command! Bombit call functions#tags#Tagit(1)
+command! Tagit  call functions#Tagit(0)
+command! Bombit call functions#Tagit(1)
 
 nnoremap ,t :Bombit<CR>:tjump /
 nnoremap ,p :Bombit<CR>:ptjump /
@@ -284,10 +272,10 @@ nnoremap ,D :dlist /
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "
 """""""""""""""""""""""""
-xnoremap <C-a> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
-xnoremap <C-x> :<C-u>let vcount = v:count ? v:count : 1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
+xnoremap <silent> <C-a> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
+xnoremap <silent> <C-x> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap ,i :<C-u>let vcount = v:count ? v:count : 0<CR>gv:call functions#global#Incr(vcount)<CR>
+xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call functions#Incr(vcount)<CR>
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
@@ -311,8 +299,6 @@ nnoremap <expr> <Down> v:count == 0 ? 'gj' : 'j'
 
 nnoremap gV `[v`]
 
-nnoremap cy :call functions#global#Cycle()<CR>
-
 nnoremap mù m`
 nnoremap ùù ``
 
@@ -320,19 +306,13 @@ nnoremap ùù ``
 onoremap w :<C-u>norm w<CR>
 onoremap W :<C-u>norm W<CR>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#global#SmartEnter()\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#SmartEnter()\<CR>"
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
-
-" cool tab
-cnoremap <expr> <Tab>   functions#global#CmdLineTab()
-cnoremap <expr> <S-Tab> functions#global#CmdLineShiftTab()
-
-cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -347,7 +327,7 @@ endfor
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
-command! TU call functions#global#ToUnix()
+command! TU call functions#ToUnix()
 
 command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 
@@ -383,15 +363,3 @@ let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
 
 let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
-
-""""""""""""""""""""""""
-" EXPERIMENTAL SECTION "
-""""""""""""""""""""""""
-command! -nargs=1 Redir silent call Redir(<f-args>)
-
-command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-
-nnoremap <silent> [I :call functions#global#Ilist(0, 0)<CR>
-nnoremap <silent> ]I :call functions#global#Ilist(0, 1)<CR>
-xnoremap <silent> [I :<C-u>call functions#global#Ilist(1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call functions#global#Ilist(1, 1)<CR>
