@@ -25,10 +25,10 @@ command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 " ===========================================================================
 
 " show ]I and [I results in the quickfix window.
-function! Ilist(selection, start_at_cursor, pat)
+function! Ilist(selection, start_at_cursor, ...)
     if a:selection
-        if a:pat
-            let search_pattern = a:pat
+        if len(a:1) > 0
+            let search_pattern = a:1
         else
             let old_reg = @v
             normal! gv"vy

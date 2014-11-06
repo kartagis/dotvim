@@ -51,7 +51,7 @@ set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
 
 set foldlevelstart=999
 set foldmethod=indent
-set foldopen=block,hor,insert,jump,mark,percent,quickfix,search,tag,undo
+set foldopen=hor,insert,jump,mark,percent,quickfix,search,tag,undo
 
 set splitbelow
 set splitright
