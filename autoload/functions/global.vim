@@ -1,21 +1,10 @@
-" redirects the output of a Vim command into
-" a scratch buffer
-function! Redir(cmd)
-    redir => output
-    execute a:cmd
-    redir END
-    vnew
-    setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    put=output
-    g/^$/d _
-endfunction
 
 " ===========================================================================
 
 " modify the behaviour of <Tab> and <S-Tab> on the command-line
 function functions#global#CmdLineTab()
     if getcmdtype() == ":"
-        if getcmdline() =~ "^dli" || getcmdline() =~ "^il"
+        if getcmdline() =~ "^dli" || getcmdline() =~ "^il" || getcmdline() =~ "^pse"
             return "\<CR>:"
         else
             return "\<C-z>"
