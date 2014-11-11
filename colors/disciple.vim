@@ -41,11 +41,11 @@ if &t_Co >= 256 || has('gui_running')
   hi Comment          ctermbg=NONE ctermfg=248  guibg=NONE    guifg=#a8a8a8 cterm=NONE           gui=NONE
   hi Constant         ctermbg=NONE ctermfg=73   guibg=NONE    guifg=#5fafaf cterm=NONE           gui=NONE
   hi Error            ctermbg=73   ctermfg=237  guibg=#5fafaf guifg=#444444 cterm=NONE           gui=NONE
-  hi Identifier       ctermbg=NONE ctermfg=101  guibg=NONE    guifg=#87875f cterm=NONE           gui=NONE
+  hi Identifier       ctermbg=NONE ctermfg=94   guibg=NONE    guifg=#87875f cterm=NONE           gui=NONE
   hi Ignore           ctermbg=NONE ctermfg=252  guibg=NONE    guifg=#dadada cterm=NONE           gui=NONE
   hi PreProc          ctermbg=NONE ctermfg=138  guibg=NONE    guifg=#af8787 cterm=NONE           gui=NONE
   hi Special          ctermbg=NONE ctermfg=139  guibg=NONE    guifg=#af87af cterm=NONE           gui=NONE
-  hi Statement        ctermbg=NONE ctermfg=137   guibg=NONE    guifg=#af875f cterm=NONE           gui=NONE
+  hi Statement        ctermbg=NONE ctermfg=131  guibg=NONE    guifg=#af875f cterm=NONE           gui=NONE
   hi String           ctermbg=NONE ctermfg=96   guibg=NONE    guifg=#875f87 cterm=NONE           gui=NONE
   hi Todo             ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=reverse        gui=reverse
   hi Type             ctermbg=NONE ctermfg=101  guibg=NONE    guifg=#87875f cterm=NONE           gui=NONE

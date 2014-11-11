@@ -1,7 +1,7 @@
 " qf.vim - Tame the quickfix window
-" Maintainer:          foo <foo@foo.foo>
-" Version:             0.0
-" Website:             <bar>
+" Maintainer:          romainl <romainlafourcade@gmail.com>
+" Version:             0.1
+" Website:             <https://github.com/romainl>
 
 if exists("g:loaded_qf") || v:version < 703 || &compatible
   finish

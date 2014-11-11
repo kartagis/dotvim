@@ -21,7 +21,11 @@ endfunction
 
 " do something with each entry
 function qf#DoList(line, cmd)
-    let stub = b:isLoc == 1 ? "l" : "c"
+    if exists("b:isLoc")
+        let stub = b:isLoc == 1 ? "l" : "c"
+    else
+        let stub = "c"
+    endif
     try
       silent execute stub . "first"
         while 1
@@ -36,16 +40,18 @@ endfunction
 
 " filter the current list
 function qf#FilterList(pat)
-    if b:isLoc == 1
-        if !exists("b:locl")
-            let b:locl = getloclist(0)
+    if exists("b:isLoc")
+        if b:isLoc == 1
+            if !exists("b:locl")
+                let b:locl = getloclist(0)
+            endif
+            call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
+        else
+            if !exists("b:qfl")
+                let b:qfl = getqflist()
+            endif
+            call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
         endif
-        call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
-    else
-        if !exists("b:qfl")
-            let b:qfl = getqflist()
-        endif
-        call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
     endif
 endfunction
 
@@ -53,9 +59,11 @@ endfunction
 
 " restore the current list
 function qf#RestoreList()
-    if b:isLoc == 1 && exists("b:locl")
-        call setloclist(0, b:locl)
-    elseif b:isLoc != 1 && !exists("b:locl")
-        call setqflist(b:qfl)
+    if exists("b:isLoc")
+        if b:isLoc == 1 && exists("b:locl")
+            call setloclist(0, b:locl)
+        elseif b:isLoc != 1 && !exists("b:locl")
+            call setqflist(b:qfl)
+        endif
     endif
 endfunction
