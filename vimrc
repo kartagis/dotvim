@@ -190,7 +190,6 @@ nnoremap <PageDown> :bnext<CR>
 """""""""""""""""""""""""
 nnoremap <C-Down> <C-w>w
 nnoremap <C-Up>   <C-w>W
-nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"
 
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
@@ -254,6 +253,7 @@ xnoremap ,, <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
 nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
+xnoremap § <Esc>:let @/ = functions#GetVisualSelection()<CR>gn<C-g>
 snoremap <expr> . @.
 
 """"""""""""""""""""""

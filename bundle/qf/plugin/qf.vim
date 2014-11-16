@@ -15,3 +15,5 @@ nnoremap <silent> <End>  :call qf#WrapCommand('down', 'c')<CR>
 " <C-Home> and <C-End> go up and down the location list and wrap around
 nnoremap <silent> <C-Home> :call qf#WrapCommand('up', 'l')<CR>
 nnoremap <silent> <C-End>  :call qf#WrapCommand('down', 'l')<CR>
+
+nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"

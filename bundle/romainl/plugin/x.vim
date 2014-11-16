@@ -64,7 +64,7 @@ nnoremap <silent> ]I :call Ilist(0, 1)<CR>
 xnoremap <silent> [I :<C-u>call Ilist(1, 0)<CR>
 xnoremap <silent> ]I :<C-u>call Ilist(1, 1)<CR>
 
-command! -nargs=1 Ilist call Ilist(1, 0, <args>)
+command! -nargs=1 Ilist call Ilist(1, 0, <f-args>)
 
 " ===========================================================================
 
@@ -73,15 +73,15 @@ cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 " ===========================================================================
 
+" smarter <CR> after a few commands
+cnoremap <expr> <CR> getcmdline() =~ "\C^ls" \|\| getcmdline() =~ "\C^dli" \|\| getcmdline() =~ "\C^il" \|\| getcmdline() =~ "\C^ps" ? "\<CR>:" : "\<CR>"
+
+" ===========================================================================
+
 " modify the behaviour of <Tab> and <S-Tab> on the command-line
+" mainly for incsearch
 function! CmdLineTab()
-    if getcmdtype() == ":"
-        if getcmdline() =~ "^dli" || getcmdline() =~ "^il"
-            return "\<CR>:"
-        else
-            return "\<C-z>"
-        endif
-    elseif getcmdtype() == "/"
+    if getcmdtype() == "/"
         return "\<CR>/\<C-r>/"
     elseif getcmdtype() == "?"
         return "\<CR>?\<C-r>/"
