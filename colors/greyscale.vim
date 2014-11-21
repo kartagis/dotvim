@@ -15,7 +15,7 @@
 " #767676    243    6
 " #8a8a8a    245    15
 " #8a8a8a    245    4
-" #8fafd7    246    12
+" #949494    246    12
 " #8a8a8a    245    1
 " #808080    244    9
 " #949494    246    3
@@ -43,7 +43,7 @@ if &t_Co >= 256 || has('gui_running')
   hi Ignore           ctermbg=NONE ctermfg=235  guibg=NONE    guifg=#262626 cterm=NONE           gui=NONE
   hi PreProc          ctermbg=NONE ctermfg=243  guibg=NONE    guifg=#767676 cterm=NONE           gui=NONE
   hi Special          ctermbg=NONE ctermfg=243  guibg=NONE    guifg=#767676 cterm=NONE           gui=NONE
-  hi Statement        ctermbg=NONE ctermfg=246  guibg=NONE    guifg=#8fafd7 cterm=NONE           gui=NONE
+  hi Statement        ctermbg=NONE ctermfg=246  guibg=NONE    guifg=#949494 cterm=NONE           gui=NONE
   hi String           ctermbg=NONE ctermfg=247  guibg=NONE    guifg=#9e9e9e cterm=NONE           gui=NONE
   hi Todo             ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=reverse        gui=reverse
   hi Type             ctermbg=NONE ctermfg=247  guibg=NONE    guifg=#9e9e9e cterm=NONE           gui=NONE
@@ -78,14 +78,14 @@ if &t_Co >= 256 || has('gui_running')
   hi StatusLine       ctermbg=246  ctermfg=235  guibg=#949494 guifg=#262626 cterm=NONE           gui=NONE
   hi StatusLineNC     ctermbg=238  ctermfg=246  guibg=#444444 guifg=#949494 cterm=NONE           gui=italic
 
-  hi Visual           ctermbg=246  ctermfg=235  guibg=#8fafd7 guifg=#262626 cterm=NONE           gui=NONE
+  hi Visual           ctermbg=246  ctermfg=235  guibg=#949494 guifg=#262626 cterm=NONE           gui=NONE
   hi VisualNOS        ctermbg=NONE ctermfg=NONE guibg=NONE    guifg=NONE    cterm=bold,underline gui=bold,underline
 
   hi FoldColumn       ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
   hi Folded           ctermbg=234  ctermfg=242  guibg=#1c1c1c guifg=#6c6c6c cterm=NONE           gui=NONE
 
   hi VertSplit        ctermbg=238  ctermfg=238  guibg=#444444 guifg=#444444 cterm=NONE           gui=NONE
-  hi WildMenu         ctermbg=246  ctermfg=235  guibg=#8fafd7 guifg=#262626 cterm=bold           gui=bold
+  hi WildMenu         ctermbg=246  ctermfg=235  guibg=#949494 guifg=#262626 cterm=bold           gui=bold
 
   hi Function         ctermbg=NONE ctermfg=253  guibg=NONE    guifg=#dadada cterm=NONE           gui=NONE
   hi SpecialKey       ctermbg=NONE ctermfg=240  guibg=NONE    guifg=#585858 cterm=NONE           gui=NONE
