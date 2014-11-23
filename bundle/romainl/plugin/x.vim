@@ -170,7 +170,7 @@ function! Replace(search_pattern, replacement_pattern, ...)
     else
         silent arglocal `=system(search_string . a:search_pattern)`
     endif
-    argdo execute '%s/' . a:search_pattern . '/' . a:replacement_pattern . '/ec'
+    noautocmd argdo execute '%s/' . a:search_pattern . '/' . a:replacement_pattern . '/ec'
 endfunction
 
 " FIXME: ensure more predictable/consistent behavior
