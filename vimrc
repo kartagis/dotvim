@@ -71,7 +71,6 @@ set path=.,**
 set previewheight=1
 set scrolloff=4
 set virtualedit=block
-set showbreak=»»»\ 
 
 """""""""""""""""
 " PRETTY COLORS "

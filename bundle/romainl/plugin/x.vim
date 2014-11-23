@@ -187,3 +187,12 @@ endfunction
 
 command! -nargs=+ -complete=file_in_path Replace call Replace(<f-args>)
 command!                                 Done    call Done()
+
+set showbreak=»»»\ 
+set viminfo+='33
+
+nnoremap ,me :oldfiles<CR>:edit #<
+nnoremap ,ms :oldfiles<CR>:split #<
+nnoremap ,mv :oldfiles<CR>:vsplit #<
+nnoremap ,mt :oldfiles<CR>:tabedit #<
+
