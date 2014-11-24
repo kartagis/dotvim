@@ -11,8 +11,7 @@ function! Redir(cmd)
     redir END
     vnew
     setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    put=output
-    g/^$/d _
+    call setline(1, split(output, "\n"))
 endfunction
 
 command! -nargs=1 Redir silent call Redir(<f-args>)
@@ -188,7 +187,12 @@ endfunction
 command! -nargs=+ -complete=file_in_path Replace call Replace(<f-args>)
 command!                                 Done    call Done()
 
+" ===========================================================================
+
 set showbreak=»»»\ 
+
+" ===========================================================================
+
 set viminfo+='33
 
 nnoremap ,me :oldfiles<CR>:edit #<
