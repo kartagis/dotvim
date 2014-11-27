@@ -70,10 +70,15 @@ command! -nargs=1 Ilist call Ilist(1, 0, <f-args>)
 " remove arguments on the command-line
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
-" ===========================================================================
+" =======================================================================C====
 
 " smarter <CR> after a few commands
-cnoremap <expr> <CR> getcmdline() =~ "\C^ls" \|\| getcmdline() =~ "\C^dli" \|\| getcmdline() =~ "\C^il" \|\| getcmdline() =~ "\C^ps" ? "\<CR>:" : "\<CR>"
+cnoremap <expr> <CR> getcmdline() =~ "^ls" \|\| getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" \|\| getcmdline() =~ "^ps" \|\| getcmdline() =~ "#$" ? "\<CR>:" : "\<CR>"
+" FIXME
+" cnoremap <expr> <CR> getcmdline() =~ '^\(dli\|il\|ls\|ps\)' ? "\<CR>:" : "\<CR>"
+" cnoremap <expr> <CR> getcmdline() =~ '\v(^(ls\|dli\|il\|ps))\|#$' ? "\<CR>:" : "\<CR>"
+" cnoremap <expr> <CR> getcmdline() =~ '\(^\(ls\\|dli\\|il\\|ps\)\)\\|#$' ? "\<CR>:" : "\<CR>"
+" cnoremap <expr> <CR> getcmdline() =~ "\\(^\\(ls\\\|dli\\\|il\\\|ps\\)\\)\\\|#$" ? "\<CR>:" : "\<CR>"
 
 " ===========================================================================
 
