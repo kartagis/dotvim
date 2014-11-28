@@ -70,15 +70,10 @@ command! -nargs=1 Ilist call Ilist(1, 0, <f-args>)
 " remove arguments on the command-line
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
-" =======================================================================C====
+" ===========================================================================
 
 " smarter <CR> after a few commands
-cnoremap <expr> <CR> getcmdline() =~ "^ls" \|\| getcmdline() =~ "^dli" \|\| getcmdline() =~ "^il" \|\| getcmdline() =~ "^ps" \|\| getcmdline() =~ "#$" ? "\<CR>:" : "\<CR>"
-" FIXME
-" cnoremap <expr> <CR> getcmdline() =~ '^\(dli\|il\|ls\|ps\)' ? "\<CR>:" : "\<CR>"
-" cnoremap <expr> <CR> getcmdline() =~ '\v(^(ls\|dli\|il\|ps))\|#$' ? "\<CR>:" : "\<CR>"
-" cnoremap <expr> <CR> getcmdline() =~ '\(^\(ls\\|dli\\|il\\|ps\)\)\\|#$' ? "\<CR>:" : "\<CR>"
-" cnoremap <expr> <CR> getcmdline() =~ "\\(^\\(ls\\\|dli\\\|il\\\|ps\\)\\)\\\|#$" ? "\<CR>:" : "\<CR>"
+cnoremap <expr> <CR> getcmdline() =~ '\v(^(ls\|dli\|il\|ps))\|#$' ? "\<CR>:" : "\<CR>"
 
 " ===========================================================================
 
@@ -116,7 +111,11 @@ function! Cycle()
                 \ ["True", "False"],
                 \ ["true", "false"],
                 \ ["top", "right", "bottom", "left", "center"],
-                \ ["none", "block"],
+                \ ["none", "block", "inline-block"],
+                \ ["capitalize", "uppercase", "lowercase", "none"],
+                \ ["margin-top", "margin-right", "margin-bottom", "margin-left"],
+                \ ["padding-top", "padding-right", "padding-bottom", "padding-left"],
+                \ ["border-top", "border-right", "border-bottom", "border-left"],
                 \ ["first", "last"],
                 \ ["||", "&&"],
                 \ ["gif", "jpg", "png"]
