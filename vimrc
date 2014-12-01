@@ -31,9 +31,6 @@ set gdefault
 set ignorecase
 set smartcase
 
-set encoding=utf-8
-set termencoding=utf-8
-
 set wildcharm=<C-z>
 set wildignore+=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
@@ -223,6 +220,7 @@ command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindo
 nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
+
 xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
