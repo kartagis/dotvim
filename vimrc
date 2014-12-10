@@ -114,23 +114,14 @@ if has('gui_running')
     if os == 'Darwin'
         set guifont=Fira\ Mono:h12
         set fuoptions=maxvert,maxhorz
-        set clipboard^=unnamed
     elseif os == 'Linux'
-        set guifont=Inconsolata-g\ Medium\ 10
+        set guifont=Fira\ Mono\ 10
         set guioptions-=m
-        set clipboard^=unnamedplus
     elseif os == 'Windows'
         set guifont=Fira_Mono:h12:cANSI
-        set clipboard^=unnamed
         set guioptions-=m
     endif
 else
-    if os == 'Darwin' || os == 'Windows'
-        set clipboard^=unnamed
-    elseif os == 'Linux'
-        set clipboard^=unnamedplus
-    endif
-
     if &term =~ '^screen'
         " tmux will send xterm-style keys when its xterm-keys option is on
         execute "set <xUp>=\e[1;*A"
@@ -283,7 +274,8 @@ xnoremap ,d "_d
 
 xnoremap ,p "_dP
 
-nnoremap Y y$
+xnoremap y "+y
+nnoremap Y "+y$
 
 xnoremap > >gv
 xnoremap < <gv
