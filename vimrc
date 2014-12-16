@@ -53,6 +53,7 @@ set foldopen=hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set splitbelow
 set splitright
 
+set clipboard^=unnamed
 set complete=.,w,b
 set completeopt+=longest,menuone
 set cursorline
@@ -107,19 +108,15 @@ endif
 
 if has('gui_running')
     set guioptions-=T
-
-    set lines=40
-    set columns=140
+    set guioptions-=m
 
     if os == 'Darwin'
         set guifont=Fira\ Mono:h12
         set fuoptions=maxvert,maxhorz
     elseif os == 'Linux'
         set guifont=Fira\ Mono\ 10
-        set guioptions-=m
     elseif os == 'Windows'
         set guifont=Fira_Mono:h12:cANSI
-        set guioptions-=m
     endif
 else
     if &term =~ '^screen'
@@ -239,11 +236,6 @@ nnoremap ,, #``cgN
 xnoremap ,; <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
 xnoremap ,, <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
-nnoremap § *``gn<C-g>
-inoremap § <C-o>gn<C-g>
-xnoremap § <Esc>:let @/ = functions#GetVisualSelection()<CR>gn<C-g>
-snoremap <expr> . @.
-
 """"""""""""""""""""""
 " JUGGLING WITH TAGS "
 """"""""""""""""""""""
@@ -274,8 +266,7 @@ xnoremap ,d "_d
 
 xnoremap ,p "_dP
 
-xnoremap y "+y
-nnoremap Y "+y$
+nnoremap Y y$
 
 xnoremap > >gv
 xnoremap < <gv
