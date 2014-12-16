@@ -156,7 +156,7 @@ xnoremap gs :s//c<Left><Left>
 " ===========================================================================
 
 " specialized search/replace
-nnoremap <Space>f "zyiw]M[MV%:s/\<<C-r>z\>/
+nnoremap <Space>f "zyiwm'/{<CR>%V'':s/\<<C-r>z\>/
 nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
 nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
 
@@ -197,8 +197,8 @@ set showbreak=»»»\
 
 " ===========================================================================
 
+" cheap MRU
 set viminfo+='33
-
 nnoremap ,me :oldfiles<CR>:edit #<
 nnoremap ,ms :oldfiles<CR>:split #<
 nnoremap ,mv :oldfiles<CR>:vsplit #<
