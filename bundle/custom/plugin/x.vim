@@ -204,3 +204,9 @@ nnoremap ,ms :oldfiles<CR>:split #<
 nnoremap ,mv :oldfiles<CR>:vsplit #<
 nnoremap ,mt :oldfiles<CR>:tabedit #<
 
+" ===========================================================================
+
+nnoremap § *``gn<C-g>
+inoremap § <C-o>gn<C-g>
+xnoremap § <Esc>:let @/ = functions#GetVisualSelection()<CR>gn<C-g>
+snoremap <expr> . @.
