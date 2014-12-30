@@ -205,10 +205,6 @@ nnoremap ,I :ilist /
 
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
 
-nnoremap <silent> K :<C-u>let cmd = "Grep " . expand("<cword>") <bar>
-                        \ call histadd("cmd",cmd) <bar>
-                        \ execute cmd<CR>
-
 xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>

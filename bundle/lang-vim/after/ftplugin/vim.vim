@@ -4,3 +4,5 @@ xnoremap <buffer> af :<C-u>call vim#SelectFunction()<CR>
 onoremap <buffer> af :normal vaf<CR>
 
 setlocal define=^\\s*\\(function\\\|command\\)
+
+setlocal keywordprg=:help
