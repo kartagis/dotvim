@@ -73,7 +73,7 @@ cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 " ===========================================================================
 
 " smarter <CR> after a few commands
-cnoremap <expr> <CR> getcmdline() =~ '\v(^(ls\|dli\|il\|ps))\|#$' ? "\<CR>:" : "\<CR>"
+cnoremap <expr> <CR> getcmdline() =~ '\v\C(^(ls\|dli\|il\|ps))\|#$' ? "\<CR>:" : "\<CR>"
 
 " ===========================================================================
 
