@@ -25,6 +25,7 @@ set autoindent
 set expandtab
 set shiftround
 set shiftwidth=4
+set softtabstop=4
 set smarttab
 
 set gdefault
@@ -203,7 +204,7 @@ inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<
 nnoremap [I [I:
 nnoremap ,I :ilist /
 
-command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | cwindow | redraw!
+command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
 
 xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>

@@ -17,3 +17,8 @@ nnoremap <silent> <C-Home> :call qf#WrapCommand('up', 'l')<CR>
 nnoremap <silent> <C-End>  :call qf#WrapCommand('down', 'l')<CR>
 
 nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"
+
+augroup qf
+    autocmd!
+    autocmd QuickFixCmdPost * cwindow
+augroup END
