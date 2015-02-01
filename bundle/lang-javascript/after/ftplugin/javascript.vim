@@ -43,5 +43,5 @@ command! -buffer -range=% Format let b:winview = winsaveview() |
 " poor man's syntastic ;-)
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
-command! -buffer Make silent make % | silent redraw! | silent cwindow | silent wincmd p
+command! -buffer Make silent make % | silent redraw! | silent wincmd p
 autocmd! BufWritePost <buffer> Make
