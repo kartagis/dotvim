@@ -16,9 +16,13 @@ nnoremap <silent> <End>  :call qf#WrapCommand('down', 'c')<CR>
 nnoremap <silent> <C-Home> :call qf#WrapCommand('up', 'l')<CR>
 nnoremap <silent> <C-End>  :call qf#WrapCommand('down', 'l')<CR>
 
+" jump to and from the quickfix window
 nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"
 
+" Automatically opens the quickfix/location window after :make, :grep,
+" :lvimgrep and friends, if needed.
 augroup qf
     autocmd!
-    autocmd QuickFixCmdPost * cwindow
+    autocmd QuickFixCmdPost grep\|make\|grepadd\|vimgrep\|vimgrepadd\|cscope\|cfile\|cgetfile\|caddfile\|helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep\|lmake\|lgrepadd\|lvimgrep\|lvimgrepadd\|lfile\|lgetfile\|laddfile lwindow
 augroup END
