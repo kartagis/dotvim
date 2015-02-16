@@ -96,8 +96,9 @@ function! functions#PairExpander(left, right, next)
 endfunction
 
 function! functions#TagExpander(next)
-  if a:next ==# "<" && getline(".")[col(".")] ==# "/"
-    if getline(".")[searchpos("<", "bnW")[1]] ==# "/" || getline(".")[searchpos("<", "bnW")[1]] !=# getline(".")[col(".") + 1]
+  let thisline = getline(".")
+  if a:next ==# "<" && thisline[col(".")] ==# "/"
+    if thisline[searchpos("<", "bnW")[1]] ==# "/" || thisline[searchpos("<", "bnW")[1]] !=# thisline[col(".") + 1]
       return "\<CR>"
     else
       return "\<CR>\<C-o>==O"
