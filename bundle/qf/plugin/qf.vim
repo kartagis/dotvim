@@ -23,6 +23,6 @@ nnoremap <expr> ç &filetype == "qf" ? "<C-w>p" : "<C-w>b"
 " :lvimgrep and friends, if needed.
 augroup qf
     autocmd!
-    autocmd QuickFixCmdPost grep\|make\|grepadd\|vimgrep\|vimgrepadd\|cscope\|cfile\|cgetfile\|caddfile\|helpgrep cwindow
-    autocmd QuickFixCmdPost lgrep\|lmake\|lgrepadd\|lvimgrep\|lvimgrepadd\|lfile\|lgetfile\|laddfile lwindow
+    autocmd QuickFixCmdPost grep,make,grepadd,vimgrep,vimgrepadd,cscope,cfile,cgetfile,caddfile,helpgrep cwindow
+    autocmd QuickFixCmdPost lgrep,lmake,lgrepadd,lvimgrep,lvimgrepadd,lfile,lgetfile,laddfile lwindow
 augroup END
