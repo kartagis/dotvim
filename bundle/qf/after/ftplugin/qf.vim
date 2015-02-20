@@ -10,6 +10,7 @@ let b:isLoc = len(getloclist(0)) > 0 ? 1 : 0
 wincmd J
 
 " inspired by Ack.vim
+" open entry in a new horizontal window
 nnoremap <buffer> s <C-w><CR>
 " open entry in a new vertical window.
 nnoremap <buffer> v <C-w><CR><C-w>L<C-w>p<C-w>J<C-w>p
