@@ -1,4 +1,6 @@
-setlocal define=^\\s*\\(function\\\|var\\)
+setlocal define=^\\s*\\(function\\\|var\\\|define\\)[('\"]*
+setlocal suffixesadd+=.js
+setlocal include=^\\s*['\"]\\zs[^'\"]*\\ze
 
 " matchit
 let b:match_words = '\<function\>:\<return\>,'

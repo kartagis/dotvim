@@ -23,8 +23,11 @@ command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 
 " ===========================================================================
 
-" show ]I and [I results in the quickfix window.
-function! Ilist(selection, start_at_cursor, ...)
+" show ]I, [I, ]D, [D, :ilist and :dlist results in the quickfix window.
+function! List(command, selection, start_at_cursor, ...)
+    let excmd   = a:command . "list"
+    let normcmd = toupper(a:command)
+
     if a:selection
         if len(a:1) > 0
             let search_pattern = a:1
@@ -35,11 +38,11 @@ function! Ilist(selection, start_at_cursor, ...)
             let @v = old_reg
         endif
         redir => output
-        silent! execute (a:start_at_cursor ? '+,$' : '') . 'ilist /' . search_pattern
+        silent! execute (a:start_at_cursor ? '+,$' : '') . excmd . ' /' . search_pattern
         redir END
     else
         redir => output
-        silent! execute 'normal! ' . (a:start_at_cursor ? ']' : '[') . "I"
+        silent! execute 'normal! ' . (a:start_at_cursor ? ']' : '[') . normcmd
         redir END
     endif
     let lines = split(output, '\n')
@@ -47,23 +50,32 @@ function! Ilist(selection, start_at_cursor, ...)
         echomsg 'Could not find "' . (a:selection ? search_pattern : expand("<cword>")) . '".'
         return
     endif
-    let [filename, line_info] = [lines[0], lines[1:-1]]
-    "turn the :ilist output into a quickfix dictionary
-    let qf_entries = map(line_info, "{
-                \ 'filename': filename,
-                \ 'lnum': split(v:val)[1],
-                \ 'text': getline(split(v:val)[1])
-                \ }")
+    let filename   = ""
+    let qf_entries = []
+    for line in lines
+        if line =~ '^\S'
+            let filename = line
+        else
+            call add(qf_entries, {"filename" : filename, "lnum" : split(line)[1], "text" : join(split(line)[2:-1])})
+        endif
+    endfor
     call setqflist(qf_entries)
     cwindow
 endfunction
 
-nnoremap <silent> [I :call Ilist(0, 0)<CR>
-nnoremap <silent> ]I :call Ilist(0, 1)<CR>
-xnoremap <silent> [I :<C-u>call Ilist(1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call Ilist(1, 1)<CR>
+nnoremap <silent> [I :call List("i", 0, 0)<CR>
+nnoremap <silent> ]I :call List("i", 0, 1)<CR>
+xnoremap <silent> [I :<C-u>call List("i", 1, 0)<CR>
+xnoremap <silent> ]I :<C-u>call List("i", 1, 1)<CR>
 
-command! -nargs=1 Ilist call Ilist(1, 0, <f-args>)
+command! -nargs=1 Ilist call List("i", 1, 0, <f-args>)
+
+nnoremap <silent> [D :call List("d", 0, 0)<CR>
+nnoremap <silent> ]D :call List("d", 0, 1)<CR>
+xnoremap <silent> [D :<C-u>call List("d", 1, 0)<CR>
+xnoremap <silent> ]D :<C-u>call List("d", 1, 1)<CR>
+
+command! -nargs=1 Dlist call List("d", 1, 0, <f-args>)
 
 " ===========================================================================
 
