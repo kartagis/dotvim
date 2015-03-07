@@ -279,10 +279,6 @@ nnoremap gV `[v`]
 nnoremap mù m`
 nnoremap ùù ``
 
-" merci twal
-onoremap w :<C-u>norm w<CR>
-onoremap W :<C-u>norm W<CR>
-
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#SmartEnter()\<CR>"
 
 cnoremap <C-a> <Home>
