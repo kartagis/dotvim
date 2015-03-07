@@ -61,7 +61,6 @@ set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
 set history=100
-set linebreak
 set mouse=a
 set nostartofline
 set noswapfile
