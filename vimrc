@@ -67,6 +67,7 @@ set noswapfile
 set nrformats-=octal
 set path=.,**
 set previewheight=1
+set viminfo+='33
 set virtualedit=block
 
 """""""""""""""""
@@ -285,6 +286,8 @@ cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
+
+cnoremap <expr> <CR> functions#Shortcut()
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

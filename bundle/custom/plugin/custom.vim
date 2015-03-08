@@ -84,11 +84,6 @@ cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 " ===========================================================================
 
-" smarter <CR> after a few commands
-cnoremap <expr> <CR> getcmdline() =~ '\v\C(^(ls\|dli\|il\|ps\|old))\|#$' ? "\<CR>:" : "\<CR>"
-
-" ===========================================================================
-
 " modify the behaviour of <Tab> and <S-Tab> on the command-line
 " mainly for incsearch
 function! CmdLineTab()
@@ -206,15 +201,6 @@ command!                                 Done    call Done()
 " ===========================================================================
 
 set showbreak=»»»\ 
-
-" ===========================================================================
-
-" cheap MRU
-set viminfo+='33
-nnoremap ,me :oldfiles<CR>:edit #<
-nnoremap ,ms :oldfiles<CR>:split #<
-nnoremap ,mv :oldfiles<CR>:vsplit #<
-nnoremap ,mt :oldfiles<CR>:tabedit #<
 
 " ===========================================================================
 

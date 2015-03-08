@@ -1,3 +1,25 @@
+" make 'list'-like commands more intuitive
+function functions#Shortcut()
+    let cmdline = getcmdline()
+    if cmdline =~ '\C^ls'
+        " like :ls but prompts for a buffer command
+        return "\<CR>:b"
+    elseif cmdline =~ '\v\C(^(dli|il)|#$)'
+        " like :dlist or :ilist but prompts for a command
+        return "\<CR>:"
+    elseif cmdline =~ '\v\C^(cli|lli)'
+        " like :clist or :llist but prompts for an error/location number
+        return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+    elseif cmdline =~ '\C^old'
+        " like :oldfiles but prompts for an old file to edit
+        return "\<CR>:edit #<"
+    else
+        return "\<CR>"
+    endif
+endfunction
+
+" ===========================================================================
+
 " increment selected column of numbers
 function! functions#Incr(vcount)
   let a = (line('.') - line("'<")) + a:vcount
@@ -195,4 +217,3 @@ function! functions#GenerateTags(location, lang_only)
   endif
   let g:tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
 endfunction
-

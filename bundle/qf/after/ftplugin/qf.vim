@@ -1,6 +1,10 @@
+" text wrapping is useless, here
 setlocal nowrap
+" relative line numbers don't make sense in the quickfix window
+" but absolute numbers do
 setlocal norelativenumber
 setlocal number
+" we don't want quickfix buffers to pop up when doing :bn or :bp
 set nobuflisted
 
 " are we in a location list or a quickfix list?
@@ -27,15 +31,23 @@ else
 endif
 
 " filter the location/quickfix list
+" usage:
+" :Filter foo
 command! -buffer -nargs=* Filter call qf#FilterList(<q-args>)
 nnoremap <silent> <buffer> § :Filter <C-r><C-f><CR>
 
 " restore the location/quickfix list
+" usage:
+" :Restore
 command! -buffer Restore call qf#RestoreList()
 nnoremap <silent> <buffer> <F5> :Restore<CR>
 
 " do something on each line in the location/quickfix list
+" usage:
+" :Doline s/^/---
 command! -buffer -nargs=1 Doline call qf#DoList(1, <q-args>)
 
 " do something on each file in the location/quickfix list
+" usage:
+" :Dofile %s/^/---
 command! -buffer -nargs=1 Dofile call qf#DoList(0, <q-args>)

@@ -1,4 +1,5 @@
-" wrap :cnext/:cprevious and :lnext/:lprevious
+" make :cnext/:cprevious and :lnext/:lprevious
+" wrap around
 function qf#WrapCommand(direction, prefix)
     if a:direction == "up"
         try
@@ -57,7 +58,7 @@ endfunction
 
 " ===========================================================================
 
-" restore the current list
+" restore the original list
 function qf#RestoreList()
     if exists("b:isLoc")
         if b:isLoc == 1 && exists("b:locl")
