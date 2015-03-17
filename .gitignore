@@ -6,3 +6,4 @@
 *.gif
 *.png
 .temptags
+.DS_Store

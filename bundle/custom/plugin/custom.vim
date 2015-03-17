@@ -84,33 +84,6 @@ cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
 " ===========================================================================
 
-" modify the behaviour of <Tab> and <S-Tab> on the command-line
-" mainly for incsearch
-function! CmdLineTab()
-    if getcmdtype() == "/"
-        return "\<CR>/\<C-r>/"
-    elseif getcmdtype() == "?"
-        return "\<CR>?\<C-r>/"
-    else
-        return "\<C-z>"
-    endif
-endfunction
-
-function! CmdLineShiftTab()
-    if getcmdtype() == "/"
-        return "\<CR>?\<C-r>/"
-    elseif getcmdtype() == "?"
-        return "\<CR>/\<C-r>/"
-    else
-        return "\<S-Tab>"
-    endif
-endfunction
-
-cnoremap <expr> <Tab>   CmdLineTab()
-cnoremap <expr> <S-Tab> CmdLineShiftTab()
-
-" ===========================================================================
-
 " cycle common words
 function! Cycle()
     let words = [
@@ -208,3 +181,27 @@ nnoremap § *``gn<C-g>
 inoremap § <C-o>gn<C-g>
 xnoremap § <Esc>:let @/ = functions#GetVisualSelection()<CR>gn<C-g>
 snoremap <expr> . @.
+
+" ===========================================================================
+
+nmap ,# :g/<C-r><C-w>/#<CR>
+nmap ,@ :g//#<Left><Left>
+
+" ===========================================================================
+
+" Enable syntax highlighting when buffers are displayed in a window through
+" :argdo and :bufdo, which disable the Syntax autocmd event to speed up
+" processing.
+" http://stackoverflow.com/a/12491893/546861
+augroup EnableSyntaxHighlighting
+    autocmd!
+    autocmd BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
+    autocmd BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
+augroup END
+
+" ===========================================================================
+
+nnoremap / mz/
+nnoremap ? mz?
+cnoremap <expr> <C-c>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"
+

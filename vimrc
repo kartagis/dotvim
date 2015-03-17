@@ -203,9 +203,13 @@ inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<
 nnoremap [I [I:
 nnoremap ,I :ilist /
 
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+
 command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
 
-xnoremap <silent> K :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
+nnoremap <silent> ,G :Grep <C-r><C-w><CR>
+xnoremap <silent> ,G :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
 
