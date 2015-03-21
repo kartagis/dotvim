@@ -4,7 +4,7 @@ function functions#Shortcut()
     if cmdline =~ '\C^ls'
         " like :ls but prompts for a buffer command
         return "\<CR>:b"
-    elseif cmdline =~ '\v\C(^(dli|il)|#$)'
+    elseif cmdline =~ '\v\C(^(dli|il)|/#$)'
         " like :dlist or :ilist but prompts for a command
         return "\<CR>:"
     elseif cmdline =~ '\v\C^(cli|lli)'

@@ -165,6 +165,7 @@ nnoremap ,B :sbuffer <C-z><S-Tab>
 
 nnoremap gb :ls<CR>:buffer<Space>
 nnoremap gB :ls<CR>:sbuffer<Space>
+nmap <CR> gb
 
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>
