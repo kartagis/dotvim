@@ -27,9 +27,10 @@ command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 function! List(command, selection, start_at_cursor, ...)
     let excmd   = a:command . "list"
     let normcmd = toupper(a:command)
+    let output  = ""
 
     if a:selection
-        if len(a:1) > 0
+        if a:0 > 0 && len(a:1) > 0
             let search_pattern = a:1
         else
             let old_reg = @v
@@ -53,7 +54,7 @@ function! List(command, selection, start_at_cursor, ...)
     let filename   = ""
     let qf_entries = []
     for line in lines
-        if line =~ '^\S'
+        if line !~ '^\s*\d\+:'
             let filename = line
         else
             call add(qf_entries, {"filename" : filename, "lnum" : split(line)[1], "text" : join(split(line)[2:-1])})
@@ -204,4 +205,12 @@ augroup END
 nnoremap / mz/
 nnoremap ? mz?
 cnoremap <expr> <C-c>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"
+
+" ===========================================================================
+
+" execute command on arbitrary lines
+" :Foo s:^:// 1 3 17
+" TODO: support ranges
+" TODO: "odd & even"?
+command! -nargs=* Foo for line in split('<args>')[1:-1] | execute line . split('<args>')[0] | endfor
 

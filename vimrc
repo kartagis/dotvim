@@ -42,7 +42,7 @@ set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=list:full
 
-set statusline=%<\ %f\ %m%y%w%=\ L:\ \%l\/\%L\ C:\ \%c\ 
+set statusline=%<\ %f\ %m%r%y%w%=\ L:\ \%l\/\%L\ C:\ \%c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -165,7 +165,6 @@ nnoremap ,B :sbuffer <C-z><S-Tab>
 
 nnoremap gb :ls<CR>:buffer<Space>
 nnoremap gB :ls<CR>:sbuffer<Space>
-nmap <CR> gb
 
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>

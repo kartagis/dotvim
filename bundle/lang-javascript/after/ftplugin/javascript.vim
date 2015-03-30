@@ -1,6 +1,6 @@
-setlocal define=^\\s*\\(function\\\|var\\\|define\\)[('\"]*
+setlocal define=^\\s*\\(function\\\|var\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
-setlocal include=^\\s*['\"]\\zs[^'\"]*\\ze
+" setlocal include=^\\s*['\"]\\zs[^'\"]*\\ze
 
 " matchit
 let b:match_words = '\<function\>:\<return\>,'
@@ -24,18 +24,18 @@ nnoremap <silent> <buffer> [[ :call functions#CustomJump('?\v^\s*(function\|var)
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
+" select function
 xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
 onoremap <buffer> af :normal vaf<CR>
 
 " generate event handler
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
-" generate console.log
-" FIXME
-nnoremap <buffer> ,l yiwm`o<C-u>console.log("<C-r>":", <C-r>");<Esc>==``
 
-" EXPERIMENTAL
-" turns data.foo into "data.foo", data.foo
-xnoremap <buffer> <F7> c"<C-r>"", <C-r>"<Esc>
+nnoremap <buffer> ,l yiwoconsole.log("<C-r>"", <C-r>");<Esc>
+xnoremap <buffer> ,l yoconsole.log("<C-r>"",<C-r>");<Esc>
+
+nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
+xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
 
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |
