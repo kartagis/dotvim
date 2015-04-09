@@ -1,3 +1,18 @@
+" qf.vim - Tame the quickfix window
+" Maintainer:	romainl <romainlafourcade@gmail.com>
+" Version:	0.0.1
+" License:	Vim License (see :help license)
+" Location:	autoload/qf.vim
+" Website:	https://github.com/romainl/vim-qf
+"
+" See qf.txt for help.  This can be accessed by doing:
+"
+" :helptags ~/.vim/doc
+" :help qf.txt
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 " make :cnext/:cprevious and :lnext/:lprevious
 " wrap around
 function qf#WrapCommand(direction, prefix)
@@ -18,8 +33,6 @@ function qf#WrapCommand(direction, prefix)
     endif
 endfunction
 
-" ===========================================================================
-
 " do something with each entry
 function qf#DoList(line, cmd)
     if exists("b:isLoc")
@@ -36,8 +49,6 @@ function qf#DoList(line, cmd)
     catch /^Vim\%((\a\+)\)\=:E\%(553\|42\):/
     endtry
 endfunction
-
-" ===========================================================================
 
 " filter the current list
 function qf#FilterList(pat)
@@ -56,8 +67,6 @@ function qf#FilterList(pat)
     endif
 endfunction
 
-" ===========================================================================
-
 " restore the original list
 function qf#RestoreList()
     if exists("b:isLoc")
@@ -68,3 +77,5 @@ function qf#RestoreList()
         endif
     endif
 endfunction
+
+let &cpo = s:save_cpo

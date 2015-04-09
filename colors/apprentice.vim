@@ -186,7 +186,7 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
   hi Search           ctermbg=2           ctermfg=0           cterm=NONE
 
   hi Directory        ctermbg=NONE        ctermfg=14          cterm=NONE
-  hi MatchParen       ctermbg=bg          ctermfg=fg          cterm=reverse
+  hi MatchParen       ctermbg=0           ctermfg=15          cterm=reverse
 
 
   hi SpellBad         ctermbg=NONE        ctermfg=1           cterm=undercurl
