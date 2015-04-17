@@ -23,63 +23,6 @@ command! SC vnew | setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
 
 " ===========================================================================
 
-" show ]I, [I, ]D, [D, :ilist and :dlist results in the quickfix window.
-function! List(command, selection, start_at_cursor, ...)
-    let excmd   = a:command . "list"
-    let normcmd = toupper(a:command)
-    let output  = ""
-
-    if a:selection
-        if a:0 > 0 && len(a:1) > 0
-            let search_pattern = a:1
-        else
-            let old_reg = @v
-            normal! gv"vy
-            let search_pattern = substitute(escape(@v, '\/.*$^~[]'), '\\n', '\\n', 'g')
-            let @v = old_reg
-        endif
-        redir => output
-        silent! execute (a:start_at_cursor ? '+,$' : '') . excmd . ' /' . search_pattern
-        redir END
-    else
-        redir => output
-        silent! execute 'normal! ' . (a:start_at_cursor ? ']' : '[') . normcmd
-        redir END
-    endif
-    let lines = split(output, '\n')
-    if lines[0] =~ '^Error detected'
-        echomsg 'Could not find "' . (a:selection ? search_pattern : expand("<cword>")) . '".'
-        return
-    endif
-    let filename   = ""
-    let qf_entries = []
-    for line in lines
-        if line !~ '^\s*\d\+:'
-            let filename = line
-        else
-            call add(qf_entries, {"filename" : filename, "lnum" : split(line)[1], "text" : join(split(line)[2:-1])})
-        endif
-    endfor
-    call setqflist(qf_entries)
-    cwindow
-endfunction
-
-nnoremap <silent> [I :call List("i", 0, 0)<CR>
-nnoremap <silent> ]I :call List("i", 0, 1)<CR>
-xnoremap <silent> [I :<C-u>call List("i", 1, 0)<CR>
-xnoremap <silent> ]I :<C-u>call List("i", 1, 1)<CR>
-
-command! -nargs=1 Ilist call List("i", 1, 0, <f-args>)
-
-nnoremap <silent> [D :call List("d", 0, 0)<CR>
-nnoremap <silent> ]D :call List("d", 0, 1)<CR>
-xnoremap <silent> [D :<C-u>call List("d", 1, 0)<CR>
-xnoremap <silent> ]D :<C-u>call List("d", 1, 1)<CR>
-
-command! -nargs=1 Dlist call List("d", 1, 0, <f-args>)
-
-" ===========================================================================
-
 " remove arguments on the command-line
 cnoremap <C-k> <C-\>esplit(getcmdline(), " ")[0]<CR><Space>
 
@@ -190,21 +133,9 @@ nmap ,@ :g//#<Left><Left>
 
 " ===========================================================================
 
-" Enable syntax highlighting when buffers are displayed in a window through
-" :argdo and :bufdo, which disable the Syntax autocmd event to speed up
-" processing.
-" http://stackoverflow.com/a/12491893/546861
-augroup EnableSyntaxHighlighting
-    autocmd!
-    autocmd BufWinEnter,WinEnter * nested if exists('syntax_on') && ! exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') == -1 | syntax enable | endif
-    autocmd BufRead * if exists('syntax_on') && exists('b:current_syntax') && ! empty(&l:filetype) && index(split(&eventignore, ','), 'Syntax') != -1 | unlet! b:current_syntax | endif
-augroup END
-
-" ===========================================================================
-
 nnoremap / mz/
 nnoremap ? mz?
-cnoremap <expr> <C-c>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"
+cnoremap <expr> <C-c> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"
 
 " ===========================================================================
 
@@ -213,4 +144,8 @@ cnoremap <expr> <C-c>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z"
 " TODO: support ranges
 " TODO: "odd & even"?
 command! -nargs=* Foo for line in split('<args>')[1:-1] | execute line . split('<args>')[0] | endfor
+command! -nargs=* Bar for line in split(split('<args>')[0],",") | execute line . split('<args>')[0] | endfor
 
+" ===========================================================================
+
+set report=0

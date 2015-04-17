@@ -200,8 +200,8 @@ inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
 """"""""""""""""""""""""""
-nnoremap [I [I:
-nnoremap ,I :ilist /
+" nnoremap [I [I:
+nnoremap ,I :Ilist /
 
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
@@ -247,8 +247,8 @@ nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
 
-nnoremap [D [D:
-nnoremap ,D :dlist /
+" nnoremap [D [D:
+nnoremap ,D :Dlist /
 
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "

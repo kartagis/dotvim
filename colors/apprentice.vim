@@ -105,7 +105,7 @@ if &t_Co >= 256 || has('gui_running')
   hi Search           ctermbg=108  ctermfg=235  guibg=#87af87 guifg=#262626 cterm=NONE           gui=NONE
 
   hi Directory        ctermbg=NONE ctermfg=73   guibg=NONE    guifg=#5fafaf cterm=NONE           gui=NONE
-  hi MatchParen       ctermbg=242  ctermfg=234  guibg=#6c6c6c guifg=#1c1c1c cterm=NONE           gui=NONE
+  hi MatchParen       ctermbg=250  ctermfg=234  guibg=#bcbcbc guifg=#1c1c1c cterm=NONE           gui=NONE
 
   hi SpellBad         ctermbg=NONE ctermfg=131  guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#af5f5f
   hi SpellCap         ctermbg=NONE ctermfg=73   guibg=NONE    guifg=NONE    cterm=undercurl      gui=undercurl guisp=#5fafaf
