@@ -39,6 +39,7 @@ function! Cycle()
                 \ ["capitalize", "uppercase", "lowercase", "none"],
                 \ ["margin-top", "margin-right", "margin-bottom", "margin-left"],
                 \ ["padding-top", "padding-right", "padding-bottom", "padding-left"],
+                \ ["padding", "margin"],
                 \ ["border-top", "border-right", "border-bottom", "border-left"],
                 \ ["first", "last"],
                 \ ["||", "&&"],

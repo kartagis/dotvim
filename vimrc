@@ -87,12 +87,6 @@ augroup VIMRC
 
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
-
-    autocmd BufLeave *.css,*.less normal! mC
-    autocmd BufLeave *.html       normal! mH
-    autocmd BufLeave *.js         normal! mJ
-    autocmd BufLeave *.php        normal! mP
-    autocmd BufLeave vimrc,*.vim  normal! mV
 augroup END
 
 """""""""""""""""""""""""""""""""
@@ -160,9 +154,6 @@ command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#M
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
 """""""""""""""""""""""""
-nnoremap ,b :buffer <C-z><S-Tab>
-nnoremap ,B :sbuffer <C-z><S-Tab>
-
 nnoremap gb :ls<CR>:buffer<Space>
 nnoremap gB :ls<CR>:sbuffer<Space>
 
@@ -214,7 +205,7 @@ xnoremap <silent> ,G :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <b
                         \ execute cmd<CR>
 
 if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column\ --vimgrep
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 

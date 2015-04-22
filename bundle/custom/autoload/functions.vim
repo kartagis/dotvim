@@ -63,7 +63,7 @@ endfunction
 
 " ===========================================================================
 
-" from $VIMRUNTIME/ftplugin/python.vim
+" adapted from $VIMRUNTIME/ftplugin/python.vim
 function! functions#CustomJump(motion) range
   let cnt = v:count1
   let save = @/
@@ -83,13 +83,15 @@ endfunction
 " - removes empty comment marker
 " - more?
 function! functions#SmartEnter()
-  " beware of the cmdline window
+  " specific case: beware of the cmdline window
   if &buftype == "nofile"
     return "\<CR>"
   endif
+  " specific case: <CR><CR> to get out of commenting
   if getline(".") =~ '^\s*\(\*\|//\|#\|"\)\s*$'
     return "\<C-u>"
   endif
+  " generic case
   let previous = getline(".")[col(".")-2]
   let next     = getline(".")[col(".")-1]
   if previous ==# "{"
@@ -105,10 +107,13 @@ function! functions#SmartEnter()
   endif
 endfunction
 
-" FIXME: there's an elusive bug in how a right char is
-" located in complex scenarios
 function! functions#PairExpander(left, right, next)
-  let pair_position = searchpairpos(a:left, "", a:right, "Wn")
+  let pair_position = []
+  if a:left == "["
+    let pair_position = searchpairpos('\' . a:left, "", '\' . a:right, "Wn")
+  else
+    let pair_position = searchpairpos(a:left, "", a:right, "Wn")
+  endif
   if a:next !=# a:right && pair_position[0] == 0
     return "\<CR>" . a:right . "\<C-o>==O"
   elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
@@ -147,7 +152,7 @@ endfunction
 
 " ===========================================================================
 
-" DOS to UNIX encoding
+" DOS to UNIX re-encoding
 function! functions#ToUnix()
   let b:winview = winsaveview()
   silent update
