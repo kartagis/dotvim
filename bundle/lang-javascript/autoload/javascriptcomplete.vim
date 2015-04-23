@@ -4,6 +4,89 @@
 " Last Change:  2014 Jun 23
 " Original Maintainer: Mikolaj Machowski ( mikmach AT wp DOT pl )
 
+" PIXI.js (http://www.pixijs.com/) support
+let s:pixis = ['AbstractFilter', 'AjaxRequest', 'AlphaMaskFilter', 'AsciiFilter', 'AssetLoader', 'AtlasLoader', 'autoDetectRecommendedRenderer', 'autoDetectRenderer', 'BaseTexture', 'BitmapFontLoader', 'BitmapText', 'BlurFilter', 'BlurXFilter', 'BlurYFilter', 'CanvasBuffer', 'CanvasGraphics', 'CanvasMaskManager', 'CanvasRenderer', 'CanvasTinter', 'Circle', 'ColorMatrixFilter', 'ColorStepFilter', 'ComplexPrimitiveShader', 'ConvolutionFilter', 'CrossHatchFilter', 'DisplacementFilter', 'DisplayObject', 'DisplayObjectContainer', 'DotScreenFilter', 'Ellipse', 'Event', 'EventTarget', 'FilterBlock', 'FilterTexture', 'Graphics', 'GraphicsData', 'GrayFilter', 'ImageLoader', 'InteractionData', 'InteractionManager', 'InvertFilter', 'JsonLoader', 'Matrix', 'MovieClip', 'NoiseFilter', 'NormalMapFilter', 'PixelateFilter', 'PixiFastShader', 'PixiShader', 'Point', 'Polygon', 'PolyK', 'PrimitiveShader', 'Rectangle', 'RenderTexture', 'RGBSplitFilter', 'Rope', 'SepiaFilter', 'SmartBlurFilter', 'Spine', 'SpineLoader', 'Sprite', 'SpriteBatch', 'SpriteSheetLoader', 'Stage', 'Strip', 'StripShader', 'Text', 'Texture', 'TilingSprite', 'TiltShiftFilter', 'TiltShiftXFilter', 'TiltShiftYFilter', 'TwistFilter', 'WebGLBlendModeManager', 'WebGLFastSpriteBatch', 'WebGLFilterManager', 'WebGLGraphics', 'WebGLGraphicsData', 'WebGLMaskManager', 'WebGLRenderer', 'WebGLShaderManager', 'WebGLSpriteBatch', 'WebGLStencilManager']
+let s:pixi_abstractfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_ajaxrequests = [ 'bind(', 'cancelAnimationFrame(', 'canUseNewCanvasBlendModes(', 'getNextPowerOfTwo(', 'hex2rgb(', 'requestAnimationFrame(', 'rgb2hex(' ]
+let s:pixi_alphamaskfilters = [ 'onTextureLoaded(', 'syncUniforms(', 'dirty', 'fragmentSrc', 'map', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_asciifilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'size', 'uniforms' ]
+let s:pixi_assetloaders = [ '_getDataType(', 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'onAssetLoaded(', 'once(', 'removeAllListeners(', 'assetURLs', 'crossorigin', 'loadersByType' ]
+let s:pixi_atlasloaders = [ 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'onAtlasLoaded(', 'once(', 'onError(', 'onLoaded(', 'removeAllListeners(' ]
+let s:pixi_basetextures = [ 'destroy(', 'dirty(', 'emit(', 'fromCanvas(', 'fromImage(', 'listeners(', 'mixin(', 'off(', 'on(', 'once(', 'removeAllListeners(', 'unloadFromGPU(', 'updateSourceImage(', '_dirty', '_glTextures', '_powerOf2', 'hasLoaded', 'height', 'imageUrl', 'premultipliedAlpha', 'resolution', 'scaleMode', 'source', 'width' ]
+let s:pixi_bitmapfontloaders = [ 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'once(', 'onLoaded(', 'onXMLLoaded(', 'removeAllListeners(', 'baseUrl', 'crossorigin', 'texture', 'url' ]
+let s:pixi_bitmaptexts = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'setStyle(', 'setText(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', 'updateText(', 'updateTransform(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_pool', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'dirty', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'textHeight', 'textWidth', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_blurfilters = [ 'syncUniforms(', 'blur', 'blurX', 'blurY', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_blurxfilters = [ 'syncUniforms(', 'blur', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_bluryfilters = [ 'syncUniforms(', 'blur', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_canvasbuffers = [ 'clear(', 'resize(', 'canvas', 'context', 'height', 'width' ]
+let s:pixi_canvasmaskmanagers = [ 'popMask(', 'pushMask(' ]
+let s:pixi_canvasrenderers = [ 'destroy(', 'mapBlendModes(', 'render(', 'renderDisplayObject(', 'resize(', 'autoResize', 'CanvasMaskManager', 'clearBeforeRender', 'context', 'count', 'height', 'refresh', 'renderSession', 'resolution', 'transparent', 'type', 'view', 'width' ]
+let s:pixi_canvastinters = [ 'getTintedTexture(', 'roundColor(', 'tintMethod(', 'tintPerPixel(', 'tintWithMultiply(', 'tintWithOverlay(', 'cacheStepsPerColorChannel', 'canUseMultiply', 'convertTintToImage' ]
+let s:pixi_circles = [ 'clone(', 'contains(', 'getBounds(', 'radius', 'x', 'y' ]
+let s:pixi_colormatrixfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'matrix', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_colorstepfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'step', 'uniforms' ]
+let s:pixi_complexprimitiveshaders = [ 'destroy(', 'init(', '_UID', 'fragmentSrc', 'gl', 'program', 'vertexSrc' ]
+let s:pixi_convolutionfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'height', 'matrix', 'padding', 'passes', 'shaders', 'uniforms', 'width' ]
+let s:pixi_crosshatchfilters = [ 'syncUniforms(', 'blur', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_displacementfilters = [ 'onTextureLoaded(', 'syncUniforms(', 'dirty', 'fragmentSrc', 'map', 'offset', 'padding', 'passes', 'scale', 'shaders', 'uniforms' ]
+let s:pixi_displayobjectcontainers = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_dotscreenfilters = [ 'syncUniforms(', 'angle', 'dirty', 'fragmentSrc', 'padding', 'passes', 'scale', 'shaders', 'uniforms' ]
+let s:pixi_ellipses = [ 'clone(', 'contains(', 'getBounds(', 'height', 'width', 'x', 'y' ]
+let s:pixi_events = [ 'stopImmediatePropagation(', 'stopPropagation(', 'data', 'stopped', 'stoppedImmediate', 'target', 'timeStamp', 'type' ]
+let s:pixi_eventtargets = [ 'emit(', 'listeners(', 'mixin(', 'off(', 'on(', 'once(', 'removeAllListeners(' ]
+let s:pixi_filterblocks = [ 'renderable', 'visible' ]
+let s:pixi_filtertextures = [ 'clear(', 'destroy(', 'resize(', 'frameBuffer', 'gl', 'scaleMode', 'texture' ]
+let s:pixi_graphicss = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'arc(', 'beginFill(', 'bezierCurveTo(', 'clear(', 'click(', 'destroyCachedSprite(', 'drawCircle(', 'drawEllipse(', 'drawPolygon(', 'drawRect(', 'drawRoundedRect(', 'drawShape(', 'endFill(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'lineStyle(', 'lineTo(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'moveTo(', 'quadraticCurveTo(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', 'updateCachedSpriteTexture(', 'updateLocalBounds(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', '_webGL', 'alpha', 'blendMode', 'boundsPadding', 'buttonMode', 'cacheAsBitmap', 'cachedSpriteDirty', 'children', 'currentPath', 'defaultCursor', 'dirty', 'fillAlpha', 'filterArea', 'filters', 'graphicsData', 'height', 'hitArea', 'interactive', 'isMask', 'lineColor', 'lineWidth', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'tint', 'visible', 'webGLDirty', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_grayfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'gray', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_imageloaders = [ 'emit(', 'listeners(', 'load(', 'loadFramedSpriteSheet(', 'mixin(', 'off(', 'on(', 'once(', 'onLoaded(', 'removeAllListeners(', 'frames', 'texture' ]
+let s:pixi_interactiondatas = [ 'getLocalPosition(', 'global', 'originalEvent', 'target' ]
+let s:pixi_interactionmanagers = [ 'collectInteractiveSprite(', 'hitTest(', 'onMouseDown(', 'onMouseMove(', 'onMouseOut(', 'onMouseUp(', 'onTouchEnd(', 'onTouchMove(', 'onTouchStart(', 'rebuildInteractiveGraph(', 'removeEvents(', 'setTarget(', 'setTargetDomElement(', 'update(', 'currentCursorStyle', 'interactionDOMElement', 'interactiveItems', 'last', 'mouse', 'mouseOut', 'mouseoverEnabled', 'onMouseDown', 'onMouseMove', 'onMouseOut', 'onMouseUp', 'onTouchEnd', 'onTouchMove', 'onTouchStart', 'pool', 'resolution', 'stage', 'tempPoint', 'touches' ]
+let s:pixi_invertfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'invert', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_jsonloaders = [ 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'once(', 'onError(', 'onJSONLoaded(', 'onLoaded(', 'removeAllListeners(', 'baseUrl', 'crossorigin', 'loaded', 'url' ]
+let s:pixi_matrixs = [ 'append(', 'apply(', 'applyInverse(', 'fromArray(', 'identity(', 'rotate(', 'scale(', 'toArray(', 'translate(', 'a', 'b', 'c', 'd', 'tx', 'ty' ]
+let s:pixi_movieclips = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'fromFrames(', 'fromImages(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'gotoAndPlay(', 'gotoAndStop(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'play(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'setTexture(', 'stop(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_height', '_interactive', '_sr', '_width', 'alpha', 'anchor', 'animationSpeed', 'blendMode', 'buttonMode', 'cacheAsBitmap', 'children', 'currentFrame', 'defaultCursor', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'loop', 'mask', 'onComplete', 'parent', 'pivot', 'playing', 'position', 'renderable', 'rotation', 'scale', 'shader', 'stage', 'texture', 'textures', 'tint', 'totalFrames', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_noisefilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'noise', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_normalmapfilters = [ 'onTextureLoaded(', 'syncUniforms(', 'dirty', 'fragmentSrc', 'map', 'offset', 'padding', 'passes', 'scale', 'shaders', 'uniforms' ]
+let s:pixi_pixelatefilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'size', 'uniforms' ]
+let s:pixi_pixifastshaders = [ 'destroy(', 'init(', '_UID', 'fragmentSrc', 'gl', 'program', 'textureCount', 'vertexSrc' ]
+let s:pixi_pixishaders = [ 'destroy(', 'init(', 'initSampler2D(', 'initUniforms(', 'syncUniforms(', '_UID', 'attributes', 'defaultVertexSrc', 'dirty', 'firstRun', 'fragmentSrc', 'gl', 'program', 'textureCount' ]
+let s:pixi_points = [ 'clone(', 'set(', 'x', 'y' ]
+let s:pixi_polyks = [ '_convex(', '_PointInTriangle(', 'Triangulate(' ]
+let s:pixi_polygons = [ 'clone(', 'contains(' ]
+let s:pixi_primitiveshaders = [ 'destroy(', 'init(', '_UID', 'fragmentSrc', 'gl', 'program', 'vertexSrc' ]
+let s:pixi_rgbsplitfilters = [ 'syncUniforms(', 'blue', 'dirty', 'fragmentSrc', 'green', 'padding', 'passes', 'red', 'shaders', 'uniforms' ]
+let s:pixi_rectangles = [ 'clone(', 'contains(', 'height', 'width', 'x', 'y' ]
+let s:pixi_rendertextures = [ '_updateUvs(', 'clear(', 'destroy(', 'emit(', 'getBase64(', 'getCanvas(', 'getImage(', 'listeners(', 'mixin(', 'off(', 'on(', 'onBaseTextureLoaded(', 'once(', 'removeAllListeners(', 'renderCanvas(', 'renderWebGL(', 'resize(', 'setFrame(', '_uvs', 'baseTexture', 'crop', 'frame', 'height', 'noFrame', 'renderer', 'requiresUpdate', 'resolution', 'trim', 'valid', 'width' ]
+let s:pixi_ropes = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'renderStripFlat(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'dirty', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'padding', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'texture', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_rounded_rectangles = [ 'clone(', 'contains(', 'height', 'radius', 'width', 'x', 'y' ]
+let s:pixi_sepiafilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'sepia', 'shaders', 'uniforms' ]
+let s:pixi_smartblurfilters = [ 'syncUniforms(', 'blur', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
+let s:pixi_spines = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_spineloaders = [ 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'once(', 'onLoaded(', 'removeAllListeners(', 'crossorigin', 'loaded', 'url' ]
+let s:pixi_sprites = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'fromFrame(', 'fromImage(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'setTexture(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_height', '_interactive', '_sr', '_width', 'alpha', 'anchor', 'blendMode', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'shader', 'stage', 'texture', 'tint', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_spritebatchs = [ '_renderCanvas(', '_renderWebGL(' ]
+let s:pixi_spritesheetloaders = [ 'emit(', 'listeners(', 'load(', 'mixin(', 'off(', 'on(', 'once(', 'onLoaded(', 'removeAllListeners(', 'baseUrl', 'crossorigin', 'frames', 'texture', 'url' ]
+let s:pixi_stages = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'getMousePosition(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setBackgroundColor(', 'setChildIndex(', 'setInteractionDelegate(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'dirty', 'filterArea', 'filters', 'height', 'hitArea', 'interactionManager', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_strips = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'renderStripFlat(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_interactive', '_sr', 'alpha', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'dirty', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'padding', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'stage', 'texture', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_stripshaders = [ 'destroy(', 'init(', '_UID', 'fragmentSrc', 'gl', 'program', 'vertexSrc' ]
+let s:pixi_texts = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'destroy(', 'determineFontProperties(', 'generateTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'setStyle(', 'setText(', 'setTexture(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', 'updateText(', 'updateTexture(', 'wordWrap(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_height', '_interactive', '_sr', '_width', 'alpha', 'anchor', 'blendMode', 'buttonMode', 'cacheAsBitmap', 'canvas', 'children', 'context', 'defaultCursor', 'filterArea', 'filters', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'resolution', 'rotation', 'scale', 'shader', 'stage', 'texture', 'tint', 'visible', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_textures = [ '_updateUvs(', 'addTextureToCache(', 'destroy(', 'emit(', 'fromCanvas(', 'fromFrame(', 'fromImage(', 'listeners(', 'mixin(', 'off(', 'on(', 'onBaseTextureLoaded(', 'once(', 'removeAllListeners(', 'removeTextureFromCache(', 'setFrame(', '_uvs', 'baseTexture', 'crop', 'frame', 'height', 'noFrame', 'requiresUpdate', 'trim', 'valid', 'width' ]
+let s:pixi_tilingsprites = [ '_destroyCachedSprite(', '_generateCachedSprite(', '_renderCachedSprite(', '_renderCanvas(', '_renderWebGL(', 'addChild(', 'addChildAt(', 'click(', 'generateTexture(', 'generateTilingTexture(', 'getBounds(', 'getChildAt(', 'getChildIndex(', 'getLocalBounds(', 'mousedown(', 'mouseout(', 'mouseover(', 'mouseup(', 'mouseupoutside(', 'onTextureUpdate(', 'removeChild(', 'removeChildAt(', 'removeChildren(', 'removeStageReference(', 'rightclick(', 'rightdown(', 'rightup(', 'rightupoutside(', 'setChildIndex(', 'setStageReference(', 'setTexture(', 'swapChildren(', 'tap(', 'toGlobal(', 'toLocal(', 'touchend(', 'touchendoutside(', 'touchstart(', 'updateCache(', '_bounds', '_cacheAsBitmap', '_cacheIsDirty', '_cr', '_currentBounds', '_height', '_interactive', '_sr', '_width', 'alpha', 'anchor', 'blendMode', 'buttonMode', 'cacheAsBitmap', 'children', 'defaultCursor', 'filterArea', 'filters', 'height', 'height', 'hitArea', 'interactive', 'mask', 'parent', 'pivot', 'position', 'renderable', 'rotation', 'scale', 'shader', 'stage', 'texture', 'tilePosition', 'tileScale', 'tileScaleOffset', 'tint', 'visible', 'width', 'width', 'worldAlpha', 'worldTransform', 'worldVisible', 'x', 'y' ]
+let s:pixi_tiltshiftfilters = [ 'blur', 'end', 'gradientBlur', 'start' ]
+let s:pixi_tiltshiftxfilters = [ 'syncUniforms(', 'updateDelta(', 'blur', 'dirty', 'end', 'fragmentSrc', 'gradientBlur', 'padding', 'passes', 'shaders', 'start', 'uniforms' ]
+let s:pixi_tiltshiftyfilters = [ 'syncUniforms(', 'updateDelta(', 'blur', 'dirty', 'end', 'fragmentSrc', 'gradientBlur', 'padding', 'passes', 'shaders', 'start', 'uniforms' ]
+let s:pixi_twistfilters = [ 'syncUniforms(', 'angle', 'dirty', 'fragmentSrc', 'offset', 'padding', 'passes', 'radius', 'shaders', 'uniforms' ]
+let s:pixi_webglblendmodemanagers = [ 'destroy(', 'setBlendMode(', 'setContext(', 'currentBlendMode' ]
+let s:pixi_webglfastspritebatchs = [ 'begin(', 'end(', 'flush(', 'render(', 'renderSprite(', 'setContext(', 'start(', 'stop(', 'currentBaseTexture', 'currentBatchSize', 'currentBlendMode', 'drawing', 'indexBuffer', 'indices', 'lastIndexCount', 'matrix', 'maxSize', 'renderSession', 'shader', 'size', 'vertexBuffer', 'vertices', 'vertSize' ]
+let s:pixi_webglfiltermanagers = [ 'applyFilterPass(', 'begin(', 'destroy(', 'initShaderBuffers(', 'popFilter(', 'pushFilter(', 'setContext(', 'filterStack', 'offsetX', 'offsetY' ]
+let s:pixi_webglgraphicss = [ 'buildCircle(', 'buildComplexPoly(', 'buildLine(', 'buildPoly(', 'buildRectangle(', 'buildRoundedRectangle(', 'quadraticBezierCurve(', 'renderGraphics(', 'switchMode(', 'updateGraphics(' ]
+let s:pixi_webglgraphicsdatas = [ 'reset(', 'upload(' ]
+let s:pixi_webglmaskmanagers = [ 'destroy(', 'popMask(', 'pushMask(', 'setContext(' ]
+let s:pixi_webglrenderers = [ 'destroy(', 'handleContextLost(', 'handleContextRestored(', 'initContext(', 'mapBlendModes(', 'render(', 'renderDisplayObject(', 'resize(', 'updateTexture(', '_contextOptions', 'autoResize', 'blendModeManager', 'clearBeforeRender', 'contextLostBound', 'contextRestoredBound', 'filterManager', 'height', 'maskManager', 'offset', 'preserveDrawingBuffer', 'projection', 'renderSession', 'resolution', 'shaderManager', 'spriteBatch', 'stencilManager', 'transparent', 'type', 'view', 'width' ]
+let s:pixi_webglshadermanagers = [ 'destroy(', 'setAttribs(', 'setContext(', 'setShader(', 'attribState', 'maxAttibs', 'stack', 'tempAttribState' ]
+let s:pixi_webglspritebatchs = [ '_CompileShader(', 'begin(', 'CompileFragmentShader(', 'compileProgram(', 'CompileVertexShader(', 'destroy(', 'end(', 'flush(', 'initDefaultShaders(', 'render(', 'renderBatch(', 'renderTilingSprite(', 'setContext(', 'start(', 'stop(', 'blendModes', 'currentBaseTexture', 'currentBatchSize', 'defaultShader', 'dirty', 'drawing', 'indices', 'lastIndexCount', 'shaders', 'size', 'sprites', 'textures', 'vertices', 'vertSize' ]
+let s:pixi_webglstencilmanagers = [ 'bindGraphics(', 'destroy(', 'popStencil(', 'pushMask(', 'setContext(' ]
+
 let s:winds = ['top', 'undefined', 'Math', 'NaN', 'location', 'JSON', 'document', 'Intl', 'external', 'Infinity', 'window', 'speechSynthesis', 'localStorage', 'sessionStorage', 'applicationCache', 'webkitStorageInfo', 'indexedDB', 'webkitIndexedDB', 'crypto', 'CSS', 'performance', 'console', 'devicePixelRatio', 'styleMedia', 'parent', 'opener', 'frames', 'self', 'defaultstatus', 'defaultStatus', 'status', 'name', 'length', 'closed', 'pageYOffset', 'pageXOffset', 'scrollY', 'scrollX', 'screenTop', 'screenLeft', 'screenY', 'screenX', 'innerWidth', 'innerHeight', 'outerWidth', 'outerHeight', 'offscreenBuffering', 'frameElement', 'event', 'clientInformation', 'navigator', 'toolbar', 'statusbar', 'scrollbars', 'personalbar', 'menubar', 'locationbar', 'history', 'screen', 'onautocompleteerror', 'onautocomplete', 'ondeviceorientation', 'ondevicemotion', 'onunload', 'onstorage', 'onpopstate', 'onpageshow', 'onpagehide', 'ononline', 'onoffline', 'onmessage', 'onlanguagechange', 'onhashchange', 'onbeforeunload', 'onwaiting', 'onvolumechange', 'ontoggle', 'ontimeupdate', 'onsuspend', 'onsubmit', 'onstalled', 'onshow', 'onselect', 'onseeking', 'onseeked', 'onscroll', 'onresize', 'onreset', 'onratechange', 'onprogress', 'onplaying', 'onplay', 'onpause', 'onmousewheel', 'onmouseup', 'onmouseover', 'onmouseout', 'onmousemove', 'onmouseleave', 'onmouseenter', 'onmousedown', 'onloadstart', 'onloadedmetadata', 'onloadeddata', 'onload', 'onkeyup', 'onkeypress', 'onkeydown', 'oninvalid', 'oninput', 'onfocus', 'onerror', 'onended', 'onemptied', 'ondurationchange', 'ondrop', 'ondragstart', 'ondragover', 'ondragleave', 'ondragenter', 'ondragend', 'ondrag', 'ondblclick', 'oncuechange', 'oncontextmenu', 'onclose', 'onclick', 'onchange', 'oncanplaythrough', 'oncanplay', 'oncancel', 'onblur', 'onabort', 'onwheel', 'onwebkittransitionend', 'onwebkitanimationstart', 'onwebkitanimationiteration', 'onwebkitanimationend', 'ontransitionend', 'onsearch', 'TEMPORARY', 'PERSISTENT',
       \ 'EvalError(', 'ReferenceError(', 'Object(', 'Int32Array(', 'RegExp(', 'Uint32Array(', 'parseFloat(', 'decodeURI(', 'TypeError(', 'Int16Array(', 'RangeError(', 'escape(', 'Array(', 'WeakMap(', 'encodeURIComponent(', 'Promise(', 'decodeURIComponent(', 'URIError(', 'WeakSet(', 'Uint8Array(', 'Function(', 'SyntaxError(', 'Uint8ClampedArray(', 'Date(', 'Error(', 'parseInt(', 'unescape(', 'Float32Array(', 'encodeURI(', 'Int8Array(', 'Boolean(', 'ArrayBuffer(', 'Float64Array(', 'isFinite(', 'eval(', 'DataView(', 'String(', 'Uint16Array(', 'Number(', 'isNaN(', 'webkitOfflineAudioContext(', 'webkitAudioContext(', 'OfflineAudioContext(', 'AudioContext(', 'webkitSpeechRecognitionEvent(', 'webkitSpeechRecognitionError(', 'webkitSpeechRecognition(', 'webkitSpeechGrammarList(', 'webkitSpeechGrammar(', 'webkitRTCPeerConnection(', 'webkitMediaStream(', 'SpeechSynthesisUtterance(', 'SpeechSynthesisEvent(', 'Notification(', 'MediaSource(', 'XSLTProcessor(', 'SharedWorker(', 'MediaKeyEvent(', 'Path2D(', 'TimeRanges(', 'MediaError(', 'HTMLVideoElement(', 'HTMLSourceElement(', 'HTMLMediaElement(', 'Audio(', 'HTMLAudioElement(', 'FontFace(', 'MediaKeyError(', 'HTMLDialogElement(', 'webkitIDBTransaction(', 'webkitIDBRequest(', 'webkitIDBObjectStore(', 'webkitIDBKeyRange(', 'webkitIDBIndex(', 'webkitIDBFactory(', 'webkitIDBDatabase(', 'webkitIDBCursor(', 'WebSocket(', 'WebKitGamepad(', 'RTCSessionDescription(', 'RTCIceCandidate(', 'MediaStreamTrack(', 'MediaStreamEvent(', 'IDBVersionChangeEvent(', 'IDBTransaction(', 'IDBRequest(', 'IDBOpenDBRequest(', 'IDBObjectStore(', 'IDBKeyRange(', 'IDBIndex(', 'IDBFactory(', 'IDBDatabase(', 'IDBCursorWithValue(', 'IDBCursor(', 'GamepadEvent(', 'Gamepad(', 'DeviceOrientationEvent(', 'DeviceMotionEvent(', 'CloseEvent(', 'WaveShaperNode(', 'ScriptProcessorNode(', 'PeriodicWave(', 'OscillatorNode(', 'OfflineAudioCompletionEvent(', 'MediaStreamAudioSourceNode(', 'MediaStreamAudioDestinationNode(', 'MediaElementAudioSourceNode(', 'GainNode(', 'DynamicsCompressorNode(', 'DelayNode(', 'ConvolverNode(', 'ChannelSplitterNode(', 'ChannelMergerNode(', 'BiquadFilterNode(', 'AudioProcessingEvent(', 'AudioParam(', 'AudioNode(', 'AudioListener(', 'AudioDestinationNode(', 'AudioBufferSourceNode(', 'AudioBuffer(', 'AnalyserNode(', 'XPathResult(', 'XPathExpression(', 'XPathEvaluator(', 'XMLSerializer(', 'XMLHttpRequestUpload(', 'XMLHttpRequestProgressEvent(', 'XMLHttpRequest(', 'XMLDocument(', 'Worker(', 'Window(', 'WheelEvent(', 'WebKitPoint(', 'WebKitCSSTransformValue(', 'WebKitCSSMatrix(', 'WebKitCSSFilterValue(', 'WebKitCSSFilterRule(', 'WebKitAnimationEvent(', 'WebGLUniformLocation(', 'WebGLTexture(', 'WebGLShaderPrecisionFormat(', 'WebGLShader(', 'WebGLRenderingContext(', 'WebGLRenderbuffer(', 'WebGLProgram(', 'WebGLFramebuffer(', 'WebGLContextEvent(', 'WebGLBuffer(', 'WebGLActiveInfo(', 'ValidityState(', 'VTTCue(', 'URL(', 'UIEvent(', 'TreeWalker(', 'TransitionEvent(', 'TrackEvent(', 'TouchList(', 'TouchEvent(', 'Touch(', 'TextTrackList(', 'TextTrackCueList(', 'TextTrackCue(', 'TextTrack(', 'TextMetrics(', 'TextEvent(', 'Text(', 'StyleSheetList(', 'StyleSheet(', 'StorageEvent(', 'Storage(', 'ShadowRoot(', 'Selection(', 'Screen(', 'SVGZoomEvent(', 'SVGViewSpec(', 'SVGViewElement(', 'SVGUseElement(', 'SVGUnitTypes(', 'SVGTransformList(', 'SVGTransform(', 'SVGTitleElement(', 'SVGTextPositioningElement(', 'SVGTextPathElement(', 'SVGTextElement(', 'SVGTextContentElement(', 'SVGTSpanElement(', 'SVGSymbolElement(', 'SVGSwitchElement(', 'SVGStyleElement(', 'SVGStringList(', 'SVGStopElement(', 'SVGSetElement(', 'SVGScriptElement(', 'SVGSVGElement(', 'SVGRenderingIntent(', 'SVGRectElement(', 'SVGRect(', 'SVGRadialGradientElement(', 'SVGPreserveAspectRatio(', 'SVGPolylineElement(', 'SVGPolygonElement(', 'SVGPointList(', 'SVGPoint(', 'SVGPatternElement(', 'SVGPathSegMovetoRel(', 'SVGPathSegMovetoAbs(', 'SVGPathSegList(', 'SVGPathSegLinetoVerticalRel(', 'SVGPathSegLinetoVerticalAbs(', 'SVGPathSegLinetoRel(', 'SVGPathSegLinetoHorizontalRel(', 'SVGPathSegLinetoHorizontalAbs(', 'SVGPathSegLinetoAbs(', 'SVGPathSegCurvetoQuadraticSmoothRel(', 'SVGPathSegCurvetoQuadraticSmoothAbs(', 'SVGPathSegCurvetoQuadraticRel(', 'SVGPathSegCurvetoQuadraticAbs(', 'SVGPathSegCurvetoCubicSmoothRel(', 'SVGPathSegCurvetoCubicSmoothAbs(', 'SVGPathSegCurvetoCubicRel(', 'SVGPathSegCurvetoCubicAbs(', 'SVGPathSeg(', 'SVGPathSegClosePath(', 'SVGPathSegArcRel(', 'SVGPathSegArcAbs(', 'SVGPathElement(', 'SVGNumberList(', 'SVGNumber(', 'SVGMetadataElement(', 'SVGMatrix(', 'SVGMaskElement(', 'SVGMarkerElement(', 'SVGMPathElement(', 'SVGLinearGradientElement(', 'SVGLineElement(', 'SVGLengthList(', 'SVGLength(', 'SVGImageElement(', 'SVGGraphicsElement(', 'SVGGradientElement(', 'SVGGeometryElement(', 'SVGGElement(', 'SVGForeignObjectElement(', 'SVGFilterElement(', 'SVGFETurbulenceElement(', 'SVGFETileElement(', 'SVGFESpotLightElement(', 'SVGFESpecularLightingElement(', 'SVGFEPointLightElement(', 'SVGFEOffsetElement(', 'SVGFEMorphologyElement(', 'SVGFEMergeNodeElement(', 'SVGFEMergeElement(', 'SVGFEImageElement(', 'SVGFEGaussianBlurElement(', 'SVGFEFuncRElement(', 'SVGFEFuncGElement(', 'SVGFEFuncBElement(', 'SVGFEFuncAElement(', 'SVGFEFloodElement(', 'SVGFEDropShadowElement(', 'SVGFEDistantLightElement(', 'SVGFEDisplacementMapElement(', 'SVGFEDiffuseLightingElement(', 'SVGFEConvolveMatrixElement(', 'SVGFECompositeElement(', 'SVGFEComponentTransferElement(', 'SVGFEColorMatrixElement(', 'SVGFEBlendElement(', 'SVGEllipseElement(', 'SVGElement(', 'SVGDiscardElement(', 'SVGDescElement(', 'SVGDefsElement(', 'SVGCursorElement(', 'SVGComponentTransferFunctionElement(', 'SVGClipPathElement(', 'SVGCircleElement(', 'SVGAnimationElement(', 'SVGAnimatedTransformList(', 'SVGAnimatedString(', 'SVGAnimatedRect(', 'SVGAnimatedPreserveAspectRatio(', 'SVGAnimatedNumberList(', 'SVGAnimatedNumber(', 'SVGAnimatedLengthList(', 'SVGAnimatedLength(', 'SVGAnimatedInteger(', 'SVGAnimatedEnumeration(', 'SVGAnimatedBoolean(', 'SVGAnimatedAngle(', 'SVGAnimateTransformElement(', 'SVGAnimateMotionElement(', 'SVGAnimateElement(', 'SVGAngle(', 'SVGAElement(', 'Rect(', 'Range(', 'RGBColor(', 'ProgressEvent(', 'ProcessingInstruction(', 'PopStateEvent(', 'Plugin(', 'PluginArray(', 'PerformanceTiming(', 'PerformanceResourceTiming(', 'PerformanceNavigation(', 'PerformanceMeasure(', 'PerformanceMark(', 'PerformanceEntry(', 'Performance(', 'PageTransitionEvent(', 'OverflowEvent(', 'Notation(', 'NodeList(', 'NodeIterator(', 'NodeFilter', 'Node(', 'Navigator(', 'NamedNodeMap(', 'MutationRecord(', 'MutationObserver(', 'MutationEvent(', 'MouseEvent(', 'MimeType(', 'MimeTypeArray(', 'MessagePort(', 'MessageEvent(', 'MessageChannel(', 'MediaList(', 'Location(', 'KeyboardEvent(', 'InputMethodContext(', 'ImageData(', 'ImageBitmap(', 'History(', 'HashChangeEvent(', 'HTMLUnknownElement(', 'HTMLUListElement(', 'HTMLTrackElement(', 'HTMLTitleElement(', 'HTMLTextAreaElement(', 'HTMLTemplateElement(', 'HTMLTableSectionElement(', 'HTMLTableRowElement(', 'HTMLTableElement(', 'HTMLTableColElement(', 'HTMLTableCellElement(', 'HTMLTableCaptionElement(', 'HTMLStyleElement(', 'HTMLSpanElement(', 'HTMLShadowElement(', 'HTMLSelectElement(', 'HTMLScriptElement(', 'HTMLQuoteElement(', 'HTMLProgressElement(', 'HTMLPreElement(', 'HTMLParamElement(', 'HTMLParagraphElement(', 'HTMLOutputElement(', 'HTMLOptionsCollection(', 'Option(', 'HTMLOptionElement(', 'HTMLOptGroupElement(', 'HTMLObjectElement(', 'HTMLOListElement(', 'HTMLModElement(', 'HTMLMeterElement(', 'HTMLMetaElement(', 'HTMLMenuElement(', 'HTMLMarqueeElement(', 'HTMLMapElement(', 'HTMLLinkElement(', 'HTMLLegendElement(', 'HTMLLabelElement(', 'HTMLLIElement(', 'HTMLKeygenElement(', 'HTMLInputElement(', 'Image(', 'HTMLImageElement(', 'HTMLIFrameElement(', 'HTMLHtmlElement(', 'HTMLHeadingElement(', 'HTMLHeadElement(', 'HTMLHRElement(', 'HTMLFrameSetElement(', 'HTMLFrameElement(', 'HTMLFormElement(', 'HTMLFormControlsCollection(', 'HTMLFontElement(', 'HTMLFieldSetElement(', 'HTMLEmbedElement(', 'HTMLElement(', 'HTMLDocument(', 'HTMLDivElement(', 'HTMLDirectoryElement(', 'HTMLDataListElement(', 'HTMLDListElement(', 'HTMLContentElement(', 'HTMLCollection(', 'HTMLCanvasElement(', 'HTMLButtonElement(', 'HTMLBodyElement(', 'HTMLBaseElement(', 'HTMLBRElement(', 'HTMLAreaElement(', 'HTMLAppletElement(', 'HTMLAnchorElement(', 'HTMLAllCollection(', 'FormData(', 'FocusEvent(', 'FileReader(', 'FileList(', 'FileError(', 'File(', 'EventTarget(', 'EventSource(', 'Event(', 'ErrorEvent(', 'Element(', 'DocumentType(', 'DocumentFragment(', 'Document(', 'DataTransferItemList(', 'DataTransfer(', 'DOMTokenList(', 'DOMStringMap(', 'DOMStringList(', 'DOMSettableTokenList(', 'DOMParser(', 'DOMImplementation(', 'DOMException(', 'DOMError(', 'CustomEvent(', 'Counter(', 'CompositionEvent(', 'Comment(', 'ClientRectList(', 'ClientRect(', 'CharacterData(', 'CanvasRenderingContext2D(', 'CanvasPattern(', 'CanvasGradient(', 'CSSViewportRule(', 'CSSValueList(', 'CSSValue(', 'CSSUnknownRule(', 'CSSStyleSheet(', 'CSSStyleRule(', 'CSSStyleDeclaration(', 'CSSRuleList(', 'CSSRule(', 'CSSPrimitiveValue(', 'CSSPageRule(', 'CSSMediaRule(', 'CSSKeyframesRule(', 'CSSKeyframeRule(', 'CSSImportRule(', 'CSSFontFaceRule(', 'CSSCharsetRule(', 'CDATASection(', 'Blob(', 'BeforeUnloadEvent(', 'BarProp(', 'AutocompleteErrorEvent(', 'Attr(', 'ApplicationCacheErrorEvent(', 'ApplicationCache(', 'SVGVKernElement(', 'SVGMissingGlyphElement(', 'SVGHKernElement(', 'SVGGlyphRefElement(', 'SVGGlyphElement(', 'SVGFontFaceUriElement(', 'SVGFontFaceSrcElement(', 'SVGFontFaceNameElement(', 'SVGFontFaceFormatElement(', 'SVGFontFaceElement(', 'SVGFontElement(', 'SVGAltGlyphItemElement(', 'SVGAltGlyphElement(', 'SVGAltGlyphDefElement(', 'WebKitMutationObserver(', 'webkitURL(', 'WebKitTransitionEvent(', 'postMessage(', 'close(', 'blur(', 'focus(', 'getSelection(', 'print(', 'stop(', 'open(', 'alert(', 'confirm(', 'prompt(', 'find(', 'scrollBy(', 'scrollTo(', 'scroll(', 'moveBy(', 'moveTo(', 'resizeBy(', 'resizeTo(', 'matchMedia(', 'getComputedStyle(', 'getMatchedCSSRules(', 'webkitConvertPointFromPageToNode(', 'webkitConvertPointFromNodeToPage(', 'requestAnimationFrame(', 'cancelAnimationFrame(', 'webkitRequestAnimationFrame(', 'webkitCancelAnimationFrame(', 'webkitCancelRequestAnimationFrame(', 'captureEvents(', 'releaseEvents(', 'btoa(', 'atob(', 'setTimeout(', 'clearTimeout(', 'setInterval(', 'clearInterval(', 'showModalDialog(', 'webkitRequestFileSystem(', 'webkitResolveLocalFileSystemURL(', 'openDatabase(', 'addEventListener(', 'removeEventListener(', 'dispatchEvent(']
 
@@ -138,7 +221,7 @@ function! javascriptcomplete#CompleteJS(findstart, base)
       if len(object) > 0
         let decl_line = search(object.'.\{-}=\s*new\s*', 'bn')
         if decl_line > 0
-          let object_type = matchstr(getline(decl_line), object.'.\{-}=\s*new\s*\zs\k\+\ze')
+          let object_type = matchstr(getline(decl_line), object.'.\{-}=\s*new\s*\zs\k\+\.*\k*\ze')
           if object_type == 'ActiveXObject' && matchstr(getline(decl_line), object.'.\{-}=\s*new\s*ActiveXObject\s*(.Microsoft\.XMLHTTP.)') != ''
             let object_type = 'XMLHttpRequest'
           endif
@@ -207,6 +290,170 @@ function! javascriptcomplete#CompleteJS(findstart, base)
         let values = s:niters
       elseif object_type == 'TreeWalker'
         let values = s:twalkers
+      elseif object_type == 'PIXI'
+        let values = s:pixis
+      elseif object_type == 'PIXI.AjaxRequest'
+        let values = s:pixi_ajaxrequests
+      elseif object_type == 'PIXI.AbstractFilter'
+        let values = s:pixi_abstractfilters
+      elseif object_type == 'PIXI.AjaxRequest'
+        let values = s:pixi_ajaxrequests
+      elseif object_type == 'PIXI.AlphaMaskFilter'
+        let values = s:pixi_alphamaskfilters
+      elseif object_type == 'PIXI.AsciiFilter'
+        let values = s:pixi_asciifilters
+      elseif object_type == 'PIXI.AssetLoader'
+        let values = s:pixi_assetloaders
+      elseif object_type == 'PIXI.AtlasLoader'
+        let values = s:pixi_atlasloaders
+      elseif object_type == 'PIXI.BaseTexture'
+        let values = s:pixi_basetextures
+      elseif object_type == 'PIXI.BitmapFontLoader'
+        let values = s:pixi_bitmapfontloaders
+      elseif object_type == 'PIXI.BitmapText'
+        let values = s:pixi_bitmaptexts
+      elseif object_type == 'PIXI.BlurFilter'
+        let values = s:pixi_blurfilters
+      elseif object_type == 'PIXI.BlurXFilter'
+        let values = s:pixi_blurxfilters
+      elseif object_type == 'PIXI.BlurYFilter'
+        let values = s:pixi_bluryfilters
+      elseif object_type == 'PIXI.CanvasBuffer'
+        let values = s:pixi_canvasbuffers
+      elseif object_type == 'PIXI.CanvasMaskManager'
+        let values = s:pixi_canvasmaskmanagers
+      elseif object_type == 'PIXI.CanvasRenderer'
+        let values = s:pixi_canvasrenderers
+      elseif object_type == 'PIXI.CanvasTinter'
+        let values = s:pixi_canvastinters
+      elseif object_type == 'PIXI.Circle'
+        let values = s:pixi_circles
+      elseif object_type == 'PIXI.ColorMatrixFilter'
+        let values = s:pixi_colormatrixfilters
+      elseif object_type == 'PIXI.ColorStepFilter'
+        let values = s:pixi_colorstepfilters
+      elseif object_type == 'PIXI.ComplexPrimitiveShader'
+        let values = s:pixi_complexprimitiveshaders
+      elseif object_type == 'PIXI.ConvolutionFilter'
+        let values = s:pixi_convolutionfilters
+      elseif object_type == 'PIXI.CrossHatchFilter'
+        let values = s:pixi_crosshatchfilters
+      elseif object_type == 'PIXI.DisplacementFilter'
+        let values = s:pixi_displacementfilters
+      elseif object_type == 'PIXI.DisplayObjectContainer'
+        let values = s:pixi_displayobjectcontainers
+      elseif object_type == 'PIXI.DotScreenFilter'
+        let values = s:pixi_dotscreenfilters
+      elseif object_type == 'PIXI.Ellipse'
+        let values = s:pixi_ellipses
+      elseif object_type == 'PIXI.Event'
+        let values = s:pixi_events
+      elseif object_type == 'PIXI.EventTarget'
+        let values = s:pixi_eventtargets
+      elseif object_type == 'PIXI.FilterBlock'
+        let values = s:pixi_filterblocks
+      elseif object_type == 'PIXI.FilterTexture'
+        let values = s:pixi_filtertextures
+      elseif object_type == 'PIXI.Graphics'
+        let values = s:pixi_graphicss
+      elseif object_type == 'PIXI.GrayFilter'
+        let values = s:pixi_grayfilters
+      elseif object_type == 'PIXI.ImageLoader'
+        let values = s:pixi_imageloaders
+      elseif object_type == 'PIXI.InteractionData'
+        let values = s:pixi_interactiondatas
+      elseif object_type == 'PIXI.InteractionManager'
+        let values = s:pixi_interactionmanagers
+      elseif object_type == 'PIXI.InvertFilter'
+        let values = s:pixi_invertfilters
+      elseif object_type == 'PIXI.JsonLoader'
+        let values = s:pixi_jsonloaders
+      elseif object_type == 'PIXI.Matrix'
+        let values = s:pixi_matrixs
+      elseif object_type == 'PIXI.MovieClip'
+        let values = s:pixi_movieclips
+      elseif object_type == 'PIXI.NoiseFilter'
+        let values = s:pixi_noisefilters
+      elseif object_type == 'PIXI.NormalMapFilter'
+        let values = s:pixi_normalmapfilters
+      elseif object_type == 'PIXI.PixelateFilter'
+        let values = s:pixi_pixelatefilters
+      elseif object_type == 'PIXI.PixiFastShader'
+        let values = s:pixi_pixifastshaders
+      elseif object_type == 'PIXI.PixiShader'
+        let values = s:pixi_pixishaders
+      elseif object_type == 'PIXI.Point'
+        let values = s:pixi_points
+      elseif object_type == 'PIXI.PolyK'
+        let values = s:pixi_polyks
+      elseif object_type == 'PIXI.Polygon'
+        let values = s:pixi_polygons
+      elseif object_type == 'PIXI.PrimitiveShader'
+        let values = s:pixi_primitiveshaders
+      elseif object_type == 'PIXI.RGBSplitFilter'
+        let values = s:pixi_rgbsplitfilters
+      elseif object_type == 'PIXI.Rectangle'
+        let values = s:pixi_rectangles
+      elseif object_type == 'PIXI.RenderTexture'
+        let values = s:pixi_rendertextures
+      elseif object_type == 'PIXI.Rope'
+        let values = s:pixi_ropes
+      elseif object_type == 'PIXI.Rounded Rectangle'
+        let values = s:pixi_rounded_rectangles
+      elseif object_type == 'PIXI.SepiaFilter'
+        let values = s:pixi_sepiafilters
+      elseif object_type == 'PIXI.SmartBlurFilter'
+        let values = s:pixi_smartblurfilters
+      elseif object_type == 'PIXI.Spine'
+        let values = s:pixi_spines
+      elseif object_type == 'PIXI.SpineLoader'
+        let values = s:pixi_spineloaders
+      elseif object_type == 'PIXI.Sprite'
+        let values = s:pixi_sprites
+      elseif object_type == 'PIXI.SpriteBatch'
+        let values = s:pixi_spritebatchs
+      elseif object_type == 'PIXI.SpriteSheetLoader'
+        let values = s:pixi_spritesheetloaders
+      elseif object_type == 'PIXI.Stage'
+        let values = s:pixi_stages
+      elseif object_type == 'PIXI.Strip'
+        let values = s:pixi_strips
+      elseif object_type == 'PIXI.StripShader'
+        let values = s:pixi_stripshaders
+      elseif object_type == 'PIXI.Text'
+        let values = s:pixi_texts
+      elseif object_type == 'PIXI.Texture'
+        let values = s:pixi_textures
+      elseif object_type == 'PIXI.TilingSprite'
+        let values = s:pixi_tilingsprites
+      elseif object_type == 'PIXI.TiltShiftFilter'
+        let values = s:pixi_tiltshiftfilters
+      elseif object_type == 'PIXI.TiltShiftXFilter'
+        let values = s:pixi_tiltshiftxfilters
+      elseif object_type == 'PIXI.TiltShiftYFilter'
+        let values = s:pixi_tiltshiftyfilters
+      elseif object_type == 'PIXI.TwistFilter'
+        let values = s:pixi_twistfilters
+      elseif object_type == 'PIXI.WebGLBlendModeManager'
+        let values = s:pixi_webglblendmodemanagers
+      elseif object_type == 'PIXI.WebGLFastSpriteBatch'
+        let values = s:pixi_webglfastspritebatchs
+      elseif object_type == 'PIXI.WebGLFilterManager'
+        let values = s:pixi_webglfiltermanagers
+      elseif object_type == 'PIXI.WebGLGraphics'
+        let values = s:pixi_webglgraphicss
+      elseif object_type == 'PIXI.WebGLGraphicsData'
+        let values = s:pixi_webglgraphicsdatas
+      elseif object_type == 'PIXI.WebGLMaskManager'
+        let values = s:pixi_webglmaskmanagers
+      elseif object_type == 'PIXI.WebGLRenderer'
+        let values = s:pixi_webglrenderers
+      elseif object_type == 'PIXI.WebGLShaderManager'
+        let values = s:pixi_webglshadermanagers
+      elseif object_type == 'PIXI.WebGLSpriteBatch'
+        let values = s:pixi_webglspritebatchs
+      elseif object_type == 'PIXI.WebGLStencilManager'
+        let values = s:pixi_webglstencilmanagers
       endif
 
       if !exists('values')
@@ -244,10 +491,172 @@ function! javascriptcomplete#CompleteJS(findstart, base)
           let values = s:styls
         elseif shortcontext =~ '\(top\|self\|window\)\.$'
           let values = s:winds
+        elseif shortcontext =~ 'PIXI\.$'
+          let values = s:pixis
+        elseif shortcontext =~ 'AbstractFilter\.$'
+          let values = s:pixi_abstractfilters
+        elseif shortcontext =~ 'AjaxRequest\.$'
+          let values = s:pixi_ajaxrequests
+        elseif shortcontext =~ 'AlphaMaskFilter\.$'
+          let values = s:pixi_alphamaskfilters
+        elseif shortcontext =~ 'AsciiFilter\.$'
+          let values = s:pixi_asciifilters
+        elseif shortcontext =~ 'AssetLoader\.$'
+          let values = s:pixi_assetloaders
+        elseif shortcontext =~ 'AtlasLoader\.$'
+          let values = s:pixi_atlasloaders
+        elseif shortcontext =~ 'BaseTexture\.$'
+          let values = s:pixi_basetextures
+        elseif shortcontext =~ 'BitmapFontLoader\.$'
+          let values = s:pixi_bitmapfontloaders
+        elseif shortcontext =~ 'BitmapText\.$'
+          let values = s:pixi_bitmaptexts
+        elseif shortcontext =~ 'BlurFilter\.$'
+          let values = s:pixi_blurfilters
+        elseif shortcontext =~ 'BlurXFilter\.$'
+          let values = s:pixi_blurxfilters
+        elseif shortcontext =~ 'BlurYFilter\.$'
+          let values = s:pixi_bluryfilters
+        elseif shortcontext =~ 'CanvasBuffer\.$'
+          let values = s:pixi_canvasbuffers
+        elseif shortcontext =~ 'CanvasMaskManager\.$'
+          let values = s:pixi_canvasmaskmanagers
+        elseif shortcontext =~ 'CanvasRenderer\.$'
+          let values = s:pixi_canvasrenderers
+        elseif shortcontext =~ 'CanvasTinter\.$'
+          let values = s:pixi_canvastinters
+        elseif shortcontext =~ 'Circle\.$'
+          let values = s:pixi_circles
+        elseif shortcontext =~ 'ColorMatrixFilter\.$'
+          let values = s:pixi_colormatrixfilters
+        elseif shortcontext =~ 'ColorStepFilter\.$'
+          let values = s:pixi_colorstepfilters
+        elseif shortcontext =~ 'ComplexPrimitiveShader\.$'
+          let values = s:pixi_complexprimitiveshaders
+        elseif shortcontext =~ 'ConvolutionFilter\.$'
+          let values = s:pixi_convolutionfilters
+        elseif shortcontext =~ 'CrossHatchFilter\.$'
+          let values = s:pixi_crosshatchfilters
+        elseif shortcontext =~ 'DisplacementFilter\.$'
+          let values = s:pixi_displacementfilters
+        elseif shortcontext =~ 'DisplayObjectContainer\.$'
+          let values = s:pixi_displayobjectcontainers
+        elseif shortcontext =~ 'DotScreenFilter\.$'
+          let values = s:pixi_dotscreenfilters
+        elseif shortcontext =~ 'Ellipse\.$'
+          let values = s:pixi_ellipses
+        elseif shortcontext =~ 'Event\.$'
+          let values = s:pixi_events
+        elseif shortcontext =~ 'EventTarget\.$'
+          let values = s:pixi_eventtargets
+        elseif shortcontext =~ 'FilterBlock\.$'
+          let values = s:pixi_filterblocks
+        elseif shortcontext =~ 'FilterTexture\.$'
+          let values = s:pixi_filtertextures
+        elseif shortcontext =~ 'Graphics\.$'
+          let values = s:pixi_graphicss
+        elseif shortcontext =~ 'GrayFilter\.$'
+          let values = s:pixi_grayfilters
+        elseif shortcontext =~ 'ImageLoader\.$'
+          let values = s:pixi_imageloaders
+        elseif shortcontext =~ 'InteractionData\.$'
+          let values = s:pixi_interactiondatas
+        elseif shortcontext =~ 'InteractionManager\.$'
+          let values = s:pixi_interactionmanagers
+        elseif shortcontext =~ 'InvertFilter\.$'
+          let values = s:pixi_invertfilters
+        elseif shortcontext =~ 'JsonLoader\.$'
+          let values = s:pixi_jsonloaders
+        elseif shortcontext =~ 'Matrix\.$'
+          let values = s:pixi_matrixs
+        elseif shortcontext =~ 'MovieClip\.$'
+          let values = s:pixi_movieclips
+        elseif shortcontext =~ 'NoiseFilter\.$'
+          let values = s:pixi_noisefilters
+        elseif shortcontext =~ 'NormalMapFilter\.$'
+          let values = s:pixi_normalmapfilters
+        elseif shortcontext =~ 'PixelateFilter\.$'
+          let values = s:pixi_pixelatefilters
+        elseif shortcontext =~ 'PixiFastShader\.$'
+          let values = s:pixi_pixifastshaders
+        elseif shortcontext =~ 'PixiShader\.$'
+          let values = s:pixi_pixishaders
+        elseif shortcontext =~ 'Point\.$'
+          let values = s:pixi_points
+        elseif shortcontext =~ 'PolyK\.$'
+          let values = s:pixi_polyks
+        elseif shortcontext =~ 'Polygon\.$'
+          let values = s:pixi_polygons
+        elseif shortcontext =~ 'PrimitiveShader\.$'
+          let values = s:pixi_primitiveshaders
+        elseif shortcontext =~ 'RGBSplitFilter\.$'
+          let values = s:pixi_rgbsplitfilters
+        elseif shortcontext =~ 'Rectangle\.$'
+          let values = s:pixi_rectangles
+        elseif shortcontext =~ 'RenderTexture\.$'
+          let values = s:pixi_rendertextures
+        elseif shortcontext =~ 'Rope\.$'
+          let values = s:pixi_ropes
+        elseif shortcontext =~ 'Rounded Rectangle\.$'
+          let values = s:pixi_rounded_rectangles
+        elseif shortcontext =~ 'SepiaFilter\.$'
+          let values = s:pixi_sepiafilters
+        elseif shortcontext =~ 'SmartBlurFilter\.$'
+          let values = s:pixi_smartblurfilters
+        elseif shortcontext =~ 'Spine\.$'
+          let values = s:pixi_spines
+        elseif shortcontext =~ 'SpineLoader\.$'
+          let values = s:pixi_spineloaders
+        elseif shortcontext =~ 'Sprite\.$'
+          let values = s:pixi_sprites
+        elseif shortcontext =~ 'SpriteBatch\.$'
+          let values = s:pixi_spritebatchs
+        elseif shortcontext =~ 'SpriteSheetLoader\.$'
+          let values = s:pixi_spritesheetloaders
+        elseif shortcontext =~ 'Stage\.$'
+          let values = s:pixi_stages
+        elseif shortcontext =~ 'Strip\.$'
+          let values = s:pixi_strips
+        elseif shortcontext =~ 'StripShader\.$'
+          let values = s:pixi_stripshaders
+        elseif shortcontext =~ 'Text\.$'
+          let values = s:pixi_texts
+        elseif shortcontext =~ 'Texture\.$'
+          let values = s:pixi_textures
+        elseif shortcontext =~ 'TilingSprite\.$'
+          let values = s:pixi_tilingsprites
+        elseif shortcontext =~ 'TiltShiftFilter\.$'
+          let values = s:pixi_tiltshiftfilters
+        elseif shortcontext =~ 'TiltShiftXFilter\.$'
+          let values = s:pixi_tiltshiftxfilters
+        elseif shortcontext =~ 'TiltShiftYFilter\.$'
+          let values = s:pixi_tiltshiftyfilters
+        elseif shortcontext =~ 'TwistFilter\.$'
+          let values = s:pixi_twistfilters
+        elseif shortcontext =~ 'WebGLBlendModeManager\.$'
+          let values = s:pixi_webglblendmodemanagers
+        elseif shortcontext =~ 'WebGLFastSpriteBatch\.$'
+          let values = s:pixi_webglfastspritebatchs
+        elseif shortcontext =~ 'WebGLFilterManager\.$'
+          let values = s:pixi_webglfiltermanagers
+        elseif shortcontext =~ 'WebGLGraphics\.$'
+          let values = s:pixi_webglgraphicss
+        elseif shortcontext =~ 'WebGLGraphicsData\.$'
+          let values = s:pixi_webglgraphicsdatas
+        elseif shortcontext =~ 'WebGLMaskManager\.$'
+          let values = s:pixi_webglmaskmanagers
+        elseif shortcontext =~ 'WebGLRenderer\.$'
+          let values = s:pixi_webglrenderers
+        elseif shortcontext =~ 'WebGLShaderManager\.$'
+          let values = s:pixi_webglshadermanagers
+        elseif shortcontext =~ 'WebGLSpriteBatch\.$'
+          let values = s:pixi_webglspritebatchs
+        elseif shortcontext =~ 'WebGLStencilManager\.$'
+          let values = s:pixi_webglstencilmanagers
         else
           let values = user_props + s:bodys + s:arrays + s:dates +
                 \ s:funcs + s:numbs + s:reges + s:stris + s:docus +
-                \ s:imags + s:locas + s:navis + s:objes + s:scres + s:winds
+                \ s:imags + s:locas + s:navis + s:objes + s:scres + s:winds + s:pixis
         endif
       endif
 
