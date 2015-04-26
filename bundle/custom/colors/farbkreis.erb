@@ -20,9 +20,9 @@
     information = {
         author: "Romain Lafourcade",
         email: "romainlafourcade@gmail.com",
-        name: "sweet16",
-        description: "A 'light' colorscheme using exclusively the lower 16 colors of the xterm palette.",
-        background: "light"
+        name: "farbkreis",
+        description: "foo bar baz",
+        background: "dark"
     }
 
     # Step 2: colors
@@ -33,24 +33,26 @@
     #   0             integer between 0 and 15 for terminals limited to 16 colors
     # ]
     #
-    # The colors below are the first 16 colors of the xterm palette and
-    # are only here as an example. You can get rid of them, I won't be mad.
-    black       = ['#000000', 0, 0]
-    darkred     = ['#800000', 1, 1]
-    darkgreen   = ['#008000', 2, 2]
-    darkyellow  = ['#808000', 3, 3]
-    darkblue    = ['#000080', 4, 4]
-    darkmagenta = ['#800080', 5, 5]
-    darkcyan    = ['#008080', 6, 6]
-    darkwhite   = ['#c0c0c0', 7, 7]
-    gray        = ['#808080', 8, 8]
-    red         = ['#ff0000', 9, 9]
-    green       = ['#00ff00', 10, 10]
-    yellow      = ['#ffff00', 11, 11]
-    blue        = ['#0000ff', 12, 12]
-    magenta     = ['#ff00ff', 13, 13]
-    cyan        = ['#00ffff', 14, 14]
-    white       = ['#ffffff', 15, 15]
+    # color wheel
+    # ea621f,0696bb,fdc60b,444e99,8cbb26,c4037d,6d398b,008e5b,f18e1c,2a71b0,e32322,f4e500
+    # color wheel -> xterm
+    # http://color.hailpixel.com/#FFFF00,FFD700,FF8700,D75F00,FF0000,D70087,AF0087,5F5FAF,005FAF,0087AF,00875F,87AF00,
+    # color wheel -> xterm + blueish grays
+    # http://color.hailpixel.com/#FFFF00,FFD700,FF8700,D75F00,FF0000,D70087,AF0087,5F5FAF,005FAF,0087AF,00875F,87AF00,FFFFFF,D7FFFF,AFD7D7,87AFAF,5F8787,005F5F,000000,
+    # color wheel -> xterm + yellowish grays
+    # http://color.hailpixel.com/#FFFF00,FFD700,FF8700,D75F00,FF0000,D70087,AF0087,5F5FAF,005FAF,0087AF,00875F,87AF00,FFFFFF,FFFFD7,D7D7AF,AFAF87,87875F,5F5F00,000000,
+    lightest     = ['#ffffff', 15, 15]
+    lighter      = ['#dfdfdf', 188, 7]
+    light        = ['#afafaf', 145, 7]
+    dark         = ['#878787', 102, 8]
+    darker       = ['#5f5f5f', 59, 8]
+    darkest      = ['#000000', 0, 0]
+    sand         = ['#dfdfaf', 187, 11]
+    orange       = ['#dfaf87', 180, 3]
+    amethyst     = ['#af87af', 139, 13]
+    purple       = ['#af5f87', 132, 5]
+    turquoise    = ['#5f8787', 66, 14]
+    blue         = ['#005f87', 24, 6]
 
     # Step 3: highlights
     #
@@ -77,79 +79,20 @@
     # The highlight groups below are fairly standard but some syntax scripts and
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
-        [ "Normal", "NONE", black, "NONE" ],
-        [ "NonText", "NONE", darkwhite, "NONE" ],
+        [ "Normal", darker, lightest, "NONE" ],
+        [ "NonText", darker, dark, "NONE" ],
 
-        [ "Comment", "NONE", gray, "NONE" ],
-        [ "Constant", "NONE", darkred, "NONE" ],
-        [ "Error", white, red, "reverse" ],
-        [ "Identifier", "NONE", darkyellow, "NONE" ],
+        [ "Comment", "NONE", dark, "NONE" ],
+        [ "Error", lightest, orange, "reverse" ],
         [ "Ignore", "NONE", "NONE", "NONE" ],
-        [ "PreProc", "NONE", darkblue, "NONE" ],
-        [ "Special", "NONE", darkyellow, "NONE" ],
-        [ "Statement", "NONE", darkcyan, "NONE" ],
-        [ "String", "NONE", darkgreen, "NONE" ],
-        [ "Todo", "NONE", "NONE", "reverse" ],
-        [ "Type", "NONE", darkmagenta, "NONE" ],
-        [ "Underlined", "NONE", white, "underline" ],
 
-        [ "StatusLine", black, white, "NONE" ],
-        [ "StatusLineNC", gray, darkwhite, "NONE" ],
-        [ "VertSplit", gray, gray, "NONE" ],
-
-        [ "TabLine", gray, darkwhite, "NONE" ],
-        [ "TabLineFill", gray, gray, "NONE" ],
-        [ "TabLineSel", black, white, "NONE" ],
-
-        [ "Title", "NONE", magenta, "NONE" ],
-        [ "LineNr", "NONE", gray, "NONE" ],
-
-        [ "Cursor", white, black, "NONE" ],
-        [ "CursorColumn", white, black, "NONE" ],
-        [ "CursorLine", yellow, "NONE", "NONE" ],
-        [ "CursorLineNr", yellow, "NONE", "NONE" ],
-
-        [ "helpLeadBlank", "NONE", "NONE", "NONE" ],
-        [ "helpNormal", "NONE", "NONE", "NONE" ],
-
-        [ "Visual", cyan, black, "NONE" ],
-        [ "VisualNOS", darkcyan, black, "NONE" ],
-
-        [ "Pmenu", white, black, "NONE" ],
-        [ "PmenuSbar", white, black, "NONE" ],
-        [ "PmenuSel", white, black, "NONE" ],
-        [ "PmenuThumb", white, black, "NONE" ],
-
-        [ "FoldColumn", "NONE", gray, "NONE" ],
-        [ "Folded", darkwhite, black, "NONE" ],
-
-        [ "WildMenu", yellow, black, "NONE" ],
-        [ "SpecialKey", "NONE", darkwhite, "NONE" ],
-
-        [ "DiffAdd", darkgreen, black, "NONE" ],
-        [ "DiffChange", darkcyan, black, "NONE" ],
-        [ "DiffDelete", darkred, black, "NONE" ],
-        [ "DiffText", cyan, black, "NONE" ],
-
-        [ "IncSearch", white, magenta, "reverse" ],
-        [ "Search", green, black, "NONE" ],
-
-        [ "Directory", "NONE", darkblue, "NONE" ],
-        [ "MatchParen", cyan, black, "NONE" ],
-
-        [ "SpellBad", "NONE", red, "NONE", red ],
-        [ "SpellCap", "NONE", blue, "NONE", blue ],
-        [ "SpellLocal", "NONE", magenta, "NONE", magenta ],
-        [ "SpellRare", "NONE", cyan, "NONE", cyan ],
-
-        [ "ColorColumn", darkwhite, "NONE", "NONE" ],
-        [ "signColumn", "NONE", gray, "NONE" ],
-
-        [ "ErrorMsg", red, white, "NONE" ],
-        [ "ModeMsg", green, black, "NONE" ],
-        [ "MoreMsg", blue , white, "NONE" ],
-        [ "Question", white, blue, "NONE" ],
-        [ "WarningMsg", magenta, white, "NONE" ]
+        [ "Constant", "NONE", orange, "NONE" ],
+        [ "Identifier", "NONE", sand, "NONE" ],
+        [ "PreProc", "NONE", turquoise, "NONE" ],
+        [ "Special", "NONE", sand, "NONE" ],
+        [ "Statement", "NONE", purple, "NONE" ],
+        [ "String", "NONE", blue, "NONE" ],
+        [ "Type", "NONE", amethyst, "NONE" ],
     ]
 
     # Step 4: generation
