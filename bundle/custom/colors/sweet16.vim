@@ -1,4 +1,4 @@
-" sweet16b.vim -- Vim color scheme.
+" sweet16.vim -- Vim color scheme.
 " Author:      Romain Lafourcade (romainlafourcade@gmail.com)
 " Description: A 'light' colorscheme using exclusively the lower 16 colors of the xterm palette.
 
@@ -57,10 +57,10 @@ if &t_Co >= 256 || has('gui_running')
     hi Search ctermbg=10 ctermfg=0 cterm=NONE guibg=#00ff00 guifg=#000000 gui=NONE
     hi Directory ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#000080 gui=NONE
     hi MatchParen ctermbg=14 ctermfg=0 cterm=NONE guibg=#00ffff guifg=#000000 gui=NONE
-    hi SpellBad ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#000000 gui=NONE guisp=#ff0000
-    hi SpellCap ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#000000 gui=NONE guisp=#0000ff
-    hi SpellLocal ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#000000 gui=NONE guisp=#ff00ff
-    hi SpellRare ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#000000 gui=NONE guisp=#00ffff
+    hi SpellBad ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#ff0000 gui=NONE guisp=#ff0000
+    hi SpellCap ctermbg=NONE ctermfg=12 cterm=NONE guibg=NONE guifg=#0000ff gui=NONE guisp=#0000ff
+    hi SpellLocal ctermbg=NONE ctermfg=13 cterm=NONE guibg=NONE guifg=#ff00ff gui=NONE guisp=#ff00ff
+    hi SpellRare ctermbg=NONE ctermfg=14 cterm=NONE guibg=NONE guifg=#00ffff gui=NONE guisp=#00ffff
     hi ColorColumn ctermbg=7 ctermfg=NONE cterm=NONE guibg=#c0c0c0 guifg=NONE gui=NONE
     hi signColumn ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#808080 gui=NONE
     hi ErrorMsg ctermbg=9 ctermfg=15 cterm=NONE guibg=#ff0000 guifg=#ffffff gui=NONE
@@ -119,10 +119,10 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi Search ctermbg=10 ctermfg=0 cterm=NONE
     hi Directory ctermbg=NONE ctermfg=4 cterm=NONE
     hi MatchParen ctermbg=14 ctermfg=0 cterm=NONE
-    hi SpellBad ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellCap ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellLocal ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellRare ctermbg=NONE ctermfg=0 cterm=NONE
+    hi SpellBad ctermbg=NONE ctermfg=9 cterm=NONE
+    hi SpellCap ctermbg=NONE ctermfg=12 cterm=NONE
+    hi SpellLocal ctermbg=NONE ctermfg=13 cterm=NONE
+    hi SpellRare ctermbg=NONE ctermfg=14 cterm=NONE
     hi ColorColumn ctermbg=7 ctermfg=NONE cterm=NONE
     hi signColumn ctermbg=NONE ctermfg=8 cterm=NONE
     hi ErrorMsg ctermbg=9 ctermfg=15 cterm=NONE
