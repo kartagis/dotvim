@@ -11,8 +11,8 @@ endif
 let colors_name = 'sweet16'
 
 if &t_Co >= 256 || has('gui_running')
-    hi Normal ctermbg=15 ctermfg=0 cterm=NONE guibg=#ffffff guifg=#000000 gui=NONE
-    hi NonText ctermbg=15 ctermfg=7 cterm=NONE guibg=#ffffff guifg=#c0c0c0 gui=NONE
+    hi Normal ctermbg=NONE ctermfg=0 cterm=NONE guibg=NONE guifg=#000000 gui=NONE
+    hi NonText ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#c0c0c0 gui=NONE
     hi Comment ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#808080 gui=NONE
     hi Constant ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#800000 gui=NONE
     hi Error ctermbg=15 ctermfg=9 cterm=reverse guibg=#ffffff guifg=#ff0000 gui=reverse
@@ -73,8 +73,8 @@ if &t_Co >= 256 || has('gui_running')
 elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     set t_Co=16
 
-    hi Normal ctermbg=15 ctermfg=0 cterm=NONE
-    hi NonText ctermbg=15 ctermfg=7 cterm=NONE
+    hi Normal ctermbg=NONE ctermfg=0 cterm=NONE
+    hi NonText ctermbg=NONE ctermfg=7 cterm=NONE
     hi Comment ctermbg=NONE ctermfg=8 cterm=NONE
     hi Constant ctermbg=NONE ctermfg=1 cterm=NONE
     hi Error ctermbg=15 ctermfg=9 cterm=reverse
