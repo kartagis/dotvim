@@ -84,7 +84,7 @@ endfunction
 " - more?
 function! functions#SmartEnter()
   " specific case: beware of the cmdline window
-  if &buftype == "nofile"
+  if &buftype ==# "quickfix"
     return "\<CR>"
   endif
   " specific case: <CR><CR> to get out of commenting
