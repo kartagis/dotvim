@@ -17,7 +17,22 @@
   `:lvimgrep` and friends if there are valid locations/errors
 * quit Vim if the last window is a location/quickfix window
 
-## Options
+## Installation
+
+Use your favorite plugin manager or dump the files below in their standard location:
+
+    # Unix-like systems
+    ~/.vim/after/ftplugin/qf.vim
+    ~/.vim/autoload/qf.vim
+    ~/.vim/plugin/qf.vim
+
+    # Windows
+    %userprofile%\vimfiles\plugin\qlist.vim
+    %userprofile%\vimfiles\after\ftplugin\qf.vim
+    %userprofile%\vimfiles\autoload\qf.vim
+    %userprofile%\vimfiles\plugin\qf.vim
+
+## Configuration
 
 The plugin provides two sets of mappings.
 
@@ -54,11 +69,12 @@ The plugin provides two sets of mappings.
 
 ## TODO
 
-* write a proper `help` file
-* ask #vim's opinion
-* export more options?
-* add a gifcast to the README?
+* Write a proper `help` file.
+* Ask #vim's opinion.
+* Export more options?
+* Add a gifcast to the README?
+* Add proper attribution for a few features.
 
 ## DONE
 
-* use `<Plug>` mappings
+* Use `<Plug>` mappings.
