@@ -54,10 +54,10 @@ endif
 " :Filter foo
 command! -buffer -nargs=* Filter call qf#FilterList(<q-args>)
 
-nnoremap <buffer> <Plug>QfFilter :Filter <C-r><C-f><CR>
+nnoremap <silent> <Plug>QfFilter :Filter <C-r><C-f><CR>
 
 if !hasmapto('<Plug>QfFilter')
-    nmap <unique> <silent> § <Plug>QfFilter
+    nmap <buffer> § <Plug>QfFilter
 endif
 
 " restore the location/quickfix list
@@ -65,10 +65,10 @@ endif
 " :Restore
 command! -buffer Restore call qf#RestoreList()
 
-nnoremap <buffer> <Plug>QfRestore :Restore<CR>
+nnoremap <silent> <Plug>QfRestore :Restore<CR>
 
 if !hasmapto('<Plug>QfRestore')
-    nmap <unique> <silent> <F5> <Plug>QfRestore
+    nmap <buffer> <F5> <Plug>QfRestore
 endif
 
 " do something on each line in the location/quickfix list

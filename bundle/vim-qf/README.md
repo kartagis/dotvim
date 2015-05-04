@@ -40,12 +40,6 @@ The plugin provides two sets of mappings.
 
 * Mappings available in the quickfix window only.
 
-        " filter the location/quickfix list
-        let g:qf_mapping_filter = '§'
-
-        " restore the location/quickfix list
-        let g:qf_mapping_restore = '<F5>'
-
         " Ack.vim-inspired mappings
         " s - open entry in a new horizontal window
         " v - open entry in a new vertical window.
