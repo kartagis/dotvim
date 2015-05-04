@@ -47,9 +47,6 @@ endfunction
 " simplistic MRU
 function! functions#MRUComplete(ArgLead, CmdLine, CursorPos)
   let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
-  if len(my_oldfiles) > 16
-    call remove(my_oldfiles, 17, len(my_oldfiles) - 1)
-  endif
   return my_oldfiles
 endfunction
 

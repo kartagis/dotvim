@@ -67,7 +67,7 @@ set noswapfile
 set nrformats-=octal
 set path=.,**
 set previewheight=1
-set viminfo+='33
+set viminfo='33,<50,s10,h
 set virtualedit=block
 
 """""""""""""""""

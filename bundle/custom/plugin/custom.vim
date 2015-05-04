@@ -140,13 +140,4 @@ cnoremap <expr> <C-c> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" :
 
 " ===========================================================================
 
-" execute command on arbitrary lines
-" :Foo s:^:// 1 3 17
-" TODO: support ranges
-" TODO: "odd & even"?
-command! -nargs=* Foo for line in split('<args>')[1:-1] | execute line . split('<args>')[0] | endfor
-command! -nargs=* Bar for line in split(split('<args>')[0],",") | execute line . split('<args>')[0] | endfor
-
-" ===========================================================================
-
 set report=0
