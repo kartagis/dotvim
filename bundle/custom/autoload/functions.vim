@@ -1,5 +1,5 @@
 " make list-like commands more intuitive
-function! functions#Shortcut()
+function! functions#Return()
     let cmdline = getcmdline()
     if cmdline =~ '\C^ls'
         " like :ls but prompts for a buffer command
