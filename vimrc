@@ -191,8 +191,7 @@ inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
 """"""""""""""""""""""""""
-" nnoremap [I [I:
-nnoremap ,I :Ilist /
+nnoremap ,I :Ilist<Space>
 
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
@@ -227,9 +226,9 @@ nnoremap ,, #``cgN
 xnoremap ,; <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
 xnoremap ,, <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
 
-""""""""""""""""""""""
-" JUGGLING WITH TAGS "
-""""""""""""""""""""""
+"""""""""""""""""""""""""""""
+" JUGGLING WITH DEFINITIONS "
+"""""""""""""""""""""""""""""
 command! Tagit  call functions#Tagit(0)
 command! Bombit call functions#Tagit(1)
 
@@ -238,8 +237,7 @@ nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
 
-" nnoremap [D [D:
-nnoremap ,D :Dlist /
+nnoremap ,D :Dlist<Space>
 
 """""""""""""""""""""""""
 " JUGGLING WITH NUMBERS "
@@ -282,7 +280,7 @@ cnoremap <C-e> <End>
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
-cnoremap <expr> <CR> functions#Shortcut()
+cnoremap <expr> <CR> functions#Return()
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -306,11 +304,8 @@ command! CD  cd %:p:h
 
 command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
 
-command! TD Grep TODO:
-command! FM Grep FIXME:
-
 command! EV tabedit $MYVIMRC <bar> lcd %:p:h
-command! SV source $MYVIMRC
+command! SV source  $MYVIMRC
 
 " sharing is caring
 command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
