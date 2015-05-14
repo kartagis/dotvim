@@ -89,6 +89,9 @@ snippet gett
 # Get Element
 snippet geti
 	getElementById('${1}')${2}
+#
+#
+#
 ##########
 # EVENTS #
 ##########
@@ -133,6 +136,9 @@ snippet targ
 # Event
 snippet ev
 	var ${1:event} = ${2:ev} || window.event;${3}
+#
+#
+#
 #########
 # ARRAY #
 #########
@@ -144,6 +150,9 @@ snippet ar
 # Array > item
 snippet arit
 	${1:array_name}[${2:0}]${3}
+#
+#
+#
 ##########
 # OBJECT #
 ##########
@@ -160,6 +169,9 @@ snippet :f
 	${1:method_name} : function(${2}) {
 		${3}
 	}
+#
+#
+#
 ########
 # JSON #
 ########
@@ -169,6 +181,9 @@ snippet json JSON.parse()
 # JSON.stringify
 snippet json JSON.stringify()
 	JSON.stringify(${1:object});
+#
+#
+#
 ###############
 # Constructor #
 ###############
@@ -253,6 +268,9 @@ snippet setter
 # Callback
 snippet callback
 	callback.call(${1});
+#
+#
+#
 ##############
 # require.js #
 ##############
@@ -286,6 +304,36 @@ snippet def commonjs wrapper
 	define(function(require, exports, module) {
 		${1}
 	});
+# new JavaScript (define) Class
+snippet def PIXI.js
+	define('${1:primary_type_name}', [], function() {
+
+		var _$1 = function() {
+
+			var _scope;
+
+			PIXI.DisplayObjectContainer.call(this);
+			_scope = this;
+
+			function build() {
+			}
+
+			this.process = function() {
+			};
+
+			this.resize = function (w, h) {
+			};
+
+			build();
+		};
+
+		_$1.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+
+		return _$1;
+	});
+#
+#
+#
 ##########
 # JQUERY #
 ##########
@@ -306,7 +354,7 @@ snippet $.
 # common jquery patterns
 # WIP
 # AJAX
-snippet ajax ajax()
+snippet ajax ajax()		Perform an asynchronous HTTP (Ajax) request.
 	$.ajax({
 		url: '${1:mydomain.com/url}',
 		type: '${2:POST}',
@@ -322,37 +370,37 @@ snippet ajax ajax()
 			${7:// error callback}
 		}
 	});
-snippet ajax ajaxComplete()
+snippet ajax ajaxComplete()	Register a handler to be called when Ajax requests complete.
 	ajaxComplete(function (${1:e}, xhr, settings) {
 		${2:// callback}
 	});
-snippet ajax ajaxError()
+snippet ajax ajaxError()		Register a handler to be called when Ajax requests complete with an error.
 	ajaxError(function (${1:e}, xhr, settings, thrownError) {
 		${2:// error callback}
 	});
-snippet ajax get()
+snippet ajax get()		Load data from the server using a HTTP GET request
 	$.get('${1:mydomain.com/url}',
 		${2:{ param1: value1 },}
 		function (data, textStatus, jqXHR) {
 			${3:// success callback}
 		}
 	);
-snippet ajax post()
+snippet ajax post()		Load data from the server using a HTTP POST request.
 	$.post('${1:mydomain.com/url}',
 		${2:{ param1: value1 },}
 		function (data, textStatus, jqXHR) {
 			${3:// success callback}
 		}
 	);
-snippet ajax ajaxPrefilter()
+snippet ajax ajaxPrefilter()	Handle custom Ajax options or modify existing options before each request is sent and before they are processed by $.ajax().
 	$.ajaxPrefilter(function (${1:options}, ${2:originalOptions}, jqXHR) {
 		${3: // Modify options, control originalOptions, store jqXHR, etc}
 	});
-snippet ajax ajaxSend()
+snippet ajax ajaxSend()		Attach a function to be executed before an Ajax request is sent.
 	ajaxSend(function (${1:request, settings}) {
 		${2:// error callback}
 	});
-snippet ajax ajaxSetup()
+snippet ajax ajaxSetup()		Set default values for future Ajax requests. Its use is not recommended.
 	$.ajaxSetup({
 		url: "${1:mydomain.com/url}",
 		type: "${2:POST}",
@@ -368,15 +416,15 @@ snippet ajax ajaxSetup()
 			${7:// error callback}
 		}
 	});
-snippet ajax ajaxStart()
+snippet ajax ajaxStart()		Register a handler to be called when the first Ajax request begins.
 	$.ajaxStart(function () {
 		${1:// handler for when an AJAX call is started and no other AJAX calls are in progress;}
 	});
-snippet ajax ajaxStop()
+snippet ajax ajaxStop()		Register a handler to be called when all Ajax requests have completed.
 	$.ajaxStop(function () {
 		${1:// handler for when all AJAX calls have been completed;}
 	});
-snippet ajax ajaxSuccess()
+snippet ajax ajaxSuccess()	Attach a function to be executed whenever an Ajax request completes successfully.
 	$.ajaxSuccess(function (${1:e}, xhr, settings) {
 		${2:// handler for when any AJAX call is successfully completed;}
 	});
@@ -896,6 +944,9 @@ snippet width
 	width(${1:integer})
 snippet wrap
 	wrap('${1:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')
+#
+#
+#
 #############
 # TWEENLITE #
 #############
@@ -930,3 +981,225 @@ snippet onc
 snippet ons
 	onStart: function() {${1}}
 #
+#
+#
+###########
+# PIXI V2 #
+###########
+# Draw graphic rectangle with PixiJS
+snippet pixi rect
+	var ${1:_rect} = new PIXI.Graphics();
+	$1.beginFill(${2:0xFF0000}, 1);
+	$1.drawRect(${3:0}, ${4:0}, ${5:100}, ${6:100});
+	$1.endFill();
+# Pixi Template Class
+snippet pixi class
+	(function(parent) {
+		var _stats, _DOMContainer, _stage, _renderer;
+
+		parent.${1:primary_type_name} = function() {
+			init();
+		};
+
+		function init() {
+			_DOMContainer = document.createElement('div');
+			document.body.appendChild(_DOMContainer);
+			_renderer = new PIXI.CanvasRenderer();
+			_renderer.transparent = false;
+			_DOMContainer.appendChild(_renderer.view);
+			_stage = new PIXI.Stage(0xffffff);
+			stat();
+			initEvents();
+			build();
+		}
+
+		function build() {
+		}
+
+		function stat() {
+			_stats = new Stats();
+			_stats.domElement.style.position = 'absolute';
+			_stats.domElement.style.top = '0px';
+			_DOMContainer.appendChild(_stats.domElement);
+		}
+
+		function initEvents() {
+			if (getDevice() == "desktop") {
+				_renderer.view.addEventListener("mousemove", onMove, false);
+				// _renderer.view.addEventListener("mousedown", onDown, false);
+				// _renderer.view.addEventListener("mouseup", onUp, false);
+				// _renderer.view.addEventListener("mouseout", onUp, false);
+			} else {
+				_renderer.view.addEventListener('touchmove', onMove, false);
+				// _renderer.view.addEventListener('touchstart', onDown, false);
+				// _renderer.view.addEventListener('touchend', onUp, false);
+			}
+
+			window.addEventListener("resize", onResize);
+			onResize(null);
+			requestAnimFrame(enterFrame);
+		}
+
+		function draw() {
+		}
+
+		function onMove(event) {
+			event.preventDefault();
+		}
+
+		function onResize(event) {
+			_renderer.resize(window.innerWidth, window.innerHeight);
+		}
+
+		function enterFrame() {
+			draw();
+			requestAnimFrame(enterFrame);
+			_renderer.render(_stage);
+			_stats.update();
+		}
+	})(app);
+# Boot Class implemente Pixi V2 framework
+snippet pixi bootstrap
+	var ${1:primary_type_name} = $1 || {};
+
+	define('$1', [], function() {
+		var _$1 = function(args) {
+
+			console.log("<< $1 >>");
+
+			// CONFIG
+			var _statEnabled       = true;
+			var _centerDesktop     = false;
+			var _widthDesktopView  = 1280;
+			var _heightDesktopView = 800;
+
+			// CONST
+			var RETINA_BASE_WIDTH  = 2048;
+			var RETINA_BASE_HEIGHT = 1536;
+
+			var _container;
+			var _stats;
+			var _stage;
+			var _rendererOptions;
+			var _renderer;
+			var _page;
+			var _hcoef;
+			var _vcoef;
+			var _h;
+			var _w;
+			var _viewPosX;
+			var _viewPosY;
+			var _canvas = args[0];
+
+			function init() {
+				_stage = new PIXI.Stage(0xffffff);
+				_rendererOptions = {view : _canvas, transparent : false, resolution : window.devicePixelRatio || 1};
+				_renderer = new PIXI.CanvasRenderer(0, 0, _rendererOptions);
+				if (!_canvas) {
+					document.body.appendChild(_renderer.view);
+				}
+				onReady();
+			}
+
+			function onReady() {
+				// INIT STRUCTURE
+				build();
+				// LOAD FONTS AND START APP, ELSE CALL "start" FUNCTION
+				//Tools.loadFont(["HelveticaNeueLTStd-UltLt", "HelveticaNeueLTStd-Roman", "HelveticaNeueLTStd-Hv", "HelveticaNeueLTStd-Th"], start);
+				start();
+			}
+
+			function build() {
+				_container = new PIXI.DisplayObjectContainer();
+				_stage.addChild(_container);
+			}
+
+			function initPages() {
+				$1.stage = _stage;
+				$1.view = _renderer.view;
+				$1.resolution = window.devicePixelRatio || 1;
+				$1.textResolution = 2;
+				//$1.fonts = {HelveticaNeueLTStdUltLt : "HelveticaNeueLTStd-UltLt", HelveticaNeueLTStdRoman : "HelveticaNeueLTStd-Roman", HelveticaNeueLTStdHv : "HelveticaNeueLTStd-Hv", HelveticaNeueLTStdTh : "HelveticaNeueLTStd-Th"};
+
+				// a new imported Main project Class //
+				//_page = new MainClass();
+				//_container.addChild(_page);
+			}
+
+			function initEvents() {
+				window.addEventListener("resize", $1.onResize);
+				$1.onResize(null);
+			}
+
+			$1.onResize = function() {
+				_h = window.innerHeight;
+				_w = window.innerWidth;
+
+				// CENTER DESKTOP NAVIGATOR
+				if (_centerDesktop &amp;&amp; Tools.getDevice() == "desktop") {
+					if (_w >= _widthDesktopView) {
+						_w = _widthDesktopView;
+					}
+					if (_h >= _heightDesktopView) {
+						_h = _heightDesktopView;
+					}
+
+					_viewPosX = window.innerWidth - _w >> 1;
+					_viewPosY = window.innerHeight - _h >> 1;
+				}
+
+				_hcoef = _w / RETINA_BASE_WIDTH;
+				_vcoef = _h / RETINA_BASE_HEIGHT;
+
+				if (_page &amp;&amp; _page.resize) {
+					_page.resize(_w, _h, _hcoef, _vcoef, _viewPosX, _viewPosY);
+				}
+
+				_renderer.resize(_w, _h);
+				_renderer.view.style.width = _w + "px";
+				_renderer.view.style.height = _h + "px";
+
+				window.scrollTo(0, 0);
+			};
+
+			function start() {
+				console.log("start");
+
+				// INIT PAGES
+				initPages();
+
+				// INIT DOM EVENTS
+				initEvents();
+
+				requestAnimFrame(processFrame);
+				if (_statEnabled) {
+					stat();
+				}
+			}
+
+			function processFrame() {
+				requestAnimFrame(processFrame);
+				_renderer.render(_stage);
+
+				if (_page &amp;&amp; _page.process) {
+					_page.process();
+				}
+
+				if (_statEnabled) {
+					_stats.update();
+				}
+			}
+
+			function stat() {
+				_stats = new Stats();
+				_stats.domElement.style.position = 'absolute';
+				_stats.domElement.style.top = '0px';
+				_stats.domElement.style.left = '0px';
+				document.body.appendChild(_stats.domElement);
+			}
+
+			init();
+		};
+
+		return _$1;
+	});

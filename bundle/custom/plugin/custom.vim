@@ -43,7 +43,8 @@ function! Cycle()
                 \ ["border-top", "border-right", "border-bottom", "border-left"],
                 \ ["first", "last"],
                 \ ["||", "&&"],
-                \ ["gif", "jpg", "png"]
+                \ ["gif", "jpg", "png"],
+                \ ["slow", "fast"]
                 \ ]
     if exists("g:cycle_words")
         let words += g:cycle_words
@@ -142,6 +143,7 @@ cnoremap <expr> <C-c> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" :
 
 set report=0
 
+" ===========================================================================
 
 command! TD Grep TODO:
 command! FM Grep FIXME:
