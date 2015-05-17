@@ -283,14 +283,14 @@ snippet req
 snippet require
 	var ${1:instance_name} = require("${2:package_name}");
 # define
-snippet def function
-	define(function ${1:function_name}() {
+snippet def function without dependencies
+	define(${1:module_name}, function() {
 		${2}
 		return {};
 	});
 # define function with dependencies
 snippet def function with dependencies
-	define([${1:dependencies}], function ${2:function_name}(${3}) {
+	define(${1:module_name}, [${2:dependencies}], function(${3}) {
 		${4}
 		return {};
 	});

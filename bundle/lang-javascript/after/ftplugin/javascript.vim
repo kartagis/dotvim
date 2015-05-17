@@ -1,7 +1,6 @@
 setlocal define=^\\s*\\(function\\\|var\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
-" setlocal include=^\\s\\{,2}['\"]\\zs[^'\"]*\\ze
-let &l:include = '^\s\{,' . (&shiftwidth * 2) . "}['\\\"]\\zs[^'\\\"]*\\ze"
+call javascript#SetInclude()
 
 " matchit
 let b:match_words = '\<function\>:\<return\>,'
