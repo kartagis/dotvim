@@ -156,6 +156,7 @@ command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#M
 """""""""""""""""""""""""
 nnoremap gb :ls<CR>:buffer<Space>
 nnoremap gB :ls<CR>:sbuffer<Space>
+nnoremap ,b :buffer <C-z><S-Tab>
 
 nnoremap <PageUp>   :bprevious<CR>
 nnoremap <PageDown> :bnext<CR>

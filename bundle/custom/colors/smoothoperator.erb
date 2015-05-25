@@ -1,0 +1,232 @@
+<%
+    # RNB, A VIM COLORSCHEME TEMPLATE
+
+    # This template is designed to help you create your Vim colorscheme
+    # with little effort.
+    #
+    # The only requirement for using this template is Ruby.
+    #
+    # The process is divided in four steps:
+    #   1. start by editing your colorscheme's information,
+    #   2. define your colors,
+    #   3. define your highlight groups and links,
+    #   4. and generate your colorscheme.
+
+    # Step 1: information
+    #
+    # Make sure the name of your colorscheme is unique and attractive.
+    # The description should fit in a single line with no linefeed.
+    # 'background' can be "light" or "dark"
+    information = {
+        author: "Romain Lafourcade",
+        email: "romainlafourcade@gmail.com",
+        name: "smoothoperator",
+        description: "foo bar baz",
+        background: "dark"
+    }
+
+    # Step 2: colors
+    #
+    # darkest = [       give your color a convenient name
+    #   '#000000',    hexadecimal color for GVim/MacVim
+    #   0,            integer between 0 and 255 for terminals supporting 256 colors
+    #   0             integer between 0 and 15 for terminals limited to 16 colors
+    # ]
+    #
+    # The colors below are the first 16 colors of the xterm palette and
+    # are only here as an example. You can get rid of them, I won't be mad.
+    tarpit    = ['#303030', 236, 0]
+
+    darkest   = ['#5f5f00', 58, 0]
+    dark      = ['#87875f', 101, 8]
+    neutral   = ['#afaf87', 144, 7]
+    light     = ['#dfdfaf', 187, 7]
+    lightest  = ['#ffffdf', 230, 15]
+
+    darksky   = ['#5f87af', 67, 8]
+    sky       = ['#87afd7', 110, 4]
+    lightsky  = ['#afd7d7', 152, 12]
+
+    darksand  = ['#af875f', 137, 7]
+    sand      = ['#dfaf87', 180, 3]
+    lightsand = ['#ffdfaf', 223, 11]
+
+    yellow    = ['#ffdf5f', 221, 11]
+    red       = ['#d70000', 160, 9]
+    green     = ['#00af5f', 35, 10]
+    violet    = ['#8787af', 103, 13]
+    cyan      = ['#00afaf', 37, 14]
+
+    # Step 3: highlights
+    #
+    # You can define an highlight group like this:
+    #   [ "Normal",       name of the highlight group
+    #     lightest,          the color used for background color, or use "NONE", "fg" or "bg"
+    #     darkest,          the color used for foreground color, or use "NONE", "fg" or "bg"
+    #     "NONE"          style, can be "bold", "underline", "reverse", "italic",
+    #                     "standout", "NONE" or "undercurl"
+    #   ]
+    #
+    # or link an highlight group to another:
+    #   [ "Title", "Normal" ]
+    #
+    # You can define an additional color for the undercurl used for
+    # highlighting spelling mistakes:
+    #   [ "SpellBad",     name of the highlight group
+    #     "NONE",         the color used for background color, or use "NONE", "fg" or "bg"
+    #     lightsky,            the color used for foreground color, or use "NONE", "fg" or "bg"
+    #     "undercurl",    style
+    #     lightsky             color used for the undercurl
+    #   ]
+    #
+    # The highlight groups below are fairly standard but some syntax scripts and
+    # plugins may define their own. Feel free to append them to this array as needed.
+    highlights = [
+        [ "Normal", tarpit, lightest, "NONE" ],
+        [ "NonText", tarpit, light, "NONE" ],
+
+        [ "Comment", "NONE", dark, "NONE" ],
+        [ "Constant", "NONE", lightsand, "NONE" ],
+        [ "Error", lightest, lightsky, "reverse" ],
+        [ "Identifier", "NONE", lightsand, "NONE" ],
+        [ "Ignore", "NONE", "NONE", "NONE" ],
+        [ "PreProc", "NONE", darksand, "NONE" ],
+        [ "Special", "NONE", sky, "NONE" ],
+        [ "Statement", "NONE", lightest, "bold" ],
+        [ "String", "NONE", sky, "NONE" ],
+        [ "Todo", "NONE", "NONE", "reverse" ],
+        [ "Type", "NONE", lightsand, "NONE" ],
+        [ "Underlined", "NONE", lightest, "underline" ],
+
+        [ "StatusLine", light, darkest, "NONE" ],
+        [ "StatusLineNC", dark, light, "NONE" ],
+        [ "VertSplit", dark, dark, "NONE" ],
+
+        [ "TabLine", dark, light, "NONE" ],
+        [ "TabLineFill", dark, dark, "NONE" ],
+        [ "TabLineSel", light, darkest, "NONE" ],
+
+        [ "Title", "NONE", lightsky, "NONE" ],
+        [ "LineNr", "NONE", neutral, "NONE" ],
+
+        [ "Cursor", lightest, tarpit, "NONE" ],
+        [ "CursorColumn", dark, "NONE", "NONE" ],
+        [ "CursorLine", "NONE", "NONE", "underline" ],
+        [ "CursorLineNr", "NONE", lightest, "underline" ],
+
+        [ "helpLeadBlank", "NONE", "NONE", "NONE" ],
+        [ "helpNormal", "NONE", "NONE", "NONE" ],
+
+        [ "Visual", lightsky, tarpit, "NONE" ],
+        [ "VisualNOS", sky, tarpit, "NONE" ],
+
+        [ "Pmenu", light, darkest, "NONE" ],
+        [ "PmenuSbar", dark, darkest, "NONE" ],
+        [ "PmenuSel", dark, lightest, "NONE" ],
+        [ "PmenuThumb", darkest, darkest, "NONE" ],
+
+        [ "FoldColumn", "NONE", dark, "NONE" ],
+        [ "Folded", light, tarpit, "NONE" ],
+
+        [ "WildMenu", lightsky, tarpit, "NONE" ],
+        [ "SpecialKey", "NONE", light, "NONE" ],
+
+        [ "DiffAdd", sky, tarpit, "NONE" ],
+        [ "DiffChange", sky, tarpit, "NONE" ],
+        [ "DiffDelete", sky, tarpit, "NONE" ],
+        [ "DiffText", lightsky, tarpit, "NONE" ],
+
+        [ "IncSearch", lightest, lightsky, "reverse" ],
+        [ "Search", lightsky, tarpit, "NONE" ],
+
+        [ "Directory", "NONE", sky, "NONE" ],
+        [ "MatchParen", lightsky, tarpit, "NONE" ],
+
+        [ "SpellBad", "NONE", red, "NONE", red ],
+        [ "SpellCap", "NONE", violet, "NONE", violet ],
+        [ "SpellLocal", "NONE", cyan, "NONE", cyan ],
+        [ "SpellRare", "NONE", yellow, "NONE", yellow ],
+
+        [ "ColorColumn", light, "NONE", "NONE" ],
+        [ "signColumn", "NONE", dark, "NONE" ],
+
+        [ "ErrorMsg", red, lightest, "NONE" ],
+        [ "ModeMsg", green, lightest, "NONE" ],
+        [ "MoreMsg", sky, lightest, "NONE" ],
+        [ "Question", cyan, lightest, "NONE" ],
+        [ "WarningMsg", violet, lightest, "NONE" ]
+    ]
+
+    # Step 4: generation
+    #
+    # From a shell:
+    #     $ erb -T - bar.erb > bar.vim
+    #
+    # From Vim:
+    #     :!erb -T - % > bar.vim
+
+    # These online resources can help you design your colorscheme:
+    #   * http://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
+    #     the xterm palette
+    #   * http://whatcolor.herokuapp.com/
+    #     play with hexadecimal colors right in the address bar
+    #   * http://color.hailpixel.com/
+    #     similar concept, fuzzier implementation
+    #   * http://colourco.de/
+    #     similar concept, fancier implementation
+    #   * http://www.colr.org/
+    #     extract a palette from an image
+    #   * http://colores.manugarri.com/
+    #     search for 'word', get images and color palettes
+    #   * http://www.colourlovers.com/palettes
+    #     user-created palettes
+    #   * http://www.perbang.dk/color+scheme/
+    #     a no-nonsense colorscheme generator
+    #   * https://color.adobe.com/
+    #     Adobe's colorscheme generator
+    #   * http://paletton.com/
+    #     The classic 'Color Scheme Designer', rebranded
+
+    # Thanks to Barry Arthur (https://github.com/dahu) for the original idea.
+
+    # You don't need to edit anything beyond this line.
+-%>
+" <%= information[:name] %>.vim -- Vim color scheme.
+" Author:      <%= information[:author] %> (<%= information[:email] %>)
+" Description: <%= information[:description] %>
+
+hi clear
+
+if exists('syntax_on')
+  syntax reset
+endif
+
+let colors_name = '<%= information[:name] %>'
+
+if &t_Co >= 256 || has('gui_running')
+<% for highlight in highlights -%>
+<% if highlight.length == 2 -%>
+    hi link <%= highlight[0] %> <%= highlight[1] %>
+<% elsif highlight.length == 4 -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %>
+<% else -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %> guisp=<%= highlight[4].kind_of?(String) ? highlight[4] : highlight[4][0] %>
+<% end -%>
+<% end -%>
+
+    set background=<%= information[:background] %>
+elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
+    set t_Co=16
+
+<% for highlight in highlights -%>
+<% if highlight.length == 2 -%>
+    hi link <%= highlight[0] %> <%= highlight[1] %>
+<% else -%>
+    hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][2] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][2] %> cterm=<%= highlight[3] %>
+<% end -%>
+<% end -%>
+
+    set background=<%= information[:background] %>
+endif
+
+" Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)
