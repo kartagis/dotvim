@@ -42,7 +42,7 @@ set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=full
 
-set statusline=%<\ %f\ %m%r%y%w%=\ L:\ \%l\/\%L\ C:\ \%c\ 
+set statusline=%<\ %f\ %m%r%y%w%=%l\/%L\ %3c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
