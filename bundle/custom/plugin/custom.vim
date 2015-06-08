@@ -76,12 +76,14 @@ nnoremap cy :call Cycle()<CR>
 
 " ===========================================================================
 
+" quick :s
 nnoremap gs :%s//c<Left><Left>
 xnoremap gs :s//c<Left><Left>
 
 " ===========================================================================
 
 " specialized search/replace
+" (broken)
 nnoremap <Space>f "zyiwm'/{<CR>%V'':s/\<<C-r>z\>/
 nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
 nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
@@ -119,10 +121,6 @@ command!                                 Done    call Done()
 
 " ===========================================================================
 
-set showbreak=›››\ 
-
-" ===========================================================================
-
 " nnoremap § *``gn<C-g>
 " inoremap § <C-o>gn<C-g>
 " xnoremap § <Esc>:let @/ = functions#GetVisualSelection()<CR>gn<C-g>
@@ -130,11 +128,13 @@ set showbreak=›››\
 
 " ===========================================================================
 
+" quick :g
 nmap ,# :g/<C-r><C-w>/#<CR>
 nmap ,@ :g//#<Left><Left>
 
 " ===========================================================================
 
+" helps abandonning a search
 nnoremap / mz/
 nnoremap ? mz?
 cnoremap <expr> <C-c> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"

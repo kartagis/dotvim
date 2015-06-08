@@ -67,6 +67,8 @@ set noswapfile
 set nrformats-=octal
 set path=.,**
 set previewheight=1
+set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winpos,winsize
+set showbreak=›››\ 
 set viminfo='33,<50,s10,h
 set virtualedit=block
 
@@ -330,3 +332,8 @@ let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
 
 let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
+
+let g:qf_mapping_ack_style = 1
+let g:qf_statusline = {}
+let g:qf_statusline.before = '%<\ '
+let g:qf_statusline.after = '\ %f%=%l\/%L\ \ \ \ \ '
