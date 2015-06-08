@@ -24,6 +24,8 @@ setlocal number
 " we don't want quickfix buffers to pop up when doing :bn or :bp
 set nobuflisted
 
+" setlocal statusline=%<\ %f\ %m%r%y%w\ %{exists('w:quickfix_title')?' '.w:quickfix_title:''}%=%l\/%L\ %3c\ 
+
 " are we in a location list or a quickfix list?
 let b:isLoc = len(getloclist(0)) > 0 ? 1 : 0
 
