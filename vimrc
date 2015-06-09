@@ -42,7 +42,7 @@ set wildignore+=*.tar.*
 set wildignorecase
 set wildmode=full
 
-set statusline=%<\ %f\ %m%r%y%w%=%l\/%L\ %3c\ 
+set statusline=%<\ %f\ %m%r%y%w%=%l\/%-6L\ %3c\ 
 
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -336,4 +336,4 @@ let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
 let g:qf_mapping_ack_style = 1
 let g:qf_statusline = {}
 let g:qf_statusline.before = '%<\ '
-let g:qf_statusline.after = '\ %f%=%l\/%L\ \ \ \ \ '
+let g:qf_statusline.after = '\ %f%=%l\/%-6L\ \ \ \ \ '
