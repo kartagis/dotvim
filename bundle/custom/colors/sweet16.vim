@@ -35,8 +35,8 @@ if &t_Co >= 256 || has('gui_running')
     hi LineNr ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#808080 gui=NONE
     hi Cursor ctermbg=15 ctermfg=0 cterm=NONE guibg=#ffffff guifg=#000000 gui=NONE
     hi CursorColumn ctermbg=15 ctermfg=0 cterm=NONE guibg=#ffffff guifg=#000000 gui=NONE
-    hi CursorLine ctermbg=11 ctermfg=NONE cterm=NONE guibg=#ffff00 guifg=NONE gui=NONE
-    hi CursorLineNr ctermbg=11 ctermfg=NONE cterm=NONE guibg=#ffff00 guifg=NONE gui=NONE
+    hi CursorLine ctermbg=7 ctermfg=NONE cterm=NONE guibg=#c0c0c0 guifg=NONE gui=NONE
+    hi CursorLineNr ctermbg=7 ctermfg=NONE cterm=NONE guibg=#c0c0c0 guifg=NONE gui=NONE
     hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi Visual ctermbg=14 ctermfg=0 cterm=NONE guibg=#00ffff guifg=#000000 gui=NONE
@@ -54,9 +54,9 @@ if &t_Co >= 256 || has('gui_running')
     hi DiffDelete ctermbg=1 ctermfg=0 cterm=NONE guibg=#800000 guifg=#000000 gui=NONE
     hi DiffText ctermbg=14 ctermfg=0 cterm=NONE guibg=#00ffff guifg=#000000 gui=NONE
     hi IncSearch ctermbg=15 ctermfg=13 cterm=reverse guibg=#ffffff guifg=#ff00ff gui=reverse
-    hi Search ctermbg=10 ctermfg=0 cterm=NONE guibg=#00ff00 guifg=#000000 gui=NONE
+    hi Search ctermbg=11 ctermfg=0 cterm=NONE guibg=#ffff00 guifg=#000000 gui=NONE
     hi Directory ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#000080 gui=NONE
-    hi MatchParen ctermbg=14 ctermfg=0 cterm=NONE guibg=#00ffff guifg=#000000 gui=NONE
+    hi MatchParen ctermbg=13 ctermfg=0 cterm=NONE guibg=#ff00ff guifg=#000000 gui=NONE
     hi SpellBad ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#ff0000 gui=NONE guisp=#ff0000
     hi SpellCap ctermbg=NONE ctermfg=12 cterm=NONE guibg=NONE guifg=#0000ff gui=NONE guisp=#0000ff
     hi SpellLocal ctermbg=NONE ctermfg=13 cterm=NONE guibg=NONE guifg=#ff00ff gui=NONE guisp=#ff00ff
@@ -97,8 +97,8 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi LineNr ctermbg=NONE ctermfg=8 cterm=NONE
     hi Cursor ctermbg=15 ctermfg=0 cterm=NONE
     hi CursorColumn ctermbg=15 ctermfg=0 cterm=NONE
-    hi CursorLine ctermbg=11 ctermfg=NONE cterm=NONE
-    hi CursorLineNr ctermbg=11 ctermfg=NONE cterm=NONE
+    hi CursorLine ctermbg=7 ctermfg=NONE cterm=NONE
+    hi CursorLineNr ctermbg=7 ctermfg=NONE cterm=NONE
     hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE
     hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE
     hi Visual ctermbg=14 ctermfg=0 cterm=NONE
@@ -116,9 +116,9 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi DiffDelete ctermbg=1 ctermfg=0 cterm=NONE
     hi DiffText ctermbg=14 ctermfg=0 cterm=NONE
     hi IncSearch ctermbg=15 ctermfg=13 cterm=reverse
-    hi Search ctermbg=10 ctermfg=0 cterm=NONE
+    hi Search ctermbg=11 ctermfg=0 cterm=NONE
     hi Directory ctermbg=NONE ctermfg=4 cterm=NONE
-    hi MatchParen ctermbg=14 ctermfg=0 cterm=NONE
+    hi MatchParen ctermbg=13 ctermfg=0 cterm=NONE
     hi SpellBad ctermbg=NONE ctermfg=9 cterm=NONE
     hi SpellCap ctermbg=NONE ctermfg=12 cterm=NONE
     hi SpellLocal ctermbg=NONE ctermfg=13 cterm=NONE

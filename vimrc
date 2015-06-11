@@ -36,7 +36,7 @@ set wildcharm=<C-z>
 set wildignore+=*.swp,*.bak
 set wildignore+=*.pyc,*.class,*.sln,*.Master,*.csproj,*.csproj.user,*.cache,*.dll,*.pdb,*.min.*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignore+=*/min/*,*/vendor/*
+set wildignore+=*/min/*,*/vendor/*,*/node_modules/*,*/bower_components/*
 set wildignore+=tags,cscope.*
 set wildignore+=*.tar.*
 set wildignorecase
