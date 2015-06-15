@@ -14,9 +14,9 @@ if &t_Co >= 256 || has('gui_running')
     hi Normal ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi NonText ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi Comment ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
-    hi Constant ctermbg=NONE ctermfg=NONE cterm=underline guibg=NONE guifg=NONE gui=underline
+    hi Constant ctermbg=NONE ctermfg=NONE cterm=bold guibg=NONE guifg=NONE gui=bold
     hi Error ctermbg=NONE ctermfg=NONE cterm=reverse guibg=NONE guifg=NONE gui=reverse
-    hi Identifier ctermbg=NONE ctermfg=NONE cterm=bold guibg=NONE guifg=NONE gui=bold
+    hi Identifier ctermbg=NONE ctermfg=NONE cterm=underline guibg=NONE guifg=NONE gui=underline
     hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi PreProc ctermbg=NONE ctermfg=NONE cterm=bold guibg=NONE guifg=NONE gui=bold
     hi Special ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
@@ -47,7 +47,7 @@ if &t_Co >= 256 || has('gui_running')
     hi PmenuThumb ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi FoldColumn ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi Folded ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
-    hi WildMenu ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
+    hi WildMenu ctermbg=NONE ctermfg=NONE cterm=reverse guibg=NONE guifg=NONE gui=reverse
     hi SpecialKey ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi DiffAdd ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi DiffChange ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
@@ -76,9 +76,9 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi Normal ctermbg=NONE ctermfg=NONE cterm=NONE
     hi NonText ctermbg=NONE ctermfg=NONE cterm=NONE
     hi Comment ctermbg=NONE ctermfg=NONE cterm=NONE
-    hi Constant ctermbg=NONE ctermfg=NONE cterm=underline
+    hi Constant ctermbg=NONE ctermfg=NONE cterm=bold
     hi Error ctermbg=NONE ctermfg=NONE cterm=reverse
-    hi Identifier ctermbg=NONE ctermfg=NONE cterm=bold
+    hi Identifier ctermbg=NONE ctermfg=NONE cterm=underline
     hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE
     hi PreProc ctermbg=NONE ctermfg=NONE cterm=bold
     hi Special ctermbg=NONE ctermfg=NONE cterm=NONE
@@ -109,7 +109,7 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi PmenuThumb ctermbg=NONE ctermfg=NONE cterm=NONE
     hi FoldColumn ctermbg=NONE ctermfg=NONE cterm=NONE
     hi Folded ctermbg=NONE ctermfg=NONE cterm=NONE
-    hi WildMenu ctermbg=NONE ctermfg=NONE cterm=NONE
+    hi WildMenu ctermbg=NONE ctermfg=NONE cterm=reverse
     hi SpecialKey ctermbg=NONE ctermfg=NONE cterm=NONE
     hi DiffAdd ctermbg=NONE ctermfg=NONE cterm=NONE
     hi DiffChange ctermbg=NONE ctermfg=NONE cterm=NONE
