@@ -319,21 +319,31 @@ command!          CMD let @+ = ':' . @:
 """""""""""""""""""
 " PLUGIN SETTINGS "
 """""""""""""""""""
+" snipmate
 let g:snippets_dir = '~/.vim/snippets/'
 imap ,<Tab> <C-r><Tab>
 
+" netrw
 let g:netrw_winsize   = '30'
 let g:netrw_banner    = 0
 let g:netrw_keepdir   = 1
 let g:netrw_liststyle = 3
 
+" built-in html-indent
 let g:html_indent_script1 = 'inc'
 let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
 
+" sparkup
 let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
 
+" vim-qf
 let g:qf_mapping_ack_style = 1
 let g:qf_statusline = {}
 let g:qf_statusline.before = '%<\ '
 let g:qf_statusline.after = '\ %f%=%l\/%-6L\ \ \ \ \ '
+nmap <Home>   <Plug>QfCprevious
+nmap <End>    <Plug>QfCnext
+nmap <C-Home> <Plug>QfLprevious
+nmap <C-end>  <Plug>QfLnext
+nmap ç        <Plug>QfSwitch

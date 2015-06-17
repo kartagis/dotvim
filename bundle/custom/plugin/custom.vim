@@ -77,8 +77,10 @@ nnoremap cy :call Cycle()<CR>
 " ===========================================================================
 
 " quick :s
-nnoremap gs :%s//c<Left><Left>
-xnoremap gs :s//c<Left><Left>
+nnoremap gS :%s/
+xnoremap gS :%s/
+nnoremap gs :s/
+xnoremap gs :s/
 
 " ===========================================================================
 
@@ -147,3 +149,14 @@ set report=0
 
 command! TD Grep TODO:
 command! FM Grep FIXME:
+
+" ===========================================================================
+
+" custom text-object for numerical values
+function! Numbers()
+    call search('\d\([^0-9\.]\|$\)', 'cW')
+    normal v
+    call search('\(^\|[^0-9\.]\d\)', 'becW')
+endfunction
+xnoremap in :<C-u>call Numbers()<CR>
+onoremap in :normal vin<CR>
