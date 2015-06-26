@@ -160,3 +160,17 @@ function! Numbers()
 endfunction
 xnoremap in :<C-u>call Numbers()<CR>
 onoremap in :normal vin<CR>
+
+" ===========================================================================
+
+" poor man's Notational Velocity
+function! Nv(...)
+    if a:0 > 0
+        execute "LGrep " . a:1
+    else
+        tabnew
+        lcd ~/Sync/nv/
+        Texplore
+    endif
+endfunction
+command! -nargs=? NV call Nv(<f-args>)

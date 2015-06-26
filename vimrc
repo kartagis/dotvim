@@ -200,7 +200,8 @@ nnoremap ,I :Ilist<Space>
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
-command! -nargs=+ -complete=file_in_path -bar Grep silent! grep! <args> | redraw!
+command! -nargs=+ -complete=file_in_path -bar Grep  silent! grep! <args> | redraw!
+command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args> | redraw!
 
 nnoremap <silent> ,G :Grep <C-r><C-w><CR>
 xnoremap <silent> ,G :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
