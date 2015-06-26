@@ -231,6 +231,8 @@ hi link xmlTag             Statement
 hi link xmlTagName         Statement
 hi link xmlEndTag          Statement
 
+hi link markdownItalic     Preproc
+
 hi link diffBDiffer        WarningMsg
 hi link diffCommon         WarningMsg
 hi link diffDiffer         WarningMsg
