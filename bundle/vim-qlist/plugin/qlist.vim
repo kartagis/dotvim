@@ -33,10 +33,12 @@ function! s:Qlist(command, selection, start_at_cursor, ...)
         redir => output
         silent! execute (a:start_at_cursor ? '+,$' : '') . excmd . ' /' . search_pattern
         redir END
+        let feedback = excmd . ' /' . search_pattern
     else
         redir => output
         silent! execute 'normal! ' . (a:start_at_cursor ? ']' : '[') . normcmd
         redir END
+        let feedback = (a:start_at_cursor ? ']' : '[') . normcmd
     endif
 
     " Clean up the output.
@@ -66,7 +68,11 @@ function! s:Qlist(command, selection, start_at_cursor, ...)
     call setqflist(qf_entries)
 
     " Open the quickfix window if there is something to show.
+    cclose
     cwindow
+
+    " Add proper feedback to the statusline.
+    let w:quickfix_title = feedback
 endfunction
 
 " Add the :Ilist command.
