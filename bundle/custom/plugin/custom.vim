@@ -136,13 +136,6 @@ nmap ,@ :g//#<Left><Left>
 
 " ===========================================================================
 
-" helps abandonning a search
-nnoremap / mz/
-nnoremap ? mz?
-cnoremap <expr> <C-c> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<Esc>`z" : "<Esc>"
-
-" ===========================================================================
-
 set report=0
 
 " ===========================================================================
@@ -174,3 +167,36 @@ function! Nv(...)
     endif
 endfunction
 command! -nargs=? NV call Nv(<f-args>)
+
+" ===========================================================================
+
+" better incremental search
+function! BetterIncSearch(key)
+    if getcmdtype() == "/" || getcmdtype() == "?"
+        if (a:key == "tab" && b:direction == "f") || (a:key == "stab" && b:direction == "b")
+            return "\<CR>/\<C-r>/"
+        elseif (a:key == "tab" && b:direction == "b") || (a:key == "stab" && b:direction == "f")
+            return "\<CR>?\<C-r>/"
+        elseif a:key == "ctrlc"
+            return "\<Esc>`z"
+        endif
+    else
+        if a:key == "tab"
+            return "\<C-z>"
+        else
+            return "\<S-Tab>"
+        endif
+    endif
+endfunction
+
+nnoremap / :let b:direction = "f"<CR>mz/
+nnoremap ? :let b:direction = "b"<CR>mz?
+
+cnoremap <expr> <Tab>   BetterIncSearch("tab")
+cnoremap <expr> <S-Tab> BetterIncSearch("stab")
+cnoremap <expr> <C-c>   BetterIncSearch("ctrlc")
+
+" ===========================================================================
+
+" scary stuff
+nnoremap ' `
