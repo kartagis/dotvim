@@ -180,6 +180,7 @@ function! BetterIncSearch(key)
         elseif (a:key == "tab" && b:direction == "b") || (a:key == "stab" && b:direction == "f")
             return "\<CR>?\<C-r>/"
         elseif a:key == "ctrlc"
+            let v:searchforward = b:direction == "f" ? 1 : 0
             return "\<Esc>`z"
         endif
     else
