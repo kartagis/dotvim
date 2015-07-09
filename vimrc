@@ -271,8 +271,7 @@ nnoremap <expr> <Down> v:count == 0 ? 'gj' : 'j'
 
 nnoremap gV `[v`]
 
-nnoremap mù m`
-nnoremap ùù ``
+nnoremap ' `
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#SmartEnter()\<CR>"
 
@@ -282,12 +281,12 @@ cnoremap <C-e> <End>
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
-cnoremap <expr> <CR> functions#Return()
+cnoremap <silent> <expr> <CR> functions#Return()
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%' ]
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
     execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
     execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
     execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'

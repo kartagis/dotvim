@@ -2,8 +2,11 @@
 function! functions#Return()
     let cmdline = getcmdline()
     if getcmdtype() == "/" || getcmdtype() == "?"
-      let v:searchforward = b:direction == "f" ? 1 : 0
-      return "\<CR>"
+      if b:direction == "b"
+        return "\<CR>:silent let v:searchforward = 0\<CR>"
+      else
+        return "\<CR>:silent let v:searchforward = 1\<CR>"
+      endif
     else
       if cmdline =~ '\C^ls'
         " like :ls but prompts for a buffer command

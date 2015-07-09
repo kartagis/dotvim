@@ -180,7 +180,6 @@ function! BetterIncSearch(key)
         elseif (a:key == "tab" && b:direction == "b") || (a:key == "stab" && b:direction == "f")
             return "\<CR>?\<C-r>/"
         elseif a:key == "ctrlc"
-            let v:searchforward = b:direction == "f" ? 1 : 0
             return "\<Esc>`z"
         endif
     else
@@ -192,14 +191,9 @@ function! BetterIncSearch(key)
     endif
 endfunction
 
-nnoremap / :let b:direction = "f"<CR>mz/
-nnoremap ? :let b:direction = "b"<CR>mz?
+nnoremap / :<C-u>let b:direction = "f"<CR>mz/
+nnoremap ? :<C-u>let b:direction = "b"<CR>mz?
 
 cnoremap <expr> <Tab>   BetterIncSearch("tab")
 cnoremap <expr> <S-Tab> BetterIncSearch("stab")
 cnoremap <expr> <C-c>   BetterIncSearch("ctrlc")
-
-" ===========================================================================
-
-" scary stuff
-nnoremap ' `
