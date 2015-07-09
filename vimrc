@@ -83,7 +83,7 @@ colorscheme apprentice
 augroup VIMRC
     autocmd!
 
-    autocmd FocusLost * call functions#AutoSave()
+    autocmd FocusLost * call custom#AutoSave()
 
     autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
@@ -148,10 +148,10 @@ nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,v :vert sfind *
 nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
-command! -nargs=1 -complete=customlist,functions#MRUComplete ME call functions#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MS call functions#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MV call functions#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,functions#MRUComplete MT call functions#MRU('tabedit', <f-args>)
+command! -nargs=1 -complete=customlist,custom#MRUComplete ME call custom#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,custom#MRUComplete MS call custom#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,custom#MRUComplete MV call custom#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,custom#MRUComplete MT call custom#MRU('tabedit', <f-args>)
 
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
@@ -201,7 +201,7 @@ command! -nargs=+ -complete=file_in_path -bar Grep  silent! grep! <args> | redra
 command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args> | redraw!
 
 nnoremap <silent> ,G :Grep <C-r><C-w><CR>
-xnoremap <silent> ,G :<C-u>let cmd = "Grep " . functions#GetVisualSelection() <bar>
+xnoremap <silent> ,G :<C-u>let cmd = "Grep " . custom#GetVisualSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
 
@@ -216,8 +216,8 @@ endif
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=functions#GetVisualSelection()<CR>/
-xnoremap <Space>%       :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
+xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=custom#GetVisualSelection()<CR>/
+xnoremap <Space>%       :<C-u>%s/<C-r>=custom#GetVisualSelection()<CR>/
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
@@ -225,14 +225,14 @@ xnoremap <Space>%       :<C-u>%s/<C-r>=functions#GetVisualSelection()<CR>/
 nnoremap ,; *``cgn
 nnoremap ,, #``cgN
 
-xnoremap ,; <Esc>:let @/ = functions#GetVisualSelection()<CR>cgn
-xnoremap ,, <Esc>:let @/ = functions#GetVisualSelection()<CR>cgN
+xnoremap ,; <Esc>:let @/ = custom#GetVisualSelection()<CR>cgn
+xnoremap ,, <Esc>:let @/ = custom#GetVisualSelection()<CR>cgN
 
 """""""""""""""""""""""""""""
 " JUGGLING WITH DEFINITIONS "
 """""""""""""""""""""""""""""
-command! Tagit  call functions#Tagit(0)
-command! Bombit call functions#Tagit(1)
+command! Tagit  call custom#Tagit(0)
+command! Bombit call custom#Tagit(1)
 
 nnoremap ,t :Bombit<CR>:tjump /
 nnoremap ,p :Bombit<CR>:ptjump /
@@ -247,7 +247,7 @@ nnoremap ,D :Dlist<Space>
 xnoremap <silent> <C-a> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <silent> <C-x> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call functions#Incr(vcount)<CR>
+xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call custom#Incr(vcount)<CR>
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
@@ -273,7 +273,7 @@ nnoremap gV `[v`]
 
 nnoremap ' `
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=functions#SmartEnter()\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=custom#SmartEnter()\<CR>"
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
@@ -281,7 +281,7 @@ cnoremap <C-e> <End>
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
 
-cnoremap <silent> <expr> <CR> functions#Return()
+cnoremap <expr> <CR> custom#Return()
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -296,7 +296,7 @@ endfor
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
-command! TU call functions#ToUnix()
+command! TU call custom#ToUnix()
 
 command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 

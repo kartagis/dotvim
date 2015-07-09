@@ -154,8 +154,6 @@ endfunction
 xnoremap in :<C-u>call Numbers()<CR>
 onoremap in :normal vin<CR>
 
-" foo123.569==
-
 " ===========================================================================
 
 " poor man's Notational Velocity

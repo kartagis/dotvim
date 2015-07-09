@@ -1,5 +1,5 @@
 " make list-like commands more intuitive
-function! functions#Return()
+function! custom#Return()
     let cmdline = getcmdline()
     if getcmdtype() == "/" || getcmdtype() == "?"
       if b:direction == "b"
@@ -32,7 +32,7 @@ endfunction
 " ===========================================================================
 
 " increment selected column of numbers
-function! functions#Incr(vcount)
+function! custom#Incr(vcount)
   let a = (line('.') - line("'<")) + a:vcount
   let c = virtcol("'<")
   if a > 0
@@ -44,7 +44,7 @@ endfunction
 " ===========================================================================
 
 " saves all the visible windows if needed/possible
-function! functions#AutoSave()
+function! custom#AutoSave()
   let this_window = winnr()
   windo if &buftype != "nofile" && expand('%') != '' && &modified | write | endif
   execute this_window . 'wincmd w'
@@ -53,12 +53,12 @@ endfunction
 " ===========================================================================
 
 " simplistic MRU
-function! functions#MRUComplete(ArgLead, CmdLine, CursorPos)
+function! custom#MRUComplete(ArgLead, CmdLine, CursorPos)
   let my_oldfiles = filter(copy(v:oldfiles), 'v:val =~ a:ArgLead')
   return my_oldfiles
 endfunction
 
-function! functions#MRU(command, arg)
+function! custom#MRU(command, arg)
   if a:command == "tabedit"
     execute a:command . " " . a:arg . "\|lcd %:p:h"
   else
@@ -69,7 +69,7 @@ endfunction
 " ===========================================================================
 
 " adapted from $VIMRUNTIME/ftplugin/python.vim
-function! functions#CustomJump(motion) range
+function! custom#CustomJump(motion) range
   let cnt = v:count1
   let save = @/
   mark '
@@ -87,7 +87,7 @@ endfunction
 " - expands {}, [], (), <tag></tag> 'correctly'
 " - removes empty comment marker
 " - more?
-function! functions#SmartEnter()
+function! custom#SmartEnter()
   " specific case: beware of the cmdline window
   if &buftype ==# "quickfix"
     return "\<CR>"
@@ -100,19 +100,19 @@ function! functions#SmartEnter()
   let previous = getline(".")[col(".")-2]
   let next     = getline(".")[col(".")-1]
   if previous ==# "{"
-    return functions#PairExpander(previous, "}", next)
+    return custom#PairExpander(previous, "}", next)
   elseif previous ==# "["
-    return functions#PairExpander(previous, "]", next)
+    return custom#PairExpander(previous, "]", next)
   elseif previous ==# "("
-    return functions#PairExpander(previous, ")", next)
+    return custom#PairExpander(previous, ")", next)
   elseif previous ==# ">"
-    return functions#TagExpander(next)
+    return custom#TagExpander(next)
   else
     return "\<CR>"
   endif
 endfunction
 
-function! functions#PairExpander(left, right, next)
+function! custom#PairExpander(left, right, next)
   let pair_position = []
   if a:left == "["
     let pair_position = searchpairpos('\' . a:left, "", '\' . a:right, "Wn")
@@ -130,7 +130,7 @@ function! functions#PairExpander(left, right, next)
   endif
 endfunction
 
-function! functions#TagExpander(next)
+function! custom#TagExpander(next)
   let thisline = getline(".")
   if a:next ==# "<" && thisline[col(".")] ==# "/"
     if thisline[searchpos("<", "bnW")[1]] ==# "/" || thisline[searchpos("<", "bnW")[1]] !=# thisline[col(".") + 1]
@@ -147,7 +147,7 @@ endfunction
 
 " return a representation of the selected text
 " suitable for use as a search pattern
-function! functions#GetVisualSelection()
+function! custom#GetVisualSelection()
   let old_reg = @v
   normal! gv"vy
   let raw_search = @v
@@ -158,7 +158,7 @@ endfunction
 " ===========================================================================
 
 " DOS to UNIX re-encoding
-function! functions#ToUnix()
+function! custom#ToUnix()
   let b:winview = winsaveview()
   silent update
   silent e ++ff=dos
@@ -179,13 +179,13 @@ endfunction
 " * generate a tags file in the directory of the current file
 " if no answer is given, nothing is done and we try to not
 " bother the user again
-function! functions#Tagit(bomb)
+function! custom#Tagit(bomb)
   update
   if a:bomb == 0
     if !exists("t:tagit_notags") && expand('%') != ''
       if len(tagfiles()) > 0
         let tags_location = fnamemodify(tagfiles()[0], ":p:h")
-        call functions#GenerateTags(tags_location, 0)
+        call custom#GenerateTags(tags_location, 0)
       else
         let this_dir    = expand('%:p:h')
         let current_dir = getcwd()
@@ -197,7 +197,7 @@ function! functions#Tagit(bomb)
             let t:tagit_notags = 1
             return
           elseif user_choice == 1
-            call functions#GenerateTags(current_dir, 0)
+            call custom#GenerateTags(current_dir, 0)
           endif
         elseif this_dir != current_dir
           let user_choice = inputlist([
@@ -208,22 +208,22 @@ function! functions#Tagit(bomb)
             let t:tagit_notags = 1
             return
           elseif user_choice == 1
-            call functions#GenerateTags(current_dir, 0)
+            call custom#GenerateTags(current_dir, 0)
           elseif user_choice == 2
-            call functions#GenerateTags(this_dir, 0)
+            call custom#GenerateTags(this_dir, 0)
           endif
         endif
       endif
     endif
   else
     if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-      call functions#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), 0)
+      call custom#GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), 0)
     endif
   endif
 endfunction
 
 " the actual tag generation function
-function! functions#GenerateTags(location, lang_only)
+function! custom#GenerateTags(location, lang_only)
   let ctags_command = "/opt/local/bin/ctags -R --tag-relative=yes"
   if a:lang_only == 1
     let ctags_command .= " --languages=" . &filetype
