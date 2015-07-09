@@ -21,7 +21,7 @@
         author: "Romain Lafourcade",
         email: "romainlafourcade@gmail.com",
         name: "colorblind",
-        description: "A 'dark' colorscheme for color blind vimmers.",
+        description: "A 'dark' colorscheme for\( color blind\)* vimmers.",
         background: "dark"
     }
 
@@ -35,16 +35,17 @@
     #
     # The colors below are the first 16 colors of the xterm palette and
     # are only here as an example. You can get rid of them, I won't be mad.
-    white       = ['#ffffff', 15, 15]
-    sky         = ['#88CCEE', 0, 0]
-    teal        = ['#44AA99', 0, 0]
-    moss        = ['#117733', 0, 0]
-    asparagus   = ['#999933', 0, 0]
-    cantaloupe  = ['#DDCC77', 0, 0]
-    strawberry  = ['#CC6677', 0, 0]
-    orchid      = ['#AA4499', 0, 0]
-    maroon      = ['#882255', 0, 0]
-    eggplant    = ['#332288', 0, 0]
+    white       = ['#FFFFFF', 15, 15]
+    sky         = ['#87D7D7', 116, 0]
+    teal        = ['#00AF87', 36, 0]
+    moss        = ['#005F00', 22, 0]
+    asparagus   = ['#878700', 100, 0]
+    cantaloupe  = ['#DFDF87', 186, 0]
+    # not sure about this one
+    strawberry  = ['#D75F5F', 167, 0]
+    orchid      = ['#AF5FD7', 134, 0]
+    maroon      = ['#87005F', 89, 0]
+    eggplant    = ['#5F00FF', 57, 0]
     black       = ['#000000', 0, 0]
 
     # Step 3: highlights
@@ -72,79 +73,79 @@
     # The highlight groups below are fairly standard but some syntax scripts and
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
-        [ "Normal", "NONE", black, "NONE" ],
-        [ "NonText", "NONE", darkwhite, "NONE" ],
+        [ "Normal", "NONE", white, "NONE" ],
+        [ "NonText", "NONE", cantaloupe, "NONE" ],
 
-        [ "Comment", "NONE", gray, "NONE" ],
-        [ "Constant", "NONE", darkred, "NONE" ],
-        [ "Error", white, red, "reverse" ],
-        [ "Identifier", "NONE", darkyellow, "NONE" ],
+        [ "Comment", "NONE", asparagus, "NONE" ],
+        [ "Constant", "NONE", cantaloupe, "NONE" ],
+        [ "Error", cantaloupe, cantaloupe, "reverse" ],
+        [ "Identifier", "NONE", cantaloupe, "NONE" ],
         [ "Ignore", "NONE", "NONE", "NONE" ],
-        [ "PreProc", "NONE", darkblue, "NONE" ],
-        [ "Special", "NONE", darkyellow, "NONE" ],
-        [ "Statement", "NONE", darkcyan, "NONE" ],
-        [ "String", "NONE", darkgreen, "NONE" ],
+        [ "PreProc", "NONE", cantaloupe, "NONE" ],
+        [ "Special", "NONE", cantaloupe, "NONE" ],
+        [ "Statement", "NONE", cantaloupe, "NONE" ],
+        [ "String", "NONE", cantaloupe, "NONE" ],
         [ "Todo", "NONE", "NONE", "reverse" ],
-        [ "Type", "NONE", darkmagenta, "NONE" ],
-        [ "Underlined", "NONE", white, "underline" ],
+        [ "Type", "NONE", cantaloupe, "NONE" ],
+        [ "Underlined", "NONE", cantaloupe, "underline" ],
 
-        [ "StatusLine", black, white, "NONE" ],
-        [ "StatusLineNC", gray, darkwhite, "NONE" ],
-        [ "VertSplit", gray, gray, "NONE" ],
+        [ "StatusLine", white, black, "NONE" ],
+        [ "StatusLineNC", black, "NONE", "NONE" ],
+        [ "VertSplit", black, black, "NONE" ],
 
-        [ "TabLine", gray, darkwhite, "NONE" ],
-        [ "TabLineFill", gray, gray, "NONE" ],
-        [ "TabLineSel", black, white, "NONE" ],
+        [ "TabLine", black, white, "NONE" ],
+        [ "TabLineFill", black, black, "NONE" ],
+        [ "TabLineSel", white, black, "NONE" ],
 
-        [ "Title", "NONE", magenta, "NONE" ],
-        [ "LineNr", "NONE", gray, "NONE" ],
+        [ "Title", "NONE", cantaloupe, "NONE" ],
+        [ "LineNr", "NONE", strawberry, "NONE" ],
 
-        [ "Cursor", white, black, "NONE" ],
-        [ "CursorColumn", white, black, "NONE" ],
-        [ "CursorLine", darkwhite, "NONE", "NONE" ],
-        [ "CursorLineNr", darkwhite, "NONE", "NONE" ],
+        [ "Cursor", cantaloupe, cantaloupe, "NONE" ],
+        [ "CursorColumn", cantaloupe, cantaloupe, "NONE" ],
+        [ "CursorLine", "NONE", "NONE", "underline" ],
+        [ "CursorLineNr", "NONE", "NONE", "underline" ],
 
         [ "helpLeadBlank", "NONE", "NONE", "NONE" ],
         [ "helpNormal", "NONE", "NONE", "NONE" ],
 
-        [ "Visual", cyan, black, "NONE" ],
-        [ "VisualNOS", darkcyan, black, "NONE" ],
+        [ "Visual", cantaloupe, cantaloupe, "NONE" ],
+        [ "VisualNOS", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "Pmenu", darkwhite, black, "NONE" ],
-        [ "PmenuSbar", gray, black, "NONE" ],
-        [ "PmenuSel", gray, white, "NONE" ],
-        [ "PmenuThumb", black, black, "NONE" ],
+        [ "Pmenu", cantaloupe, black, "NONE" ],
+        [ "PmenuSbar", asparagus, cantaloupe, "NONE" ],
+        [ "PmenuSel", black, cantaloupe, "NONE" ],
+        [ "PmenuThumb", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "FoldColumn", "NONE", gray, "NONE" ],
-        [ "Folded", darkwhite, black, "NONE" ],
+        [ "FoldColumn", "NONE", cantaloupe, "NONE" ],
+        [ "Folded", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "WildMenu", yellow, black, "NONE" ],
-        [ "SpecialKey", "NONE", darkwhite, "NONE" ],
+        [ "WildMenu", cantaloupe, cantaloupe, "NONE" ],
+        [ "SpecialKey", "NONE", cantaloupe, "NONE" ],
 
-        [ "DiffAdd", darkgreen, black, "NONE" ],
-        [ "DiffChange", darkcyan, black, "NONE" ],
-        [ "DiffDelete", darkred, black, "NONE" ],
-        [ "DiffText", cyan, black, "NONE" ],
+        [ "DiffAdd", cantaloupe, cantaloupe, "NONE" ],
+        [ "DiffChange", cantaloupe, cantaloupe, "NONE" ],
+        [ "DiffDelete", cantaloupe, cantaloupe, "NONE" ],
+        [ "DiffText", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "IncSearch", white, magenta, "reverse" ],
-        [ "Search", yellow, black, "NONE" ],
+        [ "IncSearch", cantaloupe, cantaloupe, "reverse" ],
+        [ "Search", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "Directory", "NONE", darkblue, "NONE" ],
-        [ "MatchParen", magenta, black, "NONE" ],
+        [ "Directory", "NONE", cantaloupe, "NONE" ],
+        [ "MatchParen", cantaloupe, cantaloupe, "NONE" ],
 
-        [ "SpellBad", "NONE", red, "NONE", red ],
-        [ "SpellCap", "NONE", blue, "NONE", blue ],
-        [ "SpellLocal", "NONE", magenta, "NONE", magenta ],
-        [ "SpellRare", "NONE", cyan, "NONE", cyan ],
+        [ "SpellBad", "NONE", cantaloupe, "NONE", cantaloupe ],
+        [ "SpellCap", "NONE", cantaloupe, "NONE", cantaloupe ],
+        [ "SpellLocal", "NONE", cantaloupe, "NONE", cantaloupe ],
+        [ "SpellRare", "NONE", cantaloupe, "NONE", cantaloupe ],
 
-        [ "ColorColumn", darkwhite, "NONE", "NONE" ],
-        [ "signColumn", "NONE", gray, "NONE" ],
+        [ "ColorColumn", cantaloupe, "NONE", "NONE" ],
+        [ "signColumn", "NONE", cantaloupe, "NONE" ],
 
-        [ "ErrorMsg", red, white, "NONE" ],
-        [ "ModeMsg", green, black, "NONE" ],
-        [ "MoreMsg", blue , white, "NONE" ],
-        [ "Question", white, blue, "NONE" ],
-        [ "WarningMsg", magenta, white, "NONE" ]
+        [ "ErrorMsg", cantaloupe, cantaloupe, "NONE" ],
+        [ "ModeMsg", cantaloupe, cantaloupe, "NONE" ],
+        [ "MoreMsg", cantaloupe, cantaloupe, "NONE" ],
+        [ "Question", cantaloupe, cantaloupe, "NONE" ],
+        [ "WarningMsg", cantaloupe, cantaloupe, "NONE" ]
     ]
 
     # Step 4: generation
