@@ -1,32 +1,32 @@
 " make list-like commands more intuitive
 function! custom#Return()
-    let cmdline = getcmdline()
-    if getcmdtype() == "/" || getcmdtype() == "?"
-      if b:direction == "b"
-        return "\<CR>:silent let v:searchforward = 0\<CR>"
-      else
-        return "\<CR>:silent let v:searchforward = 1\<CR>"
-      endif
+  let cmdline = getcmdline()
+  if getcmdtype() == "/" || getcmdtype() == "?"
+    if b:direction == "b"
+      return "\<CR>:silent let v:searchforward = 0\<CR>"
     else
-      if cmdline =~ '\C^ls'
-        " like :ls but prompts for a buffer command
-        return "\<CR>:b"
-      elseif cmdline =~ '/#$'
-        " like :g//# but prompts for a command
-        return "\<CR>:"
-      elseif cmdline =~ '\v\C^(dli|il)'
-        " like :dlist or :ilist but prompts for a count for :djump or :ijump
-        return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-      elseif cmdline =~ '\v\C^(cli|lli)'
-        " like :clist or :llist but prompts for an error/location number
-        return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-      elseif cmdline =~ '\C^old'
-        " like :oldfiles but prompts for an old file to edit
-        return "\<CR>:edit #<"
-      else
-        return "\<CR>"
-      endif
+      return "\<CR>:silent let v:searchforward = 1\<CR>"
     endif
+  else
+    if cmdline =~ '\C^ls'
+      " like :ls but prompts for a buffer command
+      return "\<CR>:b"
+    elseif cmdline =~ '/#$'
+      " like :g//# but prompts for a command
+      return "\<CR>:"
+    elseif cmdline =~ '\v\C^(dli|il)'
+      " like :dlist or :ilist but prompts for a count for :djump or :ijump
+      return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
+    elseif cmdline =~ '\v\C^(cli|lli)'
+      " like :clist or :llist but prompts for an error/location number
+      return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+    elseif cmdline =~ '\C^old'
+      " like :oldfiles but prompts for an old file to edit
+      return "\<CR>:edit #<"
+    else
+      return "\<CR>"
+    endif
+  endif
 endfunction
 
 " ===========================================================================
@@ -229,4 +229,120 @@ function! custom#GenerateTags(location, lang_only)
     let ctags_command .= " --languages=" . &filetype
   endif
   let g:tag = system("cd " . shellescape(a:location) . " && " . ctags_command . " -f tags .")
+endfunction
+
+" ===========================================================================
+
+" better incremental search
+function! custom#BetterIncSearch(key)
+  if getcmdtype() == "/" || getcmdtype() == "?"
+    if (a:key == "tab" && b:direction == "f") || (a:key == "stab" && b:direction == "b")
+      return "\<CR>/\<C-r>/"
+    elseif (a:key == "tab" && b:direction == "b") || (a:key == "stab" && b:direction == "f")
+      return "\<CR>?\<C-r>/"
+    elseif a:key == "ctrlc"
+      return "\<Esc>`z"
+    endif
+  else
+    if a:key == "tab"
+      return "\<C-z>"
+    else
+      return "\<S-Tab>"
+    endif
+  endif
+endfunction
+
+" ===========================================================================
+
+" custom text-object for numerical values
+function! custom#VisualNumbers()
+  call custom#search('\d\([^0-9\.]\|$\)', 'cW')
+  normal v
+  call custom#search('\(^\|[^0-9\.]\d\)', 'becW')
+endfunction
+
+" ===========================================================================
+
+" search/replace across multiple files
+function! custom#Replace(search_pattern, replacement_pattern, ...)
+  let search_string = 'ag --nogroup --nocolor --files-with-matches '
+  wall
+  tabnew
+  let t:start_buffer = bufnr('$')
+  if a:0 > 0
+    silent arglocal `=system(search_string . a:search_pattern . ' ' . a:1)`
+  else
+    silent arglocal `=system(search_string . a:search_pattern)`
+  endif
+  noautocmd argdo execute '%s/' . a:search_pattern . '/' . a:replacement_pattern . '/ec'
+endfunction
+
+" FIXME: ensure more predictable/consistent behavior
+function! custom#Done()
+  if exists('t:start_buffer')
+    argdo noautocmd write
+    execute t:start_buffer . ',' . bufnr('$') . 'bwipeout'
+    try
+      tabclose
+    catch
+    endtry
+  endif
+endfunction
+
+" ===========================================================================
+
+" cycle common words
+function! custom#Cycle()
+  let words = [
+        \ ["TRUE", "FALSE"],
+        \ ["True", "False"],
+        \ ["true", "false"],
+        \ ["top", "right", "bottom", "left", "center"],
+        \ ["none", "block", "inline-block"],
+        \ ["capitalize", "uppercase", "lowercase", "none"],
+        \ ["margin-top", "margin-right", "margin-bottom", "margin-left"],
+        \ ["padding-top", "padding-right", "padding-bottom", "padding-left"],
+        \ ["padding", "margin"],
+        \ ["border-top", "border-right", "border-bottom", "border-left"],
+        \ ["first", "last"],
+        \ ["||", "&&"],
+        \ ["gif", "jpg", "png"],
+        \ ["slow", "fast"]
+        \ ]
+  if exists("g:cycle_words")
+    let words += g:cycle_words
+  endif
+  if exists("b:cycle_words")
+    let words += b:cycle_words
+  endif
+  let current_word = expand("<cword>")
+  let new_word = ""
+  for pair in words
+    for word in pair
+      if current_word ==# word
+        if index(pair, word) < len(pair) - 1
+          let new_word = pair[index(pair, word) + 1]
+        elseif index(pair, word) == len(pair) - 1
+          let new_word = pair[0]
+        endif
+      endif
+    endfor
+  endfor
+  if new_word != ""
+    execute 'normal "_ciw' . new_word
+  else
+    return
+  endif
+endfunction
+
+" ===========================================================================
+
+" redirect the output of a Vim command into a scratch buffer
+function! custom#Redir(cmd)
+  redir => output
+  execute a:cmd
+  redir END
+  vnew
+  setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
+  call custom#setline(1, split(output, "\n"))
 endfunction
