@@ -54,30 +54,32 @@ function qf#FilterList(pat)
     if exists("b:isLoc")
         if b:isLoc == 1
             if !exists("b:locl")
-                let b:locl = getloclist(0)
-                let w:qf_title = w:quickfix_title
+                call setwinvar(winnr("#"), "locl", getloclist(0))
+                call setwinvar(winnr("#"), "qf_title", w:quickfix_title)
             endif
-            call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
+            call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"), "r")
+            let w:quickfix_title = getwinvar(winnr("#"), "qf_title") . " [filtered]"
         else
             if !exists("b:qfl")
-                let b:qfl = getqflist()
-                let w:qf_title = w:quickfix_title
+                let g:qfl = getqflist()
+                let g:qf_title = w:quickfix_title
             endif
-            call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"))
+            call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) =~ a:pat || v:val['text'] =~ a:pat"), "r")
+            let w:quickfix_title = g:qf_title . " [filtered]"
         endif
-        let w:quickfix_title = w:qf_title . "[filtered]"
     endif
 endfunction
 
 " restore the original list
 function qf#RestoreList()
     if exists("b:isLoc")
-        if b:isLoc == 1 && exists("b:locl")
-            call setloclist(0, b:locl)
-        elseif b:isLoc != 1 && !exists("b:locl")
-            call setqflist(b:qfl)
+        if b:isLoc == 1 && len(getwinvar(winnr("#"), "locl")) > 0
+            call setloclist(0, getwinvar(winnr("#"), "locl"), "r")
+            let w:quickfix_title = getwinvar(winnr("#"), "qf_title")
+        elseif b:isLoc != 1 && len(getwinvar(winnr("#"), "locl")) == 0
+            call setqflist(g:qfl, "r")
+            let w:quickfix_title = g:qf_title
         endif
-        let w:quickfix_title = w:qf_title
     endif
 endfunction
 
