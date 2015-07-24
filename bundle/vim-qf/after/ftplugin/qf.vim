@@ -24,13 +24,11 @@ setlocal number
 " we don't want quickfix buffers to pop up when doing :bn or :bp
 set nobuflisted
 
-" customize the statusline
-if exists("g:qf_statusline")
-    execute "setlocal statusline=" . g:qf_statusline.before . "%{w:quickfix_title}" . g:qf_statusline.after
-endif
-
 " are we in a location list or a quickfix list?
 let b:isLoc = len(getloclist(0)) > 0 ? 1 : 0
+
+" customize the statusline
+execute "setlocal statusline=" . g:qf_statusline.before . "%{w:quickfix_title}" . g:qf_statusline.after
 
 " force the quickfix window to be opened at the bottom
 " of the screen and take the full width

@@ -8,6 +8,58 @@ syntax on
 
 runtime macros/matchit.vim
 
+"""""""""""""""""""""""""""""""""
+" ENVIRONMENT-SPECIFIC SETTINGS "
+"""""""""""""""""""""""""""""""""
+if !exists('os')
+    if has('win32') || has('win16')
+        let os = 'Windows'
+    else
+        let os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+if !exists('myruntime')
+    let myruntime = split(&rtp, ',')[0]
+endif
+
+if has('gui_running')
+    set guioptions-=T
+    set guioptions-=m
+
+    if os == 'Darwin'
+        set guifont=Fira\ Mono:h12
+        set fuoptions=maxvert,maxhorz
+    elseif os == 'Linux'
+        set guifont=Fira\ Mono\ 10
+    elseif os == 'Windows'
+        set encoding=utf-8
+        set guifont=Fira_Mono:h10:cANSI
+    endif
+else
+    if &term =~ '^screen'
+        " tmux will send xterm-style keys when its xterm-keys option is on
+        execute "set <xUp>=\e[1;*A"
+        execute "set <xDown>=\e[1;*B"
+        execute "set <xRight>=\e[1;*C"
+        execute "set <xLeft>=\e[1;*D"
+    endif
+
+    " allows clicking after the 223rd column
+    if has('mouse_sgr')
+        set ttymouse=sgr
+    endif
+
+    nnoremap <Esc>A <up>
+    nnoremap <Esc>B <down>
+    nnoremap <Esc>C <right>
+    nnoremap <Esc>D <left>
+    inoremap <Esc>A <up>
+    inoremap <Esc>B <down>
+    inoremap <Esc>C <right>
+    inoremap <Esc>D <left>
+endif
+
 """"""""""""""""""""
 " GENERIC SETTINGS "
 """"""""""""""""""""
@@ -90,53 +142,6 @@ augroup VIMRC
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
 augroup END
-
-"""""""""""""""""""""""""""""""""
-" ENVIRONMENT-SPECIFIC SETTINGS "
-"""""""""""""""""""""""""""""""""
-if !exists('os')
-    if has('win32') || has('win16')
-        let os = 'Windows'
-    else
-        let os = substitute(system('uname'), '\n', '', '')
-    endif
-endif
-
-if has('gui_running')
-    set guioptions-=T
-    set guioptions-=m
-
-    if os == 'Darwin'
-        set guifont=Fira\ Mono:h12
-        set fuoptions=maxvert,maxhorz
-    elseif os == 'Linux'
-        set guifont=Fira\ Mono\ 10
-    elseif os == 'Windows'
-        set guifont=Fira_Mono:h12:cANSI
-    endif
-else
-    if &term =~ '^screen'
-        " tmux will send xterm-style keys when its xterm-keys option is on
-        execute "set <xUp>=\e[1;*A"
-        execute "set <xDown>=\e[1;*B"
-        execute "set <xRight>=\e[1;*C"
-        execute "set <xLeft>=\e[1;*D"
-    endif
-
-    " allows clicking after the 223rd column
-    if has('mouse_sgr')
-        set ttymouse=sgr
-    endif
-
-    nnoremap <Esc>A <up>
-    nnoremap <Esc>B <down>
-    nnoremap <Esc>C <right>
-    nnoremap <Esc>D <left>
-    inoremap <Esc>A <up>
-    inoremap <Esc>B <down>
-    inoremap <Esc>C <right>
-    inoremap <Esc>D <left>
-endif
 
 """""""""""""""""""""""
 " JUGGLING WITH FILES "
@@ -317,7 +322,7 @@ command!          CMD let @+ = ':' . @:
 " PLUGIN SETTINGS "
 """""""""""""""""""
 " snipmate
-let g:snippets_dir = '~/.vim/snippets/'
+let g:snippets_dir = myruntime . '/snippets/'
 imap ,<Tab> <C-r><Tab>
 
 " netrw
@@ -332,7 +337,7 @@ let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
 
 " sparkup
-let g:sparkup = '~/.vim/bundle/sparkup/ftplugin/html/sparkup.py'
+let g:sparkup = myruntime . '/bundle/sparkup/ftplugin/html/sparkup.py'
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
