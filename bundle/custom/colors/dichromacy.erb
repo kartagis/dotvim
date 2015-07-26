@@ -20,8 +20,8 @@
     information = {
         author: "Romain Lafourcade",
         email: "romainlafourcade@gmail.com",
-        name: "colorblind",
-        description: "A 'dark' colorscheme for\( color blind\)* vimmers.",
+        name: "dichromacy",
+        description: "A 'dark' colorscheme for color blind vimmers.",
         background: "dark"
     }
 
@@ -33,19 +33,16 @@
     #   0             integer between 0 and 15 for terminals limited to 16 colors
     # ]
     #
-    # The colors below are the first 16 colors of the xterm palette and
-    # are only here as an example. You can get rid of them, I won't be mad.
     white       = ['#FFFFFF', 15, 15]
     sky         = ['#87D7D7', 116, 0]
-    teal        = ['#00AF87', 36, 0]
-    moss        = ['#005F00', 22, 0]
-    asparagus   = ['#878700', 100, 0]
+    teal        = ['#5FAF87', 72, 0]
+    moss        = ['#008700', 28, 0]
+    asparagus   = ['#AFAF00', 142, 0]
     cantaloupe  = ['#DFDF87', 186, 0]
-    # not sure about this one
-    strawberry  = ['#D75F5F', 167, 0]
-    orchid      = ['#AF5FD7', 134, 0]
-    maroon      = ['#87005F', 89, 0]
-    eggplant    = ['#5F00FF', 57, 0]
+    strawberry  = ['#D75F87', 168, 0]
+    orchid      = ['#AF5FAF', 133, 0]
+    rose        = ['#87005F', 89, 0]
+    eggplant    = ['#00005F', 17, 0]
     black       = ['#000000', 0, 0]
 
     # Step 3: highlights
@@ -73,21 +70,21 @@
     # The highlight groups below are fairly standard but some syntax scripts and
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
-        [ "Normal", "NONE", white, "NONE" ],
+	[ "Normal", "NONE", white, "NONE" ],
         [ "NonText", "NONE", cantaloupe, "NONE" ],
 
-        [ "Comment", "NONE", asparagus, "NONE" ],
-        [ "Constant", "NONE", cantaloupe, "NONE" ],
-        [ "Error", cantaloupe, cantaloupe, "reverse" ],
-        [ "Identifier", "NONE", cantaloupe, "NONE" ],
+        [ "Comment", "NONE", moss, "NONE" ],
+        [ "Constant", "NONE", strawberry, "NONE" ],
+        [ "Error", rose, cantaloupe, "reverse" ],
+        [ "Identifier", "NONE", orchid, "NONE" ],
         [ "Ignore", "NONE", "NONE", "NONE" ],
         [ "PreProc", "NONE", cantaloupe, "NONE" ],
-        [ "Special", "NONE", cantaloupe, "NONE" ],
-        [ "Statement", "NONE", cantaloupe, "NONE" ],
-        [ "String", "NONE", cantaloupe, "NONE" ],
+        [ "Special", "NONE", white, "NONE" ],
+        [ "Statement", "NONE", orchid, "NONE" ],
+        [ "String", "NONE", asparagus, "NONE" ],
         [ "Todo", "NONE", "NONE", "reverse" ],
-        [ "Type", "NONE", cantaloupe, "NONE" ],
-        [ "Underlined", "NONE", cantaloupe, "underline" ],
+        [ "Type", "NONE", sky, "NONE" ],
+        [ "Underlined", "NONE", "NONE", "underline" ],
 
         [ "StatusLine", white, black, "NONE" ],
         [ "StatusLineNC", black, "NONE", "NONE" ],
@@ -138,14 +135,14 @@
         [ "SpellLocal", "NONE", cantaloupe, "NONE", cantaloupe ],
         [ "SpellRare", "NONE", cantaloupe, "NONE", cantaloupe ],
 
-        [ "ColorColumn", cantaloupe, "NONE", "NONE" ],
+        [ "ColorColumn", eggplant, "NONE", "NONE" ],
         [ "signColumn", "NONE", cantaloupe, "NONE" ],
 
-        [ "ErrorMsg", cantaloupe, cantaloupe, "NONE" ],
-        [ "ModeMsg", cantaloupe, cantaloupe, "NONE" ],
-        [ "MoreMsg", cantaloupe, cantaloupe, "NONE" ],
-        [ "Question", cantaloupe, cantaloupe, "NONE" ],
-        [ "WarningMsg", cantaloupe, cantaloupe, "NONE" ]
+        [ "ErrorMsg", rose, white, "NONE" ],
+        [ "ModeMsg", asparagus, black, "NONE" ],
+        [ "MoreMsg", "NONE", asparagus, "NONE" ],
+        [ "Question", "NONE", teal, "NONE" ],
+        [ "WarningMsg", strawberry, black, "NONE" ]
     ]
 
     # Step 4: generation
