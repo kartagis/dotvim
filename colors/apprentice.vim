@@ -198,7 +198,7 @@ elseif $TERM == "cygwin" && &t_Co == 16
 
   set background=dark
 
-  hi Comment          ctermbg=NONE        ctermfg=8           cterm=NONE
+  hi Comment          ctermbg=NONE        ctermfg=7           cterm=NONE
   hi Constant         ctermbg=NONE        ctermfg=12          cterm=NONE
   hi Function         ctermbg=NONE        ctermfg=14          cterm=NONE
   hi Identifier       ctermbg=NONE        ctermfg=1           cterm=NONE
@@ -233,7 +233,7 @@ elseif $TERM == "cygwin" && &t_Co == 16
 
   hi Cursor           ctermbg=NONE        ctermfg=NONE        cterm=NONE
   hi CursorColumn     ctermbg=8           ctermfg=NONE        cterm=NONE
-  hi CursorLine       ctermbg=NONE        ctermfg=NONE        cterm=reverse
+  hi CursorLine       ctermbg=4           ctermfg=NONE        cterm=NONE
   hi CursorLineNr     ctermbg=0           ctermfg=11          cterm=NONE
 
   hi helpLeadBlank    ctermbg=NONE        ctermfg=NONE        cterm=NONE
