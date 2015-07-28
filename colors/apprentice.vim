@@ -211,7 +211,7 @@ elseif $TERM == "cygwin" && &t_Co == 16
 
   hi Error            ctermbg=NONE        ctermfg=4           cterm=reverse
   hi Ignore           ctermbg=NONE        ctermfg=NONE        cterm=NONE
-  hi Underlined       ctermbg=NONE        ctermfg=3           cterm=underline
+  hi Underlined       ctermbg=NONE        ctermfg=3           cterm=NONE
 
   hi LineNr           ctermbg=0           ctermfg=7           cterm=NONE
   hi NonText          ctermbg=NONE        ctermfg=8           cterm=NONE
@@ -243,7 +243,7 @@ elseif $TERM == "cygwin" && &t_Co == 16
   hi StatusLineNC     ctermbg=8           ctermfg=0           cterm=NONE
 
   hi Visual           ctermbg=9           ctermfg=0           cterm=NONE
-  hi VisualNOS        ctermbg=NONE        ctermfg=NONE        cterm=underline
+  hi VisualNOS        ctermbg=15          ctermfg=0           cterm=NONE
 
   hi FoldColumn       ctermbg=0           ctermfg=8           cterm=NONE
   hi Folded           ctermbg=0           ctermfg=8           cterm=NONE
