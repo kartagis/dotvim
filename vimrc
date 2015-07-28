@@ -37,6 +37,10 @@ if has('gui_running')
         set guifont=Fira_Mono:h10:cANSI
     endif
 else
+    if os == 'Windows'
+        set encoding=utf-8
+    endif
+
     if &term =~ '^screen'
         " tmux will send xterm-style keys when its xterm-keys option is on
         execute "set <xUp>=\e[1;*A"
