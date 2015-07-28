@@ -349,3 +349,11 @@ nmap <End>    <Plug>QfCnext
 nmap <C-Home> <Plug>QfLprevious
 nmap <C-end>  <Plug>QfLnext
 nmap ç        <Plug>QfSwitch
+
+if $TERM == "cygwin" && &t_Co == 16
+    echo "assume a windows console"
+elseif $TERM != "cygwin" && $TERM !~ '256'
+    echo "assume a 16 colors terminal on linux or os x"
+elseif $TERM =~ '256' && &t_Co >= 256
+    echo "assume a 256 colors terminal"
+endif
