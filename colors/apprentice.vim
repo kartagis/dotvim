@@ -220,6 +220,7 @@ elseif &t_Co < 256
     hi TabLine          ctermbg=8           ctermfg=6           cterm=NONE
     hi TabLineSel       ctermbg=6           ctermfg=0           cterm=NONE
 
+    hi CursorLine       ctermbg=NONE        ctermfg=NONE        cterm=reverse
     hi CursorLineNr     ctermbg=0           ctermfg=11          cterm=NONE
 
     hi StatusLine       ctermbg=6           ctermfg=0           cterm=NONE
