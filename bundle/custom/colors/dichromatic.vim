@@ -1,6 +1,7 @@
-" dichromacy.vim -- Vim color scheme.
+" dichromatic.vim -- Vim color scheme.
 " Author:      Romain Lafourcade (romainlafourcade@gmail.com)
-" Description: A 'dark' colorscheme for color blind vimmers.
+" Webpage:     http://www.example.com
+" Description: A 'dark' colorscheme for color blind vimmers. But not only.
 
 hi clear
 
@@ -8,10 +9,11 @@ if exists('syntax_on')
   syntax reset
 endif
 
-let colors_name = 'dichromacy'
+let colors_name = 'dichromatic'
 
 if &t_Co >= 256 || has('gui_running')
     hi Normal ctermbg=NONE ctermfg=15 cterm=NONE guibg=NONE guifg=#FFFFFF gui=NONE
+    set background=dark
     hi NonText ctermbg=NONE ctermfg=186 cterm=NONE guibg=NONE guifg=#DFDF87 gui=NONE
     hi Comment ctermbg=NONE ctermfg=28 cterm=NONE guibg=NONE guifg=#008700 gui=NONE
     hi Constant ctermbg=NONE ctermfg=168 cterm=NONE guibg=NONE guifg=#D75F87 gui=NONE
@@ -68,70 +70,66 @@ if &t_Co >= 256 || has('gui_running')
     hi MoreMsg ctermbg=NONE ctermfg=142 cterm=NONE guibg=NONE guifg=#AFAF00 gui=NONE
     hi Question ctermbg=NONE ctermfg=72 cterm=NONE guibg=NONE guifg=#5FAF87 gui=NONE
     hi WarningMsg ctermbg=168 ctermfg=0 cterm=NONE guibg=#D75F87 guifg=#000000 gui=NONE
-
-    set background=dark
 elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     set t_Co=16
-
-    hi Normal ctermbg=NONE ctermfg=15 cterm=NONE
-    hi NonText ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Comment ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Constant ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Error ctermbg=0 ctermfg=0 cterm=reverse
-    hi Identifier ctermbg=NONE ctermfg=0 cterm=NONE
+    hi Normal ctermbg=NONE ctermfg=white cterm=NONE
+    set background=dark
+    hi NonText ctermbg=NONE ctermfg=black cterm=NONE
+    hi Comment ctermbg=NONE ctermfg=black cterm=NONE
+    hi Constant ctermbg=NONE ctermfg=black cterm=NONE
+    hi Error ctermbg=black ctermfg=black cterm=reverse
+    hi Identifier ctermbg=NONE ctermfg=black cterm=NONE
     hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE
-    hi PreProc ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Special ctermbg=NONE ctermfg=15 cterm=NONE
-    hi Statement ctermbg=NONE ctermfg=0 cterm=NONE
-    hi String ctermbg=NONE ctermfg=0 cterm=NONE
+    hi PreProc ctermbg=NONE ctermfg=black cterm=NONE
+    hi Special ctermbg=NONE ctermfg=white cterm=NONE
+    hi Statement ctermbg=NONE ctermfg=black cterm=NONE
+    hi String ctermbg=NONE ctermfg=black cterm=NONE
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse
-    hi Type ctermbg=NONE ctermfg=0 cterm=NONE
+    hi Type ctermbg=NONE ctermfg=black cterm=NONE
     hi Underlined ctermbg=NONE ctermfg=NONE cterm=underline
-    hi StatusLine ctermbg=15 ctermfg=0 cterm=NONE
-    hi StatusLineNC ctermbg=0 ctermfg=NONE cterm=NONE
-    hi VertSplit ctermbg=0 ctermfg=0 cterm=NONE
-    hi TabLine ctermbg=0 ctermfg=15 cterm=NONE
-    hi TabLineFill ctermbg=0 ctermfg=0 cterm=NONE
-    hi TabLineSel ctermbg=15 ctermfg=0 cterm=NONE
-    hi Title ctermbg=NONE ctermfg=0 cterm=NONE
-    hi LineNr ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Cursor ctermbg=0 ctermfg=0 cterm=NONE
-    hi CursorColumn ctermbg=0 ctermfg=0 cterm=NONE
+    hi StatusLine ctermbg=white ctermfg=black cterm=NONE
+    hi StatusLineNC ctermbg=black ctermfg=NONE cterm=NONE
+    hi VertSplit ctermbg=black ctermfg=black cterm=NONE
+    hi TabLine ctermbg=black ctermfg=white cterm=NONE
+    hi TabLineFill ctermbg=black ctermfg=black cterm=NONE
+    hi TabLineSel ctermbg=white ctermfg=black cterm=NONE
+    hi Title ctermbg=NONE ctermfg=black cterm=NONE
+    hi LineNr ctermbg=NONE ctermfg=black cterm=NONE
+    hi Cursor ctermbg=black ctermfg=black cterm=NONE
+    hi CursorColumn ctermbg=black ctermfg=black cterm=NONE
     hi CursorLine ctermbg=NONE ctermfg=NONE cterm=underline
     hi CursorLineNr ctermbg=NONE ctermfg=NONE cterm=underline
     hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE
     hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE
-    hi Visual ctermbg=0 ctermfg=0 cterm=NONE
-    hi VisualNOS ctermbg=0 ctermfg=0 cterm=NONE
-    hi Pmenu ctermbg=0 ctermfg=0 cterm=NONE
-    hi PmenuSbar ctermbg=0 ctermfg=0 cterm=NONE
-    hi PmenuSel ctermbg=0 ctermfg=0 cterm=NONE
-    hi PmenuThumb ctermbg=0 ctermfg=0 cterm=NONE
-    hi FoldColumn ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Folded ctermbg=0 ctermfg=0 cterm=NONE
-    hi WildMenu ctermbg=0 ctermfg=0 cterm=NONE
-    hi SpecialKey ctermbg=NONE ctermfg=0 cterm=NONE
-    hi DiffAdd ctermbg=0 ctermfg=0 cterm=NONE
-    hi DiffChange ctermbg=0 ctermfg=0 cterm=NONE
-    hi DiffDelete ctermbg=0 ctermfg=0 cterm=NONE
-    hi DiffText ctermbg=0 ctermfg=0 cterm=NONE
-    hi IncSearch ctermbg=0 ctermfg=0 cterm=reverse
-    hi Search ctermbg=0 ctermfg=0 cterm=NONE
-    hi Directory ctermbg=NONE ctermfg=0 cterm=NONE
-    hi MatchParen ctermbg=0 ctermfg=0 cterm=NONE
-    hi SpellBad ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellCap ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellLocal ctermbg=NONE ctermfg=0 cterm=NONE
-    hi SpellRare ctermbg=NONE ctermfg=0 cterm=NONE
-    hi ColorColumn ctermbg=0 ctermfg=NONE cterm=NONE
-    hi signColumn ctermbg=NONE ctermfg=0 cterm=NONE
-    hi ErrorMsg ctermbg=0 ctermfg=15 cterm=NONE
-    hi ModeMsg ctermbg=0 ctermfg=0 cterm=NONE
-    hi MoreMsg ctermbg=NONE ctermfg=0 cterm=NONE
-    hi Question ctermbg=NONE ctermfg=0 cterm=NONE
-    hi WarningMsg ctermbg=0 ctermfg=0 cterm=NONE
-
-    set background=dark
+    hi Visual ctermbg=black ctermfg=black cterm=NONE
+    hi VisualNOS ctermbg=black ctermfg=black cterm=NONE
+    hi Pmenu ctermbg=black ctermfg=black cterm=NONE
+    hi PmenuSbar ctermbg=black ctermfg=black cterm=NONE
+    hi PmenuSel ctermbg=black ctermfg=black cterm=NONE
+    hi PmenuThumb ctermbg=black ctermfg=black cterm=NONE
+    hi FoldColumn ctermbg=NONE ctermfg=black cterm=NONE
+    hi Folded ctermbg=black ctermfg=black cterm=NONE
+    hi WildMenu ctermbg=black ctermfg=black cterm=NONE
+    hi SpecialKey ctermbg=NONE ctermfg=black cterm=NONE
+    hi DiffAdd ctermbg=black ctermfg=black cterm=NONE
+    hi DiffChange ctermbg=black ctermfg=black cterm=NONE
+    hi DiffDelete ctermbg=black ctermfg=black cterm=NONE
+    hi DiffText ctermbg=black ctermfg=black cterm=NONE
+    hi IncSearch ctermbg=black ctermfg=black cterm=reverse
+    hi Search ctermbg=black ctermfg=black cterm=NONE
+    hi Directory ctermbg=NONE ctermfg=black cterm=NONE
+    hi MatchParen ctermbg=black ctermfg=black cterm=NONE
+    hi SpellBad ctermbg=NONE ctermfg=black cterm=NONE
+    hi SpellCap ctermbg=NONE ctermfg=black cterm=NONE
+    hi SpellLocal ctermbg=NONE ctermfg=black cterm=NONE
+    hi SpellRare ctermbg=NONE ctermfg=black cterm=NONE
+    hi ColorColumn ctermbg=black ctermfg=NONE cterm=NONE
+    hi signColumn ctermbg=NONE ctermfg=black cterm=NONE
+    hi ErrorMsg ctermbg=black ctermfg=white cterm=NONE
+    hi ModeMsg ctermbg=black ctermfg=black cterm=NONE
+    hi MoreMsg ctermbg=NONE ctermfg=black cterm=NONE
+    hi Question ctermbg=NONE ctermfg=black cterm=NONE
+    hi WarningMsg ctermbg=black ctermfg=black cterm=NONE
 endif
 
 " Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)

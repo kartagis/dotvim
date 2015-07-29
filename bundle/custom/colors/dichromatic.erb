@@ -1,17 +1,17 @@
 <%
     # RNB, A VIM COLORSCHEME TEMPLATE
-
-    # This template is designed to help you create your Vim colorscheme
-    # with little effort.
+    # Author:            Romain Lafourcade (https://github.com/romainl)
+    # Canonical address: https://gist.github.com/romainl/5cd2f4ec222805f49eca
+    # This template is designed to help vimmers create their own Vim colorscheme
+    # without much effort.
     #
-    # The only requirement for using this template is Ruby.
+    # The only hard requirement is Ruby but Ruby knowledge is not necessary.
     #
     # The process is divided in four steps:
     #   1. start by editing your colorscheme's information,
     #   2. define your colors,
     #   3. define your highlight groups and links,
     #   4. and generate your colorscheme.
-
     # Step 1: information
     #
     # Make sure the name of your colorscheme is unique and attractive.
@@ -20,30 +20,33 @@
     information = {
         author: "Romain Lafourcade",
         email: "romainlafourcade@gmail.com",
-        name: "dichromacy",
-        description: "A 'dark' colorscheme for color blind vimmers.",
-        background: "dark"
+        name: "dichromatic",
+        description: "A 'dark' colorscheme for color blind vimmers. But not only.",
+        background: "dark",
+        webpage: "http://www.example.com"
     }
 
     # Step 2: colors
     #
     # black = [       give your color a convenient name
-    #   '#000000',    hexadecimal color for GVim/MacVim
+    #   "#000000",    hexadecimal color for GVim/MacVim
     #   0,            integer between 0 and 255 for terminals supporting 256 colors
-    #   0             integer between 0 and 15 for terminals limited to 16 colors
+    #   "black"       color name, can be "darkred", "red", "darkgreen", "green", "darkyellow",
+    #                 "yellow", "darkblue", "blue", "darkmagenta", "magenta", "black",
+    #                 "darkgrey", "grey", "white"
     # ]
     #
-    white       = ['#FFFFFF', 15, 15]
-    sky         = ['#87D7D7', 116, 0]
-    teal        = ['#5FAF87', 72, 0]
-    moss        = ['#008700', 28, 0]
-    asparagus   = ['#AFAF00', 142, 0]
-    cantaloupe  = ['#DFDF87', 186, 0]
-    strawberry  = ['#D75F87', 168, 0]
-    orchid      = ['#AF5FAF', 133, 0]
-    rose        = ['#87005F', 89, 0]
-    eggplant    = ['#00005F', 17, 0]
-    black       = ['#000000', 0, 0]
+    white       = ["#FFFFFF", 15, "white"]
+    sky         = ["#87D7D7", 116, "black"]
+    teal        = ["#5FAF87", 72, "black"]
+    moss        = ["#008700", 28, "black"]
+    asparagus   = ["#AFAF00", 142, "black"]
+    cantaloupe  = ["#DFDF87", 186, "black"]
+    strawberry  = ["#D75F87", 168, "black"]
+    orchid      = ["#AF5FAF", 133, "black"]
+    rose        = ["#87005F", 89, "black"]
+    eggplant    = ["#00005F", 17, "black"]
+    black       = ["#000000", 0, "black"]
 
     # Step 3: highlights
     #
@@ -70,7 +73,7 @@
     # The highlight groups below are fairly standard but some syntax scripts and
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
-	[ "Normal", "NONE", white, "NONE" ],
+        [ "Normal", "NONE", white, "NONE" ],
         [ "NonText", "NONE", cantaloupe, "NONE" ],
 
         [ "Comment", "NONE", moss, "NONE" ],
@@ -181,6 +184,7 @@
 -%>
 " <%= information[:name] %>.vim -- Vim color scheme.
 " Author:      <%= information[:author] %> (<%= information[:email] %>)
+" Webpage:     <%= information[:webpage] %>
 " Description: <%= information[:description] %>
 
 hi clear
@@ -197,24 +201,25 @@ if &t_Co >= 256 || has('gui_running')
     hi link <%= highlight[0] %> <%= highlight[1] %>
 <% elsif highlight.length == 4 -%>
     hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %>
+<% if highlight[0] == "Normal" -%>
+    set background=<%= information[:background] %>
+<% end -%>
 <% else -%>
     hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][1] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][1] %> cterm=<%= highlight[3] %> guibg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][0] %> guifg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][0] %> gui=<%= highlight[3] %> guisp=<%= highlight[4].kind_of?(String) ? highlight[4] : highlight[4][0] %>
 <% end -%>
 <% end -%>
-
-    set background=<%= information[:background] %>
 elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     set t_Co=16
-
 <% for highlight in highlights -%>
 <% if highlight.length == 2 -%>
     hi link <%= highlight[0] %> <%= highlight[1] %>
 <% else -%>
     hi <%= highlight[0] %> ctermbg=<%= highlight[1].kind_of?(String) ? highlight[1] : highlight[1][2] %> ctermfg=<%= highlight[2].kind_of?(String) ? highlight[2] : highlight[2][2] %> cterm=<%= highlight[3] %>
-<% end -%>
-<% end -%>
-
+<% if highlight[0] == "Normal" -%>
     set background=<%= information[:background] %>
+<% end -%>
+<% end -%>
+<% end -%>
 endif
 
 " Generated with RNB (https://gist.github.com/romainl/5cd2f4ec222805f49eca)
