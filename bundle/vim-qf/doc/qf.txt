@@ -152,7 +152,8 @@ is focused:
 *:Filter*
 
     Removes every item that doesn't match with the supplied argument,
-    either in the filename or in the description.
+    either in the filename or in the description. Note: no regular
+    expressions.
 
     Example: >
 

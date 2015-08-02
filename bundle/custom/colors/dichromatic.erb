@@ -36,7 +36,6 @@
     #                 "darkgrey", "grey", "white"
     # ]
     #
-    white       = ["#FFFFFF", 15, "white"]
     sky         = ["#87D7D7", 116, "black"]
     teal        = ["#5FAF87", 72, "black"]
     moss        = ["#008700", 28, "black"]
@@ -45,7 +44,10 @@
     strawberry  = ["#D75F87", 168, "black"]
     orchid      = ["#AF5FAF", 133, "black"]
     rose        = ["#87005F", 89, "black"]
-    eggplant    = ["#00005F", 17, "black"]
+    eggplant    = ["#00005F", 53, "black"]
+    white       = ["#FFFFFF", 15, "white"]
+    lightgray   = ["#AFAFAF", 145, "gray"]
+    darkgray    = ["#5F5F5F", 59, "gray"]
     black       = ["#000000", 0, "black"]
 
     # Step 3: highlights
@@ -73,12 +75,12 @@
     # The highlight groups below are fairly standard but some syntax scripts and
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
-        [ "Normal", "NONE", white, "NONE" ],
-        [ "NonText", "NONE", cantaloupe, "NONE" ],
+        [ "Normal", "NONE", "NONE", "NONE" ],
+        [ "NonText", "NONE", darkgray, "NONE" ],
 
-        [ "Comment", "NONE", moss, "NONE" ],
+        [ "Comment", "NONE", darkgray, "NONE" ],
         [ "Constant", "NONE", strawberry, "NONE" ],
-        [ "Error", rose, cantaloupe, "reverse" ],
+        [ "Error", white, rose, "reverse" ],
         [ "Identifier", "NONE", orchid, "NONE" ],
         [ "Ignore", "NONE", "NONE", "NONE" ],
         [ "PreProc", "NONE", cantaloupe, "NONE" ],
@@ -88,57 +90,58 @@
         [ "Todo", "NONE", "NONE", "reverse" ],
         [ "Type", "NONE", sky, "NONE" ],
         [ "Underlined", "NONE", "NONE", "underline" ],
+        [ "Number", "NONE", strawberry , "NONE" ],
 
-        [ "StatusLine", white, black, "NONE" ],
-        [ "StatusLineNC", black, "NONE", "NONE" ],
-        [ "VertSplit", black, black, "NONE" ],
+        [ "StatusLine", white, darkgray, "NONE" ],
+        [ "StatusLineNC", darkgray, white, "NONE" ],
+        [ "VertSplit", darkgray, darkgray, "NONE" ],
 
-        [ "TabLine", black, white, "NONE" ],
-        [ "TabLineFill", black, black, "NONE" ],
-        [ "TabLineSel", white, black, "NONE" ],
+        [ "TabLine", darkgray, white, "NONE" ],
+        [ "TabLineFill", darkgray, darkgray, "NONE" ],
+        [ "TabLineSel", white, darkgray, "NONE" ],
 
-        [ "Title", "NONE", cantaloupe, "NONE" ],
-        [ "LineNr", "NONE", strawberry, "NONE" ],
+        [ "Title", "NONE", teal, "NONE" ],
+        [ "LineNr", "NONE", sky, "NONE" ],
 
-        [ "Cursor", cantaloupe, cantaloupe, "NONE" ],
-        [ "CursorColumn", cantaloupe, cantaloupe, "NONE" ],
-        [ "CursorLine", "NONE", "NONE", "underline" ],
-        [ "CursorLineNr", "NONE", "NONE", "underline" ],
+        [ "Cursor", white, black, "NONE" ],
+        [ "CursorColumn", rose, "NONE", "NONE" ],
+        [ "CursorLine", eggplant, "NONE", "NONE" ],
+        [ "CursorLineNr", eggplant, "NONE", "NONE" ],
 
         [ "helpLeadBlank", "NONE", "NONE", "NONE" ],
         [ "helpNormal", "NONE", "NONE", "NONE" ],
 
-        [ "Visual", cantaloupe, cantaloupe, "NONE" ],
-        [ "VisualNOS", cantaloupe, cantaloupe, "NONE" ],
+        [ "Visual", sky, black, "NONE" ],
+        [ "VisualNOS", orchid, black, "NONE" ],
 
         [ "Pmenu", cantaloupe, black, "NONE" ],
         [ "PmenuSbar", asparagus, cantaloupe, "NONE" ],
-        [ "PmenuSel", black, cantaloupe, "NONE" ],
-        [ "PmenuThumb", cantaloupe, cantaloupe, "NONE" ],
+        [ "PmenuSel", orchid, black, "NONE" ],
+        [ "PmenuThumb", orchid, orchid, "NONE" ],
 
-        [ "FoldColumn", "NONE", cantaloupe, "NONE" ],
-        [ "Folded", cantaloupe, cantaloupe, "NONE" ],
+        [ "FoldColumn", "NONE", teal, "NONE" ],
+        [ "Folded", teal, black, "NONE" ],
 
-        [ "WildMenu", cantaloupe, cantaloupe, "NONE" ],
+        [ "WildMenu", eggplant, white, "NONE" ],
         [ "SpecialKey", "NONE", cantaloupe, "NONE" ],
 
-        [ "DiffAdd", cantaloupe, cantaloupe, "NONE" ],
-        [ "DiffChange", cantaloupe, cantaloupe, "NONE" ],
-        [ "DiffDelete", cantaloupe, cantaloupe, "NONE" ],
-        [ "DiffText", cantaloupe, cantaloupe, "NONE" ],
+        [ "DiffAdd", moss, black, "NONE" ],
+        [ "DiffChange", sky, black, "NONE" ],
+        [ "DiffDelete", rose, black, "NONE" ],
+        [ "DiffText", teal, black, "NONE" ],
 
-        [ "IncSearch", cantaloupe, cantaloupe, "reverse" ],
-        [ "Search", cantaloupe, cantaloupe, "NONE" ],
+        [ "IncSearch", black, orchid, "reverse" ],
+        [ "Search", cantaloupe, black, "NONE" ],
 
-        [ "Directory", "NONE", cantaloupe, "NONE" ],
-        [ "MatchParen", cantaloupe, cantaloupe, "NONE" ],
+        [ "Directory", "NONE", teal, "NONE" ],
+        [ "MatchParen", asparagus, black, "NONE" ],
 
-        [ "SpellBad", "NONE", cantaloupe, "NONE", cantaloupe ],
-        [ "SpellCap", "NONE", cantaloupe, "NONE", cantaloupe ],
-        [ "SpellLocal", "NONE", cantaloupe, "NONE", cantaloupe ],
-        [ "SpellRare", "NONE", cantaloupe, "NONE", cantaloupe ],
+        [ "SpellBad", rose, black, "NONE", rose ],
+        [ "SpellCap", teal, black, "NONE", teal ],
+        [ "SpellLocal", asparagus, black, "NONE", asparagus ],
+        [ "SpellRare", orchid, black, "NONE", orchid ],
 
-        [ "ColorColumn", eggplant, "NONE", "NONE" ],
+        [ "ColorColumn", orchid, "NONE", "NONE" ],
         [ "signColumn", "NONE", cantaloupe, "NONE" ],
 
         [ "ErrorMsg", rose, white, "NONE" ],
