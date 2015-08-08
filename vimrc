@@ -282,6 +282,8 @@ nnoremap gV `[v`]
 
 nnoremap ' `
 
+nnoremap <BS> <C-^>
+
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=custom#SmartEnter()\<CR>"
 
 cnoremap <C-a> <Home>
