@@ -54,3 +54,8 @@ nnoremap ? :<C-u>let b:direction = "b"<CR>mz?
 cnoremap <expr> <Tab>   custom#BetterIncSearch("tab")
 cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
 cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
+
+function! BreakHere()
+    s/\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\r\3\5
+    call histdel("/", -1)
+endfunction
