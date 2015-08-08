@@ -225,6 +225,8 @@ hi link htmlEndTag         htmlTagName
 hi link htmlLink           Function
 hi link htmlSpecialTagName htmlTagName
 hi link htmlTag            htmlTagName
+hi link htmlBold           Normal
+hi link htmlItalic         Normal
 hi link xmlTag             Statement
 hi link xmlTagName         Statement
 hi link xmlEndTag          Statement

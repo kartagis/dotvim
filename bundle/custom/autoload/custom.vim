@@ -256,9 +256,9 @@ endfunction
 
 " custom text-object for numerical values
 function! custom#VisualNumbers()
-  call custom#search('\d\([^0-9\.]\|$\)', 'cW')
+  call search('\d\([^0-9\.]\|$\)', 'cW')
   normal v
-  call custom#search('\(^\|[^0-9\.]\d\)', 'becW')
+  call search('\(^\|[^0-9\.]\d\)', 'becW')
 endfunction
 
 " ===========================================================================
