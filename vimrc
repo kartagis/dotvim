@@ -145,6 +145,12 @@ augroup VIMRC
 
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
+
+    autocmd BufLeave *.css,*.less,*scss normal! mC
+    autocmd BufLeave *.html             normal! mH
+    autocmd BufLeave *.js               normal! mJ
+    autocmd BufLeave *.php              normal! mP
+    autocmd BufLeave vimrc,*.vim        normal! mV
 augroup END
 
 """""""""""""""""""""""
