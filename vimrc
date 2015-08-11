@@ -8,7 +8,7 @@ syntax on
 
 runtime macros/matchit.vim
 
-"""""""""""""""""""""""""""""""""
+ """""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 if !exists('os')
