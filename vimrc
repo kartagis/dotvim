@@ -290,15 +290,14 @@ nnoremap ' `
 
 nnoremap <BS> <C-^>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=custom#SmartEnter()\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=custom#ICR()\<CR>"
+cnoremap <expr> <CR> custom#CCR()
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>
-
-cnoremap <expr> <CR> custom#Return()
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

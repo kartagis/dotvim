@@ -1,13 +1,13 @@
 " make list-like commands more intuitive
-function! custom#Return()
-  let cmdline = getcmdline()
+function! custom#CCR()
   if getcmdtype() == "/" || getcmdtype() == "?"
     if b:direction == "b"
-      return "\<CR>:silent let v:searchforward = 0\<CR>"
+      return "\<CR>:let v:searchforward = 0\<CR>\<C-l>"
     else
-      return "\<CR>:silent let v:searchforward = 1\<CR>"
+      return "\<CR>:let v:searchforward = 1\<CR>\<C-l>"
     endif
   else
+    let cmdline = getcmdline()
     if cmdline =~ '\C^ls'
       " like :ls but prompts for a buffer command
       return "\<CR>:b"
@@ -87,7 +87,7 @@ endfunction
 " - expands {}, [], (), <tag></tag> 'correctly'
 " - removes empty comment marker
 " - more?
-function! custom#SmartEnter()
+function! custom#ICR()
   " specific case: beware of the cmdline window
   if &buftype ==# "quickfix"
     return "\<CR>"
