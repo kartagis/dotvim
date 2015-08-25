@@ -1,4 +1,4 @@
-t
+# vim-qlist
 
 Vim-qlist is an updated, more powerful, version of the function discussed in [this /r/vim thread](http://www.reddit.com/r/vim/comments/1rzvsm/do_any_of_you_redirect_results_of_i_to_the/).
 
@@ -8,12 +8,17 @@ The purpose of this script is to make the results of "include-search" and "defin
 
 ## Installation
 
-Use your favorite plugin manager or dump `qlist.vim` in your `plugin` directory:
+Use your favorite plugin manager or dump the files in this repository in their
+standard location:
 
-    # Unix-like systems
+on Unix-like systems...
+
+    ~/.vim/doc/qlist.txt
     ~/.vim/plugin/qlist.vim
 
-    # Windows
+on Windows...
+
+    %userprofile%\vimfiles\doc\qlist.txt
     %userprofile%\vimfiles\plugin\qlist.vim
 
 Don't forget to execute the following command to make the documentation
