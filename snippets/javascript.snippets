@@ -158,17 +158,13 @@ snippet arit
 ##########
 # Object > Literal
 snippet obj
-	var ${1:object_name} = {
-		${2}
-	};
+	var ${1:object_name} = {${2}};
 # Object > Property
 snippet :
 	${1:property_name} : ${2:value}
 # Object > Method
 snippet :f
-	${1:method_name} : function(${2}) {
-		${3}
-	}
+	${1:method_name} : function(${2}) {${3}}
 #
 #
 #
@@ -1202,4 +1198,40 @@ snippet pixi bootstrap
 		};
 
 		return _$1;
+	});
+# backbone view
+snippet view simple
+	define('${1:view}', [${2:dependencies}], function(${3:modules}){
+		var View = Backbone.View.extend({
+			initialize: function(options) {
+				this.options = options || {};
+			},
+
+			el: $('${4:selector}'),
+
+			template: ${5:template_name},
+
+			events: {},
+
+			render: function(){}
+		});
+		return View;
+	});
+# backbone view TODO
+snippet view advanced
+	define('${1:view}', [${2:dependencies}, ${3:common_methods}], function(${4:modules}){
+		var View = Backbone.View.extend(_.extend({}, $3, {
+			initialize: function(options) {
+				this.options = options || {};
+			},
+
+			el: $('${5:selector}'),
+
+			template: ${6:template_name},
+
+			events: {},
+
+			render: function(){}
+		}));
+		return View;
 	});

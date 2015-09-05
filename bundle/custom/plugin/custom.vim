@@ -34,10 +34,10 @@ nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
 command! -nargs=+ -complete=file_in_path Replace call custom#Replace(<f-args>)
 command!                                 Done    call custom#Done()
 
-nnoremap § *``gn<C-g>
-inoremap § <C-o>gn<C-g>
-xnoremap § <Esc>:let @/ = custom#GetVisualSelection()<CR>gn<C-g>
-snoremap <expr> . @.
+" nnoremap § *``gn<C-g>
+" inoremap § <C-o>gn<C-g>
+" xnoremap § <Esc>:let @/ = custom#GetVisualSelection()<CR>gn<C-g>
+" snoremap <expr> . @.
 
 set report=0
 
