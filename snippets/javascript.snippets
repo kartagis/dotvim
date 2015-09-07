@@ -1,6 +1,11 @@
 # var
-snippet var
-	var ${1:name} = ${2:value};
+snippet =
+	= ${1:value};
+# Function as var
+snippet =f
+	= function(${2}) {
+		${3}
+	};
 # Function
 snippet fun
 	function ${1:function_name}(${2}) {
@@ -8,12 +13,7 @@ snippet fun
 	}
 # Anonymous Function
 snippet f
-	function(${1}) {${2}}${3}
-# Function as var
-snippet vfun
-	var ${1:function_name} = function $1(${2}) {
-		${3}
-	};
+	function(${1}){${2}}
 # if
 snippet if
 	if (${1}) {
@@ -189,11 +189,11 @@ snippet cons
 		var self = this;
 		${3}
 	};
-# Constructor > Public Property
-snippet =
+# Constructor > Public Member
+snippet pub public member
 	${1:this}.${2:public_property_name} = ${3};${4}
 # Constructor > Privileged Method
-snippet =f
+snippet pub privileged method
 	${1:this}.${2:privileged_method_name} = function(${3}) {
 		${4}
 	};
@@ -271,12 +271,12 @@ snippet callback
 # require.js #
 ##############
 # require
-snippet req
+snippet require
 	require(["${1:package_name}"], function(${2:argument}) {
 		${3}
 	});
 # require()
-snippet require
+snippet req
 	var ${1:instance_name} = require("${2:package_name}");
 # define
 snippet def function without dependencies
@@ -300,33 +300,9 @@ snippet def commonjs wrapper
 	define(function(require, exports, module) {
 		${1}
 	});
-# new JavaScript (define) Class
-snippet def PIXI.js
-	define('${1:primary_type_name}', [], function() {
-
-		var _$1 = function() {
-
-			var _scope;
-
-			PIXI.DisplayObjectContainer.call(this);
-			_scope = this;
-
-			function build() {
-			}
-
-			this.process = function() {
-			};
-
-			this.resize = function (w, h) {
-			};
-
-			build();
-		};
-
-		_$1.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
-
-		return _$1;
-	});
+# exports
+snippet exp
+	module.exports = ${1}
 #
 #
 #
@@ -988,8 +964,35 @@ snippet pixi rect
 	$1.beginFill(${2:0xFF0000}, 1);
 	$1.drawRect(${3:0}, ${4:0}, ${5:100}, ${6:100});
 	$1.endFill();
+# PIXI (from Mazarine)
+snippet pixi AMD class
+	define('${1:primary_type_name}', [], function() {
+
+		var _$1 = function() {
+
+			var _scope;
+
+			PIXI.DisplayObjectContainer.call(this);
+			_scope = this;
+
+			function build() {
+			}
+
+			this.process = function() {
+			};
+
+			this.resize = function (w, h) {
+			};
+
+			build();
+		};
+
+		_$1.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
+
+		return _$1;
+	});
 # Pixi Template Class
-snippet pixi class
+snippet pixi main
 	(function(parent) {
 		var _stats, _DOMContainer, _stage, _renderer;
 
@@ -1199,39 +1202,26 @@ snippet pixi bootstrap
 
 		return _$1;
 	});
-# backbone view
-snippet view simple
-	define('${1:view}', [${2:dependencies}], function(${3:modules}){
-		var View = Backbone.View.extend({
-			initialize: function(options) {
-				this.options = options || {};
-			},
-
-			el: $('${4:selector}'),
-
-			template: ${5:template_name},
-
-			events: {},
-
-			render: function(){}
-		});
-		return View;
+# backbone view definition
+snippet bbv
+	Backbone.View.extend({
+		initialize: function() {${3}},
+		el: ${1:selector},
+		model: ${2:model},
+		template: ${3:template},
+		events: {},
+		render: function(){}
 	});
-# backbone view TODO
-snippet view advanced
-	define('${1:view}', [${2:dependencies}, ${3:common_methods}], function(${4:modules}){
-		var View = Backbone.View.extend(_.extend({}, $3, {
-			initialize: function(options) {
-				this.options = options || {};
-			},
-
-			el: $('${5:selector}'),
-
-			template: ${6:template_name},
-
-			events: {},
-
-			render: function(){}
-		}));
-		return View;
+# backbone model definition
+snippet bbm
+	Backbone.Model.extend({
+		initialize: function() {${1}}
 	});
+# backbone router definition
+snippet bbr
+	Backbone.Router.extend({
+		routes: {${1}}
+	});
+# backbone collection definition
+snippet bbc
+	Backbone.Collection.extend({${1}});

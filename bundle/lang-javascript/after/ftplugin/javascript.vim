@@ -1,9 +1,9 @@
 setlocal define=^\\s*\\(self\\\|this\\\|function\\\|var\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
 if &expandtab
-  let &l:include = '^\s\{,' . &shiftwidth . "}\\(import[^'\\\"]*\\)*['\\\"]\\zs[^'\\\"]*\\ze"
+  let &l:include = '^\s*\{,' . &shiftwidth . "}\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
 else
-  let &l:include = "^\t\\(import[^'\\\"]*\\)*['\\\"]\\zs[^'\\\"]*\\ze"
+  let &l:include = "^\t*\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
 endif
 
 " matchit
