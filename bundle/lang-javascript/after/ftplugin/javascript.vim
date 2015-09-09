@@ -1,9 +1,9 @@
 setlocal define=^\\s*\\(self\\\|this\\\|function\\\|var\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
 if &expandtab
-  let &l:include = '^\s\{,' . &shiftwidth . "}\\(import[^'\\\"]*\\)*['\\\"]\\zs[^'\\\"]*\\ze"
+  let &l:include = '^\s\{,' . &shiftwidth . "}\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
 else
-  let &l:include = "^\t\\(import[^'\\\"]*\\)*['\\\"]\\zs[^'\\\"]*\\ze"
+  let &l:include = "^\t*\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
 endif
 
 " matchit
@@ -21,22 +21,22 @@ nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
 nnoremap <buffer> <C-}> :Bombit<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 " quick moves
-nnoremap <silent> <buffer> ]] :call functions#CustomJump('/\v^\s*function')<cr>
-nnoremap <silent> <buffer> [[ :call functions#CustomJump('?\v^\s*function')<cr>
+nnoremap <silent> <buffer> ]] :call custom#CustomJump('/\v^\s*function')<cr>
+nnoremap <silent> <buffer> [[ :call custom#CustomJump('?\v^\s*function')<cr>
 
 " block un/comment
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
-" select function
+" select whole function
 xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
 onoremap <buffer> af :normal vaf<CR>
 
 " generate event handler
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 
-nnoremap <buffer> ,l yiwoconsole.log("<C-r>"", <C-r>");<Esc>
-xnoremap <buffer> ,l yoconsole.log("<C-r>"",<C-r>");<Esc>
+nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>
+xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>
 
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
 xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>

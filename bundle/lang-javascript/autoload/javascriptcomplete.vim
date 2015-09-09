@@ -4,6 +4,8 @@
 " Last Change:  2014 Jun 23
 " Original Maintainer: Mikolaj Machowski ( mikmach AT wp DOT pl )
 
+" underscore.js (http://underscorejs.org/) support
+let s:underscores = ['each(', 'map(', 'reduce(', 'reduceRight(', 'find(', 'filter(', 'where(', 'findWhere(', 'reject(', 'every(', 'some(', 'contains(', 'invoke(', 'pluck(', 'max(', 'min(', 'sortBy(', 'groupBy(', 'indexBy(', 'countBy(', 'shuffle(', 'sample(', 'toArray(', 'size(', 'partition(', 'first(', 'initial(', 'last(', 'rest(', 'compact(', 'flatten(', 'without(', 'union(', 'intersection(', 'difference(', 'uniq(', 'zip(', 'unzip(', 'object(', 'indexOf(', 'lastIndexOf(', 'sortedIndex(', 'findIndex(', 'findLastIndex(', 'range(', 'bind(', 'bindAll(', 'partial(', 'memoize(', 'delay(', 'defer(', 'throttle(', 'debounce(', 'once(', 'after(', 'before(', 'wrap(', 'negate(', 'compose(', 'keys(', 'allKeys(', 'values(', 'mapObject(', 'pairs(', 'invert(', 'create(', 'functions(', 'findKey(', 'extend(', 'extendOwn(', 'pick(', 'omit(', 'defaults(', 'clone(', 'tap(', 'has(', 'matcher(', 'property(', 'propertyOf(', 'isEqual(', 'isMatch(', 'isEmpty(', 'isElement(', 'isArray(', 'isObject(', 'isArguments(', 'isFunction(', 'isString(', 'isNumber(', 'isFinite(', 'isBoolean(', 'isDate(', 'isRegExp(', 'isNaN(', 'isNull(', 'isUndefined(', 'noConflict(', 'identity(', 'constant(', 'noop(', 'times(', 'random(', 'mixin(', 'iteratee(', 'uniqueId(', 'escape(', 'unescape(', 'result(', 'now(', 'template(', 'chain(', 'value(']
 " PIXI.js (http://www.pixijs.com/) support
 let s:pixis = ['AbstractFilter', 'AjaxRequest', 'AlphaMaskFilter', 'AsciiFilter', 'AssetLoader', 'AtlasLoader', 'autoDetectRecommendedRenderer', 'autoDetectRenderer', 'BaseTexture', 'BitmapFontLoader', 'BitmapText', 'BlurFilter', 'BlurXFilter', 'BlurYFilter', 'CanvasBuffer', 'CanvasGraphics', 'CanvasMaskManager', 'CanvasRenderer', 'CanvasTinter', 'Circle', 'ColorMatrixFilter', 'ColorStepFilter', 'ComplexPrimitiveShader', 'ConvolutionFilter', 'CrossHatchFilter', 'DisplacementFilter', 'DisplayObject', 'DisplayObjectContainer', 'DotScreenFilter', 'Ellipse', 'Event', 'EventTarget', 'FilterBlock', 'FilterTexture', 'Graphics', 'GraphicsData', 'GrayFilter', 'ImageLoader', 'InteractionData', 'InteractionManager', 'InvertFilter', 'JsonLoader', 'Matrix', 'MovieClip', 'NoiseFilter', 'NormalMapFilter', 'PixelateFilter', 'PixiFastShader', 'PixiShader', 'Point', 'Polygon', 'PolyK', 'PrimitiveShader', 'Rectangle', 'RenderTexture', 'RGBSplitFilter', 'Rope', 'SepiaFilter', 'SmartBlurFilter', 'Spine', 'SpineLoader', 'Sprite', 'SpriteBatch', 'SpriteSheetLoader', 'Stage', 'Strip', 'StripShader', 'Text', 'Texture', 'TilingSprite', 'TiltShiftFilter', 'TiltShiftXFilter', 'TiltShiftYFilter', 'TwistFilter', 'WebGLBlendModeManager', 'WebGLFastSpriteBatch', 'WebGLFilterManager', 'WebGLGraphics', 'WebGLGraphicsData', 'WebGLMaskManager', 'WebGLRenderer', 'WebGLShaderManager', 'WebGLSpriteBatch', 'WebGLStencilManager']
 let s:pixi_abstractfilters = [ 'syncUniforms(', 'dirty', 'fragmentSrc', 'padding', 'passes', 'shaders', 'uniforms' ]
@@ -290,6 +292,8 @@ function! javascriptcomplete#CompleteJS(findstart, base)
         let values = s:niters
       elseif object_type == 'TreeWalker'
         let values = s:twalkers
+      elseif object_type == '_'
+        let values = s:underscores
       elseif object_type == 'PIXI'
         let values = s:pixis
       elseif object_type == 'PIXI.AjaxRequest'
@@ -491,6 +495,8 @@ function! javascriptcomplete#CompleteJS(findstart, base)
           let values = s:styls
         elseif shortcontext =~ '\(top\|self\|window\)\.$'
           let values = s:winds
+        elseif shortcontext =~ '_\.$'
+          let values = s:underscores
         elseif shortcontext =~ 'PIXI\.$'
           let values = s:pixis
         elseif shortcontext =~ 'AbstractFilter\.$'

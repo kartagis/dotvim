@@ -1,6 +1,10 @@
 dotvim
 ======
 
+
+$$\alpha$$
+
+
 Ma configuration pour Vim.
 
 **Attention !** Ceci n’a pas la prétention d’être une « distribution » prête à l’emploi. Mes options, mes raccourcis, mes commandes, mes fonctions, mon choix de plugins ne doivent pas être pris pour autre chose que *ma* propre config à moi.
