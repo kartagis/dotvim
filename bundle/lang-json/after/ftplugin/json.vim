@@ -1,5 +1,4 @@
-"uncomment to enable folding of `{...}` and `[...]` blocks
-"setlocal foldmethod=syntax
+setlocal foldmethod=indent
 
 if has('conceal')
   setlocal conceallevel=0
