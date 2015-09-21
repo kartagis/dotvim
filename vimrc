@@ -162,6 +162,8 @@ nnoremap ,s :sfind *
 nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,v :vert sfind *
 nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,t :tabfind *
+nnoremap ,T :tabfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
 command! -nargs=1 -complete=customlist,custom#MRUComplete ME call custom#MRU('edit', <f-args>)
 command! -nargs=1 -complete=customlist,custom#MRUComplete MS call custom#MRU('split', <f-args>)
@@ -249,7 +251,7 @@ xnoremap ,, <Esc>:let @/ = custom#GetVisualSelection()<CR>cgN
 command! Tagit  call custom#Tagit(0)
 command! Bombit call custom#Tagit(1)
 
-nnoremap ,t :Bombit<CR>:tjump /
+nnoremap ,j :Bombit<CR>:tjump /
 nnoremap ,p :Bombit<CR>:ptjump /
 
 nnoremap g] :Bombit<CR>g<C-]>
@@ -345,7 +347,7 @@ let g:netrw_liststyle = 3
 " built-in html-indent
 let g:html_indent_script1 = 'inc'
 let g:html_indent_style1  = 'inc'
-let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote'
+let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote,section'
 
 " sparkup
 let g:sparkup = myruntime . '/bundle/sparkup/ftplugin/html/sparkup.py'

@@ -56,6 +56,6 @@ cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
 cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
 
 function! BreakHere()
-    s/\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\r\3\5
+    s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
     call histdel("/", -1)
 endfunction
