@@ -35,8 +35,8 @@ onoremap <buffer> af :normal vaf<CR>
 " generate event handler
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 
-nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>
-xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>
+nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
+xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
 
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
 xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
