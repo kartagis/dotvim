@@ -41,19 +41,19 @@ snippet shadow text
 # media queries
 snippet mq Smartphones (portrait and lanscape)
 	/* start Smartphones (portrait and landscape) */
-	@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	@media only screen and (min-width : 320px) and (max-width : 736px) {
 		${1}
 	}
 	/* end Smartphones (portrait and landscape) */
 snippet mq smartphones (landscape)
 	/* start Smartphones (landscape) */
-	@media only screen and (min-width : 321px) {
+	@media only screen and (min-width : 480px) and (max-width : 736px) {
 		${1}
 	}
 	/* end Smartphones (landscape) */
 snippet mq Smartphones (portrait)
 	/* start Smartphones (portrait) */
-	@media only screen and (max-width : 320px) {
+	@media only screen and (min-width : 320px) and (max-width : 414px) {
 		${1}
 	}
 	/* end Smartphones (portrait) */

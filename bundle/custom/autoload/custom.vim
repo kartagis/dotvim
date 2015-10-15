@@ -12,19 +12,19 @@ function! custom#CCR()
         endif
     else
         let cmdline = getcmdline()
-        if cmdline =~ '^ls'
+        if cmdline =~ '\C^ls'
             " like :ls but prompts for a buffer command
             return "\<CR>:b"
         elseif cmdline =~ '/#$'
             " like :g//# but prompts for a command
             return "\<CR>:"
-        elseif cmdline =~ '\v^(dli|il)'
+        elseif cmdline =~ '\v\C^(dli|il)'
             " like :dlist or :ilist but prompts for a count for :djump or :ijump
             return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-        elseif cmdline =~ '\v^(cli|lli)'
+        elseif cmdline =~ '\v\C^(cli|lli)'
             " like :clist or :llist but prompts for an error/location number
             return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-        elseif cmdline =~ '^old'
+        elseif cmdline =~ '\C^old'
             " like :oldfiles but prompts for an old file to edit
             return "\<CR>:edit #<"
         els
@@ -348,5 +348,5 @@ function! custom#Redir(cmd)
     redir END
     vnew
     setlocal nobuflisted buftype=nofile bufhidden=wipe noswapfile
-    call custom#setline(1, split(output, "\n"))
+    call setline(1, split(output, "\n"))
 endfunction

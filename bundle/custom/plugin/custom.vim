@@ -55,7 +55,11 @@ cnoremap <expr> <Tab>   custom#BetterIncSearch("tab")
 cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
 cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
 
+" universal opposite of J
 function! BreakHere()
     s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
     call histdel("/", -1)
 endfunction
+
+" TODO for all
+autocmd BufWinEnter * call matchadd("Todo", '\(TODO\|HACK\)')
