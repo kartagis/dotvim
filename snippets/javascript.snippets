@@ -30,7 +30,7 @@ snippet else
 	else {
 		${1}
 	}
-# tertiary conditional
+# ternary operator
 snippet ter
 	${1:condition} ? ${2:if true} : ${3:if false};
 # switch
@@ -267,17 +267,14 @@ snippet callback
 #
 #
 #
-##############
-# require.js #
-##############
+#######
+# AMD #
+#######
 # require
 snippet require
 	require(["${1:package_name}"], function(${2:argument}) {
 		${3}
 	});
-# require()
-snippet req
-	var ${1:instance_name} = require("${2:package_name}");
 # define
 snippet def function without dependencies
 	define(${1:module_name}, function() {
@@ -300,6 +297,15 @@ snippet def commonjs wrapper
 	define(function(require, exports, module) {
 		${1}
 	});
+#
+#
+#
+############
+# CommonJS #
+############
+# require()
+snippet req
+	var ${1:instance_name} = require("${2:package_name}");
 # exports
 snippet exp
 	module.exports = ${1}
@@ -1202,16 +1208,15 @@ snippet pixi bootstrap
 
 		return _$1;
 	});
-# backbone view definition
-snippet bbv
-	Backbone.View.extend({
-		initialize: function() {${3}},
-		el: ${1:selector},
-		model: ${2:model},
-		template: ${3:template},
-		events: {},
-		render: function(){}
-	});
+#
+#
+#
+############
+# Backbone #
+############
+# backbone collection definition
+snippet bbc
+	Backbone.Collection.extend({${1}});
 # backbone model definition
 snippet bbm
 	Backbone.Model.extend({
@@ -1222,6 +1227,13 @@ snippet bbr
 	Backbone.Router.extend({
 		routes: {${1}}
 	});
-# backbone collection definition
-snippet bbc
-	Backbone.Collection.extend({${1}});
+# backbone view definition
+snippet bbv
+	Backbone.View.extend({
+		initialize: function() {${3}},
+		el: ${1:selector},
+		model: ${2:model},
+		template: ${3:template},
+		events: {},
+		render: function(){}
+	});

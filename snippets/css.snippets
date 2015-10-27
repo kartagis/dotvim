@@ -41,58 +41,52 @@ snippet shadow text
 # media queries
 snippet mq Smartphones (portrait and lanscape)
 	/* start Smartphones (portrait and landscape) */
-	@media only screen and (min-width : 320px) and (max-width : 736px) {
+	@media only screen and (min-width : 320px) and (max-width : 767px) {
 		${1}
 	}
 	/* end Smartphones (portrait and landscape) */
 snippet mq smartphones (landscape)
 	/* start Smartphones (landscape) */
-	@media only screen and (min-width : 480px) and (max-width : 736px) {
+	@media only screen and (min-width : 320px) and (max-width : 767px) and (orientation: landscape){
 		${1}
 	}
 	/* end Smartphones (landscape) */
 snippet mq Smartphones (portrait)
 	/* start Smartphones (portrait) */
-	@media only screen and (min-width : 320px) and (max-width : 414px) {
+	@media only screen and (min-width : 320px) and (max-width : 767px) and (orientation: portrait){
 		${1}
 	}
 	/* end Smartphones (portrait) */
-snippet mq iPads (portrait and landscape)
-	/* start iPads (portrait and landscape) */
+snippet mq Tablets (portrait and landscape)
+	/* start Tablets (portrait and landscape) */
 	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 		${1}
 	}
-	/* end iPads (portrait and landscape) */
-snippet mq iPads (lanscape)
-	/* start iPads (landscape) */
+	/* end Tablets (portrait and landscape) */
+snippet mq Tablets (lanscape)
+	/* start Tablets (landscape) */
 	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 		${1}
 	}
-	/* end iPads (landscape) */
-snippet mq iPads (portrait)
-	/* start iPads (portrait) */
+	/* end Tablets (landscape) */
+snippet mq Tablets (portrait)
+	/* start Tablets (portrait) */
 	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
 		${1}
 	}
-	/* end iPads (portrait) */
-snippet mq Desktops and laptops
-	/* start Desktops and laptops */
-	@media only screen and (min-width : 1224px) {
+	/* end Tablets (portrait) */
+snippet mq Displays (smaller)
+	/* start Displays (smaller) */
+	@media only screen and (min-width : 1025px) {
 		${1}
 	}
-	/* end Desktops and laptops */
-snippet mq Large displays
-	/* start Large displays */
-	@media only screen and (min-width : 1824px) {
+	/* end Displays (smaller) */
+snippet mq Displays (larger)
+	/* start Displays (larger) */
+	@media only screen and (min-width : 1280px) {
 		${1}
 	}
-	/* end Large displays */
-snippet mq iPhone 4
-	/* start iPhone 4 */
-	@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
-		${1}
-	}
-	/* end iPhone 4 */
+	/* end Displays (larger) */
 snippet § Section
 	/* start ${1:name} */
 	${2:selector} {

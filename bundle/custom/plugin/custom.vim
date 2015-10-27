@@ -16,7 +16,6 @@ nnoremap cy :call custom#Cycle()<CR>
 
 " quick :s
 nnoremap gS :%s/
-xnoremap gS :%s/
 nnoremap gs :s/
 xnoremap gs :s/
 
@@ -26,9 +25,9 @@ nmap ,# :g//#<Left><Left>
 
 " specialized search/replace
 " (broken)
-nnoremap <Space>f "zyiwm'/{<CR>%V'':s/\<<C-r>z\>/
-nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
-nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
+" nnoremap <Space>f "zyiwm'/{<CR>%V'':s/\<<C-r>z\>/
+" nnoremap <Space>b "zyiwVi(:s/\<<C-r>z\>/
+" nnoremap <Space>B "zyiwVi{:s/\<<C-r>z\>/
 
 " search/replace across multiple files
 command! -nargs=+ -complete=file_in_path Replace call custom#Replace(<f-args>)
@@ -48,12 +47,14 @@ xnoremap in :<C-u>call custom#VisualNumbers()<CR>
 onoremap in :normal vin<CR>
 
 " better incremental search
-nnoremap / :<C-u>let b:direction = "f"<CR>mz/
-nnoremap ? :<C-u>let b:direction = "b"<CR>mz?
+" nnoremap / :<C-u>let b:direction = "f"<CR>mz/
+" onoremap / :<C-u>let b:direction = "f"<CR>mzgv/
+" nnoremap ? :<C-u>let b:direction = "b"<CR>mz?
+" onoremap ? :<C-u>let b:direction = "b"<CR>mzgv?
 
-cnoremap <expr> <Tab>   custom#BetterIncSearch("tab")
-cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
-cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
+" cnoremap <expr> <Tab>   custom#BetterIncSearch("tab")
+" cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
+" cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
 
 " universal opposite of J
 function! BreakHere()
@@ -62,4 +63,4 @@ function! BreakHere()
 endfunction
 
 " TODO for all
-autocmd BufWinEnter * call matchadd("Todo", '\(TODO\|HACK\)')
+" autocmd BufWinEnter * call matchadd("Todo", '\(TODO\|HACK\)')

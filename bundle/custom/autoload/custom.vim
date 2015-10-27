@@ -1,15 +1,16 @@
 " make list-like commands more intuitive
 function! custom#CCR()
     if getcmdtype() == "/" || getcmdtype() == "?"
-        if exists("b:direction")
-            if b:direction == "b"
-                return "\<CR>:let v:searchforward = 0\<CR>\<C-l>"
-            else
-                return "\<CR>:let v:searchforward = 1\<CR>\<C-l>"
-            endif
-        else
-            return "\<CR>"
-        endif
+        " if exists("b:direction")
+        "     if b:direction == "b"
+        "         return "\<CR>:let v:searchforward = 0\<CR>\<C-l>"
+        "     else
+        "         return "\<CR>:let v:searchforward = 1\<CR>\<C-l>"
+        "     endif
+        " else
+        "     return "\<CR>"
+        " endif
+        return "\<CR>"
     else
         let cmdline = getcmdline()
         if cmdline =~ '\C^ls'
