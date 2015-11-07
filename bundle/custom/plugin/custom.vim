@@ -56,6 +56,10 @@ onoremap in :normal vin<CR>
 " cnoremap <expr> <S-Tab> custom#BetterIncSearch("stab")
 " cnoremap <expr> <C-c>   custom#BetterIncSearch("ctrlc")
 
+" smarter incsearch
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+
 " universal opposite of J
 function! BreakHere()
     s/^\(\s*\)\(.\{-}\)\(\s*\)\(\%#\)\(\s*\)\(.*\)/\1\2\r\1\4\6
