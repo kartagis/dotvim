@@ -311,6 +311,9 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', 
     execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
+xnoremap in :<C-u>call custom#VisualNumbers()<CR>
+onoremap in :normal vin<CR>
+
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
