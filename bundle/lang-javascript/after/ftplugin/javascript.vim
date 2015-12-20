@@ -17,12 +17,12 @@ let b:match_words = '\<function\>:\<return\>,'
 nnoremap <buffer> ,g I// <Esc>A //<Esc>yyp0llv$hhhr-yykPjj
 
 " tag jumps
-nnoremap <buffer> <C-]> :Bombit<CR>:tjump /<c-r>=expand('<cword>')<CR><CR>
-nnoremap <buffer> <C-}> :Bombit<CR>:ptjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <buffer> <C-]> :tjump /<c-r>=expand('<cword>')<CR><CR>
+nnoremap <buffer> <C-}> :ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 " quick moves
-nnoremap <silent> <buffer> ]] :call custom#CustomJump('/\v^\s*function')<cr>
-nnoremap <silent> <buffer> [[ :call custom#CustomJump('?\v^\s*function')<cr>
+nnoremap <silent> <buffer> ]] :call custom#CustomJump('/function')<cr>
+nnoremap <silent> <buffer> [[ :call custom#CustomJump('?function')<cr>
 
 " block un/comment
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
@@ -36,8 +36,8 @@ onoremap <buffer> af :normal vaf<CR>
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 
 " generate console.log()
-nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
-xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
+nnoremap <buffer> ,l :'}-put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
+xnoremap <buffer> ,l :<C-u>'}-put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
 
 " fix a hasty console.log()
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
@@ -45,7 +45,7 @@ xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
 
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |
-  \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -B -s " . &shiftwidth |
+  \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -t -s " . &shiftwidth |
   \ call winrestview(b:winview)
 
 " poor man's syntastic ;-)

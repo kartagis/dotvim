@@ -332,6 +332,7 @@ command! SV source  $MYVIMRC
 " sharing is caring
 command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
+command! -range=% IX  silent execute <line1> . "," . <line2> . "w !curl -F 'f:1=<-' ix.io | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""
