@@ -36,8 +36,8 @@ onoremap <buffer> af :normal vaf<CR>
 nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 
 " generate console.log()
-nnoremap <buffer> ,l :'}-put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
-xnoremap <buffer> ,l :<C-u>'}-put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
+nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
+xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
 
 " fix a hasty console.log()
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
@@ -51,5 +51,4 @@ command! -buffer -range=% Format let b:winview = winsaveview() |
 " poor man's syntastic ;-)
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
-command! -buffer Make silent make % | silent redraw! | silent wincmd p
-autocmd! BufWritePost <buffer> Make
+autocmd! BufWritePost <buffer> silent make % | silent redraw! | silent wincmd p
