@@ -143,8 +143,8 @@ augroup VIMRC
 
     autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
-    autocmd BufLeave * let b:winview = winsaveview()
-    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
+    autocmd BufLeave * let w:winview = winsaveview()
+    autocmd BufEnter * if exists('w:winview') | call winrestview(w:winview) | endif
 
     autocmd BufLeave *.css,*.less,*scss normal! mC
     autocmd BufLeave *.html             normal! mH
@@ -157,12 +157,12 @@ augroup END
 " JUGGLING WITH FILES "
 """""""""""""""""""""""
 nnoremap ,f :find *
-nnoremap ,F :find <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,s :sfind *
-nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,v :vert sfind *
-nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,t :tabfind *
+nnoremap ,F :find <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,T :tabfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
 command! -nargs=1 -complete=customlist,custom#MRUComplete ME call custom#MRU('edit', <f-args>)

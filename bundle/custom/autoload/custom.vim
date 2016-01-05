@@ -1,36 +1,23 @@
 " make list-like commands more intuitive
 function! custom#CCR()
-    if getcmdtype() == "/" || getcmdtype() == "?"
-        " if exists("b:direction")
-        "     if b:direction == "b"
-        "         return "\<CR>:let v:searchforward = 0\<CR>\<C-l>"
-        "     else
-        "         return "\<CR>:let v:searchforward = 1\<CR>\<C-l>"
-        "     endif
-        " else
-        "     return "\<CR>"
-        " endif
+    let cmdline = getcmdline()
+    if cmdline =~ '\C^ls'
+        " like :ls but prompts for a buffer command
+        return "\<CR>:b"
+    elseif cmdline =~ '/#$'
+        " like :g//# but prompts for a command
+        return "\<CR>:"
+    elseif cmdline =~ '\v\C^(dli|il)'
+        " like :dlist or :ilist but prompts for a count for :djump or :ijump
+        return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
+    elseif cmdline =~ '\v\C^(cli|lli)'
+        " like :clist or :llist but prompts for an error/location number
+        return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
+    elseif cmdline =~ '\C^old'
+        " like :oldfiles but prompts for an old file to edit
+        return "\<CR>:edit #<"
+    els
         return "\<CR>"
-    else
-        let cmdline = getcmdline()
-        if cmdline =~ '\C^ls'
-            " like :ls but prompts for a buffer command
-            return "\<CR>:b"
-        elseif cmdline =~ '/#$'
-            " like :g//# but prompts for a command
-            return "\<CR>:"
-        elseif cmdline =~ '\v\C^(dli|il)'
-            " like :dlist or :ilist but prompts for a count for :djump or :ijump
-            return "\<CR>:" . cmdline[0] . "jump  " . split(cmdline, " ")[1] . "\<S-Left>\<Left>"
-        elseif cmdline =~ '\v\C^(cli|lli)'
-            " like :clist or :llist but prompts for an error/location number
-            return "\<CR>:silent " . repeat(cmdline[0], 2) . "\<Space>"
-        elseif cmdline =~ '\C^old'
-            " like :oldfiles but prompts for an old file to edit
-            return "\<CR>:edit #<"
-        els
-            return "\<CR>"
-        endif
     endif
 endfunction
 
@@ -164,13 +151,13 @@ endfunction
 
 " DOS to UNIX re-encoding
 function! custom#ToUnix()
-    let b:winview = winsaveview()
+    let w:winview = winsaveview()
     silent update
     silent e ++ff=dos
     silent setlocal ff=unix
     silent w
-    if(exists('b:winview'))
-        call winrestview(b:winview)
+    if(exists('w:winview'))
+        call winrestview(w:winview)
     endif
 endfunction
 
