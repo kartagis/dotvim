@@ -44,9 +44,9 @@ nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
 xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
 
 " reformat selection
-command! -buffer -range=% Format let w:winview = winsaveview() |
+command! -buffer -range=% Format let b:winview = winsaveview() |
   \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -t -s " . &shiftwidth |
-  \ call winrestview(w:winview)
+  \ call winrestview(b:winview)
 
 " poor man's syntastic ;-)
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#

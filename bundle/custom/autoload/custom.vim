@@ -151,13 +151,13 @@ endfunction
 
 " DOS to UNIX re-encoding
 function! custom#ToUnix()
-    let w:winview = winsaveview()
+    let b:winview = winsaveview()
     silent update
     silent e ++ff=dos
     silent setlocal ff=unix
     silent w
-    if(exists('w:winview'))
-        call winrestview(w:winview)
+    if(exists('b:winview'))
+        call winrestview(b:winview)
     endif
 endfunction
 

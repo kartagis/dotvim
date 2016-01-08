@@ -58,10 +58,8 @@ function! BreakHere()
     call histdel("/", -1)
 endfunction
 
-" TODO for all
-" autocmd BufWinEnter * call matchadd("Todo", '\(TODO\|HACK\)')
-
-
+nnoremap <D-Right> gt
+nnoremap <D-Left>  gT
 
 " if there's an .editorconfig file, use it
 "   * parse it

@@ -37,6 +37,6 @@ command! -buffer UA call html#UpdateAnchor()
 
 command! -buffer UW call html#UpdateWidth()
 
-command! -buffer -range=% Format let w:winview = winsaveview() |
+command! -buffer -range=% Format let b:winview = winsaveview() |
   \ execute <line1> . "," . <line2> . "!html-beautify -f - -I -s " . &shiftwidth |
-  \ call winrestview(w:winview)
+  \ call winrestview(b:winview)

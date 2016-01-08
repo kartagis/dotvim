@@ -143,8 +143,8 @@ augroup VIMRC
 
     autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
-    autocmd BufLeave * let w:winview = winsaveview()
-    autocmd BufEnter * if exists('w:winview') | call winrestview(w:winview) | endif
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
 
     autocmd BufLeave *.css,*.less,*scss normal! mC
     autocmd BufLeave *.html             normal! mH
