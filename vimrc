@@ -139,7 +139,7 @@ colorscheme apprentice
 augroup VIMRC
     autocmd!
 
-    autocmd FocusLost * call custom#AutoSave()
+    autocmd FocusLost * call autosave#AutoSave()
 
     autocmd VimEnter,GUIEnter * set visualbell t_vb=
 
@@ -165,10 +165,10 @@ nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
 nnoremap ,T :tabfind <C-R>=expand('%:p:h').'/**/*'<CR>
 
-command! -nargs=1 -complete=customlist,custom#MRUComplete ME call custom#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,custom#MRUComplete MS call custom#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,custom#MRUComplete MV call custom#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,custom#MRUComplete MT call custom#MRU('tabedit', <f-args>)
+command! -nargs=1 -complete=customlist,mru#MRUComplete ME call mru#MRU('edit', <f-args>)
+command! -nargs=1 -complete=customlist,mru#MRUComplete MS call mru#MRU('split', <f-args>)
+command! -nargs=1 -complete=customlist,mru#MRUComplete MV call mru#MRU('vsplit', <f-args>)
+command! -nargs=1 -complete=customlist,mru#MRUComplete MT call mru#MRU('tabedit', <f-args>)
 
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
@@ -190,10 +190,10 @@ nnoremap <C-Up>   <C-w>W
 """""""""""""""""""""""
 " JUGGLING WITH LINES "
 """""""""""""""""""""""
-nnoremap ,<Up>   :<C-u>silent! move-2<CR>==
-nnoremap ,<Down> :<C-u>silent! move+<CR>==
-xnoremap ,<Up>   :<C-u>silent! '<,'>move-2<CR>gv=gv
-xnoremap ,<Down> :<C-u>silent! '<,'>move'>+<CR>gv=gv
+nnoremap <silent> ,<Up>   :<C-u>move-2<CR>==
+nnoremap <silent> ,<Down> :<C-u>move+<CR>==
+xnoremap <silent> ,<Up>   :move-2<CR>gv=gv
+xnoremap <silent> ,<Down> :move'>+<CR>gv=gv
 
 """""""""""""""""""""""
 " JUGGLING WITH WORDS "
@@ -218,7 +218,7 @@ command! -nargs=+ -complete=file_in_path -bar Grep  silent! grep! <args> | redra
 command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args> | redraw!
 
 nnoremap <silent> ,G :Grep <C-r><C-w><CR>
-xnoremap <silent> ,G :<C-u>let cmd = "Grep " . custom#GetVisualSelection() <bar>
+xnoremap <silent> ,G :<C-u>let cmd = "Grep " . visual#GetSelection() <bar>
                         \ call histadd("cmd",cmd) <bar>
                         \ execute cmd<CR>
 
@@ -233,8 +233,8 @@ endif
 nnoremap <Space><Space> :'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/
 nnoremap <Space>%       :%s/\<<C-r>=expand('<cword>')<CR>\>/
 
-xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=custom#GetVisualSelection()<CR>/
-xnoremap <Space>%       :<C-u>%s/<C-r>=custom#GetVisualSelection()<CR>/
+xnoremap <Space><Space> :<C-u>'{,'}s/<C-r>=visual#GetSelection()<CR>/
+xnoremap <Space>%       :<C-u>%s/<C-r>=visual#GetSelection()<CR>/
 
 """""""""""""""""""""""""
 " JUGGLING WITH CHANGES "
@@ -242,14 +242,14 @@ xnoremap <Space>%       :<C-u>%s/<C-r>=custom#GetVisualSelection()<CR>/
 nnoremap ,; *``cgn
 nnoremap ,, #``cgN
 
-xnoremap ,; <Esc>:let @/ = custom#GetVisualSelection()<CR>cgn
-xnoremap ,, <Esc>:let @/ = custom#GetVisualSelection()<CR>cgN
+xnoremap ,; <Esc>:let @/ = visual#GetSelection()<CR>cgn
+xnoremap ,, <Esc>:let @/ = visual#GetSelection()<CR>cgN
 
 """""""""""""""""""""""""""""
 " JUGGLING WITH DEFINITIONS "
 """""""""""""""""""""""""""""
-command! Tagit  call custom#Tagit(0)
-command! Bombit call custom#Tagit(1)
+command! Tagit  call tags#Tagit(0)
+command! Bombit call tags#Tagit(1)
 
 nnoremap ,j :Bombit<CR>:tjump /
 nnoremap ,p :Bombit<CR>:ptjump /
@@ -264,7 +264,7 @@ nnoremap ,D :Dlist<Space>
 xnoremap <silent> <C-a> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) + vcount<cr>gv
 xnoremap <silent> <C-x> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
-xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call custom#Incr(vcount)<CR>
+xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call incr#Incr(vcount)<CR>
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
@@ -292,14 +292,17 @@ nnoremap ' `
 
 nnoremap <BS> <C-^>
 
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=custom#ICR()\<CR>"
-cnoremap <expr> <CR> custom#CCR()
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-r>=icr#ICR()\<CR>"
+cnoremap <expr> <CR> ccr#CCR()
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
-cnoremap :: <C-r>=expand('%:p:h')<CR>
+cnoremap :: <C-r>=expand('%:p:h')<CR>/
+
+nnoremap <D-Right> gt
+nnoremap <D-Left>  gT
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
@@ -311,13 +314,13 @@ for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', 
     execute 'onoremap a' . char . ' :normal va' . char . '<CR>'
 endfor
 
-xnoremap in :<C-u>call custom#VisualNumbers()<CR>
+xnoremap in :<C-u>call visual#Numbers()<CR>
 onoremap in :normal vin<CR>
 
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
-command! TU call custom#ToUnix()
+command! TU call tounix#ToUnix()
 
 command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 

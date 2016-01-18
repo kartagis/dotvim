@@ -21,8 +21,8 @@ nnoremap <buffer> <C-]> :tjump /<c-r>=expand('<cword>')<CR><CR>
 nnoremap <buffer> <C-}> :ptjump /<c-r>=expand('<cword>')<CR><CR>
 
 " quick moves
-nnoremap <silent> <buffer> ]] :call custom#CustomJump('/function')<cr>
-nnoremap <silent> <buffer> [[ :call custom#CustomJump('?function')<cr>
+nnoremap <silent> <buffer> ]] :call jump#Jump('/function')<cr>
+nnoremap <silent> <buffer> [[ :call jump#Jump('?function')<cr>
 
 " block un/comment
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
@@ -37,7 +37,7 @@ nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
 
 " generate console.log()
 nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
-xnoremap <buffer> ,l :<C-u>put='console.log(\"' . custom#GetVisualSelection() . '\", ' . custom#GetVisualSelection() . ');'<CR>==
+xnoremap <buffer> ,l :<C-u>put='console.log(\"' . visual#GetSelection() . '\", ' . visual#GetSelection() . ');'<CR>==
 
 " fix a hasty console.log()
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
