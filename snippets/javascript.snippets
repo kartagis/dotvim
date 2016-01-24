@@ -1,11 +1,3 @@
-# var
-snippet =
-	= ${1:value};
-# Function as var
-snippet =f
-	= function(${2}) {
-		${3}
-	};
 # Function
 snippet fun
 	function ${1:function_name}(${2}) {
@@ -32,7 +24,7 @@ snippet else
 	}
 # ternary operator
 snippet ter
-	${1:condition} ? ${2:if true} : ${3:if false};
+	${1:condition} ? ${2:if true} : ${3:if false}
 # switch
 snippet switch
 	switch(${1:expression}) {
@@ -53,12 +45,12 @@ snippet for
 		${2}
 	}
 # for (...) {...}
-snippet forc Classic
+snippet forr Classic
 	for (var ${2:i} = 0; $2 < ${1:things}.length; $2${3:++}) {
 		${4}
 	}
 # for (...) {...} (Improved Native For-Loop)
-snippet fori Improved Native For-Loop
+snippet forr Improved Native For-Loop
 	for (var ${2:i} = ${1:things}.length - 1; $2 >= 0; $2${3:--}) {
 		${4}
 	}
@@ -100,42 +92,29 @@ snippet events
 	if (typeof(document.addEventListener) !== 'undefined') {
 		${1:element}.addEventListener('${2:event_name}', ${3:handler_name}, false);
 	} else if (typeof(document.attachEvent) !== 'undefined') {
-		$1.attachEvent('on' + '$2', $3);
+		$1.attachEvent('on$2', $3);
 	} else {
-		$1.['on' + $2] = $3;
+		$1.['on$2'] = $3;
 	}${4}
 # Add Event
 snippet adde
-	addEventListener('${1:event_name}', ${2:function_name}, false);${3}
+	addEventListener('${1:event_name}', ${2:function_name}, false);
 # Attach Event
 snippet atte
-	attachEvent('on' + '${1:event_name}', ${2:function_name});${3}
-# Event handler
-snippet handler
-	function ${1:function_name}(e) {
-		var e   = e || window.event;
-		var src = e.target || e.srcElement;
-		if (typeof e.stopPropagation === "function") {
-			e.stopPropagation();
-		}
-		if (typeof e.cancelBubble !== "undefined") {
-			e.cancelBubble = true;
-		}
-		if (typeof e.preventDefault === "function") {
-			e.preventDefault();
-		}
-		if (typeof e.returnValue !== "undefined") {
-			e.returnValue = false;
-		}
-
-		${2:// Do stuff with stuff}
-	}
+	attachEvent('on${1:event_name}', ${2:function_name});
 # Target
-snippet targ
-	var ${1:target} = ${2:event}.target || $2.srcElement;${3}
-# Event
-snippet ev
-	var ${1:event} = ${2:ev} || window.event;${3}
+snippet tar nodeName
+	if (e.target && e.target.nodeName === "${1:NODENAME}") {
+		${2}
+	}
+snippet tar id
+	if (e.target && e.target.getAttribute("id") === "${1:id}") {
+		${2}
+	}
+snippet tar class
+	if (e.target && /${1:pattern}/.test(e.target.getAttribute("class"))) {
+		${2}
+	}
 #
 #
 #
@@ -157,14 +136,19 @@ snippet arit
 # OBJECT #
 ##########
 # Object > Literal
-snippet obj
-	var ${1:object_name} = {${2}};
+snippet ob
+	var ${1:object_name} = {
+		${2}
+	};
 # Object > Property
 snippet :
 	${1:property_name} : ${2:value}
 # Object > Method
 snippet :f
 	${1:method_name} : function(${2}) {${3}}
+# Namespace
+snippet ns
+	var ${1:namespace} = $1 || {};
 #
 #
 #
@@ -186,19 +170,18 @@ snippet json JSON.stringify()
 # Constructor > Constructor
 snippet cons
 	var ${1:Constructor_name} = function(${2}) {
-		var self = this;
 		${3}
 	};
-# Constructor > Public Member
-snippet pub public member
-	${1:this}.${2:public_property_name} = ${3};${4}
+# Constructor > Public Property
+snippet thisp
+	this.${1:public_property_name} = ${2};
 # Constructor > Privileged Method
-snippet pub privileged method
-	${1:this}.${2:privileged_method_name} = function(${3}) {
-		${4}
+snippet thisf privileged method
+	this.${1:privileged_method_name} = function(${2}) {
+		${3}
 	};
-# Constructor > Public Method
-snippet prot
+# Constructor > Public Method on the prototype
+snippet pro
 	prototype.${1:method_name} = function(${2}) {
 		${3}
 	};
@@ -213,7 +196,7 @@ snippet inherit
 	${1}
 # Constructor > New Instance
 snippet new
-	var ${1:instance_name} = new ${2:Constructor_name}(${3});${4}
+	var ${1:instance_name} = new ${2:Constructor_name}(${3});
 # Console
 snippet log
 	console.log(${1});
@@ -221,8 +204,9 @@ snippet log
 snippet try
 	try {
 		${1}
+	} catch(e) {
+		${2}
 	}
-	catch(e)${2}
 # Document
 snippet d
 	document.
@@ -232,8 +216,8 @@ snippet w
 # selfie
 snippet selfie
 	(function ${1:function_name}() {
-		$3
-	})(${2:scope});
+		${3}
+	})(${2:arguments});
 # Module pattern
 snippet mod
 	var ${1:module_name} = (function $1(${2}) {
@@ -253,17 +237,24 @@ snippet mod
 	}());
 # Getter
 snippet getter
-	get${1:Property_name}: function() {
-		return ${2:property_name}
+	get_${1:property_name}: function() {
+		return this.${2:property_name}
 	}
 # Setter
 snippet setter
-	set${1:Property_name}: function(${2:value}) {
-		return (${3:property_name} = $2);
+	set_${1:property_name}: function(value) {
+		try {
+			this.$1 = value;
+			return true;
+		} catch(e) {
+			return false;
+		}
 	}
 # Callback
-snippet callback
+snippet call
 	callback.call(${1});
+snippet apply
+	callback.apply(${1});
 #
 #
 #
@@ -308,7 +299,7 @@ snippet req
 	var ${1:instance_name} = require("${2:package_name}");
 # exports
 snippet exp
-	module.exports = ${1}
+	module.exports = ${1};
 #
 #
 #
@@ -330,7 +321,6 @@ snippet $#
 snippet $.
 	$(".${1}")${2}
 # common jquery patterns
-# WIP
 # AJAX
 snippet ajax ajax()		Perform an asynchronous HTTP (Ajax) request.
 	$.ajax({
@@ -597,47 +587,47 @@ snippet focus focusOut() + callback
 		${2:// event handler}
 	});
 # MISCELLANEOUS
-snippet add add()
+snippet a add()
 	add('${1:selector expression}')
-snippet add addClass()
+snippet a addClass()
 	addClass('${1:class name}')
-snippet after
+snippet a after()
 	after('${1:Some text <b>and bold!</b>}')
-snippet andself
+snippet a andSelf()
 	andSelf()
-snippet animate
+snippet a animate()
 	animate({${1:param1: value1, param2: value2}}, ${2:speed})
-snippet append
+snippet a append()
 	append('${1:Some text <b>and bold!</b>}')
-snippet appendto
+snippet a appendto()
 	appendTo('${1:selector expression}')
-snippet before
+snippet b before()
 	before('${1:Some text <b>and bold!</b>}')
-snippet bind
+snippet b bind()
 	bind('${1:event name}', function (${2:e}) {
 		${3:// event handler}
 	});
-snippet blur
+snippet b blur()
 	blur(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet change
+snippet c change()
 	change(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet children
+snippet c children()
 	children('${1:selector expression}')
-snippet clearq
+snippet c clearQueue()
 	clearQueue(${1:'queue name'})
-snippet click
+snippet c click()
 	click(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet clone
+snippet c clone()
 	clone()
-snippet contains
+snippet c contains()
 	$.contains(${1:container}, ${2:contents});
-snippet csshooks
+snippet c $.cssHooks
 	$.cssHooks['${1:CSS prop}'] = {
 		get: function (elem, computed, extra) {
 			${2: // handle getting the CSS property}
@@ -646,27 +636,27 @@ snippet csshooks
 			${3: // handle setting the CSS value}
 		}
 	};
-snippet data
+snippet d data()
 	data(${1:obj})
-snippet dataa
+snippet d $.data()
 	$.data('${1:selector expression}', '${2:key}'${3:, 'value'})
-snippet dblclick
+snippet d dblclick()
 	dblclick(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet delay
+snippet d delay()
 	delay('${1:slow/400/fast}'${2:, 'queue name'})
-snippet dele
+snippet d delegate()
 	delegate('${1:selector expression}', '${2:event name}', function (${3:e}) {
 		${4:// event handler}
 	});
-snippet deq
+snippet d dequeue()
 	dequeue(${1:'queue name'})
-snippet deqq
+snippet d $.dequeue()
 	$.dequeue('${1:selector expression}'${2:, 'queue name'})
-snippet detach
+snippet d detach()
 	detach('${1:selector expression}')
-snippet die
+snippet d die()
 	die(${1:event}, ${2:handler})
 snippet each
 	each(function (index) {
@@ -854,73 +844,71 @@ snippet resize
 	resize(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet select
+snippet s select()
 	select(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet serialize
+snippet s serialize()
 	serialize()
-snippet serializea
+snippet s serializeArray()
 	serializeArray()
-snippet show
+snippet s show()
 	show('${1:slow/400/fast}')
-snippet showc
+snippet s show() + callback
 	show('${1:slow/400/fast}', function () {
 		${2:// callback}
 	});
-snippet sib
+snippet s siblings()
 	siblings('${1:selector expression}')
-snippet size
+snippet s size()
 	size()
-snippet slice
+snippet s slice()
 	slice(${1:start}${2:, end})
-snippet stop
+snippet s stop()
 	stop('${1:queue}', ${2:false}, ${3:false})
-snippet submit
+snippet s submit()
 	submit(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet text
+snippet t text()
 	text(${1:'some text'})
-snippet this
+snippet t $(this)
 	$(this)
-snippet toarr
+snippet t toArray()
 	toArray()
-snippet tog
+snippet t toggle()
 	toggle(function (${1:e}) {
 		${2:// event handler}
 	}, function ($1) {
 		${3:// event handler}
 	});
-snippet togclass
+snippet t togleClass()
 	toggleClass('${1:class name}')
-snippet togsh
-	toggle('${1:slow/400/fast}')
-snippet trig
+snippet t trigger()
 	trigger('${1:event name}')
-snippet trigh
+snippet t triggerHandler()
 	triggerHandler('${1:event name}')
-snippet $trim
+snippet t $.trim()
 	$.trim(${1:str})
-snippet $type
+snippet t $.type()
 	$.type(${1:obj})
-snippet unbind
+snippet u unbind()
 	unbind('${1:event name}')
-snippet undele
+snippet u undelegate()
 	undelegate(${1:selector expression}, ${2:event}, ${3:handler})
-snippet uniq
+snippet u uniq()
 	$.unique(${1:array})
-snippet unload
+snippet u unload()
 	unload(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet unwrap
+snippet u unwrap()
 	unwrap()
-snippet val
+snippet v val()
 	val('${1:text}')
-snippet width
+snippet w width()
 	width(${1:integer})
-snippet wrap
+snippet w wrap()
 	wrap('${1:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')
 #
 #
@@ -997,7 +985,7 @@ snippet pixi AMD class
 
 		return _$1;
 	});
-# Pixi Template Class
+# Pixi Template Class (from Mazarine)
 snippet pixi main
 	(function(parent) {
 		var _stats, _DOMContainer, _stage, _renderer;
@@ -1063,7 +1051,7 @@ snippet pixi main
 			_stats.update();
 		}
 	})(app);
-# Boot Class implemente Pixi V2 framework
+# Boot Class implemente Pixi V2 framework (from Mazarine)
 snippet pixi bootstrap
 	var ${1:primary_type_name} = $1 || {};
 

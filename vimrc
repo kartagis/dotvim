@@ -80,8 +80,8 @@ set wildmenu
 set autoindent
 set expandtab
 set shiftround
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=0
+let &softtabstop = &tabstop
 set smarttab
 
 set gdefault

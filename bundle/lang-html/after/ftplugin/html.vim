@@ -2,8 +2,9 @@ let @a = '$T"i border="0" style="display:block;"'
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
-setlocal indentkeys-=*<Return>
+setlocal commentstring=<!--%s-->
 setlocal define=\\sid\\=
+setlocal indentkeys-=*<Return>
 
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<

@@ -43,6 +43,10 @@ xnoremap <buffer> ,l :<C-u>put='console.log(\"' . visual#GetSelection() . '\", '
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
 xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
 
+" transform into underscore placeholder
+nnoremap <buffer> ,u "uciw<%= <C-r>u %><Esc>BB
+xnoremap <buffer> ,u "uc<%= <C-r>u %><Esc>BB
+
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |
   \ execute <line1> . "," . <line2> . "!js-beautify -f - -j -t -s " . &shiftwidth |

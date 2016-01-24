@@ -15,19 +15,19 @@ function! icr#ICR()
     let previous = getline(".")[col(".")-2]
     let next     = getline(".")[col(".")-1]
     if previous ==# "{"
-        return icr#PairExpander(previous, "}", next)
+        return s:PairExpander(previous, "}", next)
     elseif previous ==# "["
-        return icr#PairExpander(previous, "]", next)
+        return s:PairExpander(previous, "]", next)
     elseif previous ==# "("
-        return icr#PairExpander(previous, ")", next)
+        return s:PairExpander(previous, ")", next)
     elseif previous ==# ">"
-        return icr#TagExpander(next)
+        return s:TagExpander(next)
     else
         return "\<CR>"
     endif
 endfunction
 
-function! icr#PairExpander(left, right, next)
+function! s:PairExpander(left, right, next)
     let pair_position = []
     if a:left == "["
         let pair_position = searchpairpos('\' . a:left, "", '\' . a:right, "Wn")
@@ -45,7 +45,7 @@ function! icr#PairExpander(left, right, next)
     endif
 endfunction
 
-function! icr#TagExpander(next)
+function! s:TagExpander(next)
     let thisline = getline(".")
     if a:next ==# "<" && thisline[col(".")] ==# "/"
         if thisline[searchpos("<", "bnW")[1]] ==# "/" || thisline[searchpos("<", "bnW")[1]] !=# thisline[col(".") + 1]

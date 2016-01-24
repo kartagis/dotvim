@@ -89,28 +89,37 @@ snippet mq Displays (larger)
 	/* end Displays (larger) */
 snippet § Section
 	/* start ${1:name} */
-	${2:selector} {
-		${3}
+	${2} {
 	}
 	/* end $1 */
-# FIXME
-# cross-browser vertical gradient
-snippet gradient vertical
-	/* vertical gradient from $1 to $2 */
-	background-color: $1
-	background-image: -webkit-gradient(linear, left top, left bottom, from(${1:#fff}), to(${2:#000})); /* Saf4+, Chrome */
-	background-image: -webkit-linear-gradient(top, $1, $2); /* Chrome 10+, Saf5.1+, iOS 5+ */
-	background-image: -moz-linear-gradient(top, $1, $2); /* FF3.6 */
-	background-image: -ms-linear-gradient(top, $1, $2); /* IE10 */
-	background-image: -o-linear-gradient(top, $1, $2); /* Opera 11.10+ */
-	background-image: linear-gradient(to bottom, $1, $2);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='$1', EndColorStr='$2'); /* IE6-IE9 */${3}
-# cross-browser radial gradient
-snippet gradient radial
-	/* radial gradient from $1 to $2 */
-	background-color: $1;
-	background-image: -moz-radial-gradient(${3:50%} ${4:50%} 90deg, circle closest-side, ${1:#fff}, ${2:#000}); /* FF3.6 */
-	background-image: -webkit-gradient(radial, $3 $4, 0, $3 $4, 100, from($1), to($2)); /* Saf4+, Chrome */
-	background-image: -o-radial-gradient($3 $4 90deg, circle closest-side, $1, $2); /* Someday Opera*/
-	background-image: radial-gradient($3 $4 90deg, circle closest-side, $1, $2);
-# ---
+snippet @ @media (nested)
+	@media ${1:statements} {
+		${2}
+	}
+snippet @ @keyframes (nested)
+	@keyframes ${1:name} {
+		${2}
+	}
+snippet @ @font-face (nested)
+	@font-face {
+		font-family: '${1:name}';
+		src: url('${2:filename}') format('${3:format}')${4};
+	}
+snippet @ @supports (nested)
+	@supports (${1:property: value}) {
+		${2}
+	}
+snippet @ @document (nested)
+	@document ${1:statements} {
+		${2}
+	}
+snippet @ @page (nested)
+	@page :${1:first|left|right} {
+		${2}
+	}
+snippet @ @namespace (regular)
+	@namespace ${1:statement};
+snippet @ @import (regular)
+	@import '${1:filename}';
+snippet @ @charset (regular)
+	@charset '${1:charset}';
