@@ -40,13 +40,13 @@ snippet head
 		${3}
 	</head>
 snippet title
-	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
 snippet script
 	<script type="text/javascript">
 		${1}
 	</script>
 snippet scriptsrc
-	<script src="${1}" type="text/javascript"></script>${2}
+	<script src="${1}" type="text/javascript"></script>
 snippet style
 	<style type="text/css" media="${1:screen}">
 		${2}
@@ -57,27 +57,27 @@ snippet ready
 		${1}
 	});
 snippet link
-	<link rel="${1:stylesheet}" href="${2}" type="text/css" media="${3:screen}"`Close()`>${4}
+	<link rel="${1:stylesheet}" href="${2}" type="text/css" media="${3:screen}"`Close()`>
 snippet base
 	<base href="${1}" target="${2}"`Close()`>
 snippet ! "IE Conditional Comment: Internet Explorer 5_0 only"
-	<!--[if IE 5.0]>${1:IE Conditional Comment: Internet Explorer 5.0 only}<![endif]-->${1}
+	<!--[if IE 5.0]>${1:IE Conditional Comment: Internet Explorer 5.0 only}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer 5_5 only"
-	<!--[if IE 5.5000]>${1:IE Conditional Comment: Internet Explorer 5.5 only}<![endif]-->${1}
+	<!--[if IE 5.5000]>${1:IE Conditional Comment: Internet Explorer 5.5 only}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer 5_x"
-	<!--[if lt IE 6]>${1:IE Conditional Comment: Internet Explorer 5.x}<![endif]-->${1}
+	<!--[if lt IE 6]>${1:IE Conditional Comment: Internet Explorer 5.x}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer 6 and below"
-	<!--[if lte IE 6]>${1:IE Conditional Comment: Internet Explorer 6 and below}<![endif]-->${1}
+	<!--[if lte IE 6]>${1:IE Conditional Comment: Internet Explorer 6 and below}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer 6 only"
-	<!--[if IE 6]>${1:IE Conditional Comment: Internet Explorer 6 only}<![endif]-->${1}
+	<!--[if IE 6]>${1:IE Conditional Comment: Internet Explorer 6 only}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer 7+"
-	<!--[if gte IE 7]>${1:IE Conditional Comment: Internet Explorer 7 and above}<![endif]-->${1}
+	<!--[if gte IE 7]>${1:IE Conditional Comment: Internet Explorer 7 and above}<![endif]-->
 snippet ! "IE Conditional Comment: Internet Explorer"
-	<!--[if IE]>${1:IE Conditional Comment: Internet Explorer}<![endif]-->${1}
+	<!--[if IE]>${1:IE Conditional Comment: Internet Explorer}<![endif]-->
 snippet ! "IE Conditional Comment: NOT Internet Explorer"
-	<!--[if !IE]><!-->${1:IE Conditional Comment: NOT Internet Explorer}<!-- <![endif]-->${1}
+	<!--[if !IE]><!-->${1:IE Conditional Comment: NOT Internet Explorer}<!-- <![endif]-->
 snippet meta
-	<meta name="${1:name}" content="${2:content}"`Close()`>${3}
+	<meta name="${1:name}" content="${2:content}"`Close()`>
 #
 # BASICS
 snippet br
@@ -91,13 +91,13 @@ snippet t
 snippet h1
 	<h1>${1}</h1>
 snippet img
-	<img src="${1}" width="${2}" height="${3}" alt="${4}"${5: border="0" style="display:block;"}`Close()`>${6}
+	<img src="${1}" width="${2}" height="${3}" alt="${4}"${5: border="0" style="display:block;"}`Close()`>
 snippet fix
 	 border="0" style="display:block;"
 snippet a
 	<a href="${1}" title="${2}" ${3}>${4}</a>
 snippet as
-	a[href=${1:#}][title=${2}]${3:[target=_blank]}${4}
+	a[href=${1:#}][title=${2}]${3:[target=_blank]}
 snippet mailto
 	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
 #
@@ -147,31 +147,31 @@ snippet table
 		${5}
 	</table>
 snippet tables
-	table[border=${1:0}][cellpadding=${2:0}][cellspacing=${3:0}][width=${4:100%}] > tr${5} > td[width=${6}][align=${7:left}][valign=${8:top}]${9}
+	table[border=${1:0}][cellpadding=${2:0}][cellspacing=${3:0}][width=${4:100%}] > tr${5} > td[width=${6}][align=${7:left}][valign=${8:top}]
 snippet tr
 	<tr>${1}</tr>
 snippet td
 	<td${1}>${2}</td>
 snippet tds
-	td[width=${1}][align=${2:left}][valign=${3:top}]${4}
+	td[width=${1}][align=${2:left}][valign=${3:top}]
 #
 # <FORM>
 snippet radio
-	<input type="radio" name="${1:some_name}" value="${2}"`Close()`>${3}
+	<input type="radio" name="${1:some_name}" value="${2}"`Close()`>
 snippet checkbox
-	<input type="checkbox" name="${1:some_name}" value="${2}"`Close()`>${3}
+	<input type="checkbox" name="${1:some_name}" value="${2}"`Close()`>
 snippet input
-	<input type="${1:text/submit/reset/radio/pasword/image/file/checkbox/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
+	<input type="${1:text/submit/reset/radio/pasword/image/file/checkbox/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>
 snippet label
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/reset/radio/pasword/image/file/checkbox/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>${7}
+	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/reset/radio/pasword/image/file/checkbox/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}"`Close()`>
 snippet opt
-	<option value="${1:option}">${2:$1}</option>${3}
+	<option value="${1:option}">${2:$1}</option>
 snippet select
 	<select name="${1:some_name}" id="${2:$1}">
 		<option value="${3:option}">${4:$3}</option>
-	</select>${5}
+	</select>
 snippet textarea
-	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>
 snippet fieldset
 	<fieldset id="$1">
 		<legend>${1:name}</legend>
@@ -186,11 +186,11 @@ snippet form
 # LISTES
 snippet ul
 	<ul>
-		${1}
+		<li>${1}</li>
 	</ul>
 snippet ol
 	<ol>
-		${1}
+		<li>${1}</li>
 	</ol>
 snippet li
 	<li>${1}</li>
@@ -236,7 +236,7 @@ snippet video
 	</p>
 #
 # TEMPLATES
-snippet page
+snippet page4
 	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 		"http://www.w3.org/TR/html4/strict.dtd">
 
@@ -246,6 +246,24 @@ snippet page
 			<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
 			<meta name="keywords" content="">
 			<meta name="description" content="">
+			${2}
+		</head>
+
+		<body>
+			${3}
+		</body>
+	</html>
+#
+snippet page5
+	<!doctype html>
+
+	<html lang="en">
+		<head>
+			<meta charset="utf-8">
+
+			<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+			<meta name="description" content="">
+			<meta name="author" content="">
 			${2}
 		</head>
 

@@ -104,7 +104,7 @@ snippet atte
 	attachEvent('on${1:event_name}', ${2:function_name});
 # Target
 snippet tar nodeName
-	if (e.target && e.target.nodeName === "${1:NODENAME}") {
+	if (e.target && e.target.nodeName.toLowercase() === "${1:nodename}") {
 		${2}
 	}
 snippet tar id
