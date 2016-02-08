@@ -16,10 +16,10 @@ if &t_Co >= 256 || has('gui_running')
     hi Comment ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#808080 gui=NONE
     hi Constant ctermbg=NONE ctermfg=1 cterm=NONE guibg=NONE guifg=#800000 gui=NONE
     hi Error ctermbg=15 ctermfg=9 cterm=reverse guibg=#ffffff guifg=#ff0000 gui=reverse
-    hi Identifier ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#808000 gui=NONE
+    hi Identifier ctermbg=NONE ctermfg=13 cterm=NONE guibg=NONE guifg=#ff00ff gui=NONE
     hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi PreProc ctermbg=NONE ctermfg=4 cterm=NONE guibg=NONE guifg=#000080 gui=NONE
-    hi Special ctermbg=NONE ctermfg=3 cterm=NONE guibg=NONE guifg=#808000 gui=NONE
+    hi Special ctermbg=NONE ctermfg=9 cterm=NONE guibg=NONE guifg=#ff0000 gui=NONE
     hi Statement ctermbg=NONE ctermfg=6 cterm=NONE guibg=NONE guifg=#008080 gui=NONE
     hi String ctermbg=NONE ctermfg=2 cterm=NONE guibg=NONE guifg=#008000 gui=NONE
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse guibg=NONE guifg=NONE gui=reverse
@@ -78,10 +78,10 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi Comment ctermbg=NONE ctermfg=8 cterm=NONE
     hi Constant ctermbg=NONE ctermfg=1 cterm=NONE
     hi Error ctermbg=15 ctermfg=9 cterm=reverse
-    hi Identifier ctermbg=NONE ctermfg=3 cterm=NONE
+    hi Identifier ctermbg=NONE ctermfg=13 cterm=NONE
     hi Ignore ctermbg=NONE ctermfg=NONE cterm=NONE
     hi PreProc ctermbg=NONE ctermfg=4 cterm=NONE
-    hi Special ctermbg=NONE ctermfg=3 cterm=NONE
+    hi Special ctermbg=NONE ctermfg=9 cterm=NONE
     hi Statement ctermbg=NONE ctermfg=6 cterm=NONE
     hi String ctermbg=NONE ctermfg=2 cterm=NONE
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse

@@ -30,6 +30,7 @@ if has('gui_running')
     if os == 'Darwin'
         set guifont=Fira\ Mono:h12
         set fuoptions=maxvert,maxhorz
+        autocmd! GUIEnter * nnoremap <D-Left> gT|nnoremap <D-Right> gt
     elseif os == 'Linux'
         set guifont=Fira\ Mono\ 10
     elseif os == 'Windows'
@@ -116,7 +117,6 @@ set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
-set history=100
 set mouse=a
 set nostartofline
 set noswapfile
@@ -300,9 +300,6 @@ cnoremap <C-e> <End>
 
 cnoremap %% <C-r>=expand('%')<CR>
 cnoremap :: <C-r>=expand('%:p:h')<CR>/
-
-nnoremap <D-Right> gt
-nnoremap <D-Left>  gT
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "

@@ -18,7 +18,7 @@ function insertion#InsertIMG(...)
     silent normal "xp==$3h
     let @x = old_x
     startinsert
-  elseif &filetype == "css" || &filetype == "less"
+  elseif &filetype == "css" || &filetype == "less" || &filetype == "scss"
     let @x = substitute(image_attributes,'\([0-9]*\)x\([0-9]*\)','background: transparent url(../' . path . ') no-repeat scroll top left;\nwidth: \1px;\nheight: \2px;','')
     silent normal "xp3==
     let @x = old_x
