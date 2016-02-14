@@ -12,7 +12,7 @@ function! tags#Tagit(bomb)
         if !exists("t:tagit_notags") && expand('%') != ''
             if len(tagfiles()) > 0
                 let tags_location = fnamemodify(tagfiles()[0], ":p:h")
-                call s:GenerateTags(tags_location, 0)
+                call <SID>GenerateTags(tags_location, 0)
             else
                 let this_dir    = expand('%:p:h')
                 let current_dir = getcwd()
@@ -24,7 +24,7 @@ function! tags#Tagit(bomb)
                         let t:tagit_notags = 1
                         return
                     elseif user_choice == 1
-                        call s:GenerateTags(current_dir, 0)
+                        call <SID>GenerateTags(current_dir, 0)
                     endif
                 elseif this_dir != current_dir
                     let user_choice = inputlist([
@@ -35,16 +35,16 @@ function! tags#Tagit(bomb)
                         let t:tagit_notags = 1
                         return
                     elseif user_choice == 1
-                        call s:GenerateTags(current_dir, 0)
+                        call <SID>GenerateTags(current_dir, 0)
                     elseif user_choice == 2
-                        call s:GenerateTags(this_dir, 0)
+                        call <SID>GenerateTags(this_dir, 0)
                     endif
                 endif
             endif
         endif
     else
         if len(tagfiles()) > 0 && !exists("t:tagit_notags")
-            call s:GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), 0)
+            call <SID>GenerateTags(fnamemodify(tagfiles()[0], ":p:h"), 0)
         endif
     endif
 endfunction

@@ -61,3 +61,12 @@ onoremap al :normal val<CR>
 " buffer text-object
 xnoremap i% GoggV
 onoremap i% :normal vi%<CR>
+
+" brace expansion on the cheap
+inoremap (<CR> (<CR>)<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {; {<CR>};<Esc>O
+inoremap {, {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [; [<CR>];<Esc>O
+inoremap [, [<CR>],<Esc>O

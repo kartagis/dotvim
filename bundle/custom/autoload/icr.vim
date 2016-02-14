@@ -14,32 +14,8 @@ function! icr#ICR()
     " generic case
     let previous = getline(".")[col(".")-2]
     let next     = getline(".")[col(".")-1]
-    if previous ==# "{"
-        return s:PairExpander(previous, "}", next)
-    elseif previous ==# "["
-        return s:PairExpander(previous, "]", next)
-    elseif previous ==# "("
-        return s:PairExpander(previous, ")", next)
-    elseif previous ==# ">"
-        return s:TagExpander(next)
-    else
-        return "\<CR>"
-    endif
-endfunction
-
-function! s:PairExpander(left, right, next)
-    let pair_position = []
-    if a:left == "["
-        let pair_position = searchpairpos('\' . a:left, "", '\' . a:right, "Wn")
-    else
-        let pair_position = searchpairpos(a:left, "", a:right, "Wn")
-    endif
-    if a:next !=# a:right && pair_position[0] == 0
-        return "\<CR>" . a:right . "\<C-o>==O"
-    elseif a:next !=# a:right && pair_position[0] != 0 && indent(pair_position[0]) != indent(".")
-        return "\<CR>" . a:right . "\<C-o>==O"
-    elseif a:next ==# a:right
-        return "\<CR>\<C-o>==O"
+    if previous ==# ">"
+        return <SID>TagExpander(next)
     else
         return "\<CR>"
     endif

@@ -77,10 +77,13 @@ snippet time setInterval
 	window.setInterval(function() {${2}}, ${1:100});
 # Get Elements
 snippet gett
-	getElementsByTagName('${1}')${2}
+	getElementsByTagName('${1}')
 # Get Element
 snippet geti
-	getElementById('${1}')${2}
+	getElementById('${1}')
+# insertAdjacentHTML
+snippet ins
+	insertAdjacentHTML('${1:beforebegin|afterbegin|beforeend|afterend}', '${2:text}')
 #
 #
 #
@@ -128,7 +131,7 @@ snippet ar
 	];
 # Array > item
 snippet arit
-	${1:array_name}[${2:0}]${3}
+	${1:array_name}[${2:0}]
 #
 #
 #

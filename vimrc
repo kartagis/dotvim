@@ -112,7 +112,7 @@ set splitbelow
 set splitright
 
 set clipboard^=unnamed
-set complete=.,w,b
+set complete=.,w,b,u
 set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac

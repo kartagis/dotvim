@@ -10,7 +10,7 @@ endfunction
 
 " custom text-object for numerical values
 function! visual#Numbers()
-call search('\d\([^0-9\.]\|$\)', 'cW')
-normal v
-call search('\(^\|[^0-9\.]\d\)', 'becW')
+    call search('\d\([^0-9\.]\|$\)', 'cW')
+    normal v
+    call search('\(^\|[^0-9\.]\d\)', 'becW')
 endfunction

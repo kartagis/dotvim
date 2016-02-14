@@ -55,4 +55,4 @@ command! -buffer -range=% Format let b:winview = winsaveview() |
 " poor man's syntastic ;-)
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
-autocmd! BufWritePost <buffer> silent make % | silent redraw! | silent wincmd p
+autocmd! BufWritePost <buffer> silent make! % | silent redraw! | silent wincmd p
