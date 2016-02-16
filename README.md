@@ -1,10 +1,6 @@
 dotvim
 ======
 
-
-$$\alpha$$
-
-
 Ma configuration pour Vim.
 
 **Attention !** Ceci n’a pas la prétention d’être une « distribution » prête à l’emploi. Mes options, mes raccourcis, mes commandes, mes fonctions, mon choix de plugins ne doivent pas être pris pour autre chose que *ma* propre config à moi.
@@ -22,4 +18,4 @@ That’s cool if you find interesting tricks but make sure you understand what t
 ---
 
 * [Notes](https://github.com/romainl/dotvim/wiki/Notes) (français)
-* [Mon .vimrc en détails](https://github.com/romainl/dotvim/wiki/Mon-.vimrc-en-d%C3%A9tails) (français)
+* [Mon .vimrc en détails](https://github.com/romainl/dotvim/wiki/Mon-.vimrc-en-d%C3%A9tails) (français) (très très en retard sur ma config actuelle)
