@@ -1,10 +1,6 @@
-setlocal define=^\\s*\\(self\\\|this\\\|function\\\|var\\\|define\\)[('\"]\\{-\\}
+setlocal define=^\\s*\\(var\\\|let\\\|function\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
-if &expandtab
-  let &l:include = '^\s\{,' . &shiftwidth . "}\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
-else
-  let &l:include = "^\t*\\(import[^'\\\"]*\\|.\\{-\\}require\(\\)*['\\\"]\\zs[^'\\\"]*\\ze"
-endif
+setlocal include=^\\s*\\([^\/]\\{-\\}import[^'\"]*\\\|[^\/]\\{-\\}require\(\\)*['\"]\\zs[^'\"]*\\ze
 
 " matchit
 let b:match_words = '\<function\>:\<return\>,'
