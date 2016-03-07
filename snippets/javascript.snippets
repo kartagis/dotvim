@@ -661,189 +661,189 @@ snippet d detach()
 	detach('${1:selector expression}')
 snippet d die()
 	die(${1:event}, ${2:handler})
-snippet each
+snippet e each()
 	each(function (index) {
 		${1:this.innerHTML = this + " is the element, " + index + " is the position";}
 	});
-snippet el
+snippet e el
 	$('<${1}/>'${2:, {}})
-snippet eltrim
+snippet $ $.trim()
 	$.trim('${1:string}')
-snippet empty
+snippet e empty()
 	empty()
-snippet end
+snippet e end()
 	end()
-snippet eq
+snippet e eq()
 	eq(${1:element index})
-snippet error
+snippet e error()
 	error(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet eventsmap
+snippet e eventsmap
 	{
 		:f${1}
 	}
-snippet extend
+snippet $ $.extend()
 	$.extend(${1:true, }${2:target}, ${3:obj})
-snippet filter
+snippet f filter()
 	filter('${1:selector expression}')
-snippet filtert
+snippet f filter() + function()
 	filter(function (${1:index}) {
 		${2}
 	})
-snippet find
+snippet f find()
 	find('${1:selector expression}')
-snippet get
+snippet g get()
 	get(${1:element index})
-snippet getjson
+snippet $ $.getJSON()
 	$.getJSON('${1:mydomain.com/url}',
 		${2:{ param1: value1 },}
 		function (data, textStatus, jqXHR) {
 			${3:// success callback}
 		}
 	);
-snippet getscript
+snippet $ $.getScript()
 	$.getScript('${1:mydomain.com/url}', function (script, textStatus, jqXHR) {
 		${2:// callback}
 	});
-snippet grep
+snippet $ $.grep()
 	$.grep(${1:array}, function (item, index) {
 		${2}
 	}${3:, true});
-snippet hasc
+snippet h hasClass()
 	hasClass('${1:className}')
-snippet hasd
+snippet $ $.hasData()
 	$.hasData('${1:selector expression}');
-snippet height
+snippet h height()
 	height(${1:integer})
-snippet hide
+snippet h hide()
 	hide('${1:slow/400/fast}')
-snippet hidec
+snippet h hide() + callback
 	hide('${1:slow/400/fast}', function () {
 		${2:// callback}
 	});
-snippet hover
+snippet h hover()
 	hover(function (${1:e}) {
 		${2:// event handler}
 	}, function ($1) {
 		${3:// event handler}
 	});
-snippet html
+snippet h html()
 	html('${1:Some text <b>and bold!</b>}')
-snippet inarr
+snippet $ $.inArray()
 	$.inArray(${1:value}, ${2:array});
-snippet insa
+snippet i insertAfter()
 	insertAfter('${1:selector expression}')
-snippet insb
+snippet i insertBefore()
 	insertBefore('${1:selector expression}')
-snippet kdown
+snippet k keydown()
 	keydown(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet kpress
+snippet k keypress()
 	keypress(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet kup
+snippet k keyup()
 	keyup(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet last
+snippet l last()
 	last('${1:selector expression}')
-snippet live
+snippet l live()
 	live('${1:events}', function (${2:e}) {
 		${3:// event handler}
 	});
-snippet load
+snippet l load()
 	load(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet loadf
+snippet l load() + function()
 	load('${1:mydomain.com/url}',
 		${2:{ param1: value1 },}
 		function (responseText, textStatus, xhr) {
 			${3:// success callback}
 		}
 	});
-snippet makearray
+snippet m $.makeArray()
 	$.makeArray(${1:obj});
-snippet map
+snippet m map()
 	map(function (${1:index}, ${2:element}) {
 		${3:// callback}
 	});
-snippet mapp
+snippet m map() + function()
 	$.map(${1:arrayOrObject}, function (${2:value}, ${3:indexOrKey}) {
 		${4:// callback}
 	});
-snippet merge
+snippet m $.merge()
 	$.merge(${1:target}, ${2:original});
-snippet next
+snippet n next()
 	next('${1:selector expression}')
-snippet nexta
+snippet n nextAll()
 	nextAll('${1:selector expression}')
-snippet nextu
+snippet n nextUntil()
 	nextUntil('${1:selector expression}'${2:, 'filter expression'})
-snippet not
+snippet n not()
 	not('${1:selector expression}')
-snippet off
+snippet o off()
 	off('${1:events}', '${2:selector expression}'${3:, handler})
-snippet offset
+snippet o offset()
 	offset()
-snippet offsetp
+snippet o offsetParent()
 	offsetParent()
-snippet on
+snippet o on()
 	on('${1:events}', '${2:selector expression}', function (${3:e}) {
 		${4:// event handler}
 	});
-snippet one
+snippet o one()
 	one('${1:event name}', function (${2:e}) {
 		${3:// event handler}
 	});
-snippet outerh
+snippet o outerHeight()()
 	outerHeight()
-snippet outerw
+snippet o outerWidth()()
 	outerWidth()
-snippet param
+snippet p $.param()
 	$.param(${1:obj})
-snippet parent
+snippet p parent()
 	parent('${1:selector expression}')
-snippet parents
+snippet p parents()
 	parents('${1:selector expression}')
-snippet parentsu
+snippet p parentsUntil()
 	parentsUntil('${1:selector expression}'${2:, 'filter expression'})
-snippet parsejson
+snippet p $.parseJSON()
 	$.parseJSON(${1:data})
-snippet parsexml
+snippet p $.parseXML()
 	$.parseXML(${1:data})
-snippet pos
+snippet p pos()
 	position()
-snippet prepend
+snippet p prepend()
 	prepend('${1:Some text <b>and bold!</b>}')
-snippet prependto
+snippet p prependto()
 	prependTo('${1:selector expression}')
-snippet prev
+snippet p prev()
 	prev('${1:selector expression}')
-snippet preva
+snippet p prevAll()
 	prevAll('${1:selector expression}')
-snippet prevu
+snippet p prevUntil()
 	prevUntil('${1:selector expression}'${2:, 'filter expression'})
-snippet promise
+snippet p promise()
 	promise(${1:'fx'}, ${2:target})
-snippet prop
+snippet p prop()
 	prop('${1:property name}')
-snippet proxy
+snippet p $.proxy()
 	$.proxy(${1:function}, ${2:this})
-snippet pushstack
+snippet p pushStack()
 	pushStack(${1:elements})
-snippet queue
+snippet q queue()
 	queue(${1:name}${2:, newQueue})
-snippet queuee
+snippet q $.queuee()
 	$.queue(${1:element}${2:, name}${3:, newQueue})
-snippet reset
+snippet r reset()
 	reset(function (${1:e}) {
 		${2:// event handler}
 	});
-snippet resize
+snippet r resize()
 	resize(function (${1:e}) {
 		${2:// event handler}
 	});
@@ -952,256 +952,6 @@ snippet ons
 #
 #
 #
-###########
-# PIXI V2 #
-###########
-# Draw graphic rectangle with PixiJS
-snippet pixi rect
-	var ${1:_rect} = new PIXI.Graphics();
-	$1.beginFill(${2:0xFF0000}, 1);
-	$1.drawRect(${3:0}, ${4:0}, ${5:100}, ${6:100});
-	$1.endFill();
-# PIXI (from Mazarine)
-snippet pixi AMD class
-	define('${1:primary_type_name}', [], function() {
-
-		var _$1 = function() {
-
-			var _scope;
-
-			PIXI.DisplayObjectContainer.call(this);
-			_scope = this;
-
-			function build() {
-			}
-
-			this.process = function() {
-			};
-
-			this.resize = function (w, h) {
-			};
-
-			build();
-		};
-
-		_$1.prototype = Object.create(PIXI.DisplayObjectContainer.prototype);
-
-		return _$1;
-	});
-# Pixi Template Class (from Mazarine)
-snippet pixi main
-	(function(parent) {
-		var _stats, _DOMContainer, _stage, _renderer;
-
-		parent.${1:primary_type_name} = function() {
-			init();
-		};
-
-		function init() {
-			_DOMContainer = document.createElement('div');
-			document.body.appendChild(_DOMContainer);
-			_renderer = new PIXI.CanvasRenderer();
-			_renderer.transparent = false;
-			_DOMContainer.appendChild(_renderer.view);
-			_stage = new PIXI.Stage(0xffffff);
-			stat();
-			initEvents();
-			build();
-		}
-
-		function build() {
-		}
-
-		function stat() {
-			_stats = new Stats();
-			_stats.domElement.style.position = 'absolute';
-			_stats.domElement.style.top = '0px';
-			_DOMContainer.appendChild(_stats.domElement);
-		}
-
-		function initEvents() {
-			if (getDevice() == "desktop") {
-				_renderer.view.addEventListener("mousemove", onMove, false);
-				// _renderer.view.addEventListener("mousedown", onDown, false);
-				// _renderer.view.addEventListener("mouseup", onUp, false);
-				// _renderer.view.addEventListener("mouseout", onUp, false);
-			} else {
-				_renderer.view.addEventListener('touchmove', onMove, false);
-				// _renderer.view.addEventListener('touchstart', onDown, false);
-				// _renderer.view.addEventListener('touchend', onUp, false);
-			}
-
-			window.addEventListener("resize", onResize);
-			onResize(null);
-			requestAnimFrame(enterFrame);
-		}
-
-		function draw() {
-		}
-
-		function onMove(event) {
-			event.preventDefault();
-		}
-
-		function onResize(event) {
-			_renderer.resize(window.innerWidth, window.innerHeight);
-		}
-
-		function enterFrame() {
-			draw();
-			requestAnimFrame(enterFrame);
-			_renderer.render(_stage);
-			_stats.update();
-		}
-	})(app);
-# Boot Class implemente Pixi V2 framework (from Mazarine)
-snippet pixi bootstrap
-	var ${1:primary_type_name} = $1 || {};
-
-	define('$1', [], function() {
-		var _$1 = function(args) {
-
-			console.log("<< $1 >>");
-
-			// CONFIG
-			var _statEnabled       = true;
-			var _centerDesktop     = false;
-			var _widthDesktopView  = 1280;
-			var _heightDesktopView = 800;
-
-			// CONST
-			var RETINA_BASE_WIDTH  = 2048;
-			var RETINA_BASE_HEIGHT = 1536;
-
-			var _container;
-			var _stats;
-			var _stage;
-			var _rendererOptions;
-			var _renderer;
-			var _page;
-			var _hcoef;
-			var _vcoef;
-			var _h;
-			var _w;
-			var _viewPosX;
-			var _viewPosY;
-			var _canvas = args[0];
-
-			function init() {
-				_stage = new PIXI.Stage(0xffffff);
-				_rendererOptions = {view : _canvas, transparent : false, resolution : window.devicePixelRatio || 1};
-				_renderer = new PIXI.CanvasRenderer(0, 0, _rendererOptions);
-				if (!_canvas) {
-					document.body.appendChild(_renderer.view);
-				}
-				onReady();
-			}
-
-			function onReady() {
-				// INIT STRUCTURE
-				build();
-				// LOAD FONTS AND START APP, ELSE CALL "start" FUNCTION
-				//Tools.loadFont(["HelveticaNeueLTStd-UltLt", "HelveticaNeueLTStd-Roman", "HelveticaNeueLTStd-Hv", "HelveticaNeueLTStd-Th"], start);
-				start();
-			}
-
-			function build() {
-				_container = new PIXI.DisplayObjectContainer();
-				_stage.addChild(_container);
-			}
-
-			function initPages() {
-				$1.stage = _stage;
-				$1.view = _renderer.view;
-				$1.resolution = window.devicePixelRatio || 1;
-				$1.textResolution = 2;
-				//$1.fonts = {HelveticaNeueLTStdUltLt : "HelveticaNeueLTStd-UltLt", HelveticaNeueLTStdRoman : "HelveticaNeueLTStd-Roman", HelveticaNeueLTStdHv : "HelveticaNeueLTStd-Hv", HelveticaNeueLTStdTh : "HelveticaNeueLTStd-Th"};
-
-				// a new imported Main project Class //
-				//_page = new MainClass();
-				//_container.addChild(_page);
-			}
-
-			function initEvents() {
-				window.addEventListener("resize", $1.onResize);
-				$1.onResize(null);
-			}
-
-			$1.onResize = function() {
-				_h = window.innerHeight;
-				_w = window.innerWidth;
-
-				// CENTER DESKTOP NAVIGATOR
-				if (_centerDesktop &amp;&amp; Tools.getDevice() == "desktop") {
-					if (_w >= _widthDesktopView) {
-						_w = _widthDesktopView;
-					}
-					if (_h >= _heightDesktopView) {
-						_h = _heightDesktopView;
-					}
-
-					_viewPosX = window.innerWidth - _w >> 1;
-					_viewPosY = window.innerHeight - _h >> 1;
-				}
-
-				_hcoef = _w / RETINA_BASE_WIDTH;
-				_vcoef = _h / RETINA_BASE_HEIGHT;
-
-				if (_page &amp;&amp; _page.resize) {
-					_page.resize(_w, _h, _hcoef, _vcoef, _viewPosX, _viewPosY);
-				}
-
-				_renderer.resize(_w, _h);
-				_renderer.view.style.width = _w + "px";
-				_renderer.view.style.height = _h + "px";
-
-				window.scrollTo(0, 0);
-			};
-
-			function start() {
-				console.log("start");
-
-				// INIT PAGES
-				initPages();
-
-				// INIT DOM EVENTS
-				initEvents();
-
-				requestAnimFrame(processFrame);
-				if (_statEnabled) {
-					stat();
-				}
-			}
-
-			function processFrame() {
-				requestAnimFrame(processFrame);
-				_renderer.render(_stage);
-
-				if (_page &amp;&amp; _page.process) {
-					_page.process();
-				}
-
-				if (_statEnabled) {
-					_stats.update();
-				}
-			}
-
-			function stat() {
-				_stats = new Stats();
-				_stats.domElement.style.position = 'absolute';
-				_stats.domElement.style.top = '0px';
-				_stats.domElement.style.left = '0px';
-				document.body.appendChild(_stats.domElement);
-			}
-
-			init();
-		};
-
-		return _$1;
-	});
-#
-#
-#
 ############
 # Backbone #
 ############
@@ -1234,5 +984,95 @@ snippet bbv
 ##############
 # Underscore #
 ##############
+# template
 snippet <
 	<%= ${1} %>
+#
+#
+#
+#########
+# Mocha #
+#########
+# shortcuts
+snippet test
+	describe('${1:Description}', function() {
+		it('${2:should}', function() {
+			${3:// assertion}
+		});
+	});
+snippet desc
+	describe('${1:Description}', function() {
+		${2:/* code in here */}
+	});
+snippet it
+	it('${1:should}', function() {
+		${2:/* code in here */}
+	});
+# describe
+snippet mo describe
+	describe('${1:Description}', function() {
+		${2:/* code in here */}
+	});
+# before
+snippet mo before
+	before(function() {
+		${1:/* code in here */}
+	});
+# after
+snippet mo after
+	after(function() {
+		${1:/* code in here */}
+	});
+# beforeEach
+snippet mo beforeEach
+	beforeEach(function() {
+		${1:/* code in here */}
+	});
+# afterEach
+snippet mo afterEach
+	afterEach(function() {
+		${1:/* code in here */}
+	});
+# it
+snippet mo it
+	it('${1:should}', function() {
+		${2:/* code in here */}
+	});
+# it pending
+snippet mo it pending
+	it('${1:should}');
+#
+#
+#
+########
+# Chai #
+########
+# shortcuts
+snippet ex expect
+	expect(${1:false}).${2:to...};
+# to be...
+snippet to to be ok
+	to.be.ok;
+snippet to to not be ok
+	to.not.be.ok;
+snippet to to eql... (deep)
+	to.eql(${2:''});
+snippet to to equal... (strict)
+	to.equal(${2:''});
+snippet to to be instanceof..
+	to.be.instanceof(${2:false});
+snippet to to have property...
+	to.have.property(${2:'property'});
+snippet to to be a...
+	to.be.a('${2:}');
+# fast .a(type) versions
+snippet to to be a string
+	to.be.a('string');
+snippet to to be an array
+	to.be.a('array');
+snippet to to be an object
+	to.be.a('object');
+snippet to to be null
+	to.be.a('null');
+snippet to to be undefined
+	to.be.a('undefined');
