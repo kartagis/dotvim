@@ -248,13 +248,10 @@ xnoremap ,, <Esc>:let @/ = visual#GetSelection()<CR>cgN
 """""""""""""""""""""""""""""
 " JUGGLING WITH DEFINITIONS "
 """""""""""""""""""""""""""""
-command! Tagit  call tags#Tagit(0)
-command! Bombit call tags#Tagit(1)
+nnoremap ,j tjump /
+nnoremap ,p ptjump /
 
-nnoremap ,j :Bombit<CR>:tjump /
-nnoremap ,p :Bombit<CR>:ptjump /
-
-nnoremap g] :Bombit<CR>g<C-]>
+nnoremap g] g<C-]>
 
 nnoremap ,D :Dlist<Space>
 
