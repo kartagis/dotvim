@@ -1076,3 +1076,54 @@ snippet to to be null
 	to.be.a('null');
 snippet to to be undefined
 	to.be.a('undefined');
+#
+#
+#
+########
+# Tape #
+########
+snippet tape
+	var test = require('tape');
+
+	test('${1:title}', function (t) {
+		t.plan(${2:1});
+		${3:// assertions}
+	});
+snippet t. t.plan(n)
+	t.plan(${1:1});
+snippet t. t.end(err)
+	t.end(${1:err});
+snippet t. t.fail(msg)
+	t.fail(${1:msg});
+snippet t. t.pass(msg)
+	t.pass(${1:msg});
+snippet t. t.timeoutAfter(ms)
+	t.timeoutAfter(${1:ms});
+snippet t. t.skip(msg)
+	t.skip(${1:msg});
+snippet t. t.ok(value, msg)
+	t.ok(${1:value}, ${2:msg});
+snippet t. t.notOk(value, msg)
+	t.notOk(${1:value}, ${2:msg});
+snippet t. t.error(err, msg)
+	t.error(${1:err}, ${2:msg});
+snippet t. t.equal(actual, expected, msg)
+	t.equal(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.notEqual(actual, expected, msg)
+	t.notEqual(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.deepEqual(actual, expected, msg)
+	t.deepEqual(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.notDeepEqual(actual, expected, msg)
+	t.notDeepEqual(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.deepLooseEqual(actual, expected, msg)
+	t.deepLooseEqual(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.notDeepLooseEqual(actual, expected, msg)
+	t.notDeepLooseEqual(${1:actual}, ${2:expected}, ${3:msg});
+snippet t. t.throws(fn, expected, msg);
+	t.throws(${1:fn}, ${2:expected}, ${3:msg});
+snippet t. t.doesNotThrow(fn, expected, msg)
+	t.doesNotThrow(${1:fn}, ${2:expected}, ${3:msg});
+snippet t. t.test(name, [opts], cb)
+	t.test(${1:name}, ${2:[opts]}, ${3:cb});
+snippet t. t.comment(message)
+	t.comment(${1:message});
