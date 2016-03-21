@@ -160,10 +160,10 @@ nnoremap ,f :find *
 nnoremap ,s :sfind *
 nnoremap ,v :vert sfind *
 nnoremap ,t :tabfind *
-nnoremap ,F :find <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap ,S :sfind <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap ,V :vert sfind <C-R>=expand('%:p:h').'/**/*'<CR>
-nnoremap ,T :tabfind <C-R>=expand('%:p:h').'/**/*'<CR>
+nnoremap ,F :find <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
+nnoremap ,T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 
 command! -nargs=1 -complete=customlist,mru#MRUComplete ME call mru#MRU('edit', <f-args>)
 command! -nargs=1 -complete=customlist,mru#MRUComplete MS call mru#MRU('split', <f-args>)
@@ -295,8 +295,8 @@ cnoremap <expr> <CR> ccr#CCR()
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
-cnoremap %% <C-r>=expand('%')<CR>
-cnoremap :: <C-r>=expand('%:p:h')<CR>/
+cnoremap %% <c-r>=fnameescape(expand('%'))<cr>
+cnoremap :: <c-r>=fnameescape(expand('%:p:h'))<cr>/
 
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
