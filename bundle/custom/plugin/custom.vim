@@ -70,3 +70,6 @@ inoremap {, {<CR>},<Esc>O
 inoremap [<CR> [<CR>]<Esc>O
 inoremap [; [<CR>];<Esc>O
 inoremap [, [<CR>],<Esc>O
+
+" like <C-r><C-w> for lines
+cnoremap <C-r><C-l> <C-r>=getline('.')<CR>

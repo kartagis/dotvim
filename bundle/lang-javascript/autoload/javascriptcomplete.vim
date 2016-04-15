@@ -4,6 +4,9 @@
 " Last Change:  2014 Jun 23
 " Original Maintainer: Mikolaj Machowski ( mikmach AT wp DOT pl )
 
+" TODO: jQuery support
+let s:jquerys = []
+
 " underscore.js (http://underscorejs.org/) support
 let s:underscores = ['each(', 'map(', 'reduce(', 'reduceRight(', 'find(', 'filter(', 'where(', 'findWhere(', 'reject(', 'every(', 'some(', 'contains(', 'invoke(', 'pluck(', 'max(', 'min(', 'sortBy(', 'groupBy(', 'indexBy(', 'countBy(', 'shuffle(', 'sample(', 'toArray(', 'size(', 'partition(', 'first(', 'initial(', 'last(', 'rest(', 'compact(', 'flatten(', 'without(', 'union(', 'intersection(', 'difference(', 'uniq(', 'zip(', 'unzip(', 'object(', 'indexOf(', 'lastIndexOf(', 'sortedIndex(', 'findIndex(', 'findLastIndex(', 'range(', 'bind(', 'bindAll(', 'partial(', 'memoize(', 'delay(', 'defer(', 'throttle(', 'debounce(', 'once(', 'after(', 'before(', 'wrap(', 'negate(', 'compose(', 'keys(', 'allKeys(', 'values(', 'mapObject(', 'pairs(', 'invert(', 'create(', 'functions(', 'findKey(', 'extend(', 'extendOwn(', 'pick(', 'omit(', 'defaults(', 'clone(', 'tap(', 'has(', 'matcher(', 'property(', 'propertyOf(', 'isEqual(', 'isMatch(', 'isEmpty(', 'isElement(', 'isArray(', 'isObject(', 'isArguments(', 'isFunction(', 'isString(', 'isNumber(', 'isFinite(', 'isBoolean(', 'isDate(', 'isRegExp(', 'isNaN(', 'isNull(', 'isUndefined(', 'noConflict(', 'identity(', 'constant(', 'noop(', 'times(', 'random(', 'mixin(', 'iteratee(', 'uniqueId(', 'escape(', 'unescape(', 'result(', 'now(', 'template(', 'chain(', 'value(']
 

@@ -29,19 +29,19 @@ xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
 onoremap <buffer> af :normal vaf<CR>
 
 " generate event handler
-nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(event){<CR>};<C-o>O
+nnoremap <buffer> ,h yiw}o<C-r><C-u>function <C-r>"(e){<CR>};<C-o>O
 
 " generate console.log()
-nnoremap <buffer> ,l :put='console.log(\"' . expand('<cword>') . '\", ' . expand('<cword>') . ');'<CR>==
-xnoremap <buffer> ,l :<C-u>put='console.log(\"' . visual#GetSelection() . '\", ' . visual#GetSelection() . ');'<CR>==
+nnoremap <buffer> ,l :put='console.log(\"<C-r><C-w>\", <C-r><C-w>);'<CR>==
+xnoremap <buffer> ,l y:<C-u>put='console.log(\"<C-r>"\", <C-r>");'<CR>==
 
 " fix a hasty console.log()
 nnoremap <buffer> ,q ciw"<C-r>"", <C-r>"<Esc>
 xnoremap <buffer> ,q c"<C-r>"", <C-r>"<Esc>
 
 " transform into underscore placeholder
-nnoremap <buffer> ,u "uciw<%= <C-r>u %><Esc>BB
-xnoremap <buffer> ,u "uc<%= <C-r>u %><Esc>BB
+nnoremap <buffer> ,u "uciw<%= <C-r>u %><Esc>BBviW<C-g>
+xnoremap <buffer> ,u "uc<%= <C-r>u %><Esc>BBviW<C-g>
 
 " reformat selection
 command! -buffer -range=% Format let b:winview = winsaveview() |

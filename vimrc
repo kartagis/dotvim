@@ -81,8 +81,8 @@ set wildmenu
 set autoindent
 set expandtab
 set shiftround
-set shiftwidth=0
-let &softtabstop = &tabstop
+set shiftwidth=4
+set softtabstop=4
 set smarttab
 
 set gdefault
@@ -165,11 +165,6 @@ nnoremap ,S :sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,V :vert sfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 nnoremap ,T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 
-command! -nargs=1 -complete=customlist,mru#MRUComplete ME call mru#MRU('edit', <f-args>)
-command! -nargs=1 -complete=customlist,mru#MRUComplete MS call mru#MRU('split', <f-args>)
-command! -nargs=1 -complete=customlist,mru#MRUComplete MV call mru#MRU('vsplit', <f-args>)
-command! -nargs=1 -complete=customlist,mru#MRUComplete MT call mru#MRU('tabedit', <f-args>)
-
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
 """""""""""""""""""""""""
@@ -248,8 +243,8 @@ xnoremap ,, <Esc>:let @/ = visual#GetSelection()<CR>cgN
 """""""""""""""""""""""""""""
 " JUGGLING WITH DEFINITIONS "
 """""""""""""""""""""""""""""
-nnoremap ,j tjump /
-nnoremap ,p ptjump /
+nnoremap ,j :tjump /
+nnoremap ,p :ptjump /
 
 nnoremap g] g<C-]>
 

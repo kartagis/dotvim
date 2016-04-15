@@ -87,6 +87,38 @@ snippet ins
 #
 #
 #
+#########
+# JSDOC #
+#########
+snippet /** A JSDoc comment
+	/**
+	 * $1
+	 */
+snippet @au @author email (First Last)
+	@author
+snippet @li @license Description
+	@license
+snippet @ver @version Semantic version
+	@version
+snippet @fileo @fileoverview Description
+	/**
+	 * @fileoverview ${1:Description}
+	 */
+snippet @constr @constructor
+	@constructor
+snippet @p @param {Type} varname Description
+	@param {${1:Type}} ${2:varname} ${3:Description}
+snippet @ret @return {Type} Description
+	@return {${1:Type}} ${2:Description}
+snippet @pri @private
+	@private
+snippet @over @override
+	@override
+snippet @pro @protected
+	@protected
+#
+#
+#
 ##########
 # EVENTS #
 ##########
@@ -258,6 +290,31 @@ snippet call
 	callback.call(${1});
 snippet apply
 	callback.apply(${1});
+#
+#
+#
+########
+# AJAX #
+########
+snippet xhr vanilla ajax call
+	var ${1:xhr} = new XMLHttpRequest();
+	$1.onreadystatechange = function() {
+		if (this.readyState === 4) {
+			if (this.status === 200) {
+				// success
+			} else {
+				// error
+			}
+		}
+	};
+	$1.open("${3:GET}", "${4:URI}");
+	$1.send();
+# Ajax success handler
+snippet success success.call()
+	${1:success_handler}.call(this, this);
+# Ajax error handler
+snippet error error.call()
+	${1:error_handler}.call(this, this);
 #
 #
 #
@@ -993,20 +1050,12 @@ snippet <
 #########
 # Mocha #
 #########
-# shortcuts
-snippet test
+# shortcut
+snippet mocha
 	describe('${1:Description}', function() {
 		it('${2:should}', function() {
 			${3:// assertion}
 		});
-	});
-snippet desc
-	describe('${1:Description}', function() {
-		${2:/* code in here */}
-	});
-snippet it
-	it('${1:should}', function() {
-		${2:/* code in here */}
 	});
 # describe
 snippet mo describe
@@ -1086,8 +1135,8 @@ snippet tape
 	var test = require('tape');
 
 	test('${1:title}', function (t) {
-		t.plan(${2:1});
-		${3:// assertions}
+		${2:// assertions}
+		t.end();
 	});
 snippet t. t.plan(n)
 	t.plan(${1:1});
