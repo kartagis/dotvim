@@ -2,7 +2,6 @@ let @a = '$T"i border="0" style="display:block;"'
 
 let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 
-setlocal commentstring=<!--%s-->
 setlocal define=\\sid\\=
 setlocal indentkeys-=*<Return>
 
