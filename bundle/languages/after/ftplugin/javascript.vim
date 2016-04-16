@@ -23,6 +23,11 @@ nnoremap <silent> <buffer> [[ :call jump#Jump('?function')<cr>
 " block un/comment
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
+nmap     <buffer> !! vi?!!
+
+" comment text-object
+xnoremap <buffer> i? ?/\*<CR>o/\*\/<CR>
+onoremap <buffer> i? :<C-u>normal vi?<CR>
 
 " select whole function
 xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
