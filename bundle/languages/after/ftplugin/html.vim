@@ -10,7 +10,7 @@ xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 
 " comment text-object
-xnoremap <buffer> i? ?<!--<CR>o/--><CR>
+xnoremap <buffer> i? ?<C-r>=split(&commentstring, "%s")[0]<CR><CR>o/<C-r>=split(&commentstring, "%s")[1]<CR><CR>
 onoremap <buffer> i? :<C-u>normal vi?<CR>
 nmap     <buffer> !! vi?!!
 

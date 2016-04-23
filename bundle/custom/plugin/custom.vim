@@ -54,13 +54,19 @@ cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-
 
 " line text-objects
 xnoremap il g_o0
-onoremap il :normal vil<CR>
+onoremap il :<C-u>normal vil<CR>
 xnoremap al $o0
-onoremap al :normal val<CR>
+onoremap al :<C-u>normal val<CR>
 
 " buffer text-object
 xnoremap i% GoggV
-onoremap i% :normal vi%<CR>
+onoremap i% :<C-u>normal vi%<CR>
+
+" block comment text-object
+xnoremap a? ?<C-r>=split(&commentstring, "%s")[0]<CR><CR>o/<C-r>=split(&commentstring, "%s")[1]<CR><CR>
+onoremap a? :<C-u>normal va?<CR>
+xnoremap i? ?<C-r>=split(&commentstring, "%s")[0]<CR>?+<CR>o/<C-r>=split(&commentstring, "%s")[1]<CR>/-<CR>
+onoremap i? :<C-u>normal vi?<CR>
 
 " brace expansion on the cheap
 inoremap (<CR> (<CR>)<Esc>O
