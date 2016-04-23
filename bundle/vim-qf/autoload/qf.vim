@@ -193,30 +193,15 @@ function qf#SetStatusline()
 endfunction
 
 function qf#SetList(pat, reject)
-    let operator  = a:reject == 0 ? "=~" : "!~"
+    let operator = a:reject == 0 ? "=~" : "!~"
     let condition = a:reject == 0 ? "||" : "&&"
-    let expr      = "bufname(v:val['bufnr']) " . operator . " a:pat"
-    if exists("g:qf_filter_only_fname")
-        if g:qf_filter_only_fname == 0
-            let expr .= " " . condition . " v:val['text'] " . operator . " a:pat"
-        endif
-    else
-        let expr .= " " . condition . " v:val['text'] " . operator . " a:pat"
-    endif
     if exists("b:isLoc")
         if b:isLoc == 1
-            call setloclist(0, filter(getloclist(0), expr), "r")
+            call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) " . operator . " a:pat " . condition . " v:val['text'] " . operator . " a:pat"), "r")
         else
-            call setqflist(filter(getqflist(), expr), "r")
+            call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . operator . " a:pat " . condition . " v:val['text'] " . operator . " a:pat"), "r")
         endif
     endif
-    " if exists("b:isLoc")
-    "     if b:isLoc == 1
-    "         call setloclist(0, filter(getloclist(0), "bufname(v:val['bufnr']) " . operator . " a:pat " . condition . " v:val['text'] " . operator . " a:pat"), "r")
-    "     else
-    "         call setqflist(filter(getqflist(), "bufname(v:val['bufnr']) " . operator . " a:pat " . condition . " v:val['text'] " . operator . " a:pat"), "r")
-    "     endif
-    " endif
 endfunction
 
 function qf#AddList()
@@ -289,6 +274,105 @@ function qf#ReuseTitle()
             endif
         endif
     endif
+endfunction
+
+let s:named_lists = {}
+let s:last_saved_list = ''
+
+function qf#SaveList(add, name) abort
+    if a:name != ''
+        let curname = a:name
+        let s:last_saved_list = curname
+    else
+        if s:last_saved_list == ''
+            echomsg 'No last saved list'
+            return
+        endif
+        let curname = s:last_saved_list
+    endif
+
+    if get(b:, 'isLoc', 0)
+        let curlist = getloclist(0)
+    else
+        let curlist = getqflist()
+    endif
+
+    if empty(curlist)
+        " fail silently on empty lists
+        return
+    endif
+
+    for entry in curlist
+        " grab the correct filename for setqflist() in case the
+        " corresponding buffer is being closed in the meantime
+        let entry.filename = bufname(entry.bufnr)
+        unlet entry.bufnr
+
+        " unlet valid, not recognized by setqflist()
+        unlet entry.valid
+    endfor
+
+    if a:add
+        let s:named_lists[curname] += curlist
+    else
+        let s:named_lists[curname] = curlist
+    endif
+endfunction
+
+function qf#LoadList(add, ...)
+    if empty(a:000)
+        let names = [ s:last_saved_list ]
+    else
+        let names = a:000
+    endif
+
+    if !a:add
+        if get(b:, 'isLoc', 0)
+            call setloclist(0, [])
+        else
+            call setqflist([])
+        endif
+    endif
+
+    for name in names
+        if has_key(s:named_lists, name)
+            if get(b:, 'isLoc', 0)
+                call setloclist(0, s:named_lists[name], 'a')
+            else
+                call setqflist(s:named_lists[name], 'a')
+            endif
+        else
+            echomsg 'No list named "' . name . '" saved'
+        endif
+    endfor
+endfunction
+
+function qf#ListLists()
+    for name in keys(s:named_lists)
+        echo name
+    endfor
+endfunction
+
+function qf#RemoveList(bang, ...)
+    if a:bang
+        let s:named_lists = {}
+    else
+        for name in a:000
+            call remove(s:named_lists, name)
+        endfor
+    endif
+endfunction
+
+function qf#CompleteList(ArgLead, CmdLine, CursorPos)
+    let completions = []
+
+    for name in keys(s:named_lists)
+        if name =~ a:ArgLead
+            call add(completions, name)
+        endif
+    endfor
+
+    return completions
 endfunction
 
 " template
