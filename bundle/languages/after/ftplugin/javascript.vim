@@ -1,4 +1,4 @@
-setlocal define=^\\s*\\(var\\\|let\\\|function\\\|define\\)[('\"]\\{-\\}
+setlocal define=^\\s*\\ze[^/,\\":=]*\\s*[:=]*\\s*\\(function\\\|define\\)[('\"]\\{-\\}
 setlocal suffixesadd+=.js
 setlocal include=^\\s*\\([^\/]\\{-\\}import[^'\"]*\\\|[^\/]\\{-\\}require\(\\)*['\"]\\zs[^'\"]*\\ze
 
