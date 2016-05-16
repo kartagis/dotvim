@@ -8,10 +8,6 @@ setlocal indentkeys-=*<Return>
 " poor man's block commenting
 xnoremap <buffer> ?? <Esc>'<yyP"_C<!--<Esc>'>yyp"_C--><Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
-
-" comment text-object
-xnoremap <buffer> i? ?<C-r>=split(&commentstring, "%s")[0]<CR><CR>o/<C-r>=split(&commentstring, "%s")[1]<CR><CR>
-onoremap <buffer> i? :<C-u>normal vi?<CR>
 nmap     <buffer> !! vi?!!
 
 " dealing with entities
@@ -31,6 +27,9 @@ nnoremap <buffer> cia /\v"\ze[ >/]<CR>ci"
 nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
 nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
 nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
+
+nnoremap <buffer> {{ cit{{ <C-r>" }}<Esc>
+xnoremap <buffer> {{ c{{ <C-r>" }}<Esc>
 
 " à revoir
 " nnoremap <buffer> caa /\v"[ >/]/e<CR>vF=bc

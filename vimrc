@@ -316,15 +316,17 @@ command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 command! LCD lcd %:p:h
 command! CD  cd %:p:h
 
-command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
+" command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
+command! -range=% TR let b:wv = winsaveview() | execute <line1> . ',' . <line2> . 's/\s\+$//' | call winrestview(b:wv)
 
 command! EV tabedit $MYVIMRC <bar> lcd %:p:h
 command! SV source  $MYVIMRC
 
 " sharing is caring
-command! -range=% VP  execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
+command! -range=% VP  silent execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command! -range=% IX  silent execute <line1> . "," . <line2> . "w !curl -F 'f:1=<-' ix.io | tr -d '\\n' | pbcopy"
+command! -range=% TB  silent execute <line1> . "," . <line2> . "w !nc termbin 9999 | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""

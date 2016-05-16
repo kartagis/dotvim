@@ -30,7 +30,7 @@ xnoremap <buffer> i? ?/\*<CR>o/\*\/<CR>
 onoremap <buffer> i? :<C-u>normal vi?<CR>
 
 " select whole function
-xnoremap <buffer> af :<C-u>call javascript#SelectFunction()<CR>
+xnoremap <buffer> af :<C-u>call <SID>SelectFunction()<CR>
 onoremap <buffer> af :normal vaf<CR>
 
 " generate event handler
@@ -57,3 +57,9 @@ command! -buffer -range=% Format let b:winview = winsaveview() |
 setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 setlocal makeprg=jshint
 autocmd! BufWritePost <buffer> silent make! % | silent redraw! | silent wincmd p
+
+function! s:SelectFunction()
+    call search("function", "bWc")
+    call search("{", "Wc")
+    normal v%V
+endfunction

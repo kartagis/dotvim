@@ -23,7 +23,7 @@ snippet else
 		${1}
 	}
 # ternary operator
-snippet ter
+snippet ?:
 	${1:condition} ? ${2:if true} : ${3:if false}
 # switch
 snippet switch
@@ -232,6 +232,9 @@ snippet inherit
 # Constructor > New Instance
 snippet new
 	var ${1:instance_name} = new ${2:Constructor_name}(${3});
+# Object.create()
+snippet cr
+	var ${1:object_name} = Object.create(${2:null});
 # Console
 snippet log
 	console.log(${1});

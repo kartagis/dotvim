@@ -1,0 +1,2 @@
+nnoremap { ?^@@<CR>
+nnoremap } /^@@<CR>
