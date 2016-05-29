@@ -28,9 +28,6 @@ nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
 nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
 nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 
-nnoremap <buffer> {{ cit{{ <C-r>" }}<Esc>
-xnoremap <buffer> {{ c{{ <C-r>" }}<Esc>
-
 " à revoir
 " nnoremap <buffer> caa /\v"[ >/]/e<CR>vF=bc
 " nnoremap <buffer> daa /\v"[ >/]/e<CR>vF=bd
