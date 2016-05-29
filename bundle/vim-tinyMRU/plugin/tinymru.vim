@@ -21,7 +21,7 @@ endfunction
 " MRU function
 function! s:MRU(command, arg)
     if a:command == "tabedit"
-        execute a:command . " " . a:arg . "|lcd %:p:h"
+        execute a:command . " " . a:arg . "\|lcd %:p:h"
     else
         execute a:command . " " . a:arg
     endif
