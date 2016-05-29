@@ -117,6 +117,7 @@ set completeopt+=longest,menuone
 set cursorline
 set fileformats=unix,dos,mac
 set formatoptions+=1
+set linebreak
 set mouse=a
 set nostartofline
 set noswapfile
@@ -145,12 +146,6 @@ augroup VIMRC
 
     autocmd BufLeave * let b:winview = winsaveview()
     autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
-
-    autocmd BufLeave *.css,*.less,*scss normal! mC
-    autocmd BufLeave *.html             normal! mH
-    autocmd BufLeave *.js               normal! mJ
-    autocmd BufLeave *.php              normal! mP
-    autocmd BufLeave vimrc,*.vim        normal! mV
 augroup END
 
 """""""""""""""""""""""
@@ -168,8 +163,6 @@ nnoremap ,T :tabfind <C-R>=fnameescape(expand('%:p:h')).'/**/*'<CR>
 """""""""""""""""""""""""
 " JUGGLING WITH BUFFERS "
 """""""""""""""""""""""""
-nnoremap gb :ls<CR>:buffer<Space>
-nnoremap gB :ls<CR>:sbuffer<Space>
 nnoremap ,b :buffer *
 nnoremap ,B :sbuffer *
 
@@ -327,6 +320,7 @@ command! -range=% VP  silent execute <line1> . "," . <line2> . "w !vpaste ft=" .
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
 command! -range=% IX  silent execute <line1> . "," . <line2> . "w !curl -F 'f:1=<-' ix.io | tr -d '\\n' | pbcopy"
 command! -range=% TB  silent execute <line1> . "," . <line2> . "w !nc termbin 9999 | tr -d '\\n' | pbcopy"
+command! -range=% CL  silent execute <line1> . "," . <line2> . "w !curl -F 'clbin=<-' https://clbin.com | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""
