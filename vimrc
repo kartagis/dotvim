@@ -1,6 +1,3 @@
-filetype off
-syntax off
-
 call pathogen#infect()
 
 filetype plugin indent on
@@ -207,7 +204,7 @@ command! -nargs=+ -complete=file_in_path -bar LGrep silent! lgrep! <args> | redr
 
 nnoremap <silent> ,G :Grep <C-r><C-w><CR>
 xnoremap <silent> ,G :<C-u>let cmd = "Grep " . visual#GetSelection() <bar>
-                        \ call histadd("cmd",cmd) <bar>
+                        \ call histadd("cmd", cmd) <bar>
                         \ execute cmd<CR>
 
 if executable("ag")
@@ -309,7 +306,6 @@ command! SS echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 command! LCD lcd %:p:h
 command! CD  cd %:p:h
 
-" command! -range=% TR mark ` | execute <line1> . ',' . <line2> . 's/\s\+$//' | normal! ``
 command! -range=% TR let b:wv = winsaveview() | execute <line1> . ',' . <line2> . 's/\s\+$//' | call winrestview(b:wv)
 
 command! EV tabedit $MYVIMRC <bar> lcd %:p:h

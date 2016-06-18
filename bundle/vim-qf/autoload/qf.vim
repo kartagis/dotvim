@@ -230,8 +230,12 @@ function qf#SetTitle(pat, reject)
         if b:isLoc == 1
             let w:quickfix_title = getwinvar(winnr("#"), "qf_location_titles")[0] . " [" . str . ": '" . a:pat . "']"
         else
-            if len(g:qf_quickfix_titles) > 0
-                let w:quickfix_title = g:qf_quickfix_titles[0] . " [" . str . ": '" . a:pat . "']"
+            if exists("g:qf_quickfix_titles")
+                if len(g:qf_quickfix_titles) > 0
+                    let w:quickfix_title = g:qf_quickfix_titles[0] . " [" . str . ": '" . a:pat . "']"
+                else
+                    let w:quickfix_title = w:quickfix_title . " [" . str . ": '" . a:pat . "']"
+                endif
             else
                 let w:quickfix_title = w:quickfix_title . " [" . str . ": '" . a:pat . "']"
             endif
