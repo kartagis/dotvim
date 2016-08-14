@@ -5,7 +5,21 @@ syntax on
 
 runtime macros/matchit.vim
 
- """""""""""""""""""""""""""""""""
+"""""""""""""""""""
+" USEFUL DEFAULTS "
+"""""""""""""""""""
+augroup VIMRC
+    autocmd!
+
+    autocmd FocusLost * call autosave#AutoSave()
+
+    autocmd VimEnter,GUIEnter * set visualbell t_vb=
+
+    autocmd BufLeave * let b:winview = winsaveview()
+    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
+augroup END
+
+"""""""""""""""""""""""""""""""""
 " ENVIRONMENT-SPECIFIC SETTINGS "
 """""""""""""""""""""""""""""""""
 if !exists('os')
@@ -27,7 +41,7 @@ if has('gui_running')
     if os == 'Darwin'
         set guifont=Fira\ Mono:h12
         set fuoptions=maxvert,maxhorz
-        autocmd! GUIEnter * nnoremap <D-Left> gT|nnoremap <D-Right> gt
+        autocmd VIMRC GUIEnter * nnoremap <D-Left> gT|nnoremap <D-Right> gt
     elseif os == 'Linux'
         set guifont=Fira\ Mono\ 10
     elseif os == 'Windows'
@@ -123,27 +137,13 @@ set path=.,**
 set previewheight=1
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winpos,winsize
 set showbreak=›››\ 
-set viminfo='33,<50,s10,h
+set viminfo='33,<1000,s10,h
 set virtualedit=block
 
 """""""""""""""""
 " PRETTY COLORS "
 """""""""""""""""
 colorscheme apprentice
-
-"""""""""""""""""""
-" USEFUL DEFAULTS "
-"""""""""""""""""""
-augroup VIMRC
-    autocmd!
-
-    autocmd FocusLost * call autosave#AutoSave()
-
-    autocmd VimEnter,GUIEnter * set visualbell t_vb=
-
-    autocmd BufLeave * let b:winview = winsaveview()
-    autocmd BufEnter * if exists('b:winview') | call winrestview(b:winview) | endif
-augroup END
 
 """""""""""""""""""""""
 " JUGGLING WITH FILES "
@@ -286,7 +286,7 @@ cnoremap :: <c-r>=fnameescape(expand('%:p:h'))<cr>/
 """""""""""""""""""""""
 " CUSTOM TEXT-OBJECTS "
 """""""""""""""""""""""
-for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`' ]
+for char in [ '_', '.', ':', ',', ';', '<bar>', '/', '<bslash>', '*', '+', '%', '`', '-' ]
     execute 'xnoremap i' . char . ' :<C-u>normal! T' . char . 'vt' . char . '<CR>'
     execute 'onoremap i' . char . ' :normal vi' . char . '<CR>'
     execute 'xnoremap a' . char . ' :<C-u>normal! F' . char . 'vf' . char . '<CR>'
@@ -312,11 +312,11 @@ command! EV tabedit $MYVIMRC <bar> lcd %:p:h
 command! SV source  $MYVIMRC
 
 " sharing is caring
-command! -range=% VP  silent execute <line1> . "," . <line2> . "w !vpaste ft=" . &filetype
 command! -range=% SP  silent execute <line1> . "," . <line2> . "w !curl -F 'sprunge=<-' http://sprunge.us | tr -d '\\n' | pbcopy"
+command! -range=% CL  silent execute <line1> . "," . <line2> . "w !curl -F 'clbin=<-' https://clbin.com | tr -d '\\n' | pbcopy"
+command! -range=% VP  silent execute <line1> . "," . <line2> . "w !curl -F 'text=<-' http://vpaste.net | tr -d '\\n' | pbcopy"
 command! -range=% IX  silent execute <line1> . "," . <line2> . "w !curl -F 'f:1=<-' ix.io | tr -d '\\n' | pbcopy"
 command! -range=% TB  silent execute <line1> . "," . <line2> . "w !nc termbin 9999 | tr -d '\\n' | pbcopy"
-command! -range=% CL  silent execute <line1> . "," . <line2> . "w !curl -F 'clbin=<-' https://clbin.com | tr -d '\\n' | pbcopy"
 command!          CMD let @+ = ':' . @:
 
 """""""""""""""""""

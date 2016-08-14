@@ -16,82 +16,61 @@ snippet <
 # attribute
 snippet :
 	${1:property}: ${2:value};
-# cross-browser opacity
-snippet opacity
-	opacity: ${1:0.5};
-	-moz-opacity: $1;
-	filter:alpha(opacity=`$1 * 100`);
-# cross-bowser border radius
-snippet radius
-	-webkit-border-radius: ${1:5px};
-	-khtml-border-radius: $1;
-	-moz-border-radius: $1;
-	border-radius: $1;
-	-moz-background-clip: padding;
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;${2}
-# cross-browser box shadow
-snippet shadow box
-	-webkit-box-shadow: ${1:5px} rgba(${2:150, 150, 150}, ${3:1}));
-	-moz-box-shadow: $1 rgba($2, $3);
-	box-shadow: $1 rgba($2, $3);
-# text shadow
-snippet shadow text
-	text-shadow: ${1:4px} ${2:4px} ${3:2px} rgba(${4:150, 150, 150}, ${5:1});
 # media queries
 snippet mq Smartphones (portrait and lanscape)
-	/* start Smartphones (portrait and landscape) */
+	// start Smartphones (portrait and landscape)
 	@media only screen and (min-width : 320px) and (max-width : 767px) {
 		${1}
 	}
-	/* end Smartphones (portrait and landscape) */
+	// end Smartphones (portrait and landscape)
 snippet mq smartphones (landscape)
-	/* start Smartphones (landscape) */
+	// start Smartphones (landscape)
 	@media only screen and (min-width : 320px) and (max-width : 767px) and (orientation: landscape){
 		${1}
 	}
-	/* end Smartphones (landscape) */
+	// end Smartphones (landscape)
 snippet mq Smartphones (portrait)
-	/* start Smartphones (portrait) */
+	// start Smartphones (portrait)
 	@media only screen and (min-width : 320px) and (max-width : 767px) and (orientation: portrait){
 		${1}
 	}
-	/* end Smartphones (portrait) */
+	// end Smartphones (portrait)
 snippet mq Tablets (portrait and landscape)
-	/* start Tablets (portrait and landscape) */
+	// start Tablets (portrait and landscape)
 	@media only screen and (min-width : 768px) and (max-width : 1024px) {
 		${1}
 	}
-	/* end Tablets (portrait and landscape) */
+	// end Tablets (portrait and landscape)
 snippet mq Tablets (lanscape)
-	/* start Tablets (landscape) */
+	// start Tablets (landscape)
 	@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : landscape) {
 		${1}
 	}
-	/* end Tablets (landscape) */
+	// end Tablets (landscape)
 snippet mq Tablets (portrait)
-	/* start Tablets (portrait) */
+	// start Tablets (portrait)
 	@media only screen and (min-width : 768px) and (max-width : 1024px) and (orientation : portrait) {
 		${1}
 	}
-	/* end Tablets (portrait) */
+	// end Tablets (portrait)
 snippet mq Displays (smaller)
-	/* start Displays (smaller) */
+	// start Displays (smaller)
 	@media only screen and (min-width : 1025px) {
 		${1}
 	}
-	/* end Displays (smaller) */
+	// end Displays (smaller)
 snippet mq Displays (larger)
-	/* start Displays (larger) */
+	// start Displays (larger)
 	@media only screen and (min-width : 1280px) {
 		${1}
 	}
-	/* end Displays (larger) */
+	// end Displays (larger)
 snippet § Section
-	/* start ${1:name} */
+	// start ${1:name}
 	${2} {
+		${3}
 	}
-	/* end $1 */
+	// end $1
 snippet @ @media (nested)
 	@media ${1:statements} {
 		${2}

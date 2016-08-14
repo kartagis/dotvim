@@ -59,8 +59,10 @@ xnoremap al $o0
 onoremap al :<C-u>normal val<CR>
 
 " buffer text-object
-xnoremap i% GoggV
-onoremap i% :<C-u>normal vi%<CR>
+" xnoremap i% :<C-u>let z = @/\|1;/^./kz<CR>G??<CR>:let @/ = z<CR>V'z
+" onoremap i% :<C-u>normal vi%<CR>
+" xnoremap a% GoggV
+" onoremap a% :<C-u>normal vi%<CR>
 
 " block comment text-object
 xnoremap a? ?<C-r>=split(&commentstring, "%s")[0]<CR><CR>o/<C-r>=split(&commentstring, "%s")[1]<CR><CR>
@@ -79,3 +81,33 @@ inoremap [, [<CR>],<Esc>O
 
 " like <C-r><C-w> for lines
 cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
+
+" insert date
+iabbrev <expr> dts system("LANG=en_EN date\|tr -d '\n'")
+
+" search highlight for vim-cool
+" set hls
+
+" ultra-light aligning
+" function! Align()
+" 	'<,'>!column -t|sed 's/  \(\S\)/ \1/g'
+" 	normal gv=
+" endfunction
+" xnoremap <silent> <F5> :<C-u>silent call Align()<CR>
+
+" foo\<C-r>=2*0bar
+" 8
+
+" function! Foo()
+"     let cnt = v:count1
+"     let old_reg = getreg("v")
+"     let raw_number = getreg("v")
+"     call search('\d\([^0-9\.]\|$\)', 'cW')
+"     normal v
+"     call search('\(^\|[^0-9\.]\d\)', 'becW')
+"     normal "vygv
+"     execute "normal c" . cnt * @v
+"     call setreg("v", old_reg)
+" endfunction
+
+" nnoremap <F5> :<C-u>call Foo()<CR>

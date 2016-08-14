@@ -20,8 +20,8 @@
     information = {
         author: "Romain Lafourcade",
         email: "romainlafourcade@gmail.com",
-        name: "sweet16",
-        description: "A 'light' colorscheme using exclusively the lower 16 colors of the xterm palette.",
+        name: "austerity",
+        description: "no description yet",
         background: "light"
     }
 
@@ -35,6 +35,10 @@
     #
     # The colors below are the first 16 colors of the xterm palette and
     # are only here as an example. You can get rid of them, I won't be mad.
+    black     = ['#000000', 0, 0]
+    darkgray  = ['#666666', 8, 8]
+    lightgray = ['#999999', 7, 7]
+    white     = ['#ffffff', 15, 15]
 
     # Step 3: highlights
     #
@@ -62,14 +66,14 @@
     # plugins may define their own. Feel free to append them to this array as needed.
     highlights = [
         [ "Normal", "NONE", "NONE", "NONE" ],
-        [ "NonText", "NONE", "NONE", "NONE" ],
+        [ "NonText", "NONE", lightgray, "NONE" ],
 
-        [ "Comment", "NONE", "NONE", "NONE" ],
+        [ "Comment", "NONE", darkgray, "NONE" ],
         [ "Constant", "NONE", "NONE", "bold" ],
         [ "Error", "NONE", "NONE", "reverse" ],
         [ "Identifier", "NONE", "NONE", "underline" ],
         [ "Ignore", "NONE", "NONE", "NONE" ],
-        [ "PreProc", "NONE", "NONE", "bold" ],
+        [ "PreProc", "NONE", darkgray, "NONE" ],
         [ "Special", "NONE", "NONE", "NONE" ],
         [ "Statement", "NONE", "NONE", "bold" ],
         [ "String", "NONE", "NONE", "NONE" ],
@@ -77,32 +81,32 @@
         [ "Type", "NONE", "NONE", "bold" ],
         [ "Underlined", "NONE", "NONE", "underline" ],
 
-        [ "StatusLine", "NONE", "NONE", "bold,underline" ],
-        [ "StatusLineNC", "NONE", "NONE", "underline" ],
+        [ "StatusLine", lightgray, "NONE", "NONE" ],
+        [ "StatusLineNC", "NONE", lightgray, "underline" ],
         [ "VertSplit", "NONE", "NONE", "bold" ],
 
-        [ "TabLine", "NONE", "NONE", "underline" ],
-        [ "TabLineFill", "NONE", "NONE", "underline" ],
-        [ "TabLineSel", "NONE", "NONE", "bold,underline" ],
+        [ "TabLine", "NONE", lightgray, "underline" ],
+        [ "TabLineFill", "NONE", lightgray, "underline" ],
+        [ "TabLineSel", lightgray, "NONE", "NONE" ],
 
         [ "Title", "NONE", "NONE", "NONE" ],
-        [ "LineNr", "NONE", "NONE", "NONE" ],
+        [ "LineNr", "NONE", lightgray, "NONE" ],
 
         [ "Cursor", "NONE", "NONE", "NONE" ],
-        [ "CursorColumn", "NONE", "NONE", "NONE" ],
-        [ "CursorLine", "NONE", "NONE", "NONE" ],
-        [ "CursorLineNr", "NONE", "NONE", "reverse" ],
+        [ "CursorColumn", white, "NONE", "NONE" ],
+        [ "CursorLine", white, "NONE", "NONE" ],
+        [ "CursorLineNr", white, "NONE", "NONE" ],
 
         [ "helpLeadBlank", "NONE", "NONE", "NONE" ],
         [ "helpNormal", "NONE", "NONE", "NONE" ],
 
-        [ "Visual", "NONE", "NONE", "reverse" ],
+        [ "Visual", white, darkgray, "reverse" ],
         [ "VisualNOS", "NONE", "NONE", "underline" ],
 
-        [ "Pmenu", "NONE", "NONE", "NONE" ],
-        [ "PmenuSbar", "NONE", "NONE", "NONE" ],
-        [ "PmenuSel", "NONE", "NONE", "NONE" ],
-        [ "PmenuThumb", "NONE", "NONE", "NONE" ],
+        [ "Pmenu", white, "NONE", "NONE" ],
+        [ "PmenuSbar", darkgray, "NONE", "NONE" ],
+        [ "PmenuSel", lightgray, "NONE", "NONE" ],
+        [ "PmenuThumb", lightgray, "NONE", "NONE" ],
 
         [ "FoldColumn", "NONE", "NONE", "NONE" ],
         [ "Folded", "NONE", "NONE", "NONE" ],
@@ -110,23 +114,23 @@
         [ "WildMenu", "NONE", "NONE", "reverse" ],
         [ "SpecialKey", "NONE", "NONE", "NONE" ],
 
-        [ "DiffAdd", "NONE", "NONE", "NONE" ],
+        [ "DiffAdd", "lightgreen", "NONE", "NONE" ],
         [ "DiffChange", "NONE", "NONE", "NONE" ],
-        [ "DiffDelete", "NONE", "NONE", "NONE" ],
+        [ "DiffDelete", "lightred", "NONE", "NONE" ],
         [ "DiffText", "NONE", "NONE", "NONE" ],
 
         [ "IncSearch", "NONE", "NONE", "reverse" ],
-        [ "Search", "NONE", "NONE", "reverse,bold" ],
+        [ "Search", "NONE", "NONE", "reverse" ],
 
         [ "Directory", "NONE", "NONE", "NONE" ],
-        [ "MatchParen", "NONE", "NONE", "bold" ],
+        [ "MatchParen", "NONE", "NONE", "reverse" ],
 
         [ "SpellBad", "NONE", "NONE", "undercurl", "NONE" ],
         [ "SpellCap", "NONE", "NONE", "undercurl", "NONE" ],
         [ "SpellLocal", "NONE", "NONE", "undercurl", "NONE" ],
         [ "SpellRare", "NONE", "NONE", "undercurl", "NONE" ],
 
-        [ "ColorColumn", "NONE", "NONE", "reverse" ],
+        [ "ColorColumn", lightgray, "NONE", "NONE" ],
         [ "signColumn", "NONE", "NONE", "NONE" ],
 
         [ "ErrorMsg", "NONE", "NONE", "bold" ],

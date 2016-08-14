@@ -7,6 +7,8 @@ setlocal define=^\\s*\\(function\\\|command\\)
 
 setlocal keywordprg=:help
 
+set indentkeys-=0\
+
 function! s:SelectFunction()
     call search("^\s*function", "bWc")
     normal v%V

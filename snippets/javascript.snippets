@@ -84,6 +84,12 @@ snippet geti
 # insertAdjacentHTML
 snippet ins
 	insertAdjacentHTML('${1:beforebegin|afterbegin|beforeend|afterend}', '${2:text}')
+# querySelector
+snippet qs
+	querySelector('${1}')${2}
+# querySelectorAll
+snippet qsa
+	querySelectorAll('${1}')${2}
 #
 #
 #
@@ -139,11 +145,11 @@ snippet atte
 	attachEvent('on${1:event_name}', ${2:function_name});
 # Target
 snippet tar nodeName
-	if (e.target && e.target.nodeName.toLowercase() === "${1:nodename}") {
+	if (e.target && /${1:pattern}/.test(e.target.nodeName.toLowercase())) {
 		${2}
 	}
 snippet tar id
-	if (e.target && e.target.getAttribute("id") === "${1:id}") {
+	if (e.target && /${1:pattern}/.test(e.target.getAttribute("id"))) {
 		${2}
 	}
 snippet tar class
@@ -276,8 +282,8 @@ snippet mod
 # Getter
 snippet getter
 	get_${1:property_name}: function() {
-		return this.${2:property_name}
-	}
+		return this.$1;
+	}${2}
 # Setter
 snippet setter
 	set_${1:property_name}: function(value) {
@@ -287,7 +293,7 @@ snippet setter
 		} catch(e) {
 			return false;
 		}
-	}
+	}${2}
 # Callback
 snippet call
 	callback.call(${1});
@@ -310,7 +316,7 @@ snippet xhr vanilla ajax call
 			}
 		}
 	};
-	$1.open("${3:GET}", "${4:URI}");
+	$1.open("${2:GET}", "${3:URI}");
 	$1.send();
 # Ajax success handler
 snippet success success.call()
@@ -574,8 +580,6 @@ snippet rem removeClass()
 	removeClass('${1:class name}')
 snippet rem removeData()
 	removeData('${1:key name}')
-snippet rem removeData(a,b)
-	$.removeData(${1:element}${2:, 'key name}')
 snippet rem removeProp()
 	removeProp('${1:property name}')
 # REPLACE
@@ -688,21 +692,8 @@ snippet c click()
 	});
 snippet c clone()
 	clone()
-snippet c contains()
-	$.contains(${1:container}, ${2:contents});
-snippet c $.cssHooks
-	$.cssHooks['${1:CSS prop}'] = {
-		get: function (elem, computed, extra) {
-			${2: // handle getting the CSS property}
-		},
-		set: function (elem, value) {
-			${3: // handle setting the CSS value}
-		}
-	};
 snippet d data()
 	data(${1:obj})
-snippet d $.data()
-	$.data('${1:selector expression}', '${2:key}'${3:, 'value'})
 snippet d dblclick()
 	dblclick(function (${1:e}) {
 		${2:// event handler}
@@ -715,8 +706,6 @@ snippet d delegate()
 	});
 snippet d dequeue()
 	dequeue(${1:'queue name'})
-snippet d $.dequeue()
-	$.dequeue('${1:selector expression}'${2:, 'queue name'})
 snippet d detach()
 	detach('${1:selector expression}')
 snippet d die()
@@ -725,10 +714,6 @@ snippet e each()
 	each(function (index) {
 		${1:this.innerHTML = this + " is the element, " + index + " is the position";}
 	});
-snippet e el
-	$('<${1}/>'${2:, {}})
-snippet $ $.trim()
-	$.trim('${1:string}')
 snippet e empty()
 	empty()
 snippet e end()
@@ -743,8 +728,6 @@ snippet e eventsmap
 	{
 		:f${1}
 	}
-snippet $ $.extend()
-	$.extend(${1:true, }${2:target}, ${3:obj})
 snippet f filter()
 	filter('${1:selector expression}')
 snippet f filter() + function()
@@ -755,25 +738,8 @@ snippet f find()
 	find('${1:selector expression}')
 snippet g get()
 	get(${1:element index})
-snippet $ $.getJSON()
-	$.getJSON('${1:mydomain.com/url}',
-		${2:{ param1: value1 },}
-		function (data, textStatus, jqXHR) {
-			${3:// success callback}
-		}
-	);
-snippet $ $.getScript()
-	$.getScript('${1:mydomain.com/url}', function (script, textStatus, jqXHR) {
-		${2:// callback}
-	});
-snippet $ $.grep()
-	$.grep(${1:array}, function (item, index) {
-		${2}
-	}${3:, true});
 snippet h hasClass()
 	hasClass('${1:className}')
-snippet $ $.hasData()
-	$.hasData('${1:selector expression}');
 snippet h height()
 	height(${1:integer})
 snippet h hide()
@@ -790,8 +756,6 @@ snippet h hover()
 	});
 snippet h html()
 	html('${1:Some text <b>and bold!</b>}')
-snippet $ $.inArray()
-	$.inArray(${1:value}, ${2:array});
 snippet i insertAfter()
 	insertAfter('${1:selector expression}')
 snippet i insertBefore()
@@ -825,18 +789,10 @@ snippet l load() + function()
 			${3:// success callback}
 		}
 	});
-snippet m $.makeArray()
-	$.makeArray(${1:obj});
 snippet m map()
 	map(function (${1:index}, ${2:element}) {
 		${3:// callback}
 	});
-snippet m map() + function()
-	$.map(${1:arrayOrObject}, function (${2:value}, ${3:indexOrKey}) {
-		${4:// callback}
-	});
-snippet m $.merge()
-	$.merge(${1:target}, ${2:original});
 snippet n next()
 	next('${1:selector expression}')
 snippet n nextAll()
@@ -863,18 +819,12 @@ snippet o outerHeight()()
 	outerHeight()
 snippet o outerWidth()()
 	outerWidth()
-snippet p $.param()
-	$.param(${1:obj})
 snippet p parent()
 	parent('${1:selector expression}')
 snippet p parents()
 	parents('${1:selector expression}')
 snippet p parentsUntil()
 	parentsUntil('${1:selector expression}'${2:, 'filter expression'})
-snippet p $.parseJSON()
-	$.parseJSON(${1:data})
-snippet p $.parseXML()
-	$.parseXML(${1:data})
 snippet p pos()
 	position()
 snippet p prepend()
@@ -891,14 +841,10 @@ snippet p promise()
 	promise(${1:'fx'}, ${2:target})
 snippet p prop()
 	prop('${1:property name}')
-snippet p $.proxy()
-	$.proxy(${1:function}, ${2:this})
 snippet p pushStack()
 	pushStack(${1:elements})
 snippet q queue()
 	queue(${1:name}${2:, newQueue})
-snippet q $.queuee()
-	$.queue(${1:element}${2:, name}${3:, newQueue})
 snippet r reset()
 	reset(function (${1:e}) {
 		${2:// event handler}
@@ -935,8 +881,6 @@ snippet s submit()
 	});
 snippet t text()
 	text(${1:'some text'})
-snippet t $(this)
-	$(this)
 snippet t toArray()
 	toArray()
 snippet t toggle()
@@ -951,16 +895,10 @@ snippet t trigger()
 	trigger('${1:event name}')
 snippet t triggerHandler()
 	triggerHandler('${1:event name}')
-snippet t $.trim()
-	$.trim(${1:str})
-snippet t $.type()
-	$.type(${1:obj})
 snippet u unbind()
 	unbind('${1:event name}')
 snippet u undelegate()
 	undelegate(${1:selector expression}, ${2:event}, ${3:handler})
-snippet u uniq()
-	$.unique(${1:array})
 snippet u unload()
 	unload(function (${1:e}) {
 		${2:// event handler}
@@ -973,37 +911,106 @@ snippet w width()
 	width(${1:integer})
 snippet w wrap()
 	wrap('${1:&lt;div class="extra-wrapper"&gt;&lt;/div&gt;}')
+#fo
+snippet $ removeData(a,b)
+	$.removeData(${1:element}${2:, 'key name}')
+snippet $ $(this)
+	$(this)
+snippet $ $.trim()
+	$.trim(${1:str})
+snippet $ $.type()
+	$.type(${1:obj})
+snippet $ uniq()
+	$.unique(${1:array})
+snippet $ $.queuee()
+	$.queue(${1:element}${2:, name}${3:, newQueue})
+snippet $ $.proxy()
+	$.proxy(${1:function}, ${2:this})
+snippet $ $.parseJSON()
+	$.parseJSON(${1:data})
+snippet $ $.parseXML()
+	$.parseXML(${1:data})
+snippet $ contains()
+	$.contains(${1:container}, ${2:contents});
+snippet $ $.cssHooks
+	$.cssHooks['${1:CSS prop}'] = {
+		get: function (elem, computed, extra) {
+			${2: // handle getting the CSS property}
+		},
+		set: function (elem, value) {
+			${3: // handle setting the CSS value}
+		}
+	};
+snippet $ el
+	$('<${1}/>'${2:, {}})
+snippet $ $.data()
+	$.data('${1:selector expression}', '${2:key}'${3:, 'value'})
+snippet $ $.dequeue()
+	$.dequeue('${1:selector expression}'${2:, 'queue name'})
+snippet $ $.trim()
+	$.trim('${1:string}')
+snippet $ $.extend()
+	$.extend(${1:true, }${2:target}, ${3:obj})
+snippet $ $.getJSON()
+	$.getJSON('${1:mydomain.com/url}',
+		${2:{ param1: value1 },}
+		function (data, textStatus, jqXHR) {
+			${3:// success callback}
+		}
+	);
+snippet $ $.getScript()
+	$.getScript('${1:mydomain.com/url}', function (script, textStatus, jqXHR) {
+		${2:// callback}
+	});
+snippet $ $.grep()
+	$.grep(${1:array}, function (item, index) {
+		${2}
+	}${3:, true});
+snippet $ $.hasData()
+	$.hasData('${1:selector expression}');
+snippet $ $.inArray()
+	$.inArray(${1:value}, ${2:array});
+snippet $ $.makeArray()
+	$.makeArray(${1:obj});
+snippet $ map() + function()
+	$.map(${1:arrayOrObject}, function (${2:value}, ${3:indexOrKey}) {
+		${4:// callback}
+	});
+snippet $ $.merge()
+	$.merge(${1:target}, ${2:original});
+snippet $ $.param()
+	$.param(${1:obj})
 #
 #
 #
 #############
 # TWEENLITE #
 #############
-snippet tw
+snippet tw TweenLite/TweenMax one shot
 	Tween${1:Lite|Max}.${2:to|from}(${3:element}, ${4:1}, {${5}});
-snippet tl
+snippet tl TweenLite instance
 	var ${1:tl} = new TimelineLite();
-snippet to to()		TimelineLite: Adds a TweenLite.to() tween to the end of the timeline (or elsewhere using the "position" parameter).
+snippet tl to()		TimelineLite: Adds a TweenLite.to() tween to the end of the timeline (or elsewhere using the "position" parameter).
 	to(${1:element}, ${2:1}, {${3}});
-snippet meth call()	TimelineLite: Adds a callback to the end of the timeline (or elsewhere using the "position" parameter).
+snippet tl call()	TimelineLite: Adds a callback to the end of the timeline (or elsewhere using the "position" parameter).
 	call(${1:function_name});
-snippet meth pause()	TimelineLite: Pauses the instance, optionally jumping to a specific time.
+snippet tl pause()	TimelineLite: Pauses the instance, optionally jumping to a specific time.
 	pause(${1});
-snippet meth resume()	TimelineLite: Resumes playing without altering direction (forward or reversed), optionally jumping to a specific time first.
+snippet tl resume()	TimelineLite: Resumes playing without altering direction (forward or reversed), optionally jumping to a specific time first.
 	resume(${1});
-snippet meth restart()	TimelineLite: Restarts and begins playing forward from the beginning.
+snippet tl restart()	TimelineLite: Restarts and begins playing forward from the beginning.
 	restart(${1});
-snippet meth reverse()	TimelineLite: Reverses playback so that all aspects of the animation are oriented backwards including, for example, a tween's ease.
+snippet tl reverse()	TimelineLite: Reverses playback so that all aspects of the animation are oriented backwards including, for example, a tween's ease.
 	reverse(${1});
-snippet meth play()	TimelineLite: Begins playing forward, optionally from a specific time (by default playback begins from wherever the playhead currently is).
+snippet tl play()	TimelineLite: Begins playing forward, optionally from a specific time (by default playback begins from wherever the playhead currently is).
 	play(${1});
-snippet meth seek()	TimelineLite: [override] Jumps to a specific time (or label) without affecting whether or not the instance is paused or reversed.
+snippet tl seek()	TimelineLite: [override] Jumps to a specific time (or label) without affecting whether or not the instance is paused or reversed.
 	seek(${1:2});
-snippet meth timescale()	TimelineLite: Factor that's used to scale time in the animation where 1 = normal speed (the default), 0.5 = half speed, 2 = double speed, etc.
+snippet tl timescale()	TimelineLite: Factor that's used to scale time in the animation where 1 = normal speed (the default), 0.5 = half speed, 2 = double speed, etc.
 	timeScale(${1:0.5});
-snippet meth add()	TimelineLite: [override] Adds a tween, timeline, callback, or label (or an array of them) to the timeline.
+snippet tl add()	TimelineLite: [override] Adds a tween, timeline, callback, or label (or an array of them) to the timeline.
 	add(${1:what}, ${2:where});
-snippet meth addLabel()	TimelineLite: Adds a label to the timeline, making it easy to mark important positions/times.
+snippet tl addLabel()	TimelineLite: Adds a label to the timeline, making it easy to mark important positions/times.
 	addLabel(${1:label}, ${2:position});
 snippet onc
 	onComplete: function() {${1}}
@@ -1103,30 +1110,30 @@ snippet mo it pending
 snippet ex expect
 	expect(${1:false}).${2:to...};
 # to be...
-snippet to to be ok
+snippet to. to be ok
 	to.be.ok;
-snippet to to not be ok
+snippet to. to not be ok
 	to.not.be.ok;
-snippet to to eql... (deep)
+snippet to. to eql... (deep)
 	to.eql(${2:''});
-snippet to to equal... (strict)
+snippet to. to equal... (strict)
 	to.equal(${2:''});
-snippet to to be instanceof..
+snippet to. to be instanceof..
 	to.be.instanceof(${2:false});
-snippet to to have property...
+snippet to. to have property...
 	to.have.property(${2:'property'});
-snippet to to be a...
+snippet to. to be a...
 	to.be.a('${2:}');
 # fast .a(type) versions
-snippet to to be a string
+snippet to. to be a string
 	to.be.a('string');
-snippet to to be an array
+snippet to. to be an array
 	to.be.a('array');
-snippet to to be an object
+snippet to. to be an object
 	to.be.a('object');
-snippet to to be null
+snippet to. to be null
 	to.be.a('null');
-snippet to to be undefined
+snippet to. to be undefined
 	to.be.a('undefined');
 #
 #
