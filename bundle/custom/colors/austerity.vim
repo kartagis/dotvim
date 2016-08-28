@@ -25,18 +25,18 @@ if &t_Co >= 256 || has('gui_running')
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse guibg=NONE guifg=NONE gui=reverse
     hi Type ctermbg=NONE ctermfg=NONE cterm=bold guibg=NONE guifg=NONE gui=bold
     hi Underlined ctermbg=NONE ctermfg=NONE cterm=underline guibg=NONE guifg=NONE gui=underline
-    hi StatusLine ctermbg=7 ctermfg=NONE cterm=NONE guibg=#999999 guifg=NONE gui=NONE
+    hi StatusLine ctermbg=7 ctermfg=0 cterm=NONE guibg=#999999 guifg=#000000 gui=NONE
     hi StatusLineNC ctermbg=NONE ctermfg=7 cterm=underline guibg=NONE guifg=#999999 gui=underline
     hi VertSplit ctermbg=NONE ctermfg=NONE cterm=bold guibg=NONE guifg=NONE gui=bold
     hi TabLine ctermbg=NONE ctermfg=7 cterm=underline guibg=NONE guifg=#999999 gui=underline
     hi TabLineFill ctermbg=NONE ctermfg=7 cterm=underline guibg=NONE guifg=#999999 gui=underline
-    hi TabLineSel ctermbg=7 ctermfg=NONE cterm=NONE guibg=#999999 guifg=NONE gui=NONE
+    hi TabLineSel ctermbg=7 ctermfg=0 cterm=NONE guibg=#999999 guifg=#000000 gui=NONE
     hi Title ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
-    hi LineNr ctermbg=NONE ctermfg=7 cterm=NONE guibg=NONE guifg=#999999 gui=NONE
+    hi LineNr ctermbg=NONE ctermfg=8 cterm=NONE guibg=NONE guifg=#666666 gui=NONE
     hi Cursor ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi CursorColumn ctermbg=15 ctermfg=NONE cterm=NONE guibg=#ffffff guifg=NONE gui=NONE
-    hi CursorLine ctermbg=15 ctermfg=NONE cterm=NONE guibg=#ffffff guifg=NONE gui=NONE
-    hi CursorLineNr ctermbg=15 ctermfg=NONE cterm=NONE guibg=#ffffff guifg=NONE gui=NONE
+    hi CursorLine ctermbg=NONE ctermfg=NONE cterm=underline guibg=NONE guifg=NONE gui=underline
+    hi CursorLineNr ctermbg=NONE ctermfg=NONE cterm=underline guibg=NONE guifg=NONE gui=underline
     hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE guibg=NONE guifg=NONE gui=NONE
     hi Visual ctermbg=15 ctermfg=8 cterm=reverse guibg=#ffffff guifg=#666666 gui=reverse
@@ -87,18 +87,18 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi Todo ctermbg=NONE ctermfg=NONE cterm=reverse
     hi Type ctermbg=NONE ctermfg=NONE cterm=bold
     hi Underlined ctermbg=NONE ctermfg=NONE cterm=underline
-    hi StatusLine ctermbg=7 ctermfg=NONE cterm=NONE
+    hi StatusLine ctermbg=7 ctermfg=0 cterm=NONE
     hi StatusLineNC ctermbg=NONE ctermfg=7 cterm=underline
     hi VertSplit ctermbg=NONE ctermfg=NONE cterm=bold
     hi TabLine ctermbg=NONE ctermfg=7 cterm=underline
     hi TabLineFill ctermbg=NONE ctermfg=7 cterm=underline
-    hi TabLineSel ctermbg=7 ctermfg=NONE cterm=NONE
+    hi TabLineSel ctermbg=7 ctermfg=0 cterm=NONE
     hi Title ctermbg=NONE ctermfg=NONE cterm=NONE
-    hi LineNr ctermbg=NONE ctermfg=7 cterm=NONE
+    hi LineNr ctermbg=NONE ctermfg=8 cterm=NONE
     hi Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
     hi CursorColumn ctermbg=15 ctermfg=NONE cterm=NONE
-    hi CursorLine ctermbg=15 ctermfg=NONE cterm=NONE
-    hi CursorLineNr ctermbg=15 ctermfg=NONE cterm=NONE
+    hi CursorLine ctermbg=NONE ctermfg=NONE cterm=underline
+    hi CursorLineNr ctermbg=NONE ctermfg=NONE cterm=underline
     hi helpLeadBlank ctermbg=NONE ctermfg=NONE cterm=NONE
     hi helpNormal ctermbg=NONE ctermfg=NONE cterm=NONE
     hi Visual ctermbg=15 ctermfg=8 cterm=reverse

@@ -28,11 +28,10 @@ nnoremap <buffer> dia /\v"\ze[ >/]<CR>di"
 nnoremap <buffer> yia /\v"\ze[ >/]<CR>yi"
 nnoremap <buffer> via /\v"\ze[ >/]<CR>vi"
 
-" à revoir
-" nnoremap <buffer> caa /\v"[ >/]/e<CR>vF=bc
-" nnoremap <buffer> daa /\v"[ >/]/e<CR>vF=bd
-" nnoremap <buffer> yaa /\v"[ >/]/e<CR>vF=by
-" nnoremap <buffer> vaa /\v"[ >/]/e<CR>vF=b
+nmap <buffer> vaa vialoBh
+nmap <buffer> caa vaac
+nmap <buffer> daa vaad
+nmap <buffer> yaa vaay
 
 " jump from one block-level element to the next
 nnoremap <silent> <buffer> ]] :call jump#Jump('/<\(html\\|body\\|head\\|address\\|article\\|aside\\|audio\\|blockquote\\|canvas\\|dd\\|div\\|dl\\|fieldset\\|figcaption\\|figure\\|footer\\|form\\|h1\\|header\\|hgroup\\|hr\\|noscript\\|ol\\|output\\|p\\|pre\\|section\\|table\\|tfoot\\|ul\\|video\)')<cr>

@@ -29,7 +29,7 @@ function! ccr#CCR()
         " like :marks but prompts for a mark to jump to
         return "\<CR>:norm! `"
     elseif cmdline =~ '\C^undol'
-        " like :marks but prompts for a mark to jump to
+        " like :undolist but prompts for a change to undo
         return "\<CR>:u "
     else
         return "\<CR>"

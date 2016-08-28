@@ -1,6 +1,6 @@
 " vim-qf - Tame the quickfix window
 " Maintainer:	romainl <romainlafourcade@gmail.com>
-" Version:	0.0.7
+" Version:	0.0.8
 " License:	MIT
 " Location:	after/ftplugin/qf.vim
 " Website:	https://github.com/romainl/vim-qf
@@ -19,7 +19,7 @@ let b:undo_ftplugin = "setl fo< com< ofu<"
 setlocal nowrap
 
 " relative line numbers don't make much sense either
-" but absolute numbers do
+" but absolute numbers definitely do
 setlocal norelativenumber
 setlocal number
 
@@ -109,16 +109,9 @@ nnoremap <silent> <buffer> { :call qf#PreviousFile()<CR>
 autocmd qf BufEnter    <buffer> if winnr('$') < 2 | q | endif
 autocmd qf BufWinEnter <buffer> call qf#ReuseTitle()
 
-if exists("b:isLoc")
-    if b:isLoc == 1
-        if get(g:, 'qf_loclist_window_bottom', 1)
-            wincmd J
-        endif
-    else
-        if get(g:, 'qf_window_bottom', 1)
-            wincmd J
-        endif
-    endif
+if (b:isLoc == 1 && get(g:, 'qf_loclist_window_bottom', 1))
+            \ || (b:isLoc == 0 && get(g:, 'qf_window_bottom', 1))
+    wincmd J
 endif
 
 let &cpo = s:save_cpo

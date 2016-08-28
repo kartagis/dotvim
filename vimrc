@@ -122,6 +122,7 @@ set foldopen=hor,insert,jump,mark,percent,quickfix,search,tag,undo
 set splitbelow
 set splitright
 
+set breakindent
 set clipboard^=unnamed
 set complete=.,w,b,u
 set completeopt+=longest,menuone
@@ -133,11 +134,14 @@ set mouse=a
 set nostartofline
 set noswapfile
 set nrformats-=octal
-set path=.,**
+set path&
+let &path .= "**"
 set previewheight=1
-set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winpos,winsize
+set report=0
+set sessionoptions+=resize
+set sessionoptions+=winpos
 set showbreak=›››\ 
-set viminfo='33,<1000,s10,h
+set viminfo='33,<50,s10,h
 set virtualedit=block
 
 """""""""""""""""
@@ -189,10 +193,10 @@ nnoremap ,<Right> "_yiw:s/\v(%#\w+)(\_W+)(\w+)/\3\2\1/<CR><C-o>/\v\w+\_W+<CR><C-
 """""""""""""""""""""""""""""
 " JUGGLING WITH COMPLETIONS "
 """""""""""""""""""""""""""""
-inoremap ,, <C-x><C-o><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
-inoremap ,; <C-n><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
-inoremap ,: <C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
-inoremap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ""<CR>
+imap ,, <C-x><C-o><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ",,"<CR>
+imap ,; <C-n><C-r>=pumvisible()      ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ",;"<CR>
+imap ,: <C-x><C-f><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ",:"<CR>
+imap ,= <C-x><C-l><C-r>=pumvisible() ? "\<lt>Down>\<lt>C-p>\<lt>Down>" : ",="<CR>
 
 """"""""""""""""""""""""""
 " JUGGLING WITH SEARCHES "
@@ -211,6 +215,12 @@ if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column\ --vimgrep
     set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
+
+"""""""""""""""""""""""""
+" JUGGLING WITH MATCHES "
+"""""""""""""""""""""""""
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
 """"""""""""""""""""""""""""""""
 " JUGGLING WITH SEARCH/REPLACE "
@@ -247,6 +257,17 @@ xnoremap <silent> <C-a> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=subma
 xnoremap <silent> <C-x> :<C-u>let vcount = v:count1 <bar> '<,'>s/\%V\d\+/\=submatch(0) - vcount<cr>gv
 
 xnoremap <silent> ,i :<C-u>let vcount = v:count<CR>gv:call incr#Incr(vcount)<CR>
+
+""""""""""""""""""""""""""""""""
+" BRACE EXPANSION ON THE CHEAP "
+""""""""""""""""""""""""""""""""
+inoremap (<CR> (<CR>)<Esc>O
+inoremap {<CR> {<CR>}<Esc>O
+inoremap {; {<CR>};<Esc>O
+inoremap {, {<CR>},<Esc>O
+inoremap [<CR> [<CR>]<Esc>O
+inoremap [; [<CR>];<Esc>O
+inoremap [, [<CR>],<Esc>O
 
 """"""""""""""""""""
 " VARIOUS MAPPINGS "
@@ -296,6 +317,11 @@ endfor
 xnoremap in :<C-u>call visual#Numbers()<CR>
 onoremap in :normal vin<CR>
 
+xnoremap il g_o0
+onoremap il :<C-u>normal vil<CR>
+xnoremap al $o0
+onoremap al :<C-u>normal val<CR>
+
 """"""""""""""""""""
 " VARIOUS COMMANDS "
 """"""""""""""""""""
@@ -336,15 +362,16 @@ let g:netrw_liststyle = 3
 let g:html_indent_script1 = 'inc'
 let g:html_indent_style1  = 'inc'
 let g:html_indent_inctags = 'html,body,head,tbody,p,li,dd,dt,h1,h2,h3,h4,h5,h6,blockquote,section'
+let html_wrong_comments   = 1
 
 " sparkup
 let g:sparkup = myruntime . '/bundle/sparkup/ftplugin/html/sparkup.py'
 
 " vim-qf
 let g:qf_mapping_ack_style = 1
-let g:qf_statusline = {}
+let g:qf_statusline        = {}
 let g:qf_statusline.before = '%<\ '
-let g:qf_statusline.after = '\ %f%=%l\/%-6L\ \ \ \ \ '
+let g:qf_statusline.after  = '\ %f%=%l\/%-6L\ \ \ \ \ '
 nmap <Home>   <Plug>QfCprevious
 nmap <End>    <Plug>QfCnext
 nmap <C-Home> <Plug>QfLprevious

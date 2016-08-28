@@ -33,8 +33,6 @@ command!                                 Done    call replace#Done()
 " xnoremap § <Esc>:let @/ = visual#GetSelection()<CR>gn<C-g>
 " snoremap <expr> . @.
 
-set report=0
-
 command! TD Grep TODO
 command! FM Grep FIXME
 
@@ -48,16 +46,6 @@ command! FM Grep FIXME
 " cnoremap <expr> <S-Tab> incsearch#BetterIncSearch("stab")
 " cnoremap <expr> <C-c>   incsearch#BetterIncSearch("ctrlc")
 
-" smarter incsearch
-cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
-
-" line text-objects
-xnoremap il g_o0
-onoremap il :<C-u>normal vil<CR>
-xnoremap al $o0
-onoremap al :<C-u>normal val<CR>
-
 " buffer text-object
 " xnoremap i% :<C-u>let z = @/\|1;/^./kz<CR>G??<CR>:let @/ = z<CR>V'z
 " onoremap i% :<C-u>normal vi%<CR>
@@ -69,15 +57,6 @@ xnoremap a? ?<C-r>=split(&commentstring, "%s")[0]<CR><CR>o/<C-r>=split(&comments
 onoremap a? :<C-u>normal va?<CR>
 xnoremap i? ?<C-r>=split(&commentstring, "%s")[0]<CR>?+<CR>o/<C-r>=split(&commentstring, "%s")[1]<CR>/-<CR>
 onoremap i? :<C-u>normal vi?<CR>
-
-" brace expansion on the cheap
-inoremap (<CR> (<CR>)<Esc>O
-inoremap {<CR> {<CR>}<Esc>O
-inoremap {; {<CR>};<Esc>O
-inoremap {, {<CR>},<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap [; [<CR>];<Esc>O
-inoremap [, [<CR>],<Esc>O
 
 " like <C-r><C-w> for lines
 cnoremap <C-r><C-l> <C-r>=getline('.')<CR>
@@ -95,10 +74,8 @@ iabbrev <expr> dts system("LANG=en_EN date\|tr -d '\n'")
 " endfunction
 " xnoremap <silent> <F5> :<C-u>silent call Align()<CR>
 
-" foo\<C-r>=2*0bar
-" 8
-
-" function! Foo()
+" Multiply/divide by [count]
+" function! Multivide(divide)
 "     let cnt = v:count1
 "     let old_reg = getreg("v")
 "     let raw_number = getreg("v")
@@ -106,8 +83,15 @@ iabbrev <expr> dts system("LANG=en_EN date\|tr -d '\n'")
 "     normal v
 "     call search('\(^\|[^0-9\.]\d\)', 'becW')
 "     normal "vygv
-"     execute "normal c" . cnt * @v
+"     if a:divide == 1
+"         execute 'normal "_c' . @v / cnt
+"     else
+"         execute 'normal "_c' . @v * cnt
+"     endif
 "     call setreg("v", old_reg)
 " endfunction
 
-" nnoremap <F5> :<C-u>call Foo()<CR>
+" nnoremap <F5> :<C-u>call Multivide(0)<CR>
+" nnoremap <F6> :<C-u>call Multivide(1)<CR>
+
+" 20
