@@ -24,6 +24,7 @@ nnoremap <silent> <buffer> [[ :call jump#Jump('?function')<cr>
 xnoremap <buffer> ?? <Esc>'<yyP"_C/*<Esc>'>yyp"_C*/<Esc>
 xnoremap <buffer> !! <Esc>'<"_dd'>"_dd'<
 nmap     <buffer> !! vi?!!
+nmap     <buffer> ?? vip??
 
 " comment text-object
 xnoremap <buffer> i? ?/\*<CR>o/\*\/<CR>
